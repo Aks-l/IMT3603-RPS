@@ -1,10 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://cp3d2glfnjbps"]
 
-[ext_resource type="Texture2D" uid="uid://ckbmd3wra2eno" path="res://icon.svg" id="1_qf7wa"]
+[ext_resource type="Script" uid="uid://dis86gkn12vqn" path="res://scenes/almanac.gd" id="1_scxtu"]
 
-[node name="Almanac" type="Node3D"]
+[node name="Almanac" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_scxtu")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_qf7wa")
+[node name="Grid" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 4
