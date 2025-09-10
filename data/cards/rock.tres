@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_0bapg")
-name = ""
-beats = Array[String]([])
+name = "rock"
+beats = Array[String](["Scissors"])
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

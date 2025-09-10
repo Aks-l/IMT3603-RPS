@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_5gk72")
-name = ""
-beats = Array[String]([])
+name = "scissors"
+beats = Array[String](["paper"])
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"
