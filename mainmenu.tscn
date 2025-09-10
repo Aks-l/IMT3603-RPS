@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl7s3vpjvci7w"]
+[gd_scene load_steps=3 format=3 uid="uid://bl7s3vpjvci7w"]
 
 [ext_resource type="Texture2D" uid="uid://ckbmd3wra2eno" path="res://icon.svg" id="1_cmhrf"]
+[ext_resource type="Script" uid="uid://cbuxum5kiertc" path="res://mainmenu.gd" id="1_d2nv2"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_d2nv2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -38,6 +40,10 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "Play"
 
+[node name="Almanac" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Almanac"
+
 [node name="Options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Options"
@@ -45,3 +51,5 @@ text = "Options"
 [node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Almanac" to="." method="_on_almanac_pressed"]

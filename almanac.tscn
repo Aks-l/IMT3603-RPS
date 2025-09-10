@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp3d2glfnjbps"]
+
+[ext_resource type="Texture2D" uid="uid://ckbmd3wra2eno" path="res://icon.svg" id="1_qf7wa"]
+
+[node name="Almanac" type="Node3D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_qf7wa")
