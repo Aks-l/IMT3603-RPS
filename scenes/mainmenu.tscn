@@ -52,4 +52,5 @@ text = "Options"
 layout_mode = 2
 text = "Quit"
 
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Almanac" to="." method="_on_almanac_pressed"]

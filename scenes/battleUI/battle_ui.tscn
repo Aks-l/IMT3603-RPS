@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5xdkuc18ywuv"]
+
+[ext_resource type="Script" uid="uid://ca2yf48k0yyfh" path="res://scenes/battleUI/battle_ui.gd" id="1_8ao15"]
+[ext_resource type="PackedScene" uid="uid://su1ofpnm7rut" path="res://scenes/battleUI/hand_inventory.tscn" id="1_88761"]
+[ext_resource type="PackedScene" uid="uid://df4iyjt5y1vmr" path="res://scenes/battleUI/opponent_profile.tscn" id="2_8ao15"]
+[ext_resource type="PackedScene" uid="uid://bpwhgbvuxk68w" path="res://scenes/battleUI/consumable_inventory.tscn" id="3_xpdlr"]
+
+[node name="BattleUI" type="Node3D"]
+script = ExtResource("1_8ao15")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="Parts" type="Node3D" parent="."]
+
+[node name="Layout" type="HBoxContainer" parent="Parts"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HandInventory" parent="Parts/Layout" instance=ExtResource("1_88761")]
+
+[node name="OpponentProfile" parent="Parts/Layout" instance=ExtResource("2_8ao15")]
+layout_mode = 2
+
+[node name="ConsumableInventory" parent="Parts/Layout" instance=ExtResource("3_xpdlr")]

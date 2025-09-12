@@ -9,5 +9,5 @@ id = 0
 sprite = ExtResource("2_3rvs7")
 name = "Bob Rock"
 description = "Bob rock is a rockstar that loves rocks!"
-discovered = false
+discovered = true
 metadata/_custom_type_script = "uid://by12nwuyw45yk"
