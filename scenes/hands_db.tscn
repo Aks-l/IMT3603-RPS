@@ -1,3 +1,11 @@
-[gd_scene load_steps=0 format=3 uid="uid://b73f6lp1vppl8"]
+[gd_scene load_steps=6 format=3 uid="uid://cof2b6gwpypn2"]
+
+[ext_resource type="Script" uid="uid://bij8jyaqqsyd7" path="res://hands_db.gd" id="1_ikwl4"]
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://hand_data.gd" id="2_d2cov"]
+[ext_resource type="Resource" uid="uid://bkg0xsvl0m778" path="res://data/cards/paper.tres" id="3_u8dr5"]
+[ext_resource type="Resource" uid="uid://db43way83xefq" path="res://data/cards/rock.tres" id="4_20f34"]
+[ext_resource type="Resource" uid="uid://dqoxtqghosbt4" path="res://data/cards/scissors.tres" id="5_aclhe"]
 
 [node name="HandsDb" type="Node"]
+script = ExtResource("1_ikwl4")
+hands = Array[ExtResource("2_d2cov")]([ExtResource("3_u8dr5"), ExtResource("4_20f34"), ExtResource("5_aclhe")])
