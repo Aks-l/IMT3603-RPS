@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://bkg0xsvl0m778"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://hand_data.gd" id="1_kohf7"]
+
+[resource]
+script = ExtResource("1_kohf7")
+name = "paper"
+beats = Array[String](["rock"])
+metadata/_custom_type_script = "uid://cpqej81wc7vpu"
