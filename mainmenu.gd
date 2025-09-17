@@ -6,7 +6,7 @@ func _on_almanac_pressed() -> void:
 func _on_play_pressed() -> void:
 	var enemy := preload("res://enemies/BobRock.tres") as EnemyData
 	var battle := preload("res://scenes/battleUI/battle_ui.tscn").instantiate() as BattleUI
-	battle.setup(enemy, [], [])
+	battle.setup(enemy, Globals.inventory, [])
 	get_tree().root.add_child(battle)
 
 	# make the battle camera active (in case it isn’t set to Current in the editor)

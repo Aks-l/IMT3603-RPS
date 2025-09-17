@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://su1ofpnm7rut"]
+[gd_scene load_steps=2 format=3 uid="uid://su1ofpnm7rut"]
 
-[node name="HandInventory" type="Node3D"]
+[ext_resource type="Script" uid="uid://ckf7xjm3fbqoa" path="res://scenes/battleUI/hand_inventory.gd" id="1_gt520"]
+
+[node name="HandInventory" type="Node2D"]
+script = ExtResource("1_gt520")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
