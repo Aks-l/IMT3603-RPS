@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://cewwptp1a1xsf"]
+
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="1_go4gv"]
+[ext_resource type="Texture2D" uid="uid://b1kiir0033bwj" path="res://data/enemies/sprites/bobRock.png" id="2_lhuag"]
+
+[resource]
+script = ExtResource("1_go4gv")
+id = 1
+sprite = ExtResource("2_lhuag")
+name = "Bob Rock"
+description = "Supe hard fight"
+discovered = false
+metadata/_custom_type_script = "uid://by12nwuyw45yk"
