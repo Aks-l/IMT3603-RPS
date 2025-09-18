@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bpwhgbvuxk68w"]
 
-[node name="ConsumableInventory" type="Node2D"]
+[node name="ConsumableInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_right = 40.0

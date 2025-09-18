@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1kiir0033bwj"
-path="res://.godot/imported/bobRock.png-e36507e890fc3a2ea6abbca310d9bd33.ctex"
+uid="uid://dia6d0eco6grk"
+path="res://.godot/imported/paper.jpg-59f5ee5f5399f1848dbfce59ea01edd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/sprites/bobRock.png"
-dest_files=["res://.godot/imported/bobRock.png-e36507e890fc3a2ea6abbca310d9bd33.ctex"]
+source_file="res://data/cards/sprites/paper.jpg"
+dest_files=["res://.godot/imported/paper.jpg-59f5ee5f5399f1848dbfce59ea01edd9.ctex"]
 
 [params]
 

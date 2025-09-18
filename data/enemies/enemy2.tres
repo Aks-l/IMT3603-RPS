@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://cwwrhg247x64e"]
+
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="1_1tm4e"]
+[ext_resource type="Texture2D" uid="uid://ckbmd3wra2eno" path="res://icon.svg" id="2_qujtf"]
+
+[resource]
+script = ExtResource("1_1tm4e")
+id = 2
+sprite = ExtResource("2_qujtf")
+name = "Test enemy"
+description = "the enemy used for testing"
+discovered = true
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

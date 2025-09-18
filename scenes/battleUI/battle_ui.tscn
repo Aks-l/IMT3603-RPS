@@ -1,26 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5xdkuc18ywuv"]
+[gd_scene load_steps=4 format=3 uid="uid://c5xdkuc18ywuv"]
 
 [ext_resource type="Script" uid="uid://ca2yf48k0yyfh" path="res://scenes/battleUI/battle_ui.gd" id="1_8ao15"]
-[ext_resource type="PackedScene" uid="uid://su1ofpnm7rut" path="res://scenes/battleUI/hand_inventory.tscn" id="1_88761"]
 [ext_resource type="PackedScene" uid="uid://df4iyjt5y1vmr" path="res://scenes/battleUI/opponent_profile.tscn" id="2_8ao15"]
-[ext_resource type="PackedScene" uid="uid://bpwhgbvuxk68w" path="res://scenes/battleUI/consumable_inventory.tscn" id="3_xpdlr"]
+[ext_resource type="PackedScene" uid="uid://su1ofpnm7rut" path="res://scenes/battleUI/hand_inventory.tscn" id="3_88761"]
 
 [node name="BattleUI" type="Node3D"]
 script = ExtResource("1_8ao15")
 
+[node name="Layout" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="OpponentProfile" parent="Layout" instance=ExtResource("2_8ao15")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="HandInventory" parent="Layout" instance=ExtResource("3_88761")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-
-[node name="Parts" type="Node3D" parent="."]
-
-[node name="Layout" type="HBoxContainer" parent="Parts"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HandInventory" parent="Parts/Layout" instance=ExtResource("1_88761")]
-
-[node name="OpponentProfile" parent="Parts/Layout" instance=ExtResource("2_8ao15")]
-layout_mode = 2
-
-[node name="ConsumableInventory" parent="Parts/Layout" instance=ExtResource("3_xpdlr")]
