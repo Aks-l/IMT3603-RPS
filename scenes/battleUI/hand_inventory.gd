@@ -1,5 +1,7 @@
 extends Control
 
+signal card_clicked(hand: HandData)
+
 @onready var container: HBoxContainer = $HBoxContainer
 const HAND_SCENE: PackedScene = preload("res://scenes/battleUI/hand_card.tscn")
 
@@ -11,18 +13,9 @@ func set_inventory(hand_list: Array[HandData]) -> void:
 		c.queue_free()
 
 	for hand in hand_list:
-		var card := HAND_SCENE.instantiate() as Control
-		card.custom_minimum_size = CARD_SIZE
-		card.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		card.size_flags_vertical   = Control.SIZE_SHRINK_CENTER
+		var card := HAND_SCENE.instantiate()
 		container.add_child(card)
+		card.setup(hand)
 
-		var img := card.get_node("VBoxContainer/Image") as TextureRect
-		img.texture = hand.sprite
-		img.custom_minimum_size = IMAGE_SIZE
-		img.size_flags_horizontal = Control.SIZE_FILL
-		img.size_flags_vertical   = Control.SIZE_FILL
-		# important: let it scale down to the rect instead of keeping source pixels
-		img.ignore_texture_size = true                 # (Godot 4)
-		img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		# (Godot 3: use `img.expand = true` + a KEEP_* stretch mode)
+		### WHAT HAPPENS WHEN CARD IN INVENTORY IS CLICKED
+		card.clicked.connect(func(h): card_clicked.emit(h))

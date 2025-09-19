@@ -1,6 +1,8 @@
 extends Node3D
 class_name BattleUI
 
+@onready var hand_inventory = %HandInventory
+
 var _enemy: EnemyData
 var _hand: Array[HandData]		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
@@ -18,6 +20,7 @@ func setup(enemy: EnemyData, hand: Array[HandData], consumables: Array) -> void:
 		_apply()
 
 func _ready():
+	hand_inventory.card_clicked.connect(on_card_played)
 	_is_ready = true
 	if _has_params:
 		_apply()	
@@ -33,8 +36,9 @@ func _apply():
 	
 	if inv_node:
 		inv_node.set_inventory(_hand)
+		
 
-static func instantiate_with(enemy: EnemyData, hand: Array, consumables: Array) -> BattleUI:
-	var scene := preload("res://scenes/battleUI/battle_ui.tscn").instantiate() as BattleUI
-	scene.setup(enemy, hand, consumables)
-	return scene
+func on_card_played(hand: HandData):
+	var enemy_hand = _enemy.get_hand()
+	print("You played: " + hand.name)
+	print("Enemy played: " + enemy_hand.name)
