@@ -10,6 +10,6 @@ class_name EnemyData
 
 func get_hand() -> HandData:
 	if moveset.is_empty():
-		return null
+		return Globals.hands[9999] # placeholder hand
 	var played: HandData = moveset.pick_random()
 	return played
