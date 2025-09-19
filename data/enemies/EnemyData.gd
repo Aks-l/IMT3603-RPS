@@ -6,3 +6,10 @@ class_name EnemyData
 @export var name: String
 @export var description: String
 @export var discovered: bool
+@export var moveset: Array[HandData]   # assuming HandData is your card type
+
+func get_hand() -> HandData:
+	if moveset.is_empty():
+		return null
+	var played: HandData = moveset.pick_random()
+	return played

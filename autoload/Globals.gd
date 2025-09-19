@@ -8,6 +8,7 @@ func _ready() -> void:
 	load_hands()
 	inventory.append(hands[0])
 	inventory.append(hands[1])
+	inventory.append(hands[2])
 
 
 func load_hands():
