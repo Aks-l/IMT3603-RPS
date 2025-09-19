@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxn0yglvymq4q"]
+
+[ext_resource type="Script" uid="uid://dtqxme3ff0466" path="res://scenes/InventoriAssets/inventori.gd" id="1_8rop0"]
+
+[node name="GeneralInventori" type="Node2D"]
+metadata/_edit_vertical_guides_ = [0.0]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_8rop0")
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = 186.0
+offset_top = 120.0
+offset_right = 969.0
+offset_bottom = 510.0
+
+[node name="tempItemInv" type="GridContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 292.0
+offset_top = 189.0
+offset_right = 872.0
+offset_bottom = 428.0
+columns = 5
