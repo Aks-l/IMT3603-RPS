@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EnemyDatabase="*res://autoload/EnemyDatabase.gd"
 Globals="*res://autoload/Globals.gd"
+HandsDb="*res://scenes/hands_db.tscn"
 
 [editor]
 

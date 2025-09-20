@@ -38,7 +38,21 @@ func _apply():
 		inv_node.set_inventory(_hand)
 		
 
+
 func on_card_played(hand: HandData):
 	var enemy_hand = _enemy.get_hand()
 	print("You played: " + hand.name)
 	print("Enemy played: " + enemy_hand.name)
+	
+	var result = HandsDb.get_result(hand.name, enemy_hand.name)
+	match result:
+		1:
+			print("Player wins the round!")
+		-1:
+			print("Enemy wins the round!")
+		0:
+			print("It's a tie!")
+	
+	
+	
+	
