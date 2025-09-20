@@ -13,7 +13,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 0
 
 [node name="OpponentProfile" parent="Layout" instance=ExtResource("2_8ao15")]
 unique_name_in_owner = true

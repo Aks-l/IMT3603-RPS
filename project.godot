@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 EnemyDatabase="*res://autoload/EnemyDatabase.gd"
-BattleLaunch="*res://autoload/BattleLaunch.gd"
 Globals="*res://autoload/Globals.gd"
 
 [editor]
