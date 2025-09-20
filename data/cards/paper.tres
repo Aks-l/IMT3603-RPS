@@ -8,4 +8,4 @@ script = ExtResource("1_kohf7")
 id = 1
 sprite = ExtResource("2_8vi4f")
 name = "paper"
-beats = Array[String]([])
+beats = Array[String](["rock"])
