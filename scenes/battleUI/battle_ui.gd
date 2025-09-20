@@ -2,6 +2,7 @@ extends Node3D
 class_name BattleUI
 
 @onready var hand_inventory = %HandInventory
+@onready var result_label = $ResultLabel
 
 var _enemy: EnemyData
 var _hand: Array[HandData]		# CHANGE THESE WHEN HANDS AND 
@@ -20,10 +21,12 @@ func setup(enemy: EnemyData, hand: Array[HandData], consumables: Array) -> void:
 		_apply()
 
 func _ready():
+	
+	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
 	_is_ready = true
 	if _has_params:
-		_apply()	
+		_apply()
 
 func _apply():
 	var profile = get_node_or_null(^"%OpponentProfile")
@@ -41,17 +44,21 @@ func _apply():
 
 func on_card_played(hand: HandData):
 	var enemy_hand = _enemy.get_hand()
-	print("You played: " + hand.name)
-	print("Enemy played: " + enemy_hand.name)
+	
+	#print("You played: " + hand.name)
+	#print("Enemy played: " + enemy_hand.name)
 	
 	var result = HandsDb.get_result(hand.name, enemy_hand.name)
 	match result:
 		1:
-			print("Player wins the round!")
+			result_label.text = "You win! " + hand.name + "beats " + enemy_hand.name
+			print(result_label.text) #DEBUG
 		-1:
-			print("Enemy wins the round!")
+			result_label.text = "You lose! " + enemy_hand.name + "beats " + hand.name
+			print(result_label.text) #DEBUG
 		0:
-			print("It's a tie!")
+			result_label.text = "It's a tie! Both played " + hand.name
+			print(result_label.text) #DEBUG
 	
 	
 	

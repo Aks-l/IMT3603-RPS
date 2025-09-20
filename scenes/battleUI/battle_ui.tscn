@@ -24,6 +24,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
+[node name="ResultLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 0)
+offset_left = 359.0
+offset_top = 85.0
+offset_right = 703.0
+offset_bottom = 168.0
+text = "Result will appear here"
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
