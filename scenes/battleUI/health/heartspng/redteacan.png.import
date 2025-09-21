@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dod6mbjbj833i"
-path="res://.godot/imported/red teacan.png-fa77199c93206d22b65aadb1a2b0fe0b.ctex"
+path="res://.godot/imported/redteacan.png-3d8e4773ca583c9870c5b3f810a15fda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/battleUI/health/hearts/red teacan.png"
-dest_files=["res://.godot/imported/red teacan.png-fa77199c93206d22b65aadb1a2b0fe0b.ctex"]
+source_file="res://scenes/battleUI/health/heartspng/redteacan.png"
+dest_files=["res://.godot/imported/redteacan.png-3d8e4773ca583c9870c5b3f810a15fda.ctex"]
 
 [params]
 
@@ -21,11 +21,11 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

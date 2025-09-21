@@ -29,9 +29,11 @@ func _update_icons():
 func _make_icon(tex: Texture2D) -> TextureRect:
 	var icon := heart_icon_scene.instantiate() as TextureRect
 	icon.texture = tex
+	icon.custom_minimum_size = icon_size
+	icon.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	icon.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	icon.ignore_texture_size = true
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	if icon.custom_minimum_size == Vector2.ZERO:
-		icon.custom_minimum_size = icon_size
 	return icon
 
 
