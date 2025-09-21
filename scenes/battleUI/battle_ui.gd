@@ -42,12 +42,16 @@ func _apply():
 	else: print("No enemy found; opponent_profile.gd")
 	
 	if inv_node:
+		print("BattleUI calling set_inventory with", _hand.size(), "hands")
 		inv_node.set_inventory(_hand)
-		
+	else:
+		print("No HandInventory found")
 
 
 func on_card_played(hand: HandData):
+	print("BattleUI received card:", hand.name)
 	var enemy_hand = _enemy.get_hand()
+	print("on_card_played called with: ", hand.name)
 	
 	#print("You played: " + hand.name)
 	#print("Enemy played: " + enemy_hand.name)
@@ -55,11 +59,11 @@ func on_card_played(hand: HandData):
 	var result = HandsDb.get_result(hand.name, enemy_hand.name)
 	match result:
 		1:
-			result_label.text = "You win! " + hand.name + "beats " + enemy_hand.name
+			result_label.text = "You win! " + hand.name + " beats " + enemy_hand.name
 			print(result_label.text) #DEBUG
 			enemy_hearts.take_damage(1)
 		-1:
-			result_label.text = "You lose! " + enemy_hand.name + "beats " + hand.name
+			result_label.text = "You lose! " + enemy_hand.name + " beats " + hand.name
 			print(result_label.text) #DEBUG
 			player_hearts.take_damage(1)
 		0:

@@ -5,13 +5,34 @@ extends HBoxContainer
 @export var max_red_hearts: int = 5 #permanent health
 @export var max_blue_cap: int = 2 #max possible "blue" health
 
-var current_red_hearts: int
+@export var heart_icon_scene: PackedScene #assign heart icon
+@export var icon_size: Vector2 = Vector2(24,24)
+
+var current_red_hearts: int = max_red_hearts
 var current_blue_hearts: int = 0
 
 
 func _ready():
 	current_red_hearts = max_red_hearts
 	_draw_hearts()
+
+func _update_icons():
+	for c in get_children(): #removed old hearts
+		c.queue_free()
+	
+	for i in range(current_red_hearts):
+		add_child(_make_icon(red_heart_texture))
+	
+	for i in range(current_blue_hearts):
+		add_child(_make_icon(blue_heart_texture))
+
+func _make_icon(tex: Texture2D) -> TextureRect:
+	var icon := heart_icon_scene.instantiate() as TextureRect
+	icon.texture = tex
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	if icon.custom_minimum_size == Vector2.ZERO:
+		icon.custom_minimum_size = icon_size
+	return icon
 
 
 func _draw_hearts():
@@ -21,17 +42,11 @@ func _draw_hearts():
 		
 	#draw hearts for curent hp
 	for i in range(current_red_hearts):
-		var heart = TextureRect.new()
-		heart.texture = red_heart_texture
-		heart.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		add_child(heart)
+		add_child(_make_icon(red_heart_texture))
 		
 	#draw blye harts
 	for i in range(current_blue_hearts):
-		var heart = TextureRect.new()
-		heart.texture = blue_heart_texture
-		heart.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		add_child(heart)
+		add_child(_make_icon(blue_heart_texture))
 
 
 func set_hp(red_hp: int, blue_hp: int = -1):

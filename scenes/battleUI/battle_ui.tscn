@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5xdkuc18ywuv"]
+[gd_scene load_steps=8 format=3 uid="uid://c5xdkuc18ywuv"]
 
 [ext_resource type="Script" uid="uid://ca2yf48k0yyfh" path="res://scenes/battleUI/battle_ui.gd" id="1_8ao15"]
 [ext_resource type="PackedScene" uid="uid://df4iyjt5y1vmr" path="res://scenes/battleUI/opponent_profile.tscn" id="2_8ao15"]
 [ext_resource type="PackedScene" uid="uid://su1ofpnm7rut" path="res://scenes/battleUI/hand_inventory.tscn" id="3_88761"]
 [ext_resource type="Script" uid="uid://dci0cr2lom8k5" path="res://scenes/battleUI/health/heart_container.gd" id="4_hvc5s"]
-[ext_resource type="Texture2D" uid="uid://dod6mbjbj833i" path="res://scenes/battleUI/health/hearts/red teacan.png" id="5_npshu"]
-[ext_resource type="Texture2D" uid="uid://8263mtecumbi" path="res://scenes/battleUI/health/hearts/bluebucket.png" id="6_3ewwt"]
+[ext_resource type="Texture2D" uid="uid://dod6mbjbj833i" path="res://scenes/battleUI/health/heartspng/red teacan.png" id="5_npshu"]
+[ext_resource type="Texture2D" uid="uid://8263mtecumbi" path="res://scenes/battleUI/health/heartspng/bluebucket.png" id="6_3ewwt"]
+[ext_resource type="PackedScene" uid="uid://7e1uuuf6aa0j" path="res://scenes/battleUI/health/heart_icon.tscn" id="7_npshu"]
 
 [node name="BattleUI" type="Node3D"]
 script = ExtResource("1_8ao15")
@@ -40,14 +41,30 @@ text = "Result will appear here"
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="PlayerHearts" type="HBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(200, 50)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+theme_override_constants/separation = 3
 script = ExtResource("4_hvc5s")
 red_heart_texture = ExtResource("5_npshu")
 blue_heart_texture = ExtResource("6_3ewwt")
+heart_icon_scene = ExtResource("7_npshu")
 
 [node name="EnemyHearts" type="HBoxContainer" parent="."]
-offset_bottom = 40.0
+modulate = Color(0.941799, 0.716083, 0.746646, 1)
+self_modulate = Color(0.509256, 0.597452, 0.917663, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(200, 50)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_constants/separation = 3
 script = ExtResource("4_hvc5s")
 red_heart_texture = ExtResource("5_npshu")
 blue_heart_texture = ExtResource("6_3ewwt")
+heart_icon_scene = ExtResource("7_npshu")
