@@ -8,11 +8,16 @@ anchors_preset = 0
 script = ExtResource("1_gt520")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(480, 220)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 100.0
-offset_bottom = 100.0
+offset_left = 209.0
+offset_top = 472.0
+offset_right = 873.0
+offset_bottom = 649.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+theme_override_constants/separation = 10

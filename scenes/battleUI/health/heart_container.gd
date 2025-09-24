@@ -74,5 +74,12 @@ func take_damage(amount: int):
 	#when no blue harts, red takes damage
 	if dmg_left > 0:
 		current_red_hearts = max(current_red_hearts - dmg_left, 0)
-		
 		_draw_hearts()
+
+func heal(amount: int):
+	current_red_hearts = clamp(current_red_hearts + amount, 0, max_red_hearts)
+	_update_icons()
+
+func add_blue(amount: int):
+	current_blue_hearts = clamp(current_blue_hearts + amount, 0, max_blue_cap)
+	_update_icons()
