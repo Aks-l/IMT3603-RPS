@@ -9,6 +9,7 @@ const CARD_SIZE  := Vector2(160, 220)   # all cards same size
 const IMAGE_SIZE := Vector2(144, 144)   # square art inside
 
 func set_inventory(hand_list: Array[HandData]) -> void:
+	print("set_inventory called with", hand_list.size(), "hands")
 	for c in container.get_children():
 		c.queue_free()
 
@@ -16,6 +17,11 @@ func set_inventory(hand_list: Array[HandData]) -> void:
 		var card := HAND_SCENE.instantiate()
 		container.add_child(card)
 		card.setup(hand)
+		card.clicked.connect(_on_card_clicked)
+
+func _on_card_clicked(hand: HandData) -> void:
+	print("HandInventory caught click:", hand.name)
+	card_clicked.emit(hand)
 
 		### WHAT HAPPENS WHEN CARD IN INVENTORY IS CLICKED
-		card.clicked.connect(func(h): card_clicked.emit(h))
+		#card.clicked.connect(func(h): card_clicked.emit(h))

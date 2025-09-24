@@ -19,4 +19,5 @@ offset_bottom = 64.0
 
 [node name="Image" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 0
 stretch_mode = 4
