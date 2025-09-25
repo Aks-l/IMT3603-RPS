@@ -46,11 +46,15 @@ text = "Result will appear here"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
-[node name="PlayerHearts" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(200, 50)
+[node name="PlayerHearts" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(50, 50)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -187.0
+offset_right = 63.0
+offset_bottom = 56.0
 grow_vertical = 0
 theme_override_constants/separation = 3
 script = ExtResource("4_hvc5s")
@@ -67,8 +71,10 @@ custom_minimum_size = Vector2(50, 50)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -200.0
-offset_bottom = 50.0
+offset_left = -1130.0
+offset_top = 202.0
+offset_right = -930.0
+offset_bottom = 252.0
 grow_horizontal = 0
 theme_override_constants/separation = 3
 script = ExtResource("4_hvc5s")

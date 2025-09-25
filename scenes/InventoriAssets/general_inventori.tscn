@@ -9,10 +9,10 @@ metadata/_edit_vertical_guides_ = [0.0]
 script = ExtResource("1_8rop0")
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_left = 389.0
-offset_top = 448.0
-offset_right = 1155.0
-offset_bottom = 645.0
+offset_left = 962.0
+offset_top = 8.0
+offset_right = 1151.0
+offset_bottom = 402.0
 
 [node name="tempItemInv" type="GridContainer" parent="CanvasLayer"]
 unique_name_in_owner = true

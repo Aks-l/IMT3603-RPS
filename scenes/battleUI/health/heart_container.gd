@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends BoxContainer
 
 @export var red_heart_texture: Texture2D
 @export var blue_heart_texture: Texture2D
