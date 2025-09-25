@@ -5,7 +5,7 @@ func _on_almanac_pressed() -> void:
 
 func _on_play_pressed() -> void:
 	var map := preload("res://scenes/map/map.tscn").instantiate()
-
+	map.name = "map"
 	get_tree().root.add_child(map)
 
 	(map.get_node("Cam") as Camera2D).make_current()
