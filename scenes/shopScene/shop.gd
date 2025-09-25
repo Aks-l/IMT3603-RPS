@@ -3,7 +3,7 @@ extends Node3D
 @onready var container: HBoxContainer = $HBoxContainer
 const productCardScene: PackedScene = preload("res://scenes/shopScene/productCard.tscn")
 
-var buyables: Array[ItemData]
+var buyables: Array[ItemData] = []
 var num_buyables: int = 3
 
 func _ready():
@@ -12,7 +12,7 @@ func _ready():
 
 func populate_shop():
 	for entry in buyables:
-		var shopEntry = productCardScene.instanciate()
+		var shopEntry = productCardScene.instantiate()
 		shopEntry.populate(entry)
 		container.add_child(shopEntry)
 
