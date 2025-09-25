@@ -42,9 +42,10 @@ func start_encounter(encounter_type: String, params: Dictionary = {}) -> void:
 
 	#Returns to map when signal is received
 	encounter.tree_exited.connect(func ():
-		if map:
-			map.show()
-			var map_cam := map.get_node_or_null("Cam")
+		var map_node := _find_map()
+		if map_node:
+			map_node.show()
+			var map_cam := map_node.get_node_or_null("Cam")
 			if map_cam:
 				map_cam.make_current()
 		emit_signal("encounter_finished", {"type": encounter_type, "skipped": false})
