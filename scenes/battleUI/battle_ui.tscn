@@ -24,12 +24,15 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
-[node name="HandInventory" parent="Layout" instance=ExtResource("3_88761")]
+[node name="GeneralInventori" parent="Layout" instance=ExtResource("4_8ao15")]
+
+[node name="HandInventory" parent="." instance=ExtResource("3_88761")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-
-[node name="GeneralInventori" parent="Layout" instance=ExtResource("4_8ao15")]
+offset_left = 429.0
+offset_top = 481.0
+offset_right = 722.0
+offset_bottom = 681.0
 
 [node name="ResultLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(100, 0)
