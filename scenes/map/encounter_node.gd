@@ -49,14 +49,15 @@ func _on_area_input(_vp, event: InputEvent, _shape_idx: int) -> void:
 			emit_signal("clicked", encounter_id)
 			#TODO: Dynamic combat encounter generation
 			if encounter_type == EncounterType.COMBAT:
-				get_tree().root.get_node("map")
 				var enemy := preload("res://data/enemies/BobRock.tres") as EnemyData
-				var battle := preload("res://scenes/battleUI/battle_ui.tscn").instantiate() as BattleUI
-				battle.setup(enemy, Globals.inventory, [])
-				get_tree().root.add_child(battle)
-
-				# make the battle camera active (in case it isn’t set to Current in the editor)
-				(battle.get_node("Camera3D") as Camera3D).make_current()
+				EncounterHandler.start_encounter("Combat", {
+					"enemy": enemy,
+					"hand": Globals.inventory,
+					"consumables": []
+				})
+			else:
+				# Any non-combat encounter goes through the director too
+				EncounterHandler.start_encounter(str(encounter_type))
 				
 
 func _refresh_visual() -> void:

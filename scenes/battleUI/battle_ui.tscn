@@ -82,3 +82,6 @@ red_heart_texture = ExtResource("5_npshu")
 blue_heart_texture = ExtResource("6_3ewwt")
 heart_icon_scene = ExtResource("7_npshu")
 icon_size = Vector2(32, 32)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0

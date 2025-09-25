@@ -1,6 +1,8 @@
 extends Node3D
 class_name BattleUI
 
+signal finished(result)
+
 @onready var hand_inventory = %HandInventory
 @onready var result_label = $ResultLabel
 
@@ -69,10 +71,16 @@ func on_card_played(hand: HandData):
 		0:
 			result_label.text = "It's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
+	if enemy_hearts.get_hp() <= 0:
+		result_label.text = "Enemy defeated!"
+		emit_signal("finished", {"won": true}); queue_free()
+	elif player_hearts.get_hp() <= 0:
+		push_error("TODO: implement gameover/loss resolution")
+		assert(false)
 
-func _on_item_used(item: tempItems):
+func _on_item_used(item: ItemData):
 	match item.type:
-		tempItems.Type.HEAL:
+		ItemData.Type.HEAL:
 			player_hearts.heal(1)
-		tempItems.Type.SHIELD:
+		ItemData.Type.SHIELD:
 			player_hearts.add_blue(1)
