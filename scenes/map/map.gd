@@ -33,10 +33,10 @@ func _rid(i, j):
 func _generate():
 	var rng = RandomNumberGenerator.new()
 	if seed > 0:
+		rng.seed = seed
+	else:
 		randomize()
 		rng.seed = rng.randi()
-	else: 
-		rng.seed = seed
 
 	layer_ids.clear()
 	counts.clear()
