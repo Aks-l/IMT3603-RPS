@@ -2,6 +2,7 @@ extends Node
 
 var hands: Dictionary = {}
 var inventory: Array[HandData] = []
+var consumables: Array[ItemData] = []
 
 func _ready() -> void:
 	inventory.clear()
@@ -19,6 +20,3 @@ func load_hands():
 				var hand = load("res://data/cards/" + file)
 				if hand and hand is HandData:
 					hands[hand.id] = hand
-
-
-	

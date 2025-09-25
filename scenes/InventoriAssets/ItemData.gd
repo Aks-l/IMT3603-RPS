@@ -1,4 +1,4 @@
-class_name tempItems
+class_name ItemData
 extends Resource
 
 enum Type {ACCESSORY, HEAL, DAMAGE, SHIELD}
