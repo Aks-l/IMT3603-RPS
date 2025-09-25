@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="tempItems" load_steps=3 format=3 uid="uid://c2i70r0bgjxv6"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c2i70r0bgjxv6"]
 
-[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://scenes/InventoriAssets/ItemData.gd" id="1_45br4"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="1_45br4"]
 [ext_resource type="Texture2D" uid="uid://ckbmd3wra2eno" path="res://icon.svg" id="2_pmght"]
 
 [resource]

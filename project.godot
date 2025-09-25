@@ -18,8 +18,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 EnemyDatabase="*res://autoload/EnemyDatabase.gd"
-Globals="*res://autoload/Globals.gd"
 HandsDb="*res://scenes/hands_db.tscn"
+ItemDatabase="*res://autoload/ItemDatabase.gd"
+HandDatabase="*res://autoload/HandDatabase.gd"
+Globals="*res://autoload/Globals.gd"
 
 [editor]
 
