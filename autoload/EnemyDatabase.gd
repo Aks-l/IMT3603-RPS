@@ -10,7 +10,6 @@ func load_enemies():
 				var enemy = load("res://data/enemies/" + file)
 				if enemy and enemy is EnemyData:
 					enemies[enemy.id] = enemy
-				
-	
+
 func _ready():
 	load_enemies()

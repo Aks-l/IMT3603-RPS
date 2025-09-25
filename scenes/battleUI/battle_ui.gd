@@ -70,9 +70,9 @@ func on_card_played(hand: HandData):
 			result_label.text = "It's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
 
-func _on_item_used(item: tempItems):
+func _on_item_used(item: ItemData):
 	match item.type:
-		tempItems.Type.HEAL:
+		ItemData.Type.HEAL:
 			player_hearts.heal(1)
-		tempItems.Type.SHIELD:
+		ItemData.Type.SHIELD:
 			player_hearts.add_blue(1)
