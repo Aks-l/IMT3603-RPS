@@ -11,7 +11,9 @@ const IMAGE_SIZE := Vector2(144, 144)
 
 func setup(data: HandData) -> void:
 	hand = data
+	custom_minimum_size = CARD_SIZE
 	print("HandCard setup:", hand.name)  # DEBUG
+	print("Handcard setup size:", custom_minimum_size)
 
 	# card sizing
 	custom_minimum_size = CARD_SIZE
