@@ -5,7 +5,7 @@ extends Node2D
 @export var max_width := 4              # max nodes in the wide middle
 @export var x_spacing := 140.0
 @export var y_spacing := 140.0
-@export var seed := 12345
+@export var seed := -1 ##If set to positive number, will generate from seed, otherwise random
 @export var encounter_scene: PackedScene
 
 @onready var edges_root := $Edges
@@ -29,12 +29,14 @@ func _ready():
 func _rid(i, j):
 	return "L%02d_N%02d" % [i, j]
 
-# ------------------------------------------------------------
-# GENERATION: start 1 → widen → converge → 1 (boss at bottom)
-# ------------------------------------------------------------
+## Generates a map based on seed, or randomly if seed is set to negative values
 func _generate():
 	var rng = RandomNumberGenerator.new()
-	rng.seed = seed
+	if seed > 0:
+		randomize()
+		rng.seed = rng.randi()
+	else: 
+		rng.seed = seed
 
 	layer_ids.clear()
 	counts.clear()
@@ -112,6 +114,7 @@ func _generate():
 					if d < best_d: best_d = d; best = f
 				edges.append([best, t])
 
+
 func _map_index(j, from_count, to_count):
 	if to_count == 1:
 		return 0
@@ -121,9 +124,6 @@ func _map_index(j, from_count, to_count):
 	var t = float(j) * float(to_count - 1) / float(from_count - 1)
 	return int(round(t))
 
-# ------------------------------------------------------------
-# DRAW + SPAWN + FLOW
-# ------------------------------------------------------------
 func _draw_edges():
 	for c in edges_root.get_children():
 		c.queue_free()
@@ -181,6 +181,7 @@ func _layer_of(id):
 	# "Lxx_Nyy" -> xx
 	return int(id.substr(1, 2))
 
+##Converts text to encountertype (enum)
 func _etype_to_dropdown(t):
 	match t:
 		"Start": return 0
