@@ -1,10 +1,10 @@
 class_name tempInvItem
 extends TextureRect
 
-@export var data: tempItems
+@export var data: ItemData
 
 
-func init (d: tempItems) -> void:
+func init (d: ItemData) -> void:
 	data = d
 	
 func _ready():
