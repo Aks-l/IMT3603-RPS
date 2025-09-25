@@ -1,6 +1,6 @@
 extends Node2D
 
-signal clicked(encounter_id, encounter_type)
+signal clicked(encounter_id)
 
 enum EncounterType { START, COMBAT, EVENT, SHOP, REST, BOSS }
 
@@ -46,7 +46,7 @@ func _on_hover_exit() -> void:
 func _on_area_input(_vp, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if reachable and not cleared:
-			emit_signal("clicked", encounter_id, encounter_type)
+			emit_signal("clicked", encounter_id)
 			#TODO: Dynamic combat encounter generation
 			if encounter_type == EncounterType.COMBAT:
 				var enemy := preload("res://data/enemies/BobRock.tres") as EnemyData
