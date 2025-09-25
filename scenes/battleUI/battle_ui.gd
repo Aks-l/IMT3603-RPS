@@ -1,6 +1,12 @@
 extends Node3D
 class_name BattleUI
 
+@onready var hand_inventory = %HandInventory
+@onready var result_label = $ResultLabel
+
+@onready var player_hearts = $PlayerHearts
+@onready var enemy_hearts = $EnemyHearts
+
 var _enemy: EnemyData
 var _hand: Array[HandData]		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
@@ -18,9 +24,13 @@ func setup(enemy: EnemyData, hand: Array[HandData], consumables: Array) -> void:
 		_apply()
 
 func _ready():
+	player_hearts.set_hp(5) #health for player
+	enemy_hearts.set_hp(5) #health for enemy
+	result_label.text = ""  #start with empty result
+	hand_inventory.card_clicked.connect(on_card_played)
 	_is_ready = true
 	if _has_params:
-		_apply()	
+		_apply()
 
 func _apply():
 	var profile = get_node_or_null(^"%OpponentProfile")
@@ -32,9 +42,34 @@ func _apply():
 	else: print("No enemy found; opponent_profile.gd")
 	
 	if inv_node:
+		print("BattleUI calling set_inventory with", _hand.size(), "hands")
 		inv_node.set_inventory(_hand)
+	else:
+		print("No HandInventory found")
 
-static func instantiate_with(enemy: EnemyData, hand: Array, consumables: Array) -> BattleUI:
-	var scene := preload("res://scenes/battleUI/battle_ui.tscn").instantiate() as BattleUI
-	scene.setup(enemy, hand, consumables)
-	return scene
+
+func on_card_played(hand: HandData):
+	print("BattleUI received card:", hand.name)
+	var enemy_hand = _enemy.get_hand()
+	print("on_card_played called with: ", hand.name)
+	
+	#print("You played: " + hand.name)
+	#print("Enemy played: " + enemy_hand.name)
+	
+	var result = HandsDb.get_result(hand.name, enemy_hand.name)
+	match result:
+		1:
+			result_label.text = "You win! " + hand.name + " beats " + enemy_hand.name
+			print(result_label.text) #DEBUG
+			enemy_hearts.take_damage(1)
+		-1:
+			result_label.text = "You lose! " + enemy_hand.name + " beats " + hand.name
+			print(result_label.text) #DEBUG
+			player_hearts.take_damage(1)
+		0:
+			result_label.text = "It's a tie! Both played " + hand.name
+			print(result_label.text) #DEBUG
+	
+	
+	
+	
