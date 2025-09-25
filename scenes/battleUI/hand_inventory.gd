@@ -18,6 +18,7 @@ func set_inventory(hand_list: Array[HandData]) -> void:
 		container.add_child(card)
 		card.setup(hand)
 		card.clicked.connect(_on_card_clicked)
+		print("Added card to container:", hand.name, "Conteiner children:", container.get_child_count())
 
 func _on_card_clicked(hand: HandData) -> void:
 	print("HandInventory caught click:", hand.name)

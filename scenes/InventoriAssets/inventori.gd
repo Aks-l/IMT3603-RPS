@@ -9,7 +9,7 @@ var itemsLoad = [
 func _ready():
 	for i in invSize:
 		var slot := tempItemInvSlot.new()
-		slot.init(tempItems.Type.ACCESSORY, Vector2(128,128))
+		slot.init(ItemData.Type.ACCESSORY, Vector2(128,128))
 		%tempItemInv.add_child(slot)
 
 	for i in itemsLoad.size():
@@ -20,4 +20,3 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_text_indent"):
 		self.visible = !self.visible
-	

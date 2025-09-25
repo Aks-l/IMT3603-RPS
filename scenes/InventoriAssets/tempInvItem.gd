@@ -1,10 +1,10 @@
 class_name tempInvItem
 extends TextureRect
 
-@export var data: tempItems
+@export var data: ItemData
 
 
-func init (d: tempItems) -> void:
+func init (d: ItemData) -> void:
 	data = d
 	
 func _ready():
@@ -12,3 +12,9 @@ func _ready():
 	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	texture = data.sprite
 	tooltip_text = "%s\n%s" % [data.name, data.description]
+
+signal item_used(data: tempItems)
+
+func _gui_input(event):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		emit_signal("item_used", data)

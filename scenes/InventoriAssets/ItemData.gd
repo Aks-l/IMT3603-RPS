@@ -1,7 +1,7 @@
-class_name tempItems
+class_name ItemData
 extends Resource
 
-enum Type {ACCESSORY}
+enum Type {ACCESSORY, HEAL, DAMAGE, SHIELD}
 
 @export var type: Type
 @export var id: int
