@@ -73,7 +73,7 @@ func on_card_played(hand: HandData):
 			print(result_label.text) #DEBUG
 	if enemy_hearts.get_hp() <= 0:
 		result_label.text = "Enemy defeated!"
-		emit_signal("finished", {"won": true}); queue_free()
+		emit_signal("finished", {"won": true}); call_deferred("queue_free")
 	elif player_hearts.get_hp() <= 0:
 		push_error("TODO: implement gameover/loss resolution")
 		assert(false)
