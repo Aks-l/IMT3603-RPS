@@ -13,9 +13,9 @@ func _ready():
 func populate_shop():
 	for entry in buyables:
 		var shopEntry = productCardScene.instantiate()
-		shopEntry.populate(entry)
 		container.add_child(shopEntry)
+		shopEntry.populate(entry)
 
 func get_random_shop_items():
 	for i in num_buyables:
-		buyables.append(Globals.consumables.pick_random())
+		buyables.append(ItemDatabase.items.values().pick_random())

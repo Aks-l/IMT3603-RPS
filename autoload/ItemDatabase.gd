@@ -2,7 +2,7 @@ extends Node
 
 var items: Dictionary = {}
 
-func load_enemies():
+func load_items():
 	var dir = DirAccess.open("res://data/items")
 	if dir:
 		for file in dir.get_files():
@@ -12,7 +12,7 @@ func load_enemies():
 					items[item.id] = item
 
 func _ready():
-	load_enemies()
+	load_items()
 	add_items()
 	
 func add_items():
