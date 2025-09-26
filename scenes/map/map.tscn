@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbdc5kjycg2va"]
+
+[ext_resource type="Script" uid="uid://chpjeeb7bu5g5" path="res://scenes/map/map.gd" id="1_sxf4j"]
+[ext_resource type="PackedScene" uid="uid://ihtu1uv52bk1" path="res://scenes/map/encounter_node.tscn" id="2_tqkkf"]
+[ext_resource type="Script" uid="uid://cp4dp6kikshgc" path="res://scenes/map/cam.gd" id="3_a2pkv"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_sxf4j")
+seed = 20000
+encounter_scene = ExtResource("2_tqkkf")
+
+[node name="Edges" type="Node2D" parent="."]
+
+[node name="Encounters" type="Node2D" parent="."]
+
+[node name="Cam" type="Camera2D" parent="."]
+script = ExtResource("3_a2pkv")

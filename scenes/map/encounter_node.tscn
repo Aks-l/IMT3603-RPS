@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://ihtu1uv52bk1"]
+
+[ext_resource type="Script" uid="uid://ic3xpxx0whvh" path="res://scenes/map/encounter_node.gd" id="1_66jac"]
+[ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="2_sa2mu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sb7ia"]
+radius = 16.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_1nsbq"]
+font_size = 8
+
+[node name="EncounterNode" type="Node2D"]
+script = ExtResource("1_66jac")
+
+[node name="NodeShape" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NodeShape"]
+position = Vector2(20, 29)
+shape = SubResource("CircleShape2D_sb7ia")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBox" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="TypeLabel" type="Label" parent="UI/VBox"]
+layout_mode = 2
+theme = ExtResource("2_sa2mu")
+theme_override_font_sizes/font_size = 1
+text = "Combat"
+label_settings = SubResource("LabelSettings_1nsbq")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/VBox"]
+layout_mode = 2
+
+[node name="NodeImage" type="ColorRect" parent="UI/VBox/CenterContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+color = Color(0, 1, 0, 1)
