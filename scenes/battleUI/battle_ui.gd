@@ -19,8 +19,12 @@ var _is_ready := false
 # THE LAST OF SETUP AND READY WILL CALL _apply
 func setup(enemy: EnemyData, hand: Array[HandData], consumables: Array) -> void:
 	_enemy = enemy
-	_hand = hand
 	_consumables = consumables
+	
+	#uses DeckBuilder to generate a deck from the available hands
+	var deck_builder = DeckBuilder.new()
+	_hand = deck_builder.build_deck(hand, 15) #gives limit of 15
+	
 	_has_params = true
 	if _is_ready:
 		_apply()
