@@ -8,5 +8,5 @@ script = ExtResource("1_0bapg")
 id = 0
 sprite = ExtResource("2_erhhc")
 name = "rock"
-beats = Array[String](["scissors"])
+beats = Array[String](["scissors", "lizard"])
 max_count = 3

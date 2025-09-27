@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://bbuunnnj1pdyt"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_eje3w"]
+
+[resource]
+script = ExtResource("1_eje3w")
+id = 3
+name = ""
+beats = Array[String]([])
+max_count = 3
+metadata/_custom_type_script = "uid://cpqej81wc7vpu"
