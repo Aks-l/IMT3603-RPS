@@ -17,5 +17,5 @@ func load_hands():
 					
 func add_hands():
 	Globals.inventory.append(hands[0])
-	Globals.inventory.append(hands[1])
+	Globals.inventory.append(hands[3])
 	Globals.inventory.append(hands[2])
