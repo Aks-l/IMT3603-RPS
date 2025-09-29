@@ -11,7 +11,7 @@ func build_deck(hands: Array[HandData], total_max: = 15) -> Array[HandData]:
 		for i in range(h.max_count):
 			deck.append(h)
 	
-	#nforce total deck limits
+	#enforce total deck limits
 	if deck.size() > total_max:
 		deck = deck.slice(0, total_max)
 	
