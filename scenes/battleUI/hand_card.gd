@@ -43,7 +43,7 @@ func _on_img_gui_input(event: InputEvent) -> void:
 			clicked.emit(hand)
 			if remaining <= 0:
 				queue_free()
-		print("Card clicked:", hand.name, "remaining: ", remaining) #DEGUB
+		print("Card clicked:", hand.name, "remaining: ", remaining) #DEBUG
 
 func _update_count() -> void:
 	if remaining > 1:
