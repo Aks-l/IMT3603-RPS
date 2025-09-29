@@ -9,3 +9,4 @@ id = 1
 sprite = ExtResource("2_8vi4f")
 name = "paper"
 beats = Array[String](["rock"])
+max_count = 5
