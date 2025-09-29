@@ -8,5 +8,5 @@ class_name HandData
 @export var beats: Array[String] #what beats what
 
 #how many copies of each card
-#temporarly because max count will change
+#temporarily because max count will change
 @export var max_count: int = 15
