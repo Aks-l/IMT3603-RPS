@@ -9,4 +9,4 @@ class_name HandData
 
 #how any cpies of each card
 #temporarly because max count will change
-@export var max_count: int = 3
+@export var max_count: int = 15

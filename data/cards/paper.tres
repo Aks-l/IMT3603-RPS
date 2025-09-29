@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://3gc3u5cydhgm"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://3gc3u5cydhgm"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_kohf7"]
 [ext_resource type="Texture2D" uid="uid://dia6d0eco6grk" path="res://data/cards/sprites/paper.jpg" id="2_8vi4f"]
@@ -9,3 +9,4 @@ id = 1
 sprite = ExtResource("2_8vi4f")
 name = "paper"
 beats = Array[String](["rock"])
+max_count = 5
