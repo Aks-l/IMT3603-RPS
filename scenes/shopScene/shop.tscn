@@ -5,6 +5,10 @@
 [node name="Shop" type="Node3D"]
 script = ExtResource("1_05jxh")
 
+[node name="funds" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5

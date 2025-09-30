@@ -1,12 +1,12 @@
 extends Control
-signal buy_pressed(item: ItemData)
+signal on_purchase(item: ItemData)
 
 @onready var vbox = $VBoxContainer
 @onready var image_container = $VBoxContainer/Image
 @onready var item_label = $VBoxContainer/Item_Label
 @onready var price_label = $VBoxContainer/Price_Label
 
-var item = ItemData
+var item: ItemData
 
 func _ready():
 	custom_minimum_size = Vector2(220, 280)
@@ -27,7 +27,8 @@ func populate(data: ItemData):
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if Globals.funds >= item.price:
-			print(item.name + "was bought")
+			print(item.name + " was bought")
 			Globals.consumables.append(item)
 			Globals.funds -= item.price
+			emit_signal("on_purchase", item)
 			queue_free()
