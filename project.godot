@@ -22,6 +22,7 @@ HandsDb="*res://scenes/hands_db.tscn"
 ItemDatabase="*res://autoload/ItemDatabase.gd"
 HandDatabase="*res://autoload/HandDatabase.gd"
 Globals="*res://autoload/Globals.gd"
+EncounterHandler="*res://autoload/encounter_handler.gd"
 
 [editor]
 

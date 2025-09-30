@@ -50,6 +50,9 @@ func _draw_hearts():
 	for i in range(current_blue_hearts):
 		add_child(_make_icon(blue_heart_texture))
 
+##Returns the number of hearts left in the container
+func get_hp() -> int:
+	return current_red_hearts
 
 func set_hp(red_hp: int, blue_hp: int = -1):
 	current_red_hearts = clamp(red_hp, 0 , max_red_hearts)
