@@ -4,6 +4,7 @@ signal buy_pressed(item: ItemData)
 @onready var vbox = $VBoxContainer
 @onready var image_container = $VBoxContainer/Image
 @onready var item_label = $VBoxContainer/Item_Label
+@onready var price_label = $VBoxContainer/Price_Label
 
 var item = ItemData
 
@@ -21,9 +22,12 @@ func populate(data: ItemData):
 	item = data
 	image_container.texture = data.sprite
 	item_label.text = data.name
+	price_label.text = "Price: " + str(data.price)
 	
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print(item.name + "was bought")
-		Globals.consumables.append(item)
-		queue_free()
+		if Globals.funds >= item.price:
+			print(item.name + "was bought")
+			Globals.consumables.append(item)
+			Globals.funds -= item.price
+			queue_free()
