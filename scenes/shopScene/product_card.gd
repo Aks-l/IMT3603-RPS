@@ -1,12 +1,14 @@
 extends Control
+signal buy_pressed(item: ItemData)
 
 @onready var vbox = $VBoxContainer
 @onready var image_container = $VBoxContainer/Image
 @onready var item_label = $VBoxContainer/Item_Label
 
+var item = ItemData
+
 func _ready():
 	custom_minimum_size = Vector2(220, 280)
-	
 	vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
 	vbox.offset_left = 0
 	vbox.offset_top = 0
@@ -16,6 +18,12 @@ func _ready():
 	vbox.size_flags_vertical   = Control.SIZE_EXPAND_FILL
 
 func populate(data: ItemData):
+	item = data
 	image_container.texture = data.sprite
 	item_label.text = data.name
 	
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		print(item.name + "was bought")
+		Globals.consumables.append(item)
+		queue_free()
