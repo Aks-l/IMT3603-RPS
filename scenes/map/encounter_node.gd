@@ -55,6 +55,10 @@ func _on_area_input(_vp, event: InputEvent, _shape_idx: int) -> void:
 					"hand": Globals.inventory,
 					"consumables": []
 				})
+				
+			elif encounter_type == EncounterType.SHOP:
+				EncounterHandler.start_encounter("Shop", {})
+				
 			else:
 				# Any non-combat encounter goes through the director too
 				EncounterHandler.start_encounter(_type_to_string(encounter_type))

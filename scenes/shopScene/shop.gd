@@ -1,7 +1,9 @@
 extends Node3D
+signal finished()
 
 @onready var container: HBoxContainer = $HBoxContainer
 @onready var fund_label: Label = $funds
+@onready var leave_button: Button = $leave_shop
 const productCardScene: PackedScene = preload("res://scenes/shopScene/productCard.tscn")
 
 var buyables: Array[ItemData] = []
@@ -11,6 +13,11 @@ func _ready():
 	get_random_shop_items()
 	populate_shop()
 	fund_label.text = str(Globals.funds)
+	leave_button.pressed.connect(func ():
+		emit_signal("finished", {"won": true}) # or: finished.emit({"won": true})
+		call_deferred("queue_free")            # frees this node safely after signal dispatch
+	)
+
 func populate_shop():
 	for entry in buyables:
 		var shopEntry = productCardScene.instantiate()
