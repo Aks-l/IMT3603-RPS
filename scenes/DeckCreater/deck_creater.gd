@@ -49,33 +49,60 @@ func _refresh_stock_ui() -> void:
 		if count <= 0:
 			continue
 		if filter_text != "" and not name.to_lower().findn(filter_text) >= 0:
-			continues
+			continue
 		#create a hand card instance showing how many the plauer onws
 		var card = HAND_SCENE.instantiate()
 		stock_list.add_child(card)
 		card.setup(entry.data, count)
 		#bind handler check what was cliked
-		card.clicked.connect(Callable(self, "on_stock_scard_clicked").bind(card))
+		card.clicked.connect(Callable(self, "_on_stock_scard_clicked").bind(card))
 		#can be found if needed
 		card.set_meta("hand_name", name)
 
 #deck ui
 func _refresh_deck_view() -> void:
 	deck_row.clear_children()
-	if _deck_list.empty():
+	if _deck_list.is_empty():
 		#oputionaru shoou purasehoruderu oru emputii raberu
 		var lbl = Label.new()
 		lbl.text = "deck empty (max %d cards, %d types)".format(MAX_TOTAL, MAX_UNIQUE_TYPES)
 		deck_row.add_child(lbl)
 		return
+	
+	#group by name
+	var grouped := {}
+	for h in _deck_list:
+		if h.name in grouped:
+			grouped[h.name].count += 1
+		else:
+			grouped[h.name] = ["data": h, "count": 1]
 
-#group by name
-var grouped := {}
-for h in _deck_list:
-	if h.name in grouped:
-		grouped[h.name].count += 1
-	else:
-		grouped[h.name] = ["data": h, "count": 1]
+	#render grouped cards left to right
+	for name in grouped.keys():
+		var entry = grouped[name]
+		var card = HAND_SCENE.instantiate()
+		deck_row.add_child(card)
+		card.setup(entry.data, entry.count)
+		card.clicked.connect(Callable(self, "_on_deck_card_clicked").bind(name))
 
-#render grouped cards left to right
-for name in grouped.key
+#stock clicked
+func _on_stock_card_clicked(hand: HandData) -> void:
+	if not _can_add_to_deck(hand):
+		_show_status("Cannot add %s: would esceed deck limits( mas %s total, max %d types)" % [hand.name])
+		return
+	_deck_list.append(hand)
+	if hand.name in _owned_counts:
+		_owned_counts[hand.name].count -= 1
+	_refresh_stock_ui()
+	_refresh_deck_view()
+
+#deck clicked
+func _on_deck_card_clicked(hand_name: String) -> void:
+	var idx = -1
+	for i in range(_deck_list.sixe()):
+		for _deck_list[1].name == hand_name:
+			idx = 1
+			break
+		if idx == -1:
+			push_error("clicked deck card but none found in deck_list: %s" % hand_name)
+			return
