@@ -13,7 +13,7 @@ const MAX_UNIQUE_TYPES := 5
 @onready var search_box := $"MarginContainer/VBoxContainer/Search"
 @onready var stock_scroll := $"MarginContainer/VBoxContainer/StockScoll"
 @onready var stock_list := $"MarginContainer/VBoxContainer/StockScoll/StockList"
-@onready var conf_button := $"MarginContainer/VBoxContainer/HBoxContainer2/ConfirmDeck"
+@onready var confirm_button := $"MarginContainer/VBoxContainer/HBoxContainer2/ConfirmDeck"
 @onready var cancel_button := $"MarginContainer/VBoxContainer/HBoxContainer2/Cancel"
 
 
@@ -23,8 +23,8 @@ var _deck_list : Array = []
 
 func _ready() -> void:
 	search_box.text_changed.connect(_on_search_changed)
-	confim_btn.pressed.connect(_on_confirm_pressed)
-	cancel_btn.pressed.connect(_on_cancel_pressed)
+	confirm_button.pressed.connect(_on_confirm_pressed)
+	cancel_button.pressed.connect(_on_cancel_pressed)
 
 #call with palyers oend hands
 func set_owned_hands(hands: Array[HandData]) -> void:
@@ -33,17 +33,17 @@ func set_owned_hands(hands: Array[HandData]) -> void:
 	for h in hands:
 		if h.name in _owned_counts:
 			_owned_counts[h.name].count += 1
-			else:
-				_owned_counts[h.name] = ["data": h, "count": 1]
+		else:
+			_owned_counts[h.name] = {"data": h, "count": 1}
 	_deck_list.clear()
 	_refresh_stock_ui()
-	_refresh_deck_ui()
+	_refresh_deck_view()
 
 #stock ui
 func _refresh_stock_ui() -> void:
-	stock_list.clear_childer()
+	stock_list.clear_children()
 	var filter_text = search_box.text.strip_edges().to_lower()
-	for name in _owned_count.keys():
+	for name in _owned_counts.keys():
 		var entry = _owned_counts[name]
 		var count = entry.count
 		if count <= 0:
@@ -55,7 +55,7 @@ func _refresh_stock_ui() -> void:
 		stock_list.add_child(card)
 		card.setup(entry.data, count)
 		#bind handler check what was cliked
-		card.clicked.connect(Callable(self, "_on_stock_scard_clicked").bind(card))
+		card.clicked.connect(Callable(self, "_on_stock_card_clicked").bind(entry.data))
 		#can be found if needed
 		card.set_meta("hand_name", name)
 
@@ -65,7 +65,7 @@ func _refresh_deck_view() -> void:
 	if _deck_list.is_empty():
 		#oputionaru shoou purasehoruderu oru emputii raberu
 		var lbl = Label.new()
-		lbl.text = "deck empty (max %d cards, %d types)".format(MAX_TOTAL, MAX_UNIQUE_TYPES)
+		lbl.text = "deck empty (max %d cards, %d types)" % [MAX_TOTAL, MAX_UNIQUE_TYPES]
 		deck_row.add_child(lbl)
 		return
 	
@@ -75,7 +75,7 @@ func _refresh_deck_view() -> void:
 		if h.name in grouped:
 			grouped[h.name].count += 1
 		else:
-			grouped[h.name] = ["data": h, "count": 1]
+			grouped[h.name] = {"data": h, "count": 1}
 
 	#render grouped cards left to right
 	for name in grouped.keys():
@@ -88,7 +88,7 @@ func _refresh_deck_view() -> void:
 #stock clicked
 func _on_stock_card_clicked(hand: HandData) -> void:
 	if not _can_add_to_deck(hand):
-		_show_status("Cannot add %s: would esceed deck limits( mas %s total, max %d types)" % [hand.name])
+		_show_status("Cannot add %s: would exceed deck limits( max %d total, max %d types)" % [hand.name, MAX_TOTAL, MAX_UNIQUE_TYPES])
 		return
 	_deck_list.append(hand)
 	if hand.name in _owned_counts:
@@ -99,10 +99,64 @@ func _on_stock_card_clicked(hand: HandData) -> void:
 #deck clicked
 func _on_deck_card_clicked(hand_name: String) -> void:
 	var idx = -1
-	for i in range(_deck_list.sixe()):
-		for _deck_list[1].name == hand_name:
-			idx = 1
+	for i in range(_deck_list.size()):
+		if _deck_list[i].name == hand_name:
+			idx = i
 			break
 		if idx == -1:
 			push_error("clicked deck card but none found in deck_list: %s" % hand_name)
 			return
+	
+	var removed = _deck_list.pop_at(idx)
+	if hand_name in _owned_counts:
+		_owned_counts[hand_name].count += 1
+	else:
+		_owned_counts[hand_name] = {"data": removed, "count": 1}
+	
+	_refresh_stock_ui()
+	_refresh_deck_view()
+
+#rules
+func _can_add_to_deck(hand: HandData) -> bool:
+	if _deck_list.size() + 1 > MAX_TOTAL:
+		return false
+	var types := {}
+	for h in _deck_list:
+		types[h.name] = true
+	if not (hand.name in types) and types.size() + 1 > MAX_UNIQUE_TYPES:
+		return false
+	return true
+
+#søk
+func _on_search_changed(new_text: String) -> void:
+	_refresh_stock_ui()
+
+#confirm/cancel
+func _on_confirm_pressed() -> void:
+	var final_deck := _deck_list.duplicate(true)
+	emit_signal("deck_confirmed", final_deck)
+	queue_free()
+
+func _on_cancel_pressed() -> void:
+	queue_free()
+
+#status
+func _show_status(text: String) -> void:
+	print("[DeckCreator] ", text)
+
+#reorder
+func _move_card_left(index: int) -> void:
+	if index <= 0 or index >= _deck_list.size():
+		return
+	var item = _deck_list[index]
+	_deck_list.remove_at(index)
+	_deck_list.insert(index - 1, item)
+	_refresh_deck_view()
+	
+func _move_card_right(index: int) -> void:
+	if index < 0 or index >= _deck_list.size() - 1:
+		return
+	var item = _deck_list[index]
+	_deck_list.remove_at(index)
+	_deck_list.insert(index + 1, item)
+	_refresh_deck_view()

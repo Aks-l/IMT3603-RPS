@@ -18,7 +18,7 @@ func setup(data: HandData, count: int) -> void:
 	print("HandCard setup:", hand.name)  # DEBUG
 	print("Handcard setup size:", custom_minimum_size)
 
-	# card sizing
+	# cardx sizing
 	custom_minimum_size = CARD_SIZE
 	size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	size_flags_vertical   = Control.SIZE_SHRINK_CENTER

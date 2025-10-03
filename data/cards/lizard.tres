@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://b8vm3ooia0vfx"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://ds31vdjmoqr5r"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_loi34"]
 [ext_resource type="Texture2D" uid="uid://4vs07aoddyh4" path="res://data/cards/sprites/lizard.JPG" id="2_q5fxy"]
