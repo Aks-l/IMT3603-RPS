@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 signal deck_confirmed(deck : Array) #emits finalized deck as array
 
@@ -25,6 +25,32 @@ func _ready() -> void:
 	search_box.text_changed.connect(_on_search_changed)
 	confirm_button.pressed.connect(_on_confirm_pressed)
 	cancel_button.pressed.connect(_on_cancel_pressed)
+	
+	#TEST HARDCODED FOR Å SJEKKE:
+	if _owned_counts.is_empty():
+		print("Creating test cards")
+		var test_cards = _create_test_cards()
+		set_owned_hands(test_cards)
+
+#TEST DEL AV DEN OVER
+func _create_test_cards() -> Array[HandData]:
+	var rock := HandData.new()
+	rock.name = "Rock"
+	rock.beats = ["Scissors", "Lizard"]
+	rock.max_count = 3
+
+	var paper := HandData.new()
+	paper.name = "Paper"
+	paper.beats = ["Rock", "Spock"]
+	paper.max_count = 3
+
+	var scissors := HandData.new()
+	scissors.name = "Scissors"
+	scissors.beats = ["Paper", "Lizard"]
+	scissors.max_count = 3
+
+	return [rock, paper, scissors]
+
 
 #call with palyers oend hands
 func set_owned_hands(hands: Array[HandData]) -> void:
@@ -41,7 +67,11 @@ func set_owned_hands(hands: Array[HandData]) -> void:
 
 #stock ui
 func _refresh_stock_ui() -> void:
-	stock_list.clear_children()
+	#stock_list.clear_children()
+	#TEST
+	for c in stock_list.get_children():
+		c.queue_free()
+
 	var filter_text = search_box.text.strip_edges().to_lower()
 	for name in _owned_counts.keys():
 		var entry = _owned_counts[name]
@@ -61,7 +91,11 @@ func _refresh_stock_ui() -> void:
 
 #deck ui
 func _refresh_deck_view() -> void:
-	deck_row.clear_children()
+	#deck_row.clear_children()
+	#TEST
+	for c in deck_row.get_children():
+		c.queue_free()
+
 	if _deck_list.is_empty():
 		#oputionaru shoou purasehoruderu oru emputii raberu
 		var lbl = Label.new()
