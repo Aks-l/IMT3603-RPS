@@ -9,6 +9,8 @@ signal finished(result)
 @onready var player_hearts = $PlayerHearts
 @onready var enemy_hearts = $EnemyHearts
 
+@onready var victory = $Victory
+
 var _enemy: EnemyData
 var _hand: Array[HandData]		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
@@ -30,10 +32,14 @@ func setup(enemy: EnemyData, hand: Array[HandData], consumables: Array) -> void:
 		_apply()
 
 func _ready():
+	victory.visible = false
+	victory.chosen_reward.connect(queue_free)
+	
 	player_hearts.set_hp(5) #health for player
 	enemy_hearts.set_hp(5) #health for enemy
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
+	
 	_is_ready = true
 	if _has_params:
 		_apply()
@@ -76,10 +82,14 @@ func on_card_played(hand: HandData):
 			result_label.text = "It's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
 	if enemy_hearts.get_hp() <= 0:
-		result_label.text = "Enemy defeated!"
-		emit_signal("finished", {"won": true}); (func(): queue_free()).call_deferred()
+		victory.visible = true
+		victory.setup(_enemy, true)
+		
+		## ONCE AN ITEM IS CHOSEN, queue_free()
+		
 	elif player_hearts.get_hp() <= 0:
 		push_error("TODO: implement gameover/loss resolution")
+		victory.setup(_enemy, false)
 		assert(false)
 
 func _on_item_used(item: ItemData):
