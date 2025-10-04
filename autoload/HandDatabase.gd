@@ -14,8 +14,9 @@ func load_hands():
 				var hand = load("res://data/cards/" + file)
 				if hand and hand is HandData:
 					hands[hand.id] = hand
+					print("added " + hand.name)
 					
 func add_hands():
-	Globals.inventory.append(hands[0])
-	Globals.inventory.append(hands[1])
-	Globals.inventory.append(hands[2])
+	Globals.inventory[hands[0]] = 5
+	Globals.inventory[hands[2]] = 1
+	Globals.inventory[hands[4]] = 1

@@ -27,6 +27,9 @@ func populate_rewards(enemy: EnemyData):
 
 func choose_reward(event: InputEvent, hand: HandData):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		Globals.inventory.append(hand)
+		if Globals.inventory[hand]:
+			Globals.inventory[hand] = 1
+		else:
+			Globals.inventory[hand] += 1
 		print(Globals.inventory)
 		chosen_reward.emit()
