@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://3gc3u5cydhgm" path="res://data/cards/paper.tres" id="3_d2cov"]
 [ext_resource type="Resource" uid="uid://dimcckr7wd3nc" path="res://data/cards/rock.tres" id="4_u8dr5"]
 [ext_resource type="Resource" uid="uid://c61axoml6jv6p" path="res://data/cards/scissors.tres" id="5_20f34"]
-[ext_resource type="Resource" uid="uid://bbuunnnj1pdyt" path="res://data/cards/spock.tres" id="6_u8dr5"]
+[ext_resource type="Resource" uid="uid://bmgqegnnpo4ot" path="res://data/cards/spock.tres" id="6_u8dr5"]
 [ext_resource type="Resource" uid="uid://ds31vdjmoqr5r" path="res://data/cards/lizard.tres" id="7_20f34"]
 
 [node name="HandsDb" type="Node"]
