@@ -7,7 +7,7 @@ signal chosen_reward
 
 func setup(enemy: EnemyData, defeated: bool):
 	if defeated:
-		label.text = "You defeated\n%s\n\nChoose you reward:" % enemy.name
+		label.text = "You defeated\n%s\n\nChoose your reward:" % enemy.name
 		populate_rewards(enemy)
 	else:
 		label.text = "You were defeated by %s" % enemy.name
@@ -28,8 +28,8 @@ func populate_rewards(enemy: EnemyData):
 func choose_reward(event: InputEvent, hand: HandData):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if Globals.inventory[hand]:
-			Globals.inventory[hand] = 1
-		else:
 			Globals.inventory[hand] += 1
+		else:
+			Globals.inventory[hand] = 1
 		print(Globals.inventory)
 		chosen_reward.emit()
