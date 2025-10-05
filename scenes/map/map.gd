@@ -208,50 +208,31 @@ func _etype_to_dropdown(t):
 func _on_deck_button_pressed() -> void:
 	print("Opening deck builder")
 	
+	#saves any map data if needed before switching scenes, can be removed later
+	EncounterHandler.start_encounter("DeckCreator")
+	#UNDER For å lagre progess etterpå 
+	#Globals.last_scene = "res://scenes/Map/map.tscn"
+	
 	#disables intercation on map while deckbuider open
-	_set_map_interaction(false)
+	#_set_map_interaction(false)
 	
-	var deck_scene := preload("res://scenes/DeckCreater/deck_creater.tscn")
-	var deck_ui := deck_scene.instantiate()
-	add_child(deck_ui)
+	#var deck_scene := preload("res://scenes/DeckCreater/deck_creater.tscn")
+	#var deck_ui := deck_scene.instantiate()
+	#add_child(deck_ui)
 	
-	#passer players card from globals in autoload
-	deck_ui.set_owned_hands(_create_test_cards())
+	#deck_ui.set_owned_hands(Globals.inventory)
 	
-	#confirm deck
-	#deck_ui.set_owned_hands(Globals.get_inventory_array())
-	#TEST FOR HARDCODED; SE UNDER
-	deck_ui.deck_confirmed.connect(_on_deck_confirmed)
+	#deck_ui.deck_confirmed.connect(_on_deck_confirmed)
 	
 	#close
-	deck_ui.tree_exited.connect(func():
-		_set_map_interaction(true))
+	#deck_ui.tree_exited.connect(func():
+	#	_set_map_interaction(true))
 
-#TEST FOR Å SLETTES ETTERPÅ
-func _create_test_cards() -> Array[HandData]:
-	var rock := HandData.new()
-	rock.name = "Rock"
-	rock.beats = ["Scissors", "Lizard"]
-	rock.max_count = 3
+#func _on_deck_confirmed(deck: Array[HandData]) -> void:
+#	print("Deck confirmed with %d cards" % deck.size())
+#	Globals.current_deck = deck
 
-	var paper := HandData.new()
-	paper.name = "Paper"
-	paper.beats = ["Rock", "Spock"]
-	paper.max_count = 3
-
-	var scissors := HandData.new()
-	scissors.name = "Scissors"
-	scissors.beats = ["Paper", "Lizard"]
-	scissors.max_count = 3
-
-	return [rock, paper, scissors]
-
-
-func _on_deck_confirmed(deck: Array[HandData]) -> void:
-	print("Deck confirmed with %d cards" % deck.size())
-	Globals.current_deck = deck
-
-func _set_map_interaction(active: bool) -> void:
-	map_interaction_enabled = active
-	#for n in encounters_root.get_children():
-	#	n.mouse_filter = Control.MOUSE_FILTER_PASS if active else Control.MOUSE_FILTER_IGNORE
+#func _set_map_interaction(active: bool) -> void:
+#	map_interaction_enabled = active
+#	#for n in encounters_root.get_children():
+#	#	n.mouse_filter = Control.MOUSE_FILTER_PASS if active else Control.MOUSE_FILTER_IGNORE

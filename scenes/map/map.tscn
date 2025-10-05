@@ -6,7 +6,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_a2pkv"]
 
-[node name="Map" type="Node2D"]
+[node name="map" type="Node2D"]
 script = ExtResource("1_sxf4j")
 seed = 20000
 encounter_scene = ExtResource("2_tqkkf")

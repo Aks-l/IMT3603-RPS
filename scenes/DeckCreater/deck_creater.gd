@@ -26,56 +26,37 @@ func _ready() -> void:
 	confirm_button.pressed.connect(_on_confirm_pressed)
 	cancel_button.pressed.connect(_on_cancel_pressed)
 	
-	#TEST HARDCODED FOR Å SJEKKE:
-	if _owned_counts.is_empty():
-		print("Creating test cards")
-		var test_cards = _create_test_cards()
-		set_owned_hands(test_cards)
-
-#TEST DEL AV DEN OVER
-func _create_test_cards() -> Array[HandData]:
-	var rock := HandData.new()
-	rock.name = "Rock"
-	rock.beats = ["Scissors", "Lizard"]
-	rock.max_count = 3
-
-	var paper := HandData.new()
-	paper.name = "Paper"
-	paper.beats = ["Rock", "Spock"]
-	paper.max_count = 3
-
-	var scissors := HandData.new()
-	scissors.name = "Scissors"
-	scissors.beats = ["Paper", "Lizard"]
-	scissors.max_count = 3
-
-	return [rock, paper, scissors]
-
+	if Globals.inventory.size() > 0:
+		set_owned_hands(Globals.inventory)
+	else: 
+		print("[DeckCreator] warning: player invetory empty")
+	
+	#DEBUG
+	print("DECK CREATOR SCENE LOADED CORRECTCTLY")
 
 #call with palyers oend hands
-func set_owned_hands(hands: Array[HandData]) -> void:
+func set_owned_hands(inv: Dictionary) -> void:
 	#build counts grouped by name
 	_owned_counts.clear()
-	for h in hands:
-		if h.name in _owned_counts:
-			_owned_counts[h.name].count += 1
-		else:
-			_owned_counts[h.name] = {"data": h, "count": 1}
+	for hand: HandData in inv.keys():
+		var count: int = int(inv[hand])
+		_owned_counts[hand.name] = {
+			"data": hand,
+			"count": count
+		}
 	_deck_list.clear()
 	_refresh_stock_ui()
 	_refresh_deck_view()
 
 #stock ui
 func _refresh_stock_ui() -> void:
-	#stock_list.clear_children()
-	#TEST
 	for c in stock_list.get_children():
 		c.queue_free()
-
+	
 	var filter_text = search_box.text.strip_edges().to_lower()
 	for name in _owned_counts.keys():
 		var entry = _owned_counts[name]
-		var count = entry.count
+		var count = entry["count"]
 		if count <= 0:
 			continue
 		if filter_text != "" and not name.to_lower().findn(filter_text) >= 0:
@@ -83,19 +64,17 @@ func _refresh_stock_ui() -> void:
 		#create a hand card instance showing how many the plauer onws
 		var card = HAND_SCENE.instantiate()
 		stock_list.add_child(card)
-		card.setup(entry.data, count)
+		card.setup(entry["data"], count)
 		#bind handler check what was cliked
-		card.clicked.connect(Callable(self, "_on_stock_card_clicked").bind(entry.data))
+		card.clicked.connect(Callable(self, "_on_stock_card_clicked").bind(entry["data"]))
 		#can be found if needed
 		card.set_meta("hand_name", name)
 
 #deck ui
 func _refresh_deck_view() -> void:
-	#deck_row.clear_children()
-	#TEST
 	for c in deck_row.get_children():
 		c.queue_free()
-
+	
 	if _deck_list.is_empty():
 		#oputionaru shoou purasehoruderu oru emputii raberu
 		var lbl = Label.new()
@@ -116,7 +95,7 @@ func _refresh_deck_view() -> void:
 		var entry = grouped[name]
 		var card = HAND_SCENE.instantiate()
 		deck_row.add_child(card)
-		card.setup(entry.data, entry.count)
+		card.setup(entry["data"], entry["count"])
 		card.clicked.connect(Callable(self, "_on_deck_card_clicked").bind(name))
 
 #stock clicked
@@ -137,9 +116,9 @@ func _on_deck_card_clicked(hand_name: String) -> void:
 		if _deck_list[i].name == hand_name:
 			idx = i
 			break
-		if idx == -1:
-			push_error("clicked deck card but none found in deck_list: %s" % hand_name)
-			return
+	if idx == -1:
+		push_error("clicked deck card but none found in deck_list: %s" % hand_name)
+		return
 	
 	var removed = _deck_list.pop_at(idx)
 	if hand_name in _owned_counts:
@@ -168,10 +147,12 @@ func _on_search_changed(new_text: String) -> void:
 #confirm/cancel
 func _on_confirm_pressed() -> void:
 	var final_deck := _deck_list.duplicate(true)
-	emit_signal("deck_confirmed", final_deck)
+	Globals.current_deck = final_deck
+	print("Deck confirmed with %d cards" % final_deck.size())
 	queue_free()
 
 func _on_cancel_pressed() -> void:
+	print("Returning to map without changes")
 	queue_free()
 
 #status
