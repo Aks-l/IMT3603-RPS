@@ -6,7 +6,7 @@ extends Control
 @onready var description_label: Label = $VBoxContainer/Description
 
 # Fill one almanac entry with proper data
-func populate(d) -> void:
+func populate(d: Resource) -> void:
 	var data = d
 	print("added " + d.name)
 	if sprite:

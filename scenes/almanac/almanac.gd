@@ -14,7 +14,7 @@ func _ready() -> void:
 	back.pressed.connect(_leave)
 
 # Popluate grid based on datatype
-func setup(type):
+func setup(type:String):
 	match type:
 		"enemy":
 			var enemies = EnemyDatabase.enemies.keys()
