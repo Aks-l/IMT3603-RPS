@@ -6,12 +6,14 @@ extends Control
 
 var card_scene := preload("res://scenes/almanac/enemyCard.tscn")
 
+# Initialize with enemies shown, and connect buttons to their function
 func _ready() -> void:
 	setup("enemy")
 	see_enemies.pressed.connect(refresh.bind("enemy"))
 	see_hands.pressed.connect(refresh.bind("hand"))
 	back.pressed.connect(_leave)
-	
+
+# Popluate grid based on datatype
 func setup(type):
 	match type:
 		"enemy":
@@ -30,10 +32,12 @@ func setup(type):
 				grid.add_child(card)
 				card.populate(data)
 
+# Update what is shown in grid
 func refresh(type:String):
 	for entry in grid.get_children():
 		entry.queue_free()
 	setup(type)
-	
+
+# Return to main menu
 func _leave():
 	get_tree().change_scene_to_file("res://scenes/mainmenu.tscn")

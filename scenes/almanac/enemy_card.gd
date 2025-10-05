@@ -5,14 +5,9 @@ extends Control
 @onready var name_label: Label = $VBoxContainer/Name
 @onready var description_label: Label = $VBoxContainer/Description
 
-var data
-
-func _ready() -> void:
-	if data:
-		populate(data)
-
+# Fill one almanac entry with proper data
 func populate(d) -> void:
-	data = d
+	var data = d
 	print("added " + d.name)
 	if sprite:
 		sprite.texture = d.sprite
