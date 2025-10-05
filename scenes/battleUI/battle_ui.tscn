@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5xdkuc18ywuv"]
+[gd_scene load_steps=10 format=3 uid="uid://c5xdkuc18ywuv"]
 
 [ext_resource type="Script" uid="uid://ca2yf48k0yyfh" path="res://scenes/battleUI/battle_ui.gd" id="1_8ao15"]
 [ext_resource type="PackedScene" uid="uid://df4iyjt5y1vmr" path="res://scenes/battleUI/opponent_profile.tscn" id="2_8ao15"]
@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dod6mbjbj833i" path="res://scenes/battleUI/health/heartspng/redteacan.png" id="5_npshu"]
 [ext_resource type="Texture2D" uid="uid://8263mtecumbi" path="res://scenes/battleUI/health/heartspng/bluebucket.png" id="6_3ewwt"]
 [ext_resource type="PackedScene" uid="uid://7e1uuuf6aa0j" path="res://scenes/battleUI/health/heart_icon.tscn" id="7_npshu"]
+[ext_resource type="PackedScene" uid="uid://bur1pwoqf50ar" path="res://scenes/VictoryScene/victory.tscn" id="9_v8byk"]
 
 [node name="BattleUI" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2774, 3.12695, 1.89771)
 script = ExtResource("1_8ao15")
 
 [node name="Layout" type="HBoxContainer" parent="."]
@@ -44,6 +44,7 @@ offset_bottom = 168.0
 text = "Result will appear here"
 
 [node name="Camera3D" type="Camera3D" parent="."]
+current = true
 
 [node name="PlayerHearts" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(50, 50)
@@ -84,3 +85,14 @@ icon_size = Vector2(32, 32)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+
+[node name="Victory" parent="." instance=ExtResource("9_v8byk")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 388.0
+offset_top = 184.0
+offset_right = 388.0
+offset_bottom = 184.0
+grow_horizontal = 1
+grow_vertical = 1

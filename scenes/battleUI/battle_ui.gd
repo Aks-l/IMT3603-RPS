@@ -9,31 +9,37 @@ signal finished(result)
 @onready var player_hearts = $PlayerHearts
 @onready var enemy_hearts = $EnemyHearts
 
+@onready var victory = $Victory
+
 var _enemy: EnemyData
-var _hand: Array[HandData]		# CHANGE THESE WHEN HANDS AND 
+var _hand: Dictionary[HandData, int]		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
 
 var _has_params := false
 var _is_ready := false
 
 # THE LAST OF SETUP AND READY WILL CALL _apply
-func setup(enemy: EnemyData, hand: Array[HandData], consumables: Array) -> void:
+func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
 	_enemy = enemy
 	_consumables = consumables
 	
 	#uses DeckBuilder to generate a deck from the available hands
 	var deck_builder = DeckBuilder.new()
-	_hand = deck_builder.build_deck(hand, 15) #gives limit of 15
-	
+	#_hand = deck_builder.build_deck(hand, 15) #gives limit of 15
+	_hand = hand
 	_has_params = true
 	if _is_ready:
 		_apply()
 
 func _ready():
+	victory.visible = false
+	victory.chosen_reward.connect(queue_free)
+	
 	player_hearts.set_hp(5) #health for player
 	enemy_hearts.set_hp(5) #health for enemy
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
+	
 	_is_ready = true
 	if _has_params:
 		_apply()
@@ -62,7 +68,7 @@ func on_card_played(hand: HandData):
 	#print("You played: " + hand.name)
 	#print("Enemy played: " + enemy_hand.name)
 	
-	var result = HandsDb.get_result(hand.name, enemy_hand.name)
+	var result = HandsDb.get_result(hand, enemy_hand)
 	match result:
 		1:
 			result_label.text = "You win! " + hand.name + " beats " + enemy_hand.name
@@ -76,10 +82,14 @@ func on_card_played(hand: HandData):
 			result_label.text = "It's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
 	if enemy_hearts.get_hp() <= 0:
-		result_label.text = "Enemy defeated!"
-		emit_signal("finished", {"won": true}); (func(): queue_free()).call_deferred()
+		victory.visible = true
+		victory.setup(_enemy, true)
+		
+		## ONCE AN ITEM IS CHOSEN, queue_free()
+		
 	elif player_hearts.get_hp() <= 0:
 		push_error("TODO: implement gameover/loss resolution")
+		victory.setup(_enemy, false)
 		assert(false)
 
 func _on_item_used(item: ItemData):

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=8 format=3 uid="uid://7jbrshve5vsf"]
 
 [ext_resource type="Script" uid="uid://bij8jyaqqsyd7" path="res://scenes/hands_db.gd" id="1_ikwl4"]
@@ -11,3 +12,11 @@
 [node name="HandsDb" type="Node"]
 script = ExtResource("1_ikwl4")
 hands = Array[ExtResource("2_ikwl4")]([ExtResource("3_d2cov"), ExtResource("4_u8dr5"), ExtResource("5_20f34"), ExtResource("6_u8dr5"), ExtResource("7_20f34")])
+=======
+[gd_scene load_steps=2 format=3 uid="uid://7jbrshve5vsf"]
+
+[ext_resource type="Script" uid="uid://bij8jyaqqsyd7" path="res://scenes/hands_db.gd" id="1_ikwl4"]
+
+[node name="HandsDb" type="Node"]
+script = ExtResource("1_ikwl4")
+>>>>>>> main

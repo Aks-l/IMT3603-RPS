@@ -7,7 +7,7 @@
 radius = 16.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_1nsbq"]
-font_size = 8
+font_size = 30
 
 [node name="EncounterNode" type="Node2D"]
 script = ExtResource("1_66jac")
@@ -15,22 +15,26 @@ script = ExtResource("1_66jac")
 [node name="NodeShape" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NodeShape"]
-position = Vector2(20, 29)
 shape = SubResource("CircleShape2D_sb7ia")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="VBox" type="VBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -5.0
-offset_bottom = 5.0
+offset_left = -33.0
+offset_top = -70.0
+offset_right = 33.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4

@@ -10,3 +10,4 @@ enum Type {ACCESSORY, HEAL, DAMAGE, SHIELD}
 @export var description: String
 @export var owned: bool
 @export var ammInInvetory: int
+@export var price: int
