@@ -8,7 +8,7 @@ const HAND_SCENE: PackedScene = preload("res://scenes/battleUI/hand_card.tscn")
 const CARD_SIZE  := Vector2(160, 220)   # all cards same size
 const IMAGE_SIZE := Vector2(144, 144)   # square art inside
 
-func set_inventory(hand_list: Array[HandData]) -> void:
+func set_inventory(hand_list: Dictionary[HandData, int]) -> void:
 	print("set_inventory called with", hand_list.size(), "hands")
 	for c in container.get_children():
 		c.queue_free()

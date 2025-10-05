@@ -37,7 +37,7 @@ func start_encounter(encounter_type: String, params: Dictionary = {}) -> void:
 
 	if encounter.has_method("setup"):
 		var enemy := params.get("enemy") as EnemyData
-		var hand := params.get("hand", []) as Array[HandData]
+		var hand := params.get("hand", []) as Dictionary[HandData, int]
 		var consumables := params.get("consumables", []) as Array
 		encounter.call("setup", enemy, hand, consumables)
 
