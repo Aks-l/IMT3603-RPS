@@ -17,12 +17,6 @@ func load_hands():
 					print("added " + hand.name)
 					
 func add_hands():
-<<<<<<< HEAD
-	Globals.inventory.append(hands[0])
-	Globals.inventory.append(hands[3])
-	Globals.inventory.append(hands[2])
-=======
 	Globals.inventory[hands[0]] = 5
 	Globals.inventory[hands[2]] = 1
 	Globals.inventory[hands[4]] = 1
->>>>>>> main

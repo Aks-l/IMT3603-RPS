@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://3gc3u5cydhgm"]
-=======
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://be5le4n7ite62"]
->>>>>>> main
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://b6e0vdawx87c0"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_kohf7"]
 [ext_resource type="Texture2D" uid="uid://dia6d0eco6grk" path="res://data/cards/sprites/paper.jpg" id="2_8vi4f"]
@@ -12,11 +8,6 @@ script = ExtResource("1_kohf7")
 id = 4
 sprite = ExtResource("2_8vi4f")
 name = "paper"
-<<<<<<< HEAD
-beats = Array[String](["rock", "spock"])
 discovered = false
-max_count = 3
-=======
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"
->>>>>>> main
