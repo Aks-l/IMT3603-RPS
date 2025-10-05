@@ -1,10 +1,17 @@
-extends ScrollContainer
-@onready var grid := $Grid
+extends Control
+@onready var grid: GridContainer = $VBoxContainer/Container/Grid
+@onready var see_enemies = $VBoxContainer/Buttons/Enemies
+@onready var see_hands = $VBoxContainer/Buttons/Hands
+@onready var back = $VBoxContainer/Back
+
 var card_scene := preload("res://scenes/almanac/enemyCard.tscn")
 
 func _ready() -> void:
-	setup("hand")
-
+	setup("enemy")
+	see_enemies.pressed.connect(refresh.bind("enemy"))
+	see_hands.pressed.connect(refresh.bind("hand"))
+	back.pressed.connect(_leave)
+	
 func setup(type):
 	match type:
 		"enemy":
@@ -22,3 +29,11 @@ func setup(type):
 				var card = card_scene.instantiate()
 				grid.add_child(card)
 				card.populate(data)
+
+func refresh(type:String):
+	for entry in grid.get_children():
+		entry.queue_free()
+	setup(type)
+	
+func _leave():
+	get_tree().change_scene_to_file("res://scenes/mainmenu.tscn")

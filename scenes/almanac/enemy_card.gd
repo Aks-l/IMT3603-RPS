@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func populate(d) -> void:
 	data = d
+	print("added " + d.name)
 	if sprite:
 		sprite.texture = d.sprite
 	if name_label:

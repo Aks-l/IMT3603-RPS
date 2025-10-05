@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dis86gkn12vqn" path="res://scenes/almanac/almanac.gd" id="1_0d67t"]
 
-[node name="Almanac" type="ScrollContainer"]
+[node name="Almanac" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,6 +11,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0d67t")
 
-[node name="Grid" type="GridContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-columns = 4
+alignment = 1
+
+[node name="Enemies" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Enemies"
+
+[node name="Hands" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Hands"
+
+[node name="Container" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Grid" type="GridContainer" parent="VBoxContainer/Container"]
+layout_mode = 2
+columns = 5
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back"
