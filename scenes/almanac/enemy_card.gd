@@ -1,16 +1,17 @@
 extends Control
 
-@export var data: EnemyData
 
 @onready var sprite: TextureRect = $VBoxContainer/ImageBox/Image
 @onready var name_label: Label = $VBoxContainer/Name
 @onready var description_label: Label = $VBoxContainer/Description
 
+var data
+
 func _ready() -> void:
 	if data:
 		populate(data)
 
-func populate(d: EnemyData) -> void:
+func populate(d) -> void:
 	data = d
 	if sprite:
 		sprite.texture = d.sprite
@@ -18,4 +19,5 @@ func populate(d: EnemyData) -> void:
 		name_label.text = d.name
 		print(name_label.text)
 	if description_label:
-		description_label.text = d.description
+		if d is EnemyData:
+			description_label.text = d.description
