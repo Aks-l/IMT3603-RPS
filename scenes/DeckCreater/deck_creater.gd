@@ -8,13 +8,15 @@ const MAX_TOTAL := 15
 const MAX_UNIQUE_TYPES := 5
 
 #ui node path
-@onready var title_label := $"MarginContainer/VBoxContainer/YourDeck"
-@onready var deck_row := $"MarginContainer/VBoxContainer/DeckRow"
-@onready var search_box := $"MarginContainer/VBoxContainer/Search"
-@onready var stock_scroll := $"MarginContainer/VBoxContainer/StockScoll"
-@onready var stock_list := $"MarginContainer/VBoxContainer/StockScoll/StockList"
-@onready var confirm_button := $"MarginContainer/VBoxContainer/HBoxContainer2/ConfirmDeck"
-@onready var cancel_button := $"MarginContainer/VBoxContainer/HBoxContainer2/Cancel"
+@onready var title_label := $"MarginContainer/HBoxContainer/ChosenCards/YourDeck"
+@onready var deck_row := $"MarginContainer/HBoxContainer/ChosenCards/DeckRow"
+@onready var search_box := $"MarginContainer/HBoxContainer/StockCards/Search"
+@onready var stock_scroll := $"MarginContainer/HBoxContainer/StockCards/StockScroll"
+@onready var stock_list := $"MarginContainer/HBoxContainer/StockCards/StockScroll/StockList"
+@onready var confirm_button := $"MarginContainer/HBoxContainer2/ConfirmDeck"
+@onready var cancel_button := $"MarginContainer/HBoxContainer2/Cancel"
+
+@onready var cam := $Cam
 
 
 #data struckture
@@ -25,6 +27,7 @@ func _ready() -> void:
 	search_box.text_changed.connect(_on_search_changed)
 	confirm_button.pressed.connect(_on_confirm_pressed)
 	cancel_button.pressed.connect(_on_cancel_pressed)
+	cam.make_current()
 	
 	if Globals.inventory.size() > 0:
 		set_owned_hands(Globals.inventory)
@@ -33,6 +36,21 @@ func _ready() -> void:
 	
 	#DEBUG
 	print("DECK CREATOR SCENE LOADED CORRECTCTLY")
+	
+	assert(stock_list and stock_list.get_parent() is ScrollContainer, 
+		"StockList must be a direct child of ScrollContainer")
+	
+	# Make the search bar keep visible height
+	search_box.custom_minimum_size.y = 36
+	search_box.size_flags_vertical = Control.SIZE_FILL
+	search_box.size_flags_horizontal = Control.SIZE_FILL
+	# Let the scroll area take the leftover space
+	stock_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	stock_scroll.size_flags_horizontal = Control.SIZE_FILL
+	# StockList should not force expansion beyond content
+	stock_list.size_flags_vertical = Control.SIZE_FILL
+	stock_list.size_flags_horizontal = Control.SIZE_FILL
+
 
 #call with palyers oend hands
 func set_owned_hands(inv: Dictionary) -> void:
@@ -64,6 +82,7 @@ func _refresh_stock_ui() -> void:
 		#create a hand card instance showing how many the plauer onws
 		var card = HAND_SCENE.instantiate()
 		stock_list.add_child(card)
+		print("ADDED:", card, " → parent:", card.get_parent().get_path())
 		card.setup(entry["data"], count)
 		#bind handler check what was cliked
 		card.clicked.connect(Callable(self, "_on_stock_card_clicked").bind(entry["data"]))
@@ -105,7 +124,7 @@ func _on_stock_card_clicked(hand: HandData) -> void:
 		return
 	_deck_list.append(hand)
 	if hand.name in _owned_counts:
-		_owned_counts[hand.name].count -= 1
+		_owned_counts[hand.name]["count"] -= 1
 	_refresh_stock_ui()
 	_refresh_deck_view()
 
@@ -122,7 +141,7 @@ func _on_deck_card_clicked(hand_name: String) -> void:
 	
 	var removed = _deck_list.pop_at(idx)
 	if hand_name in _owned_counts:
-		_owned_counts[hand_name].count += 1
+		_owned_counts[hand_name]["count"] += 1
 	else:
 		_owned_counts[hand_name] = {"data": removed, "count": 1}
 	
