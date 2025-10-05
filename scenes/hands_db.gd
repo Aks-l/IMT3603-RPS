@@ -15,4 +15,5 @@ func get_result(hand_a: HandData, hand_b: HandData) -> int:
 		return 1 #A wins!!!!
 	if not result_bool:
 		return -1 #A looses :(
+	assert(false)
 	return 99
