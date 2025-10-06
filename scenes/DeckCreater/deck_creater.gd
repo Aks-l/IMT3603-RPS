@@ -204,16 +204,11 @@ func _on_search_changed(_new_text: String) -> void:
 	_refresh_stock_ui()
 
 # Returns the deck as a dictionary grouped by card name (and accessible by ID)
-func get_deck_dictionary() -> Dictionary:
-	var deck_dict := {}
+func get_deck_dictionary() -> Dictionary[HandData, int]:
+	var deck_dict :Dictionary[HandData, int]= {}
 	for h in _deck_list:
-		if h.id in deck_dict:
-			deck_dict[h.id]["count"] += 1
-		else:
-			deck_dict[h.id] = {
-				"data": h,
-				"count": 1
-			}
+		var val :int= deck_dict.get(h, 0)
+		deck_dict[h] = val+1
 	return deck_dict
 
 
@@ -222,9 +217,9 @@ func _on_confirm_pressed() -> void:
 	var final_deck := get_deck_dictionary()
 	
 	var deck_for_globals: Dictionary[HandData, int] = {}
-	for entry in final_deck.values():
-		var hand: HandData = entry["data"]
-		var count: int = entry["count"]
+	for entry in final_deck:
+		var hand: HandData = entry
+		var count: int = final_deck[entry]
 		deck_for_globals[hand] = count
 		
 	Globals.set_current_deck(deck_for_globals)
@@ -246,10 +241,10 @@ func _on_cancel_pressed() -> void:
 	queue_free()
 
 # Returns a dictionary of cards that differ between two decks
-func get_deck_difference(full: Dictionary, subset: Dictionary) -> Dictionary:
+func get_deck_difference(full: Dictionary[HandData, int], subset: Dictionary[HandData, int]) -> Dictionary:
 	var diff := {}
 	for k in full.keys():
-		var amount: int = int(full.get(k, 0)) - int(subset.get(k, 0))
+		var amount: int = full.get(k, 0) - subset.get(k, 0)
 		if amount > 0:
 			diff[k] = amount
 	return diff
