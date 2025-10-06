@@ -4,7 +4,8 @@ class_name HandData
 
 @export var id: int
 @export var sprite: Texture2D
-@export var name: String # desplays name, example "Rock"
+@export var name: String
+@export var discovered: bool
 
 #how many copies of each card
 #temporarily because max count will change
