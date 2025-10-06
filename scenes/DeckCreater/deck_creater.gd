@@ -21,8 +21,8 @@ const MAX_UNIQUE_TYPES := 5
 
 
 #data structure
-var _owned_counts : Dictionary = {}
-var _deck_list : Array = []
+var _owned_counts : Dictionary[HandData, int] = {}
+var _deck_list : Array[HandData] = []
 var _original_deck : Dictionary = {}
 
 func _ready() -> void:
@@ -37,7 +37,7 @@ func _ready() -> void:
 	if Globals.inventory.size() > 0:
 		set_owned_hands(Globals.inventory)
 	else: 
-		print("[DeckCreator] warning: player invetory empty")
+		print("[DeckCreator] warning: player inventory empty")
 	
 	#DEBUG
 	print("DECK CREATOR SCENE LOADED CORRECTCTLY")
@@ -74,10 +74,8 @@ func set_owned_hands(inv: Dictionary) -> void:
 
 		var remaining: int = max(0, total_count - deck_count)
 
-		_owned_counts[hand.name] = {
-			"data": hand,
-			"count": remaining
-		}
+		_owned_counts[hand] = remaining
+		
 
 	# Rebuild working deck list from saved deck
 	_deck_list.clear()
@@ -94,20 +92,23 @@ func set_owned_hands(inv: Dictionary) -> void:
 
 #stock ui
 func _refresh_stock_ui() -> void:
+	# Clear UI
 	for c in stock_list.get_children():
-		c.call_deferred("free")  # immediately remove
+		c.call_deferred("free")  # (queued) remove
 
 	var filter_text = search_box.text.strip_edges().to_lower()
-	for hand_name in _owned_counts.keys():
-		var entry: Dictionary = _owned_counts[hand_name]
-		var count: int = int(entry.get("count", 0))
+
+	# Iterate DICTIONARY KEYS (hands)
+	for hand in _owned_counts:
+		var count: int = _owned_counts.get(hand, 0)
 		if count <= 0:
 			continue
-		if filter_text != "" and not hand_name.to_lower().contains(filter_text):
+		if filter_text != "" and not String(hand.name).to_lower().contains(filter_text):
 			continue
+
 		var card = HAND_SCENE.instantiate()
 		stock_list.add_child(card)
-		card.setup(entry["data"], count)
+		card.setup(hand, count)
 		card.clicked.connect(_on_stock_card_clicked)
 
 
@@ -123,48 +124,43 @@ func _refresh_deck_view() -> void:
 		return
 
 	# Group cards by name
-	var grouped := {}
+	var grouped : Dictionary[HandData, int] = {}
 	for h in _deck_list:
-		if h.name in grouped:
-			grouped[h.name]["count"] += 1
-		else:
-			grouped[h.name] = {"data": h, "count": 1}
+		var amount = grouped.get(h, 0)
+		grouped[h] = amount + 1
 
 	# Display each group as one stacked card (e.g. “Rock ×3”)
-	for hand_name in grouped.keys():
-		var entry = grouped[hand_name]
+	for hand in grouped:
+		var amount = grouped[hand]
 		var card = HAND_SCENE.instantiate()
 		deck_row.add_child(card)
-		card.setup(entry["data"], entry["count"])
+		card.setup(hand, amount)
 
 		# When clicked, remove one of that card type
 		card.clicked.connect(func(_hand: HandData):
-			_remove_one_from_deck(hand_name)
+			_remove_one_from_deck(hand)
 		)
 
-func _remove_one_from_deck(hand_name: String) -> void:
+func _remove_one_from_deck(hand: HandData) -> void:
 	for i in range(_deck_list.size()):
-		if _deck_list[i].name == hand_name:
+		if _deck_list[i] == hand:
 			var removed: HandData = _deck_list.pop_at(i)
-			if hand_name in _owned_counts:
-				_owned_counts[hand_name]["count"] += 1
-			else:
-				_owned_counts[hand_name] = {"data": removed, "count": 1}
+			var amount = _owned_counts.get(hand, 0)
+			_owned_counts[hand] = amount + 1
 			break
 
 	_refresh_stock_ui()
 	_refresh_deck_view()
 
 
-func _on_deck_card_clicked(hand_name: String) -> void:
+func _on_deck_card_clicked(hand: HandData) -> void:
 	for i in range(_deck_list.size()):
-		if _deck_list[i].name == hand_name:
+		if _deck_list[i] == hand:
 			var removed: HandData = _deck_list.pop_at(i)
-			if hand_name in _owned_counts:
-				_owned_counts[hand_name]["count"] += 1
-			else:
-				_owned_counts[hand_name] = {"data": removed, "count": 1}
+			var amount = _owned_counts.get(hand, 0)
+			_owned_counts[hand] = amount + 1
 			break
+			
 	_refresh_stock_ui()
 	_refresh_deck_view()
 
@@ -178,10 +174,10 @@ func _on_stock_card_clicked(hand: HandData) -> void:
 	_deck_list.append(hand)
 
 	# Subtract from inventory
-	if hand.name in _owned_counts:
-		_owned_counts[hand.name]["count"] -= 1
-		if _owned_counts[hand.name]["count"] < 0:
-			_owned_counts[hand.name]["count"] = 0
+	if hand in _owned_counts:
+		_owned_counts[hand] -= 1
+		if _owned_counts[hand]< 0:
+			_owned_counts[hand] = 0
 
 	_refresh_stock_ui()
 	_refresh_deck_view()
