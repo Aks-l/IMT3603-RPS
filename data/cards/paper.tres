@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("1_kohf7")
-id = 4
+id = 3
 sprite = ExtResource("2_8vi4f")
 name = "paper"
-discovered = false
+discovered = true
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

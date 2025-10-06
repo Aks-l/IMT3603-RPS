@@ -8,6 +8,6 @@ script = ExtResource("1_0bapg")
 id = 0
 sprite = ExtResource("2_erhhc")
 name = "rock"
-discovered = false
+discovered = true
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"
