@@ -21,6 +21,10 @@ var reachable = {}   # id -> bool
 var cleared = {}     # id -> bool
 
 func _ready():
+	EncounterHandler.encounter_finished.connect(_on_encounter_finished)
+	setup()
+
+func setup():
 	_generate()
 	_draw_edges()
 	_spawn_encounters()
@@ -42,7 +46,7 @@ func _generate():
 	counts.clear()
 	pos.clear()
 	etype.clear()
-	edges.clear()
+	edges.clear()	
 
 	# 1) decide width per layer
 	var mid := int(layers / 2)
@@ -191,3 +195,14 @@ func _etype_to_dropdown(t):
 		"Rest": return 4
 		"Boss": return 5
 		_: return 1
+
+func _on_encounter_finished(result):
+	print("i got the signal")
+	if result.type == "Boss":
+		print("resetting...")
+		for i in edges_root.get_children():
+			i.queue_free()
+		for i in encounters_root.get_children():
+			i.queue_free()
+		setup()
+	

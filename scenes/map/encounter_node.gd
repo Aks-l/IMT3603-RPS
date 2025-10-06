@@ -59,7 +59,7 @@ func _on_area_input(_vp, event: InputEvent, _shape_idx: int) -> void:
 			elif encounter_type == EncounterType.BOSS:
 				# TODO: Choose enemy as boss, not any enemy
 				var enemy := EnemyDatabase.enemies.values().pick_random() as EnemyData
-				EncounterHandler.start_encounter("Combat", {
+				EncounterHandler.start_encounter("Boss", {
 					"enemy": enemy,
 					"hand": Globals.inventory,
 					"consumables": []

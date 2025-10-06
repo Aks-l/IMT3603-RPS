@@ -4,6 +4,7 @@ signal encounter_finished(result)
 
 const SCENES := { #TODO:Add scenes for different encounter types
 	"Combat": preload("res://scenes/battleUI/battle_ui.tscn"),
+	"Boss": preload("res://scenes/battleUI/battle_ui.tscn"),
 	"Shop": preload("res://scenes/shopScene/shop.tscn")
 }
 
