@@ -12,7 +12,7 @@ signal finished(result)
 @onready var victory = $Victory
 
 var _enemy: EnemyData
-var _hand: Dictionary[HandData, int]		# CHANGE THESE WHEN HANDS AND 
+var _hand: Dictionary = {}		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
 
 var _has_params := false
@@ -23,10 +23,11 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	_enemy = enemy
 	_consumables = consumables
 	
+	_hand = hand if not hand.is_empty() else Globals.current_deck
 	#uses DeckBuilder to generate a deck from the available hands
-	var deck_builder = DeckBuilder.new()
+	#var deck_builder = DeckBuilder.new()
 	#_hand = deck_builder.build_deck(hand, 15) #gives limit of 15
-	_hand = hand
+	#_hand = hand
 	_has_params = true
 	if _is_ready:
 		_apply()
@@ -55,6 +56,12 @@ func _apply():
 	
 	if inv_node:
 		print("BattleUI calling set_inventory with", _hand.size(), "hands")
+		var converted_inv := {}
+		for id in _hand.keys():
+			var entry = _hand[id]
+			var data: HandData = entry["data"]
+			var count: int = entry["count"]
+			converted_inv[data] = count
 		inv_node.set_inventory(_hand)
 	else:
 		print("No HandInventory found")

@@ -68,6 +68,7 @@ func set_owned_hands(inv: Dictionary) -> void:
 	_refresh_deck_view()
 
 
+
 #stock ui
 func _refresh_stock_ui() -> void:
 	for c in stock_list.get_children():
@@ -192,7 +193,7 @@ func get_deck_dictionary() -> Dictionary:
 
 #confirm/cancel
 func _on_confirm_pressed() -> void:
-	var final_deck := _deck_list.duplicate(true)
+	var final_deck := get_deck_dictionary()
 	Globals.current_deck = final_deck
 	deck_confirmed.emit(final_deck)
 	print("Deck confirmed with %d cards" % final_deck.size())
