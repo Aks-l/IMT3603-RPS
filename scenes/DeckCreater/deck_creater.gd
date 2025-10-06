@@ -20,7 +20,7 @@ const MAX_UNIQUE_TYPES := 5
 @onready var cam := $Cam
 
 
-#data struckture
+#data structure
 var _owned_counts : Dictionary = {}
 var _deck_list : Array = []
 var _original_deck : Dictionary = {}
