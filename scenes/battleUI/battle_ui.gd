@@ -12,7 +12,7 @@ signal finished(result)
 @onready var victory = $Victory
 
 var _enemy: EnemyData
-var _hand: Dictionary[HandData, int]		# CHANGE THESE WHEN HANDS AND 
+var _hand: Dictionary = {}		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
 
 var _has_params := false
@@ -23,10 +23,16 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	_enemy = enemy
 	_consumables = consumables
 	
+	var loaded_deck = Globals.get_current_deck()
+	if not loaded_deck.is_empty():
+		_hand = loaded_deck
+	else:
+		_hand = hand
+	#_hand = hand if not hand.is_empty() else Globals.current_deck
 	#uses DeckBuilder to generate a deck from the available hands
-	var deck_builder = DeckBuilder.new()
+	#var deck_builder = DeckBuilder.new()
 	#_hand = deck_builder.build_deck(hand, 15) #gives limit of 15
-	_hand = hand
+	#_hand = hand
 	_has_params = true
 	if _is_ready:
 		_apply()
@@ -45,19 +51,23 @@ func _ready():
 		_apply()
 
 func _apply():
+	
 	var profile = get_node_or_null(^"%OpponentProfile")
 	var inv_node = get_node_or_null(^"%HandInventory")
-	#var consinv = get_node_or_null(consumables_path)
 
-	if profile: 
+	if profile:
 		profile.set_enemy(_enemy)
-	else: print("No enemy found; opponent_profile.gd")
+	else:
+		print("No enemy found; opponent_profile.gd")
 	
 	if inv_node:
-		print("BattleUI calling set_inventory with", _hand.size(), "hands")
-		inv_node.set_inventory(_hand)
+		print("[BattleUI] Using deck:", Globals.get_current_deck)
+		var deck : Dictionary[HandData, int] = Globals.get_current_deck()
+		print("[BattleUI] Converted deck for HandInventory:", deck)
+		inv_node.set_inventory(deck)
 	else:
 		print("No HandInventory found")
+
 
 
 func on_card_played(hand: HandData):

@@ -11,6 +11,8 @@ extends Node2D
 @onready var edges_root := $Edges
 @onready var encounters_root := $Encounters
 
+@onready var deck_button: Button = $DeckButton
+
 # -------- state --------
 var layer_ids = []   # [[ids...], ...]
 var counts = []      # [count per layer]
@@ -19,6 +21,9 @@ var etype = {}       # id -> "Start"/"Combat"/"Event"/"Shop"/"Rest"/"Boss"
 var edges = []       # [[from_id, to_id], ...]
 var reachable = {}   # id -> bool
 var cleared = {}     # id -> bool
+
+var map_interaction_enabled := true
+
 
 func _ready():
 	EncounterHandler.encounter_finished.connect(_on_encounter_finished)
@@ -29,6 +34,8 @@ func setup():
 	_draw_edges()
 	_spawn_encounters()
 	_unlock_starts()
+	
+	deck_button.pressed.connect(_on_deck_button_pressed)
 
 func _rid(i, j):
 	return "L%02d_N%02d" % [i, j]
@@ -163,6 +170,11 @@ func _apply_state_to_nodes():
 		n.set_cleared(cleared.get(n.encounter_id, false))
 
 func _on_encounter_clicked(id):
+	
+	if not map_interaction_enabled:
+		print("Map interaction disabled - click ignored")
+		return
+	
 	cleared[id] = true
 	reachable[id] = false
 	var layer_idx = _layer_of(id)
@@ -204,3 +216,35 @@ func _on_encounter_finished(result):
 			i.queue_free()
 		setup()
 	
+
+func _on_deck_button_pressed() -> void:
+	print("Opening deck builder")
+	
+	#saves any map data if needed before switching scenes, can be removed later
+	EncounterHandler.start_encounter("DeckCreator")
+	#UNDER For å lagre progess etterpå 
+	#Globals.last_scene = "res://scenes/Map/map.tscn"
+	
+	#disables intercation on map while deckbuider open
+	#_set_map_interaction(false)
+	
+	#var deck_scene := preload("res://scenes/DeckCreater/deck_creater.tscn")
+	#var deck_ui := deck_scene.instantiate()
+	#add_child(deck_ui)
+	
+	#deck_ui.set_owned_hands(Globals.inventory)
+	
+	#deck_ui.deck_confirmed.connect(_on_deck_confirmed)
+	
+	#close
+	#deck_ui.tree_exited.connect(func():
+	#	_set_map_interaction(true))
+
+#func _on_deck_confirmed(deck: Array[HandData]) -> void:
+#	print("Deck confirmed with %d cards" % deck.size())
+#	Globals.current_deck = deck
+
+#func _set_map_interaction(active: bool) -> void:
+#	map_interaction_enabled = active
+#	#for n in encounters_root.get_children():
+#	#	n.mouse_filter = Control.MOUSE_FILTER_PASS if active else Control.MOUSE_FILTER_IGNORE

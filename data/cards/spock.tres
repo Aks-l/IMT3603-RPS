@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://c2ugm22y2a6p"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://iejlmpakkhob"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_eje3w"]
-[ext_resource type="Texture2D" uid="uid://c7v6r8j0os1eb" path="res://data/cards/sprites/spockjpg.jpg" id="2_rj4sx"]
+[ext_resource type="Texture2D" uid="uid://bla68gveet50e" path="res://data/cards/sprites/spock.JPG" id="2_rj4sx"]
 
 [resource]
 script = ExtResource("1_eje3w")

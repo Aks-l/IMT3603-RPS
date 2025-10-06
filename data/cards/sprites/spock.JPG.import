@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7v6r8j0os1eb"
-path="res://.godot/imported/spockjpg.jpg-4e2f03f2897f4e0828c2bb2101f4652b.ctex"
+uid="uid://bla68gveet50e"
+path="res://.godot/imported/spock.JPG-0d402f07a8146d64bb2ccd34fdb5ca55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/cards/sprites/spockjpg.jpg"
-dest_files=["res://.godot/imported/spockjpg.jpg-4e2f03f2897f4e0828c2bb2101f4652b.ctex"]
+source_file="res://data/cards/sprites/spock.JPG"
+dest_files=["res://.godot/imported/spock.JPG-0d402f07a8146d64bb2ccd34fdb5ca55.ctex"]
 
 [params]
 

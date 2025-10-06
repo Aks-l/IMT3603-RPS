@@ -5,7 +5,8 @@ signal encounter_finished(result)
 const SCENES := { #TODO:Add scenes for different encounter types
 	"Combat": preload("res://scenes/battleUI/battle_ui.tscn"),
 	"Boss": preload("res://scenes/battleUI/battle_ui.tscn"),
-	"Shop": preload("res://scenes/shopScene/shop.tscn")
+	"Shop": preload("res://scenes/shopScene/shop.tscn"),
+	"DeckCreator": preload("res://scenes/DeckCreater/deck_creater.tscn")
 }
 
 ##Starts encounter
@@ -55,4 +56,7 @@ func start_encounter(encounter_type: String, params: Dictionary = {}) -> void:
 
 ##Function to find and return map node, if not found it returns null
 func _find_map() -> Node:
+	if not get_tree() or not get_tree().root:
+		push_warning("[EncounterHandler] SceneTree not ready yet")
+		return null
 	return get_tree().root.get_node_or_null("map")

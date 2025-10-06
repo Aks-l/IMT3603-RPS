@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbdc5kjycg2va"]
+[gd_scene load_steps=5 format=3 uid="uid://dbdc5kjycg2va"]
 
 [ext_resource type="Script" uid="uid://chpjeeb7bu5g5" path="res://scenes/map/map.gd" id="1_sxf4j"]
 [ext_resource type="PackedScene" uid="uid://ihtu1uv52bk1" path="res://scenes/map/encounter_node.tscn" id="2_tqkkf"]
 [ext_resource type="Script" uid="uid://cp4dp6kikshgc" path="res://scenes/map/cam.gd" id="3_a2pkv"]
 
-[node name="Map" type="Node2D"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_a2pkv"]
+
+[node name="map" type="Node2D"]
 script = ExtResource("1_sxf4j")
 seed = 20000
 encounter_scene = ExtResource("2_tqkkf")
@@ -15,3 +17,13 @@ encounter_scene = ExtResource("2_tqkkf")
 
 [node name="Cam" type="Camera2D" parent="."]
 script = ExtResource("3_a2pkv")
+
+[node name="DeckButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+text = "Deck Builder"
+icon = SubResource("CanvasTexture_a2pkv")
