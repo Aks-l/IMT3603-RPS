@@ -23,12 +23,16 @@ const MAX_UNIQUE_TYPES := 5
 #data struckture
 var _owned_counts : Dictionary = {}
 var _deck_list : Array = []
+var _original_deck : Dictionary = {}
 
 func _ready() -> void:
 	search_box.text_changed.connect(_on_search_changed)
 	confirm_button.pressed.connect(_on_confirm_pressed)
 	cancel_button.pressed.connect(_on_cancel_pressed)
 	cam.make_current()
+	
+	#load previously confirmed deck into working emory
+	_original_deck = Globals.get_current_deck().duplicate(true)
 	
 	if Globals.inventory.size() > 0:
 		set_owned_hands(Globals.inventory)
@@ -56,16 +60,35 @@ func _ready() -> void:
 #call with palyers oend hands
 func set_owned_hands(inv: Dictionary) -> void:
 	_owned_counts.clear()
+
+	# Start from the player’s global inventory
 	for hand: HandData in inv.keys():
-		var count_v = inv.get(hand, 0)
-		var count := int(count_v) if typeof(count_v) in [TYPE_INT, TYPE_FLOAT] else 0
+		var total_count: int = inv[hand]
+		var deck_count: int = 0
+
+		# If this hand is already in the saved deck, remove that many from stock
+		for d: HandData in Globals.get_current_deck().keys():
+			if d == hand:
+				deck_count = Globals.get_current_deck()[d]
+				break
+
+		var remaining: int = max(0, total_count - deck_count)
+
 		_owned_counts[hand.name] = {
 			"data": hand,
-			"count": count
+			"count": remaining
 		}
+
+	# Rebuild working deck list from saved deck
 	_deck_list.clear()
+	for hand: HandData in Globals.get_current_deck().keys():
+		var count: int = Globals.get_current_deck()[hand]
+		for i in range(count):
+			_deck_list.append(hand)
+
 	_refresh_stock_ui()
 	_refresh_deck_view()
+
 
 
 
@@ -120,7 +143,6 @@ func _refresh_deck_view() -> void:
 		)
 
 func _remove_one_from_deck(hand_name: String) -> void:
-	# Remove one instance from deck list
 	for i in range(_deck_list.size()):
 		if _deck_list[i].name == hand_name:
 			var removed: HandData = _deck_list.pop_at(i)
@@ -149,17 +171,21 @@ func _on_deck_card_clicked(hand_name: String) -> void:
 
 #stock clicked
 func _on_stock_card_clicked(hand: HandData) -> void:
-	print("[DEBUG] Clicked on stock card:", hand.name)
 	if not _can_add_to_deck(hand):
-		_show_status("Cannot add %s: would exceed deck limits( max %d total, max %d types)" % [hand.name, MAX_TOTAL, MAX_UNIQUE_TYPES])
+		_show_status("Cannot add %s: would exceed deck limits" % hand.name)
 		return
-	print("[DEBUG] Before add:", _deck_list.size())
+
 	_deck_list.append(hand)
-	print("[DEBUG] After add:", _deck_list.size())
+
+	# Subtract from inventory
 	if hand.name in _owned_counts:
 		_owned_counts[hand.name]["count"] -= 1
+		if _owned_counts[hand.name]["count"] < 0:
+			_owned_counts[hand.name]["count"] = 0
+
 	_refresh_stock_ui()
 	_refresh_deck_view()
+
 
 
 #rules
@@ -209,7 +235,25 @@ func _on_confirm_pressed() -> void:
 
 func _on_cancel_pressed() -> void:
 	print("Returning to map without changes")
+	var current := get_deck_dictionary()
+	var saved := Globals.get_current_deck()
+	var diff := get_deck_difference(current, saved)
+	
+	if diff.is_empty():
+		print("no changs made - return to menu")
+	else:
+		print("unsaved chagned detected:", diff)
 	queue_free()
+
+# Returns a dictionary of cards that differ between two decks
+func get_deck_difference(full: Dictionary, subset: Dictionary) -> Dictionary:
+	var diff := {}
+	for k in full.keys():
+		var amount: int = int(full.get(k, 0)) - int(subset.get(k, 0))
+		if amount > 0:
+			diff[k] = amount
+	return diff
+
 
 #status
 func _show_status(text: String) -> void:
