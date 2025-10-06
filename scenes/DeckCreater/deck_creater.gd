@@ -194,10 +194,18 @@ func get_deck_dictionary() -> Dictionary:
 #confirm/cancel
 func _on_confirm_pressed() -> void:
 	var final_deck := get_deck_dictionary()
-	Globals.current_deck = final_deck
-	deck_confirmed.emit(final_deck)
-	print("Deck confirmed with %d cards" % final_deck.size())
+	
+	var deck_for_globals: Dictionary[HandData, int] = {}
+	for entry in final_deck.values():
+		var hand: HandData = entry["data"]
+		var count: int = entry["count"]
+		deck_for_globals[hand] = count
+		
+	Globals.set_current_deck(deck_for_globals)
+	deck_confirmed.emit(deck_for_globals)
+	print("[DeckCreator] Deck confirmed with %d unique cards" % deck_for_globals.size())
 	queue_free()
+
 
 func _on_cancel_pressed() -> void:
 	print("Returning to map without changes")

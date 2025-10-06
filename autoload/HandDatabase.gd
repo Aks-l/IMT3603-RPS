@@ -1,7 +1,7 @@
 extends Node
 
 var hands: Dictionary = {}
-signal hands_loeaded
+signal hands_loaded
 
 func _ready() -> void:
 	load_hands()
