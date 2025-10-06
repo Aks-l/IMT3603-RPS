@@ -40,7 +40,7 @@ alignment = 1
 [node name="YourDeck" type="Label" parent="MarginContainer/HBoxContainer/ChosenCards"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-text = "DITT DEKK HER
+text = "YOUR DECK HERE
 "
 
 [node name="DeckRow" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ChosenCards"]
