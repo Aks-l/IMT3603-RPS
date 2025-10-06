@@ -168,7 +168,7 @@ func _apply_state_to_nodes():
 func _on_encounter_clicked(id):
 	
 	if not map_interaction_enabled:
-		print("Manp intercation disbled - click ignored")
+		print("Map interaction disabled - click ignored")
 		return
 	
 	cleared[id] = true
