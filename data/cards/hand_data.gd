@@ -7,6 +7,14 @@ class_name HandData
 @export var name: String
 @export var discovered: bool
 
+
+#undiscovered by default
+@export var discovered: bool = false
+
 #how many copies of each card
 #temporarily because max count will change
-@export var max_count: int = 15
+@export var max_count: int = 3
+
+#how many copies of each card
+#temporarily because max count will change
+#@export var max_count: int = 15

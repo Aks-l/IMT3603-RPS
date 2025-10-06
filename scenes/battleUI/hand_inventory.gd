@@ -8,36 +8,69 @@ const HAND_SCENE: PackedScene = preload("res://scenes/battleUI/hand_card.tscn")
 const CARD_SIZE  := Vector2(160, 220)   # all cards same size
 const IMAGE_SIZE := Vector2(144, 144)   # square art inside
 
+var _inventory: Dictionary[HandData, int] = {}
+
+
+
 func set_inventory(hand_list: Dictionary[HandData, int]) -> void:
 	print("set_inventory called with", hand_list.size(), "hands")
 	for c in container.get_children():
 		c.queue_free()
 	
 	#group by card name
-	var grouped := {}
-	for hand in hand_list:
-		if hand.name in grouped:
-			grouped[hand.name].count += 1
-		else:
-			grouped[hand.name] = {
-				"data": hand,
-				"count": 1
-		}
+	#var grouped := {}
+	#for hand in hand_list:
+	#	if hand.name in grouped:
+	#		grouped[hand.name].count += 1
+	#	else:
+	#		grouped[hand.name] = {
+	#			"data": hand,
+	#			"count": 1
+	#	}
 	#create on card per group
-	for key in grouped.keys():
-		var entry = grouped[key]
-		var card := HAND_SCENE.instantiate()
-		container.add_child(card)
-		card.setup(entry.data, entry.count)
+	#for key in grouped.keys():
+	#	var entry = grouped[key]
+	#	var card := HAND_SCENE.instantiate()
+	#	container.add_child(card)
+	#	card.setup(entry.data, entry.count)
 		
 	#	var card := HAND_SCENE.instantiate()
 	#	container.add_child(card)
 	#	card.setup(hand, hand.max_count)
-		card.clicked.connect(_on_card_clicked)
-		print("Added card to container:", entry.data.name, "x ", entry.count)
+	#	card.clicked.connect(_on_card_clicked)
+	#	print("Added card to container:", entry.data.name, "x ", entry.count)
+		
+	_inventory = hand_list.duplicate(true)
+	_refresh_ui()
+		
+func _refresh_ui() -> void:
+	for c in container.get_children():
+		c.queue_free()
+
+	for hand in _inventory.keys():
+		var count = _inventory[hand]
+		if count <= 0:
+			continue
+
+		var card := HAND_SCENE.instantiate()
+		container.add_child(card)
+		card.setup(hand, count)
+		card.clicked.connect(func(_h): _on_card_clicked(hand))
+
+		print("[HandInventory] Added card:", hand.name, "x", count)
+
 
 func _on_card_clicked(hand: HandData) -> void:
 	print("HandInventory caught click:", hand.name)
+	
+	if not _inventory.has(hand):
+		return
+		
+	_inventory[hand] -= 1
+	if _inventory[hand] <= 0:
+		_inventory.erase(hand)
+	
+	_refresh_ui()
 	card_clicked.emit(hand)
 
 		### WHAT HAPPENS WHEN CARD IN INVENTORY IS CLICKED
