@@ -31,7 +31,7 @@ func _ready() -> void:
 	cancel_button.pressed.connect(_on_cancel_pressed)
 	cam.make_current()
 	
-	#load previously confirmed deck into working emory
+	#load previously confirmed deck into working memory
 	_original_deck = Globals.get_current_deck().duplicate(true)
 	
 	if Globals.inventory.size() > 0:
