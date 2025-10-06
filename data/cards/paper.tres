@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_kohf7")
-id = 4
+id = 3
 sprite = ExtResource("2_8vi4f")
 name = "paper"
 max_count = 15
