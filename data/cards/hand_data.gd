@@ -10,7 +10,7 @@ class_name HandData
 #undiscovered by default
 @export var discovered: bool = false
 
-#how any cpies of each card
+#how many copies of each card
 #temporarly because max count will change
 @export var max_count: int = 3
 
