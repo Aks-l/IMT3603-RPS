@@ -1,21 +1,27 @@
 extends Control
 
-@export var data: EnemyData
 
 @onready var sprite: TextureRect = $VBoxContainer/ImageBox/Image
 @onready var name_label: Label = $VBoxContainer/Name
 @onready var description_label: Label = $VBoxContainer/Description
 
-func _ready() -> void:
-	if data:
-		populate(data)
+var undiscovered : Texture2D = preload("res://data/unknown.png")
 
-func populate(d: EnemyData) -> void:
-	data = d
+# Fill one almanac entry with proper data
+func populate(d: Resource) -> void:
+	var data = d
+	print("added " + d.name)
 	if sprite:
-		sprite.texture = d.sprite
+		if d.discovered:
+			sprite.texture = d.sprite
+		else:
+			sprite.texture = undiscovered
+
 	if name_label:
-		name_label.text = d.name
-		print(name_label.text)
+		if d.discovered:
+			name_label.text = d.name
+		else:
+			name_label.text = "???"
 	if description_label:
-		description_label.text = d.description
+		if d is EnemyData :
+			description_label.text = d.description
