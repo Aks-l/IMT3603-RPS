@@ -71,8 +71,8 @@ func set_owned_hands(inv: Dictionary) -> void:
 #stock ui
 func _refresh_stock_ui() -> void:
 	for c in stock_list.get_children():
-		c.queue_free()
-	
+		c.call_deferred("free")  # immediately remove
+
 	var filter_text = search_box.text.strip_edges().to_lower()
 	for hand_name in _owned_counts.keys():
 		var entry: Dictionary = _owned_counts[hand_name]
@@ -81,71 +81,70 @@ func _refresh_stock_ui() -> void:
 			continue
 		if filter_text != "" and not hand_name.to_lower().contains(filter_text):
 			continue
-		#create a hand card instance showing how many the plauer onws
 		var card = HAND_SCENE.instantiate()
 		stock_list.add_child(card)
-		print("ADDED:", card, " → parent:", card.get_parent().get_path())
 		card.setup(entry["data"], count)
-		#bind handler check what was cliked
-		card.clicked.connect(Callable(self, "_on_stock_card_clicked"))
-		#can be found if needed
-		card.set_meta("hand_name", hand_name)
+		card.clicked.connect(_on_stock_card_clicked)
+
 
 #deck ui
 func _refresh_deck_view() -> void:
-	
 	for c in deck_row.get_children():
 		c.queue_free()
-	
+
 	if _deck_list.is_empty():
 		var lbl = Label.new()
 		lbl.text = "Deck empty (max %d cards, %d types)" % [MAX_TOTAL, MAX_UNIQUE_TYPES]
 		deck_row.add_child(lbl)
 		return
 
-		
-	for i in range(_deck_list.size()):
-		var idx := i
-		
-		# wrapper so we can add move buttons
-		var slot := HBoxContainer.new()
-		slot.alignment = BoxContainer.ALIGNMENT_CENTER
-		deck_row.add_child(slot)
-		
-		var card := HAND_SCENE.instantiate()
-		slot.add_child(card)
-		card.setup(_deck_list[i], 1) # in the deck, we show each copy individually
-		card.clicked.connect(func(_hand: HandData) -> void:
-			_on_deck_card_clicked_at_index(idx))
-		
-		var btnL := Button.new()
-		btnL.text = "<--"
-		btnL.tooltip_text = "Move left"
-		btnL.focus_mode = Control.FOCUS_NONE
-		btnL.pressed.connect(func() -> void: _move_card_left(idx))
-		slot.add_child(btnL)
+	# Group cards by name
+	var grouped := {}
+	for h in _deck_list:
+		if h.name in grouped:
+			grouped[h.name]["count"] += 1
+		else:
+			grouped[h.name] = {"data": h, "count": 1}
 
-		var btnR := Button.new()
-		btnR.text = "-->"
-		btnR.tooltip_text = "Move right"
-		btnR.focus_mode = Control.FOCUS_NONE
-		btnR.pressed.connect(func() -> void: _move_card_right(idx))
-		slot.add_child(btnR)
-	
-#	#group by name
-#	var grouped := {}
-#	for h in _deck_list:
-#		if h.name in grouped:
-#			grouped[h.name].count += 1
-#		else:
-#			grouped[h.name] = {"data": h, "count": 1}
-	#render grouped cards left to right
-#	for hand_name in grouped.keys():
-#		var entry = grouped[name]
-#		var card = HAND_SCENE.instantiate()
-#		deck_row.add_child(card)
-#		card.setup(entry["data"], entry["count"])
-#		card.clicked.connect(Callable(self, "_on_deck_card_clicked").bind(name))
+	# Display each group as one stacked card (e.g. “Rock ×3”)
+	for hand_name in grouped.keys():
+		var entry = grouped[hand_name]
+		var card = HAND_SCENE.instantiate()
+		deck_row.add_child(card)
+		card.setup(entry["data"], entry["count"])
+
+		# When clicked, remove one of that card type
+		card.clicked.connect(func(_hand: HandData):
+			_remove_one_from_deck(hand_name)
+		)
+
+func _remove_one_from_deck(hand_name: String) -> void:
+	# Remove one instance from deck list
+	for i in range(_deck_list.size()):
+		if _deck_list[i].name == hand_name:
+			var removed: HandData = _deck_list.pop_at(i)
+			if hand_name in _owned_counts:
+				_owned_counts[hand_name]["count"] += 1
+			else:
+				_owned_counts[hand_name] = {"data": removed, "count": 1}
+			break
+
+	_refresh_stock_ui()
+	_refresh_deck_view()
+
+
+func _on_deck_card_clicked(hand_name: String) -> void:
+	for i in range(_deck_list.size()):
+		if _deck_list[i].name == hand_name:
+			var removed: HandData = _deck_list.pop_at(i)
+			if hand_name in _owned_counts:
+				_owned_counts[hand_name]["count"] += 1
+			else:
+				_owned_counts[hand_name] = {"data": removed, "count": 1}
+			break
+	_refresh_stock_ui()
+	_refresh_deck_view()
+
 
 #stock clicked
 func _on_stock_card_clicked(hand: HandData) -> void:
@@ -158,18 +157,6 @@ func _on_stock_card_clicked(hand: HandData) -> void:
 	print("[DEBUG] After add:", _deck_list.size())
 	if hand.name in _owned_counts:
 		_owned_counts[hand.name]["count"] -= 1
-	_refresh_stock_ui()
-	_refresh_deck_view()
-
-func _on_deck_card_clicked_at_index(index: int) -> void:
-	if index < 0 or index >= _deck_list.size():
-		return
-	var removed: HandData = _deck_list.pop_at(index)
-	var name := removed.name
-	if name in _owned_counts:
-		_owned_counts[name]["count"] += 1
-	else:
-		_owned_counts[name] = {"data": removed, "count": 1}
 	_refresh_stock_ui()
 	_refresh_deck_view()
 
@@ -188,6 +175,20 @@ func _can_add_to_deck(hand: HandData) -> bool:
 #søk
 func _on_search_changed(_new_text: String) -> void:
 	_refresh_stock_ui()
+
+# Returns the deck as a dictionary grouped by card name (and accessible by ID)
+func get_deck_dictionary() -> Dictionary:
+	var deck_dict := {}
+	for h in _deck_list:
+		if h.id in deck_dict:
+			deck_dict[h.id]["count"] += 1
+		else:
+			deck_dict[h.id] = {
+				"data": h,
+				"count": 1
+			}
+	return deck_dict
+
 
 #confirm/cancel
 func _on_confirm_pressed() -> void:
