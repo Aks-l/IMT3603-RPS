@@ -49,8 +49,17 @@ func _on_area_input(_vp, event: InputEvent, _shape_idx: int) -> void:
 			emit_signal("clicked", encounter_id)
 			#TODO: Dynamic combat encounter generation
 			if encounter_type == EncounterType.COMBAT:
-				var enemy := preload("res://data/enemies/BobRock.tres") as EnemyData
+				var enemy := EnemyDatabase.enemies.values().pick_random() as EnemyData
 				EncounterHandler.start_encounter("Combat", {
+					"enemy": enemy,
+					"hand": Globals.inventory,
+					"consumables": []
+				})
+				
+			elif encounter_type == EncounterType.BOSS:
+				# TODO: Choose enemy as boss, not any enemy
+				var enemy := EnemyDatabase.enemies.values().pick_random() as EnemyData
+				EncounterHandler.start_encounter("Boss", {
 					"enemy": enemy,
 					"hand": Globals.inventory,
 					"consumables": []

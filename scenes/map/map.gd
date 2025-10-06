@@ -26,6 +26,10 @@ var map_interaction_enabled := true
 
 
 func _ready():
+	EncounterHandler.encounter_finished.connect(_on_encounter_finished)
+	setup()
+
+func setup():
 	_generate()
 	_draw_edges()
 	_spawn_encounters()
@@ -49,7 +53,7 @@ func _generate():
 	counts.clear()
 	pos.clear()
 	etype.clear()
-	edges.clear()
+	edges.clear()	
 
 	# 1) decide width per layer
 	var mid := int(layers / 2)
@@ -204,6 +208,14 @@ func _etype_to_dropdown(t):
 		"Boss": return 5
 		_: return 1
 
+func _on_encounter_finished(result):
+	if result.type == "Boss":
+		for i in edges_root.get_children():
+			i.queue_free()
+		for i in encounters_root.get_children():
+			i.queue_free()
+		setup()
+	
 
 func _on_deck_button_pressed() -> void:
 	print("Opening deck builder")
