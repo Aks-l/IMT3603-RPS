@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bb1npt5om5a7c"]
+
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="1_vvbim"]
+[ext_resource type="Texture2D" uid="uid://ckbmd3wra2eno" path="res://icon.svg" id="2_mdanh"]
+
+[resource]
+script = ExtResource("1_vvbim")
+type = 0
+id = 0
+sprite = ExtResource("2_mdanh")
+name = "nailclipper"
+description = ""
+owned = false
+ammInInvetory = 0
+price = 2
+metadata/_custom_type_script = "uid://cne068h4eo8sm"
