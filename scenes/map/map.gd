@@ -197,9 +197,7 @@ func _etype_to_dropdown(t):
 		_: return 1
 
 func _on_encounter_finished(result):
-	print("i got the signal")
 	if result.type == "Boss":
-		print("resetting...")
 		for i in edges_root.get_children():
 			i.queue_free()
 		for i in encounters_root.get_children():
