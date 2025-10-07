@@ -22,12 +22,11 @@ class_name OutcomeGraph
 ##Color for neutral connections
 @export var neutral_color: Color = Color(0.4, 0.4, 0.4, 0.3)
 
+var center: Vector2
 var hands: Array[HandData] = []
-var hand_positions: Dictionary = {}
 var hand_buttons: Dictionary = {}
+var hand_positions: Dictionary = {}
 var hovered_hand: HandData = null
-
-@onready var center: Vector2 = size / 2
 
 func _ready() -> void:
 	load_hands()
@@ -52,6 +51,8 @@ func load_hands() -> void:
 func setup_ui() -> void:
 	if hands.is_empty():
 		return
+	
+	center = custom_minimum_size / 2 if custom_minimum_size != Vector2.ZERO else size / 2
 	
 	var num_hands = hands.size()
 	var angle_step = TAU / num_hands
