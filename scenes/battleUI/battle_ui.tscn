@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5xdkuc18ywuv"]
+[gd_scene load_steps=11 format=3 uid="uid://c5xdkuc18ywuv"]
 
 [ext_resource type="Script" uid="uid://ca2yf48k0yyfh" path="res://scenes/battleUI/battle_ui.gd" id="1_8ao15"]
 [ext_resource type="PackedScene" uid="uid://df4iyjt5y1vmr" path="res://scenes/battleUI/opponent_profile.tscn" id="2_8ao15"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://8263mtecumbi" path="res://scenes/battleUI/health/heartspng/bluebucket.png" id="6_3ewwt"]
 [ext_resource type="PackedScene" uid="uid://7e1uuuf6aa0j" path="res://scenes/battleUI/health/heart_icon.tscn" id="7_npshu"]
 [ext_resource type="PackedScene" uid="uid://bur1pwoqf50ar" path="res://scenes/VictoryScene/victory.tscn" id="9_v8byk"]
+[ext_resource type="PackedScene" uid="uid://cs1m8wvcx1oph" path="res://ui/components/outcome_graph.tscn" id="10_graph"]
 
 [node name="BattleUI" type="Node3D"]
 script = ExtResource("1_8ao15")
@@ -29,11 +30,11 @@ layout_mode = 2
 
 [node name="HandInventory" parent="." instance=ExtResource("3_88761")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(200, 150)
 offset_left = 429.0
-offset_top = 481.0
+offset_top = 490.0
 offset_right = 722.0
-offset_bottom = 681.0
+offset_bottom = 640.0
 
 [node name="ResultLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(100, 0)
@@ -96,3 +97,54 @@ offset_right = 388.0
 offset_bottom = 184.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="OutcomeGraphPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -342.0
+offset_top = -315.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OutcomeGraphPanel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OutcomeGraphPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="OutcomeGraphPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hand Guide"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="OutcomeGraphPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="OutcomeGraph" parent="OutcomeGraphPanel/VBoxContainer" instance=ExtResource("10_graph")]
+custom_minimum_size = Vector2(306, 279)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+circle_radius = 117.0
+hand_icon_size = 36.0
+
+[node name="GraphToggleButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 10.0
+offset_right = 55.0
+offset_bottom = 41.0
+grow_horizontal = 2
+text = "Hand Guide (G)"

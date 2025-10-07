@@ -10,6 +10,9 @@ signal finished(result)
 @onready var enemy_hearts = $EnemyHearts
 
 @onready var victory = $Victory
+@onready var outcome_graph_panel = %OutcomeGraphPanel
+@onready var graph_toggle_button = $GraphToggleButton
+@onready var graph_close_button = $OutcomeGraphPanel/VBoxContainer/HBoxContainer/CloseButton
 
 var _enemy: EnemyData
 var _hand: Dictionary[HandData, int]		# CHANGE THESE WHEN HANDS AND 
@@ -40,9 +43,18 @@ func _ready():
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
 	
+	#Setup outcome graph toggle
+	if outcome_graph_panel:
+		outcome_graph_panel.visible = false
+	if graph_toggle_button:
+		graph_toggle_button.pressed.connect(_toggle_outcome_graph)
+	if graph_close_button:
+		graph_close_button.pressed.connect(_toggle_outcome_graph)
+	
 	_is_ready = true
 	if _has_params:
 		_apply()
+
 
 func _apply():
 	var profile = get_node_or_null(^"%OpponentProfile")
@@ -59,7 +71,9 @@ func _apply():
 	else:
 		print("No HandInventory found")
 
-
+##Card Played
+##Resolves the outcome of a played card against the enemy's card
+##Updates health and checks for victory/loss
 func on_card_played(hand: HandData):
 	print("BattleUI received card:", hand.name)
 	var enemy_hand = _enemy.get_hand()
@@ -92,9 +106,20 @@ func on_card_played(hand: HandData):
 		victory.setup(_enemy, false)
 		assert(false)
 
+##Item Used, handles effects of used items TODO: move to separate script?
 func _on_item_used(item: ItemData):
 	match item.type:
 		ItemData.Type.HEAL:
 			player_hearts.heal(1)
 		ItemData.Type.SHIELD:
 			player_hearts.add_blue(1)
+
+func _toggle_outcome_graph():
+	if outcome_graph_panel:
+		outcome_graph_panel.visible = !outcome_graph_panel.visible
+
+##Input Handling, toggles outcome graph with 'G' key
+func _input(event: InputEvent):
+	# Toggle outcome graph with 'G' key
+	if event.is_action_pressed("input_keyboard_key_G"):
+		_toggle_outcome_graph()
