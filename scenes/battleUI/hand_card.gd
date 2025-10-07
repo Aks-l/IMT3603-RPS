@@ -35,15 +35,33 @@ func setup(data: HandData, count: int) -> void:
 	img.gui_input.connect(_on_img_gui_input)
 	_update_count()
 
+#no longer mutates "remainging" parent decides waht to change
 func _on_img_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if remaining > 0:
-			remaining -= 1
-			_update_count()
-			clicked.emit(hand)
-			if remaining <= 0:
-				queue_free()
+		clicked.emit(hand)
+		
+		#	if remaining > 0:
+	#		remaining -= 1
+	#		_update_count()
+	#		clicked.emit(hand)
+	#		if remaining <= 0:
+	#			queue_free()
+	#	print("Card clicked:", hand.name, "remaining: ", remaining) #DEGUB
+
+	#	if remaining > 0:
+	#		remaining -= 1
+	#		_update_count()
+	#		clicked.emit(hand)
+	#		if remaining <= 0:
+	#			queue_free()
 		print("Card clicked:", hand.name, "remaining: ", remaining) #DEBUG
+
+
+func set_count(new_count: int) -> void:
+	remaining = new_count
+	_update_count()
+	if remaining <= 0:
+		queue_free()
 
 func _update_count() -> void:
 	if remaining > 1:
