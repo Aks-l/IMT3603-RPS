@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_5gk72")
-id = 1
+id = 17
 sprite = ExtResource("2_n6vpv")
 name = "scissors"
 discovered = true

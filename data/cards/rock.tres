@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_0bapg")
-id = 0
+id = 9
 sprite = ExtResource("2_erhhc")
 name = "rock"
 discovered = true

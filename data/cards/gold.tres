@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7yc4w"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_gold"]
+
+[resource]
+script = ExtResource("1_gold")
+id = 85
+name = "gold"
+discovered = true
+max_count = 15
+metadata/_custom_type_script = "uid://cpqej81wc7vpu"

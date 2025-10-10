@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7ycyy"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_home"]
+
+[resource]
+script = ExtResource("1_home")
+id = 37
+name = "home"
+discovered = true
+max_count = 15
+metadata/_custom_type_script = "uid://cpqej81wc7vpu"
