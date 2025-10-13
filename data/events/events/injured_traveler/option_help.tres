@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://traveler_help"]
+
+[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+option_text = "Help them"
+outcome_description = "You bandage their wounds and help them to their feet. They thank you profusely and offer you gold in gratitude."
+gold_reward = 40
+health_change = 0
+items_received = []
+hands_received = []
+removes_items = []
+gold_cost = 0
+next_event_id = -1
+triggers_combat = false
+combat_enemy = null

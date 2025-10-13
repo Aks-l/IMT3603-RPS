@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://dpx8take_modest"]
+
+[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_option"]
+
+[resource]
+script = ExtResource("1_option")
+option_text = "Take What's Fair"
+outcome_description = "You take a reasonable amount as compensation for the trouble. Fair's fair."
+gold_reward = 50
+gold_cost = 0
+health_change = 0
+items_received = Array[Resource]([])
+hands_received = Array[Resource]([])
+removes_items = Array[Resource]([])
+triggers_combat = false
+combat_enemy = null
+next_event_id = -1
+custom_code = ""
+custom_script = null

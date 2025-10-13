@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://event_campfire"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1"]
+[ext_resource type="Resource" uid="uid://camp_rest" path="res://data/events/events/abandoned_campfire/option_rest.tres" id="2"]
+[ext_resource type="Resource" uid="uid://camp_search" path="res://data/events/events/abandoned_campfire/option_search.tres" id="3"]
+[ext_resource type="Resource" uid="uid://camp_leave" path="res://data/events/events/abandoned_campfire/option_leave.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = 16
+event_name = "Abandoned Campfire"
+image = null
+description = "You find an abandoned campsite with a fire still burning. The owners seem to have left in a hurry. Their belongings are scattered around."
+options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
+min_gold = 0
+required_items = []
+weight = 0.9

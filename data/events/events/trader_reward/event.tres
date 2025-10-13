@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://dpx8trader_reward"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_reward"]
+[ext_resource type="Resource" uid="uid://dpx8take_loot" path="res://data/events/events/trader_reward/option_take_loot.tres" id="2_take"]
+[ext_resource type="Resource" uid="uid://dpx8take_modest" path="res://data/events/events/trader_reward/option_take_modest.tres" id="3_modest"]
+[ext_resource type="Resource" uid="uid://dpx8leave_all" path="res://data/events/events/trader_reward/option_leave_all.tres" id="4_leave"]
+
+[resource]
+script = ExtResource("1_reward")
+id = 20
+event_name = "Suspicious Goods"
+description = "After defeating the suspicious trader, you find their cart full of dubious merchandise. Some items look valuable, but carrying too much might draw unwanted attention."
+image = null
+options = Array[Resource]([ExtResource("2_take"), ExtResource("3_modest"), ExtResource("4_leave")])
+weight = 0.0
+min_gold = 0
+required_items = Array[Resource]([])

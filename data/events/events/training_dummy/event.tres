@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=6 format=3 uid="uid://event_training"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1"]
+[ext_resource type="Resource" uid="uid://dummy_train" path="res://data/events/events/training_dummy/option_train.tres" id="2"]
+[ext_resource type="Resource" uid="uid://dummy_intense" path="res://data/events/events/training_dummy/option_intense.tres" id="3"]
+[ext_resource type="Resource" uid="uid://dummy_test" path="res://data/events/events/training_dummy/option_test.tres" id="4"]
+[ext_resource type="Resource" uid="uid://dummy_skip" path="res://data/events/events/training_dummy/option_skip.tres" id="5"]
+
+[resource]
+script = ExtResource("1")
+id = 19
+event_name = "Training Grounds"
+image = null
+description = "You discover an abandoned training ground with practice dummies and equipment. This could be a good opportunity to sharpen your skills."
+options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
+min_gold = 0
+required_items = []
+weight = 0.7

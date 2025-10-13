@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://c8event_shrine"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1"]
+[ext_resource type="Resource" uid="uid://c8shrine_pray" path="res://data/events/events/shrine/option_pray.tres" id="2"]
+[ext_resource type="Resource" uid="uid://c8shrine_offer" path="res://data/events/events/shrine/option_offer.tres" id="3"]
+[ext_resource type="Resource" uid="uid://c8shrine_leave" path="res://data/events/events/shrine/option_leave.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = 10
+event_name = "Ancient Shrine"
+image = null
+description = "You discover an ancient shrine covered in moss and strange symbols. The air here feels peaceful and sacred."
+options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
+min_gold = 0
+required_items = []
+weight = 1.0

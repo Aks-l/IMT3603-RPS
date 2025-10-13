@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=3 format=3 uid="uid://chest_open"]
+
+[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1"]
+[ext_resource type="Script" path="res://data/events/scripts/MysteryBoxScript.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+option_text = "Open the chest"
+outcome_description = "You carefully open the mysterious chest..."
+gold_reward = 0
+health_change = 0
+items_received = []
+hands_received = []
+removes_items = []
+gold_cost = 0
+next_event_id = -1
+triggers_combat = false
+combat_enemy = null
+custom_script = ExtResource("2")
+custom_code = ""
+custom_data = {}

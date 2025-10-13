@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://event_chest"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1"]
+[ext_resource type="Resource" uid="uid://chest_open" path="res://data/events/events/mysterious_chest/option_open.tres" id="2"]
+[ext_resource type="Resource" uid="uid://chest_examine" path="res://data/events/events/mysterious_chest/option_examine.tres" id="3"]
+[ext_resource type="Resource" uid="uid://chest_leave" path="res://data/events/events/mysterious_chest/option_leave.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = 11
+event_name = "Mysterious Chest"
+image = null
+description = "You stumble upon an ornate chest in the middle of the path. It's unlocked, but something about it feels... off."
+options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
+min_gold = 0
+required_items = []
+weight = 1.0

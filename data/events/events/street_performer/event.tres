@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=6 format=3 uid="uid://event_performer"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1"]
+[ext_resource type="Resource" uid="uid://performer_tip5" path="res://data/events/events/street_performer/option_tip5.tres" id="2"]
+[ext_resource type="Resource" uid="uid://performer_tip20" path="res://data/events/events/street_performer/option_tip20.tres" id="3"]
+[ext_resource type="Resource" uid="uid://performer_watch" path="res://data/events/events/street_performer/option_watch.tres" id="4"]
+[ext_resource type="Resource" uid="uid://performer_move" path="res://data/events/events/street_performer/option_move.tres" id="5"]
+
+[resource]
+script = ExtResource("1")
+id = 14
+event_name = "Street Performer"
+image = null
+description = "A talented street performer juggles flaming torches while balancing on a ball. A small crowd has gathered to watch."
+options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
+min_gold = 0
+required_items = []
+weight = 0.7

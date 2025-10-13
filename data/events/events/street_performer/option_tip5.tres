@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://performer_tip5"]
+
+[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+option_text = "Tip 5 gold"
+outcome_description = "The performer thanks you and performs a mesmerizing trick, lifting your spirits!"
+gold_reward = 0
+health_change = 1
+items_received = []
+hands_received = []
+removes_items = []
+gold_cost = 5
+next_event_id = -1
+triggers_combat = false
+combat_enemy = null

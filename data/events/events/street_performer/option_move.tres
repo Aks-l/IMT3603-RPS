@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://performer_move"]
+
+[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+option_text = "Move along"
+outcome_description = "You walk past without stopping. The performer doesn't notice."
+gold_reward = 0
+health_change = 0
+items_received = []
+hands_received = []
+removes_items = []
+gold_cost = 0
+next_event_id = -1
+triggers_combat = false
+combat_enemy = null

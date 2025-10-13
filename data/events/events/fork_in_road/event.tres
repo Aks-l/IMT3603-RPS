@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://event_fork"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1"]
+[ext_resource type="Resource" uid="uid://fork_left" path="res://data/events/events/fork_in_road/option_left.tres" id="2"]
+[ext_resource type="Resource" uid="uid://fork_right" path="res://data/events/events/fork_in_road/option_right.tres" id="3"]
+[ext_resource type="Resource" uid="uid://fork_middle" path="res://data/events/events/fork_in_road/option_middle.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = 17
+event_name = "Fork in the Road"
+image = null
+description = "The road splits in two. The left path looks well-traveled and safe. The right path is overgrown and ominous, but you hear the sound of rushing water - perhaps treasure?"
+options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
+min_gold = 0
+required_items = []
+weight = 1.0

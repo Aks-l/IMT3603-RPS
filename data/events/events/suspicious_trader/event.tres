@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=6 format=3 uid="uid://event_trader"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1"]
+[ext_resource type="Resource" uid="uid://trader_buy" path="res://data/events/events/suspicious_trader/option_buy.tres" id="2"]
+[ext_resource type="Resource" uid="uid://trader_haggle" path="res://data/events/events/suspicious_trader/option_haggle.tres" id="3"]
+[ext_resource type="Resource" uid="uid://trader_accuse" path="res://data/events/events/suspicious_trader/option_accuse.tres" id="4"]
+[ext_resource type="Resource" uid="uid://trader_walk" path="res://data/events/events/suspicious_trader/option_walk.tres" id="5"]
+
+[resource]
+script = ExtResource("1")
+id = 15
+event_name = "Suspicious Trader"
+image = null
+description = "A shifty-looking trader waves you over. 'Special price for you, friend! This lucky charm will protect you in battle!' They seem very eager to make a sale."
+options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
+min_gold = 0
+required_items = []
+weight = 1.0
