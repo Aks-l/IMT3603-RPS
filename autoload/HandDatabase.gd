@@ -18,7 +18,7 @@ func load_hands():
 					hands[hand.id] = hand
 					#hands[hand.id] = hand
 					print("added " + hand.name)
-					
+	hands.erase(9999)
 func add_hands():
 	Globals.inventory.clear()
 	Globals.inventory[hands[0]] = 5
