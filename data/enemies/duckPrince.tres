@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://50php1cwt1v0"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_3stt0"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_cp2ow"]
+
+[resource]
+script = ExtResource("2_cp2ow")
+id = 2
+name = "The Duck Prine Leopold"
+description = "\"These lips are untouchable\""
+discovered = true
+biome = "neutral"
+tier = 1
+moveset = Array[ExtResource("1_3stt0")]([null, null, null])
+fixed_moveset = Array[ExtResource("1_3stt0")]([])
+weighted_moveset = {}
+reactions = {}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"
