@@ -4,6 +4,7 @@
 
 [node name="GeneralInventori" type="Control"]
 layout_mode = 3
+anchors_preset = 0
 metadata/_edit_vertical_guides_ = [0.0]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

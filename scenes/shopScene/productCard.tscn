@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dml3tswlgbky3"]
 
-[ext_resource type="Script" path="res://scenes/shopScene/product_card.gd" id="1_cmjj6"]
+[ext_resource type="Script" uid="uid://dwd6el3em0srn" path="res://scenes/shopScene/product_card.gd" id="1_cmjj6"]
 
 [node name="ProductCard" type="Control"]
 layout_mode = 3
