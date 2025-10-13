@@ -21,6 +21,7 @@ EnemyDatabase="*res://autoload/EnemyDatabase.gd"
 HandsDb="*res://scenes/hands_db.tscn"
 ItemDatabase="*res://autoload/ItemDatabase.gd"
 HandDatabase="*res://autoload/HandDatabase.gd"
+EventDatabase="*res://autoload/EventDatabase.gd"
 Globals="*res://autoload/Globals.gd"
 EncounterHandler="*res://autoload/encounter_handler.gd"
 
