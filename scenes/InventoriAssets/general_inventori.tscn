@@ -2,17 +2,20 @@
 
 [ext_resource type="Script" uid="uid://dtqxme3ff0466" path="res://scenes/InventoriAssets/inventori.gd" id="1_8rop0"]
 
-[node name="GeneralInventori" type="Node2D"]
+[node name="GeneralInventori" type="Control"]
+layout_mode = 3
 metadata/_edit_vertical_guides_ = [0.0]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_8rop0")
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_left = 853.0
-offset_top = 5.0
-offset_right = 1063.0
-offset_bottom = 319.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_bottom = 314.0
+grow_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1

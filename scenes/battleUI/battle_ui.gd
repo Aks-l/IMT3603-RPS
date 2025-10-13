@@ -7,7 +7,7 @@ signal finished(result)
 @onready var result_label = $ResultLabel
 
 @onready var player_hearts = $PlayerHearts
-@onready var enemy_hearts = $EnemyHearts
+@onready var enemy_hearts = $EnemyArea/EnemyHearts
 
 @onready var victory = $Victory
 @onready var outcome_graph_panel = %OutcomeGraphPanel
@@ -46,6 +46,7 @@ func _ready():
 	
 	player_hearts.set_hp(5) #health for player
 	enemy_hearts.set_hp(5) #health for enemy
+	
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
 	
