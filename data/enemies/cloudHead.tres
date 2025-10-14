@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("2_xoala")
-id = 0
-name = ""
+id = 9
+name = "Claudia"
 description = ""
 discovered = false
 biome = "neutral"

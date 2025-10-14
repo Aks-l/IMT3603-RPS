@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("2_ee71u")
-id = 0
-name = ""
-description = ""
+id = 37
+name = "The Frederick"
+description = "He is not just Frederick. He is The Frederic"
 discovered = false
 biome = "neutral"
 tier = 1

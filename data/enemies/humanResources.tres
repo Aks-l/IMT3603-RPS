@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://b04tyr1f0a000"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_tecp4"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_xtodb"]
+
+[resource]
+script = ExtResource("2_xtodb")
+id = 14
+name = "Human Resources"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+moveset = Array[ExtResource("1_tecp4")]([])
+fixed_moveset = Array[ExtResource("1_tecp4")]([])
+weighted_moveset = {}
+reactions = {}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://c8t3ykqih3ljp"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_p7exa"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_352u0"]
+
+[resource]
+script = ExtResource("2_352u0")
+id = 4
+name = "Brad Bred"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+moveset = Array[ExtResource("1_p7exa")]([])
+fixed_moveset = Array[ExtResource("1_p7exa")]([])
+weighted_moveset = {}
+reactions = {}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

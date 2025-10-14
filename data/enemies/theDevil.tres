@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("2_hqir5")
-id = 0
-name = ""
+id = 36
+name = "The Devil"
 description = ""
 discovered = false
 biome = "neutral"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://c1t0dalo38x1l"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_nimgx"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_xwgy6"]
+
+[resource]
+script = ExtResource("2_xwgy6")
+id = 28
+name = "Salter"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+moveset = Array[ExtResource("1_nimgx")]([])
+fixed_moveset = Array[ExtResource("1_nimgx")]([])
+weighted_moveset = {}
+reactions = {}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

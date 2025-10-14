@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("2_8rivy")
-id = 0
-name = ""
+id = 3
+name = "Fred Fran"
 description = ""
 discovered = false
 biome = "neutral"
