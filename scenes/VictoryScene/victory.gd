@@ -9,6 +9,7 @@ func setup(enemy: EnemyData, defeated: bool):
 	if defeated:
 		label.text = "You defeated\n%s\n\nChoose your reward:" % enemy.name
 		populate_rewards(enemy)
+		discover_cards(enemy)
 	else:
 		label.text = "You were defeated by %s" % enemy.name
 
@@ -31,3 +32,7 @@ func choose_reward(event: InputEvent, hand: HandData):
 		Globals.inventory[hand] = current + 1
 		print(Globals.inventory)
 		chosen_reward.emit()
+		
+func discover_cards(enemy: EnemyData):
+	for hand in enemy.moveset:
+		hand.discovered = true
