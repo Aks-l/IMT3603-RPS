@@ -8,9 +8,9 @@
 [resource]
 script = ExtResource("1")
 id = 11
-event_name = "Mysterious Chest"
+event_name = "Gesture-Locked Chest"
 image = null
-description = "You stumble upon an ornate chest in the middle of the path. It's unlocked, but something about it feels... off."
+description = "You find a chest with three hand-shaped locks: Rock, Paper, and Scissors. The right combination might open it, or trigger a trap."
 options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
 min_gold = 0
 required_items = []

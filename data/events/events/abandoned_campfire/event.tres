@@ -8,9 +8,9 @@
 [resource]
 script = ExtResource("1")
 id = 16
-event_name = "Abandoned Campfire"
+event_name = "RPS Champions' Camp"
 image = null
-description = "You find an abandoned campsite with a fire still burning. The owners seem to have left in a hurry. Their belongings are scattered around."
+description = "You discover a hastily abandoned camp. Training gloves and hand-sign diagrams are scattered around. Looks like champions were here recently."
 options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
 min_gold = 0
 required_items = []

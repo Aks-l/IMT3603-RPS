@@ -9,9 +9,9 @@
 [resource]
 script = ExtResource("1")
 id = 18
-event_name = "Mysterious Merchant"
+event_name = "Secret Hand Merchant"
 image = null
-description = "A hooded figure appears from nowhere, offering magical healing potions. 'The expensive one is worth it,' they whisper. 'But the choice is yours.'"
+description = "A cloaked figure materializes, displaying forbidden hand techniques in glowing orbs. 'Legendary moves, friend. Worth every coin... or maybe a free sample?'"
 options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
 min_gold = 0
 required_items = []

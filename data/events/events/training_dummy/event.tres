@@ -9,9 +9,9 @@
 [resource]
 script = ExtResource("1")
 id = 19
-event_name = "Training Grounds"
+event_name = "Training Dojo"
 image = null
-description = "You discover an abandoned training ground with practice dummies and equipment. This could be a good opportunity to sharpen your skills."
+description = "You find a training dojo where masters practice their hand techniques. Perhaps you can learn something here."
 options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
 min_gold = 0
 required_items = []

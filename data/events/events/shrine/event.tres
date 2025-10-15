@@ -8,9 +8,9 @@
 [resource]
 script = ExtResource("1")
 id = 10
-event_name = "Ancient Shrine"
+event_name = "Hand Sign Shrine"
 image = null
-description = "You discover an ancient shrine covered in moss and strange symbols. The air here feels peaceful and sacred."
+description = "You find an ancient shrine depicting the sacred hand signs: Rock, Paper, Scissors. Offerings left here might grant you favor."
 options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
 min_gold = 0
 required_items = []

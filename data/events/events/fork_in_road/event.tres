@@ -8,9 +8,9 @@
 [resource]
 script = ExtResource("1")
 id = 17
-event_name = "Fork in the Road"
+event_name = "Three Paths"
 image = null
-description = "The road splits in two. The left path looks well-traveled and safe. The right path is overgrown and ominous, but you hear the sound of rushing water - perhaps treasure?"
+description = "Three paths diverge, each marked with a hand sign: Rock leads to mountains, Paper to libraries, Scissors to dueling grounds. Choose your destiny."
 options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
 min_gold = 0
 required_items = []

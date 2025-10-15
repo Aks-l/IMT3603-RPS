@@ -8,9 +8,9 @@
 [resource]
 script = ExtResource("1")
 id = 13
-event_name = "Injured Traveler"
+event_name = "Defeated Player"
 image = null
-description = "You come across an injured traveler lying by the roadside. They're bleeding and calling for help."
+description = "You find another RPS player collapsed on the ground. They lost all their hands in a brutal match and need help."
 options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
 min_gold = 0
 required_items = []

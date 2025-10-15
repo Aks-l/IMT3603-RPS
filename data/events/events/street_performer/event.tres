@@ -9,9 +9,9 @@
 [resource]
 script = ExtResource("1")
 id = 14
-event_name = "Street Performer"
+event_name = "Hand Sign Master"
 image = null
-description = "A talented street performer juggles flaming torches while balancing on a ball. A small crowd has gathered to watch."
+description = "A street performer demonstrates incredible speed forming Rock, Paper, and Scissors signs. Their hands are a blur! The crowd is amazed."
 options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
 min_gold = 0
 required_items = []

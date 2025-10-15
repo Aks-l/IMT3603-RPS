@@ -9,9 +9,9 @@
 [resource]
 script = ExtResource("1")
 id = 15
-event_name = "Suspicious Trader"
+event_name = "Shady Hand Dealer"
 image = null
-description = "A shifty-looking trader waves you over. 'Special price for you, friend! This lucky charm will protect you in battle!' They seem very eager to make a sale."
+description = "A suspicious dealer offers you 'rare hand techniques'. 'Rock that never loses! Paper that cuts everything! Get them before authorities find out!' Something seems off."
 options = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
 min_gold = 0
 required_items = []

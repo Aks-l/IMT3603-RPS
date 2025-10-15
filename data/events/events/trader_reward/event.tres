@@ -8,8 +8,8 @@
 [resource]
 script = ExtResource("1_reward")
 id = 20
-event_name = "Suspicious Goods"
-description = "After defeating the suspicious trader, you find their cart full of dubious merchandise. Some items look valuable, but carrying too much might draw unwanted attention."
+event_name = "Illegal Techniques Stash"
+description = "After defeating the shady dealer, you discover their secret collection of banned hand techniques and training scrolls. Some look powerful, but possessing them might attract authorities."
 image = null
 options = Array[Resource]([ExtResource("2_take"), ExtResource("3_modest"), ExtResource("4_leave")])
 weight = 0.0
