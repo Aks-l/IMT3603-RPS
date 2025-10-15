@@ -16,13 +16,29 @@ var current_event: EventData
 var selected_option: EventOptionData
 
 func _ready():
-	#Block all mouse input from passing through to map
-	mouse_filter = Control.MOUSE_FILTER_STOP
-	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	#Block clicks on map but allow camera controls (zoom/pan)
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	#Overlay blocks only left clicks
+	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
 	#Hide outcome
 	outcome_panel.visible = false
 	#Connect continue button
 	continue_button.pressed.connect(_on_continue_pressed)
+
+##Handle input to block left clicks on map while allowing camera controls
+func _input(event: InputEvent) -> void:
+	#Check if click is outside event panel/outcome panel
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		var mouse_pos = get_viewport().get_mouse_position()
+		
+		#Check if click is inside event panel or outcome panel
+		var event_rect = Rect2(event_panel.global_position, event_panel.size)
+		var outcome_rect = Rect2(outcome_panel.global_position, outcome_panel.size)
+		
+		#If click is outside both panels, block it from reaching the map
+		if not event_rect.has_point(mouse_pos) and not outcome_rect.has_point(mouse_pos):
+			get_viewport().set_input_as_handled()
 
 ##Display the event
 func display_event(event: EventData):
@@ -47,33 +63,68 @@ func display_event(event: EventData):
 	for option in event.options:
 		print("[EventUI] Processing option: ", option.option_text if option else "NULL")
 		
+		#Create a panel container for each button for better visibility
+		var option_panel = PanelContainer.new()
+		option_panel.custom_minimum_size = Vector2(0, 40)
+		
+		#Add margin inside the panel
+		var margin = MarginContainer.new()
+		margin.add_theme_constant_override("margin_left", 8)
+		margin.add_theme_constant_override("margin_top", 4)
+		margin.add_theme_constant_override("margin_right", 8)
+		margin.add_theme_constant_override("margin_bottom", 4)
+		option_panel.add_child(margin)
+		
 		var button = Button.new()
 		button.text = option.option_text
-		button.custom_minimum_size = Vector2(0, 35)
+		button.custom_minimum_size = Vector2(0, 32)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		margin.add_child(button)
 		
 		#Check if option is available
 		var is_available = true
-		if option.custom_script:
+		var unavailable_reason = ""
+		
+		#Check gold cost
+		if option.gold_cost > 0 and Globals.funds < option.gold_cost:
+			is_available = false
+			unavailable_reason = "Not enough gold (need %d)" % option.gold_cost
+		
+		#Check required items
+		if is_available and not option.removes_items.is_empty():
+			for required_item in option.removes_items:
+				if not Globals.consumables.has(required_item):
+					is_available = false
+					unavailable_reason = "Missing required item: %s" % required_item.name
+					break
+		
+		#Check custom script availability
+		if is_available and option.custom_script:
 			var script_instance = option.custom_script.new()
 			var context = _build_context(option)
 			is_available = script_instance.can_execute(context)
 			
-            # Add tooltip if custom script provides one
+			#Add tooltip if custom script provides one
 			var tooltip = script_instance.get_tooltip(context)
 			if tooltip != "":
 				button.tooltip_text = tooltip
+			
+			if not is_available and unavailable_reason == "":
+				unavailable_reason = "Requirements not met"
 		
 		#Grey out and disable unavailable options
 		if not is_available:
 			button.disabled = true
-			button.modulate = Color(0.5, 0.5, 0.5, 0.7)
+			#More visible greyed out style
+			button.modulate = Color(1.2, 0.6, 0.6, 1.0)
+			option_panel.modulate = Color(0.7, 0.7, 0.7, 0.5)
 			if button.tooltip_text == "":
-				button.tooltip_text = "Not available"
-			print("[EventUI] Option disabled: ", option.option_text)
+				button.tooltip_text = unavailable_reason if unavailable_reason != "" else "Not available"
+			print("[EventUI] Option disabled: ", option.option_text, " - ", unavailable_reason)
 		else:
 			button.pressed.connect(_on_option_chosen.bind(option))
 		
-		options_container.add_child(button)
+		options_container.add_child(option_panel)
 		button_count += 1
 		print("[EventUI] Button created for: ", option.option_text)
 	
