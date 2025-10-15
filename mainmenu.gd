@@ -5,6 +5,15 @@ func _on_almanac_pressed() -> void:
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/map/map.tscn")
+	
+	## Set up initial inventory and deck on startup
+	Globals.inventory.clear()
+	Globals.inventory[HandDatabase.hands[9]] = 5
+	Globals.inventory[HandDatabase.hands[60]] = 5
+	Globals.inventory[HandDatabase.hands[17]] = 5
+	
+	Globals.current_deck = Globals.inventory.duplicate(true)
+	
 #	map.name = "map"
 #	get_tree().root.add_child(map)
 
