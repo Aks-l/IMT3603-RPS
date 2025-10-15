@@ -6,8 +6,7 @@ const SCENES := { #TODO:Add scenes for different encounter types
 	"Combat": preload("res://scenes/battleUI/battle_ui.tscn"),
 	"Boss": preload("res://scenes/battleUI/battle_ui.tscn"),
 	"Shop": preload("res://scenes/shopScene/shop.tscn"),
-	"Event": preload("res://scenes/eventScene/event_ui.tscn"),
-	"DeckCreator": preload("res://scenes/DeckCreater/deck_creater.tscn")
+	"Event": preload("res://scenes/eventScene/event_ui.tscn")
 }
 
 ##Starts encounter
@@ -15,7 +14,8 @@ const SCENES := { #TODO:Add scenes for different encounter types
 ##	If an unimplemented encounter type is encountered, it is skipped
 func start_encounter(encounter_type: String, params: Dictionary = {}) -> void:
 	var map := _find_map()
-	if map:
+	# Events appear over map
+	if map and encounter_type != "Event":
 		map.hide()
 
 
@@ -85,7 +85,7 @@ func start_encounter(encounter_type: String, params: Dictionary = {}) -> void:
 	#Returns to map when signal is received
 	encounter.tree_exited.connect(func ():
 		var map_node := _find_map()
-		if map_node:
+		if map_node and encounter_type != "Event":
 			map_node.show()
 			var map_cam := map_node.get_node_or_null("Cam")
 			if map_cam:
