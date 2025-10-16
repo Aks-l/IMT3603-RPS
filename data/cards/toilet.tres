@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7yc2x"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://drcngniyrqx20"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_toilet"]
+[ext_resource type="Texture2D" uid="uid://bs17imbskfchs" path="res://data/cards/sprites/TOILET.png" id="2_x7mvi"]
 
 [resource]
 script = ExtResource("1_toilet")
 id = 66
+sprite = ExtResource("2_x7mvi")
 name = "toilet"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

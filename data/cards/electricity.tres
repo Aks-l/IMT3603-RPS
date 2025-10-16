@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7yc5t"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://fgrsu2juwnjk"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_electricity"]
+[ext_resource type="Texture2D" uid="uid://ctpcep4s2uxxm" path="res://data/cards/sprites/ELECTRICITY.png" id="2_b48dk"]
 
 [resource]
 script = ExtResource("1_electricity")
 id = 92
+sprite = ExtResource("2_b48dk")
 name = "electricity"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

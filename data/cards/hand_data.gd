@@ -6,7 +6,6 @@ class_name HandData
 @export var sprite: Texture2D
 @export var name: String
 
-#undiscovered by default
 @export var discovered: bool = false
 
 #how many copies of each card

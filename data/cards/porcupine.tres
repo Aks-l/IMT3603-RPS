@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7ycxx"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://w2drtvu7owyb"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_porcupine"]
+[ext_resource type="Texture2D" uid="uid://lqgxd5e6rdpw" path="res://data/cards/sprites/PORCUPINE.png" id="2_xhl7j"]
 
 [resource]
 script = ExtResource("1_porcupine")
 id = 26
+sprite = ExtResource("2_xhl7j")
 name = "porcupine"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

@@ -14,6 +14,32 @@
 [node name="BattleUI" type="Node3D"]
 script = ExtResource("1_8ao15")
 
+[node name="EnemyArea" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OpponentProfile" parent="EnemyArea" instance=ExtResource("2_8ao15")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 240)
+layout_mode = 2
+
+[node name="EnemyHearts" type="HBoxContainer" parent="EnemyArea"]
+modulate = Color(0.941799, 0.716083, 0.746646, 1)
+self_modulate = Color(0.509256, 0.597452, 0.917663, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+script = ExtResource("4_hvc5s")
+red_heart_texture = ExtResource("5_npshu")
+blue_heart_texture = ExtResource("6_3ewwt")
+heart_icon_scene = ExtResource("7_npshu")
+icon_size = Vector2(32, 32)
+
+[node name="GeneralInventori" parent="." instance=ExtResource("4_8ao15")]
+offset_bottom = 648.0
+
 [node name="Layout" type="HBoxContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,20 +47,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OpponentProfile" parent="Layout" instance=ExtResource("2_8ao15")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-
-[node name="GeneralInventori" parent="Layout" instance=ExtResource("4_8ao15")]
-
 [node name="HandInventory" parent="." instance=ExtResource("3_88761")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 150)
-offset_left = 429.0
-offset_top = 490.0
-offset_right = 722.0
-offset_bottom = 640.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="ResultLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(100, 0)
@@ -43,9 +68,6 @@ offset_top = 85.0
 offset_right = 703.0
 offset_bottom = 168.0
 text = "Result will appear here"
-
-[node name="Camera3D" type="Camera3D" parent="."]
-current = true
 
 [node name="PlayerHearts" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(50, 50)
@@ -64,39 +86,19 @@ blue_heart_texture = ExtResource("6_3ewwt")
 heart_icon_scene = ExtResource("7_npshu")
 icon_size = Vector2(32, 32)
 
-[node name="EnemyHearts" type="HBoxContainer" parent="."]
-modulate = Color(0.941799, 0.716083, 0.746646, 1)
-self_modulate = Color(0.509256, 0.597452, 0.917663, 1)
-show_behind_parent = true
-custom_minimum_size = Vector2(50, 50)
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1130.0
-offset_top = 202.0
-offset_right = -930.0
-offset_bottom = 252.0
-grow_horizontal = 0
-theme_override_constants/separation = 3
-script = ExtResource("4_hvc5s")
-red_heart_texture = ExtResource("5_npshu")
-blue_heart_texture = ExtResource("6_3ewwt")
-heart_icon_scene = ExtResource("7_npshu")
-icon_size = Vector2(32, 32)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
 [node name="Victory" parent="." instance=ExtResource("9_v8byk")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 388.0
-offset_top = 184.0
-offset_right = 388.0
-offset_bottom = 184.0
-grow_horizontal = 1
-grow_vertical = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="OutcomeGraphPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
