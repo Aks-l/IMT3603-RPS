@@ -23,7 +23,6 @@ ItemDatabase="*res://autoload/ItemDatabase.gd"
 HandDatabase="*res://autoload/HandDatabase.gd"
 Globals="*res://autoload/Globals.gd"
 EncounterHandler="*res://autoload/encounter_handler.gd"
-UiManager="*res://autoload/ui_manager.gd"
 AlmanacOverlay="*res://scenes/almanac/almanac.tscn"
 
 [editor]

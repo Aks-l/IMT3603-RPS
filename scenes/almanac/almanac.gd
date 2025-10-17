@@ -1,24 +1,19 @@
-extends Control
-@onready var grid: GridContainer = $Margin/VBoxContainer/Container/Grid
-@onready var see_enemies = $Margin/VBoxContainer/Buttons/Enemies
-@onready var see_hands = $Margin/VBoxContainer/Buttons/Hands
-@onready var back = $Margin/VBoxContainer/Back
+extends CanvasLayer
+@onready var grid: GridContainer = $Almanac/Margin/VBoxContainer/Container/Grid
+@onready var see_enemies = %Enemies
+@onready var see_hands = %Hands
+@onready var back = %Back
 
 var card_scene := preload("res://scenes/almanac/enemyCard.tscn")
 
-func _enter_tree():
-	visible = false
-	z_as_relative = false
-	z_index = 100
-	
-	
 # Initialize with enemies shown, and connect buttons to their function
 func _ready() -> void:
 	setup("enemy")
 	see_enemies.pressed.connect(refresh.bind("enemy"))
 	see_hands.pressed.connect(refresh.bind("hand"))
 	back.pressed.connect(_leave)
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	hide()
 
 # Popluate grid based on datatype
 func setup(type:String):
@@ -41,9 +36,17 @@ func setup(type:String):
 
 # Update what is shown in grid
 func refresh(type:String):
+	print("clicked")
 	for entry in grid.get_children():
 		entry.queue_free()
 	setup(type)
 	
+func _show_overlay():
+	print("opened almanac")
+	self.visible = true
+	get_tree().paused = true
+	
 func _leave() -> void:
-	self.hide()
+	print("closed almanac")
+	hide()
+	get_tree().paused = false

@@ -2,9 +2,10 @@ extends Control
 
 
 func _on_almanac_pressed() -> void:
-	AlmanacOverlay.show()
+	AlmanacOverlay._show_overlay()
 
-func _on_play_pressed() -> void:	
+func _on_play_pressed() -> void:
+	print("clicked map")
 	## Set up initial inventory and deck on startup
 	Globals.inventory.clear()
 	Globals.inventory[HandDatabase.hands[9]] = 5

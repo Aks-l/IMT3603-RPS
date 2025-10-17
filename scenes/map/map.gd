@@ -14,7 +14,6 @@ extends Node2D
 @onready var deck_button: Button = $DeckButton
 @onready var almanac_button: Button = $AlmanacButton
 
-var AlmanacScene := preload("res://scenes/almanac/almanac.tscn")
 var almanac_ui: Control
 
 # -------- state --------
@@ -30,16 +29,9 @@ var map_interaction_enabled := true
 
 
 func _ready():
-	EncounterHandler.encounter_finished.connect(_on_encounter_finished)
-	
-	almanac_ui = AlmanacScene.instantiate()
-	almanac_ui.visible = false
-	almanac_ui.set_anchors_preset(Control.PRESET_FULL_RECT)
-	add_child(almanac_ui)
-	
+	EncounterHandler.encounter_finished.connect(_on_encounter_finished)	
 	deck_button.pressed.connect(_on_deck_button_pressed)
 	almanac_button.pressed.connect(_on_almanac_button_pressed)
-	
 	setup()
 
 func setup():
@@ -234,4 +226,5 @@ func _on_deck_button_pressed() -> void:
 	EncounterHandler.start_encounter("DeckCreator")
 
 func _on_almanac_button_pressed() -> void:
-	print("Opening almanac")
+	print("pressed button")
+	AlmanacOverlay._show_overlay()
