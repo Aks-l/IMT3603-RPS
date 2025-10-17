@@ -12,6 +12,10 @@ extends Node2D
 @onready var encounters_root := $Encounters
 
 @onready var deck_button: Button = $DeckButton
+@onready var almanac_button: Button = $AlmanacButton
+
+var AlmanacScene := preload("res://scenes/almanac/almanac.tscn")
+var almanac_ui: Control
 
 # -------- state --------
 var layer_ids = []   # [[ids...], ...]
@@ -27,6 +31,15 @@ var map_interaction_enabled := true
 
 func _ready():
 	EncounterHandler.encounter_finished.connect(_on_encounter_finished)
+	
+	almanac_ui = AlmanacScene.instantiate()
+	almanac_ui.visible = false
+	almanac_ui.set_anchors_preset(Control.PRESET_FULL_RECT)
+	add_child(almanac_ui)
+	
+	deck_button.pressed.connect(_on_deck_button_pressed)
+	almanac_button.pressed.connect(_on_almanac_button_pressed)
+	
 	setup()
 
 func setup():
@@ -34,8 +47,6 @@ func setup():
 	_draw_edges()
 	_spawn_encounters()
 	_unlock_starts()
-	
-	deck_button.pressed.connect(_on_deck_button_pressed)
 
 func _rid(i, j):
 	return "L%02d_N%02d" % [i, j]
@@ -74,7 +85,7 @@ func _generate():
 		counts.append(w)
 
 	# 2) positions (top → down); center rows horizontally
-	var origin := Vector2(120, 120)
+	var origin := Vector2(0, 0)
 	for i in range(layers):
 		var ids = []
 		var count = counts[i]
@@ -219,32 +230,8 @@ func _on_encounter_finished(result):
 
 func _on_deck_button_pressed() -> void:
 	print("Opening deck builder")
-	
 	#saves any map data if needed before switching scenes, can be removed later
 	EncounterHandler.start_encounter("DeckCreator")
-	#UNDER For å lagre progess etterpå 
-	#Globals.last_scene = "res://scenes/Map/map.tscn"
-	
-	#disables intercation on map while deckbuider open
-	#_set_map_interaction(false)
-	
-	#var deck_scene := preload("res://scenes/DeckCreater/deck_creater.tscn")
-	#var deck_ui := deck_scene.instantiate()
-	#add_child(deck_ui)
-	
-	#deck_ui.set_owned_hands(Globals.inventory)
-	
-	#deck_ui.deck_confirmed.connect(_on_deck_confirmed)
-	
-	#close
-	#deck_ui.tree_exited.connect(func():
-	#	_set_map_interaction(true))
 
-#func _on_deck_confirmed(deck: Array[HandData]) -> void:
-#	print("Deck confirmed with %d cards" % deck.size())
-#	Globals.current_deck = deck
-
-#func _set_map_interaction(active: bool) -> void:
-#	map_interaction_enabled = active
-#	#for n in encounters_root.get_children():
-#	#	n.mouse_filter = Control.MOUSE_FILTER_PASS if active else Control.MOUSE_FILTER_IGNORE
+func _on_almanac_button_pressed() -> void:
+	print("Opening almanac")

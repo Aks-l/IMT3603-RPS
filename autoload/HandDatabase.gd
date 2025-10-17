@@ -15,7 +15,6 @@ func load_hands():
 				var hand = load("res://data/cards/" + file)
 				if hand and hand is HandData:
 					hands[hand.id] = hand
-					#hands[hand.id] = hand
-					print("added " + hand.name)
+					#print("added " + hand.name)
 	hands.erase(9999)
 	

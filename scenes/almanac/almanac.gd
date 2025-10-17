@@ -1,17 +1,24 @@
 extends Control
-@onready var grid: GridContainer = $VBoxContainer/Container/Grid
-@onready var see_enemies = $VBoxContainer/Buttons/Enemies
-@onready var see_hands = $VBoxContainer/Buttons/Hands
-@onready var back = $VBoxContainer/Back
+@onready var grid: GridContainer = $Margin/VBoxContainer/Container/Grid
+@onready var see_enemies = $Margin/VBoxContainer/Buttons/Enemies
+@onready var see_hands = $Margin/VBoxContainer/Buttons/Hands
+@onready var back = $Margin/VBoxContainer/Back
 
 var card_scene := preload("res://scenes/almanac/enemyCard.tscn")
 
+func _enter_tree():
+	visible = false
+	z_as_relative = false
+	z_index = 100
+	
+	
 # Initialize with enemies shown, and connect buttons to their function
 func _ready() -> void:
 	setup("enemy")
 	see_enemies.pressed.connect(refresh.bind("enemy"))
 	see_hands.pressed.connect(refresh.bind("hand"))
 	back.pressed.connect(_leave)
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 # Popluate grid based on datatype
 func setup(type:String):
@@ -37,7 +44,6 @@ func refresh(type:String):
 	for entry in grid.get_children():
 		entry.queue_free()
 	setup(type)
-
-# Return to main menu
-func _leave():
-	get_tree().change_scene_to_file("res://scenes/mainmenu.tscn")
+	
+func _leave() -> void:
+	self.hide()
