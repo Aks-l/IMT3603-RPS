@@ -12,7 +12,7 @@ func populate(d: Resource) -> void:
 	var data = d
 
 	if sprite:
-		if d.discovered:
+		if not d.discovered:
 			print(d.name + " is discovered")
 			sprite.texture = d.sprite
 		else:

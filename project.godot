@@ -24,6 +24,7 @@ HandDatabase="*res://autoload/HandDatabase.gd"
 Globals="*res://autoload/Globals.gd"
 EncounterHandler="*res://autoload/encounter_handler.gd"
 AlmanacOverlay="*res://scenes/almanac/almanac.tscn"
+DeckCreater="*res://scenes/DeckCreater/deck_creater.tscn"
 
 [editor]
 

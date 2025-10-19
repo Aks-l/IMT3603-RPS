@@ -222,8 +222,7 @@ func _on_encounter_finished(result):
 
 func _on_deck_button_pressed() -> void:
 	print("Opening deck builder")
-	#saves any map data if needed before switching scenes, can be removed later
-	EncounterHandler.start_encounter("DeckCreator")
+	DeckCreater._show_overlay()
 
 func _on_almanac_button_pressed() -> void:
 	print("pressed button")

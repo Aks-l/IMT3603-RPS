@@ -2,18 +2,22 @@
 
 [ext_resource type="Script" uid="uid://drnwove1mai7a" path="res://scenes/DeckCreater/deck_creater.gd" id="1_4jg51"]
 
-[node name="Control" type="Control"]
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_4jg51")
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_4jg51")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,48 +29,48 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="ChosenCards" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="ChosenCards" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="YourDeck" type="Label" parent="MarginContainer/HBoxContainer/ChosenCards"]
+[node name="YourDeck" type="Label" parent="Control/MarginContainer/HBoxContainer/ChosenCards"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 text = "YOUR DECK HERE
 "
 
-[node name="DeckRow" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ChosenCards"]
+[node name="DeckRow" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/ChosenCards"]
 layout_mode = 2
 alignment = 1
 
-[node name="StockCards" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="StockCards" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Search" type="LineEdit" parent="MarginContainer/HBoxContainer/StockCards"]
+[node name="Search" type="LineEdit" parent="Control/MarginContainer/HBoxContainer/StockCards"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="StockScroll" type="ScrollContainer" parent="MarginContainer/HBoxContainer/StockCards"]
+[node name="StockScroll" type="ScrollContainer" parent="Control/MarginContainer/HBoxContainer/StockCards"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="StockList" type="VBoxContainer" parent="MarginContainer/HBoxContainer/StockCards/StockScroll"]
+[node name="StockList" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/StockCards/StockScroll"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -74,15 +78,15 @@ size_flags_vertical = 8
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="ConfirmDeck" type="Button" parent="MarginContainer/HBoxContainer2"]
+[node name="ConfirmDeck" type="Button" parent="Control/MarginContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 text = "CONFIRM DECK
 "
 
-[node name="Cancel" type="Button" parent="MarginContainer/HBoxContainer2"]
+[node name="Cancel" type="Button" parent="Control/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 text = "BACK TO MAP"
 
-[node name="Cam" type="Camera2D" parent="."]
+[node name="Cam" type="Camera2D" parent="Control"]
 anchor_mode = 0
