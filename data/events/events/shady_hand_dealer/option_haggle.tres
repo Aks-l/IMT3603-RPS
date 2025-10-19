@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://trader_haggle"]
+
+[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+option_text = "Try to haggle"
+outcome_description = "You argue the price down to 15 gold. Surprisingly, the trinket actually does seem to have some power! You feel invigorated."
+gold_reward = 0
+health_change = 2
+items_received = []
+hands_received = []
+removes_items = []
+gold_cost = 15
+next_event_id = -1
+triggers_combat = false
+combat_enemy = null

@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://chest_leave"]
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://traveler_ignore"]
 
 [ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
 
 [resource]
 script = ExtResource("1_script")
-option_text = "Leave it alone"
-outcome_description = "You decide it's too suspicious and walk away. Better safe than sorry."
+option_text = "Keep walking"
+outcome_description = "You pretend not to see them and continue on your way. Not your problem."
 gold_reward = 0
 health_change = 0
 items_received = []

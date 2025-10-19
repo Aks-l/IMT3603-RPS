@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=6 format=3 uid="uid://event_mysterious_merchant"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://merch_buy_expensive" path="res://data/events/events/secret_hand_merchant/option_buy_expensive.tres" id="2_buy"]
+[ext_resource type="Resource" uid="uid://merch_buy_cheap" path="res://data/events/events/secret_hand_merchant/option_buy_cheap.tres" id="3_cheap"]
+[ext_resource type="Resource" uid="uid://merch_ask_free" path="res://data/events/events/secret_hand_merchant/option_ask_free.tres" id="4_ask"]
+[ext_resource type="Resource" uid="uid://merch_decline" path="res://data/events/events/secret_hand_merchant/option_decline.tres" id="5_decline"]
+
+[resource]
+script = ExtResource("1_script")
+id = 18
+event_name = "Secret Hand Merchant"
+image = null
+description = "A cloaked figure materializes, displaying forbidden hand techniques in glowing orbs. 'Legendary moves, friend. Worth every coin... or maybe a free sample?'"
+options = Array[Resource]([ExtResource("2_buy"), ExtResource("3_cheap"), ExtResource("4_ask"), ExtResource("5_decline")])
+min_gold = 0
+required_items = []
+weight = 0.8

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://performer_watch"]
 
-[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1"]
+[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
 
 [resource]
-script = ExtResource("1")
+script = ExtResource("1_script")
 option_text = "Just watch"
 outcome_description = "You enjoy the free show and continue on your way. The performer looks disappointed but continues performing."
 gold_reward = 0

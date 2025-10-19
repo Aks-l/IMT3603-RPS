@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://event_campfire"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://camp_rest" path="res://data/events/events/champions_camp/option_rest.tres" id="2_rest"]
+[ext_resource type="Resource" uid="uid://camp_search" path="res://data/events/events/champions_camp/option_search.tres" id="3_search"]
+[ext_resource type="Resource" uid="uid://camp_leave" path="res://data/events/events/champions_camp/option_leave.tres" id="4_leave"]
+
+[resource]
+script = ExtResource("1_script")
+id = 16
+event_name = "Champions' Camp"
+image = null
+description = "You discover a hastily abandoned camp. Training gloves and hand-sign diagrams are scattered around. Looks like champions were here recently."
+options = Array[Resource]([ExtResource("2_rest"), ExtResource("3_search"), ExtResource("4_leave")])
+min_gold = 0
+required_items = []
+weight = 0.9

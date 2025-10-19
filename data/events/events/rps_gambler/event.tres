@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://event_gambler"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://gambler_bet30" path="res://data/events/events/rps_gambler/option_bet30.tres" id="2_bet30"]
+[ext_resource type="Resource" uid="uid://gambler_bet50" path="res://data/events/events/rps_gambler/option_bet50.tres" id="3_bet50"]
+[ext_resource type="Resource" uid="uid://gambler_decline" path="res://data/events/events/rps_gambler/option_decline.tres" id="4_decline"]
+
+[resource]
+script = ExtResource("1_script")
+id = 12
+event_name = "RPS Gambler"
+image = null
+description = "A skilled gambler challenges you to Rock-Paper-Scissors. 'Best of one! Put your gold on the line and I'll triple it if you win!' Win and triple your bet, lose and it's gone!"
+options = Array[Resource]([ExtResource("2_bet30"), ExtResource("3_bet50"), ExtResource("4_decline")])
+min_gold = 0
+required_items = []
+weight = 0.9

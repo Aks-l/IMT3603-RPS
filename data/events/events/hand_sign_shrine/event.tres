@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://c8event_shrine"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://c8shrine_pray" path="res://data/events/events/hand_sign_shrine/option_pray.tres" id="2_pray"]
+[ext_resource type="Resource" uid="uid://c8shrine_offer" path="res://data/events/events/hand_sign_shrine/option_offer.tres" id="3_offer"]
+[ext_resource type="Resource" uid="uid://c8shrine_leave" path="res://data/events/events/hand_sign_shrine/option_leave.tres" id="4_leave"]
+
+[resource]
+script = ExtResource("1_script")
+id = 10
+event_name = "Hand Sign Shrine"
+image = null
+description = "You find an ancient shrine depicting the sacred hand signs: Rock, Paper, Scissors. Offerings left here might grant you favor."
+options = Array[Resource]([ExtResource("2_pray"), ExtResource("3_offer"), ExtResource("4_leave")])
+min_gold = 0
+required_items = []
+weight = 1.0

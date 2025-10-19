@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://merch_buy_expensive"]
+
+[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+option_text = "Buy expensive potion (60 gold)"
+outcome_description = "The merchant smiles mysteriously. 'An excellent choice.' The potion restores you completely and you feel stronger than ever!"
+gold_reward = 0
+health_change = 5
+items_received = []
+hands_received = []
+removes_items = []
+gold_cost = 60
+next_event_id = -1
+triggers_combat = false
+combat_enemy = null

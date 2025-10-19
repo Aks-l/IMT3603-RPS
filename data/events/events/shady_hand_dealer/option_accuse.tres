@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://trader_accuse"]
+
+[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+option_text = "Accuse them of being a fraud"
+outcome_description = "The trader gets angry and challenges you to prove your worth in combat!"
+gold_reward = 0
+health_change = 0
+items_received = []
+hands_received = []
+removes_items = []
+gold_cost = 0
+next_event_id = 20
+triggers_combat = true
+combat_enemy = null

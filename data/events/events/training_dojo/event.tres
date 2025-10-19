@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=6 format=3 uid="uid://event_training"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://dummy_train" path="res://data/events/events/training_dojo/option_train.tres" id="2_train"]
+[ext_resource type="Resource" uid="uid://dummy_intense" path="res://data/events/events/training_dojo/option_intense.tres" id="3_intense"]
+[ext_resource type="Resource" uid="uid://dummy_test" path="res://data/events/events/training_dojo/option_test.tres" id="4_test"]
+[ext_resource type="Resource" uid="uid://dummy_skip" path="res://data/events/events/training_dojo/option_skip.tres" id="5_skip"]
+
+[resource]
+script = ExtResource("1_script")
+id = 19
+event_name = "Training Dojo"
+image = null
+description = "You find a training dojo where masters practice their hand techniques. Perhaps you can learn something here."
+options = Array[Resource]([ExtResource("2_train"), ExtResource("3_intense"), ExtResource("4_test"), ExtResource("5_skip")])
+min_gold = 0
+required_items = []
+weight = 0.7

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://event_fork"]
+
+[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://fork_left" path="res://data/events/events/three_paths/option_left.tres" id="2_left"]
+[ext_resource type="Resource" uid="uid://fork_right" path="res://data/events/events/three_paths/option_right.tres" id="3_right"]
+[ext_resource type="Resource" uid="uid://fork_middle" path="res://data/events/events/three_paths/option_middle.tres" id="4_middle"]
+
+[resource]
+script = ExtResource("1_script")
+id = 17
+event_name = "Three Paths"
+image = null
+description = "Three paths diverge, each marked with a hand sign: Rock leads to mountains, Paper to libraries, Scissors to dueling grounds. Choose your destiny."
+options = Array[Resource]([ExtResource("2_left"), ExtResource("3_right"), ExtResource("4_middle")])
+min_gold = 0
+required_items = []
+weight = 1.0

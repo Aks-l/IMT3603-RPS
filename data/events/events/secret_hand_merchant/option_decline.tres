@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://chest_leave"]
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://merch_decline"]
 
 [ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
 
 [resource]
 script = ExtResource("1_script")
-option_text = "Leave it alone"
-outcome_description = "You decide it's too suspicious and walk away. Better safe than sorry."
+option_text = "Politely decline"
+outcome_description = "You thank the merchant but decline. They nod knowingly and vanish in a puff of smoke. Was that real?"
 gold_reward = 0
 health_change = 0
 items_received = []

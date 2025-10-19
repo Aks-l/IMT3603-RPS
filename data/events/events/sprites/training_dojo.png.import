@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tcst04x8d45b"
-path="res://.godot/imported/handsign_shrine.png-e0ad256eae1fbe3a9b6ded4581994fe8.ctex"
+uid="uid://earyf6s20guf"
+path="res://.godot/imported/training_dojo.png-05b2775131ef9332e510dbe0ec64bf10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/events/events/sprites/hand_sign_shrine.png"
-dest_files=["res://.godot/imported/hand_sign_shrine.png-e0ad256eae1fbe3a9b6ded4581994fe8.ctex"]
+source_file="res://data/events/events/sprites/training_dojo.png"
+dest_files=["res://.godot/imported/training_dojo.png-05b2775131ef9332e510dbe0ec64bf10.ctex"]
 
 [params]
 

@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://chest_leave"]
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://camp_rest"]
 
 [ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
 
 [resource]
 script = ExtResource("1_script")
-option_text = "Leave it alone"
-outcome_description = "You decide it's too suspicious and walk away. Better safe than sorry."
+option_text = "Rest by the fire"
+outcome_description = "You sit by the warm fire and tend to your wounds. The heat is soothing and you feel refreshed."
 gold_reward = 0
-health_change = 0
+health_change = 3
 items_received = []
 hands_received = []
 removes_items = []

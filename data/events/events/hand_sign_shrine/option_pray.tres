@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://chest_leave"]
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://c8shrine_pray"]
 
 [ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
 
 [resource]
 script = ExtResource("1_script")
-option_text = "Leave it alone"
-outcome_description = "You decide it's too suspicious and walk away. Better safe than sorry."
+option_text = "Pray at the shrine"
+outcome_description = "You offer a prayer at the ancient shrine. A warm light surrounds you, healing your wounds."
 gold_reward = 0
-health_change = 0
+health_change = 2
 items_received = []
 hands_received = []
 removes_items = []

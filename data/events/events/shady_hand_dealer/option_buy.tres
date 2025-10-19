@@ -1,17 +1,17 @@
-[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://chest_leave"]
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://trader_buy"]
 
 [ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
 
 [resource]
 script = ExtResource("1_script")
-option_text = "Leave it alone"
-outcome_description = "You decide it's too suspicious and walk away. Better safe than sorry."
+option_text = "Buy the 'lucky charm' (25 gold)"
+outcome_description = "You purchase the strange trinket. It crumbles to dust in your hands. You've been scammed!"
 gold_reward = 0
 health_change = 0
 items_received = []
 hands_received = []
 removes_items = []
-gold_cost = 0
+gold_cost = 25
 next_event_id = -1
 triggers_combat = false
 combat_enemy = null
