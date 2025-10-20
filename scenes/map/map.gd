@@ -222,12 +222,21 @@ func _on_deck_button_pressed() -> void:
 	
 	# Disable map interaction and hide map
 	map_interaction_enabled = false
+	set_process_mode(PROCESS_MODE_DISABLED)
 	hide()
+	
+	#Hide any active events (they're children of root, not map)
+	var root = get_tree().root
+	var hidden_events = []
+	for child in root.get_children():
+		if child is Control and child.has_method("display_event"):
+			child.hide()
+			hidden_events.append(child)
 	
 	# Spawn deck creator
 	var deck_scene := preload("res://scenes/DeckCreater/deck_creater.tscn")
 	var deck_ui := deck_scene.instantiate()
-	get_tree().root.add_child(deck_ui)
+	root.add_child(deck_ui)
 	
 	# Set up the deck creator
 	deck_ui.set_owned_hands(Globals.inventory)
@@ -235,7 +244,14 @@ func _on_deck_button_pressed() -> void:
 	# Connect to close signal
 	deck_ui.tree_exited.connect(func():
 		map_interaction_enabled = true
+		set_process_mode(PROCESS_MODE_INHERIT)
 		show()
+		
+		#Restore hidden events
+		for event in hidden_events:
+			if is_instance_valid(event):
+				event.show()
+		
 		print("[Map] Deck builder closed, map interaction restored")
 	)
 

@@ -16,29 +16,39 @@ var current_event: EventData
 var selected_option: EventOptionData
 
 func _ready():
-	#Block clicks on map but allow camera controls (zoom/pan)
-	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	#Overlay blocks only left clicks
-	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	#Disable map interaction while event is active
+	var map = get_tree().root.get_node_or_null("map")
+	if map:
+		map.set_process_input(false)
+		map.set_process_unhandled_input(false)
+		
+		#Disable all encounter node inputs
+		var encounters_root = map.get_node_or_null("Encounters")
+		if encounters_root:
+			for encounter in encounters_root.get_children():
+				var area = encounter.get_node_or_null("NodeShape")
+				if area and area is Area2D:
+					area.input_pickable = false
 	
 	#Hide outcome
 	outcome_panel.visible = false
 	#Connect continue button
 	continue_button.pressed.connect(_on_continue_pressed)
 
-##Handle input to block left clicks on map while allowing camera controls
-func _input(event: InputEvent) -> void:
-	#Check if click is outside event panel/outcome panel
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var mouse_pos = get_viewport().get_mouse_position()
-		
-		#Check if click is inside event panel or outcome panel
-		var event_rect = Rect2(event_panel.global_position, event_panel.size)
-		var outcome_rect = Rect2(outcome_panel.global_position, outcome_panel.size)
-		
-		#If click is outside both panels, block it from reaching the map
-		if not event_rect.has_point(mouse_pos) and not outcome_rect.has_point(mouse_pos):
-			get_viewport().set_input_as_handled()
+func _exit_tree():
+	#Re-enable map interaction when event closes
+	var map = get_tree().root.get_node_or_null("map")
+	if map:
+		map.set_process_input(true)
+		map.set_process_unhandled_input(true)
+
+		#Re-enable all encounter node inputs
+		var encounters_root = map.get_node_or_null("Encounters")
+		if encounters_root:
+			for encounter in encounters_root.get_children():
+				var area = encounter.get_node_or_null("NodeShape")
+				if area and area is Area2D:
+					area.input_pickable = true
 
 ##Display the event
 func display_event(event: EventData):
