@@ -5,7 +5,6 @@ signal hands_loaded
 
 func _ready() -> void:
 	load_hands()
-	add_hands()
 	emit_signal("hands_loaded")
 	
 func load_hands():
@@ -18,9 +17,5 @@ func load_hands():
 					hands[hand.id] = hand
 					#hands[hand.id] = hand
 					print("added " + hand.name)
-					
-func add_hands():
-	Globals.inventory.clear()
-	Globals.inventory[hands[0]] = 5
-	Globals.inventory[hands[2]] = 1
-	Globals.inventory[hands[4]] = 1
+	hands.erase(9999)
+	

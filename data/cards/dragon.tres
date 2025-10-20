@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7yc4t"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://cmk5o5l734nc1"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_dragon"]
+[ext_resource type="Texture2D" uid="uid://b86hox2h0e3ew" path="res://data/cards/sprites/DRAGON.png" id="2_nvcnl"]
 
 [resource]
 script = ExtResource("1_dragon")
 id = 82
+sprite = ExtResource("2_nvcnl")
 name = "dragon"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

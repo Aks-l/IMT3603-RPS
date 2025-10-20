@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7yc0s"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://wl3g1x104v6b"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_bicycle"]
+[ext_resource type="Texture2D" uid="uid://q1uauvopilbx" path="res://data/cards/sprites/BICYCLE.png" id="2_rmxfr"]
 
 [resource]
 script = ExtResource("1_bicycle")
 id = 41
+sprite = ExtResource("2_rmxfr")
 name = "bicycle"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

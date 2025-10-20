@@ -31,7 +31,6 @@ theme_override_constants/separation = 30
 alignment = 1
 
 [node name="ChosenCards" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(600, 600)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
@@ -44,8 +43,8 @@ text = "YOUR DECK HERE
 "
 
 [node name="DeckRow" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ChosenCards"]
-custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
+alignment = 1
 
 [node name="StockCards" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
@@ -57,15 +56,15 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
 [node name="StockScroll" type="ScrollContainer" parent="MarginContainer/HBoxContainer/StockCards"]
-clip_contents = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="StockList" type="VBoxContainer" parent="MarginContainer/HBoxContainer/StockCards/StockScroll"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
 theme_override_constants/separation = 5
+alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(50, 50)

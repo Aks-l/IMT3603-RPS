@@ -34,7 +34,10 @@ text = "Hands"
 
 [node name="Container" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
 [node name="Grid" type="GridContainer" parent="VBoxContainer/Container"]
 layout_mode = 2
@@ -42,4 +45,5 @@ columns = 5
 
 [node name="Back" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Back"

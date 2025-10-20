@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7ycxs"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dg1ig7a0qdp68"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_peace"]
+[ext_resource type="Texture2D" uid="uid://d3ea6cvf7ds3u" path="res://data/cards/sprites/PEACE.png" id="2_fysg0"]
 
 [resource]
 script = ExtResource("1_peace")
 id = 21
+sprite = ExtResource("2_fysg0")
 name = "peace"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"
