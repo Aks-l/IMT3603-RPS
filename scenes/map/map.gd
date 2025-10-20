@@ -33,6 +33,7 @@ func _ready():
 	deck_button.pressed.connect(_on_deck_button_pressed)
 	almanac_button.pressed.connect(_on_almanac_button_pressed)
 	setup()
+	$Cam.make_current()
 
 func setup():
 	_generate()
