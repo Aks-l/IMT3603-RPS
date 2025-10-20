@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://cueweugfjf124"]
+[gd_resource type="Resource" script_class="EventData" load_steps=8 format=3 uid="uid://cueweugfjf124"]
 
 [ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_ehl0a"]
 [ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cxk18185ul6tb" path="res://data/events/events/sprites/champions_camp.png" id="1_xbdb7"]
 [ext_resource type="Resource" uid="uid://bqff328ib8exe" path="res://data/events/events/champions_camp/option_rest.tres" id="2_rest"]
 [ext_resource type="Resource" uid="uid://dldxtyll148pr" path="res://data/events/events/champions_camp/option_search.tres" id="3_search"]
 [ext_resource type="Resource" uid="uid://dlqqkwu4f57d5" path="res://data/events/events/champions_camp/option_leave.tres" id="4_leave"]
@@ -11,6 +12,7 @@
 script = ExtResource("1_script")
 id = 16
 event_name = "Champions' Camp"
+image = ExtResource("1_xbdb7")
 description = "You discover a hastily abandoned camp. Training gloves and hand-sign diagrams are scattered around. Looks like champions were here recently."
 options = Array[ExtResource("1_ehl0a")]([ExtResource("2_rest"), ExtResource("3_search"), ExtResource("4_leave")])
 min_gold = 0

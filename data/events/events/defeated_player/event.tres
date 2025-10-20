@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://dvjj5l863hxi7"]
+[gd_resource type="Resource" script_class="EventData" load_steps=8 format=3 uid="uid://dvjj5l863hxi7"]
 
 [ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_8th7q"]
+[ext_resource type="Texture2D" uid="uid://cxuon2guqmnv8" path="res://data/events/events/sprites/defeated_player.png" id="1_hmg40"]
 [ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://u1xk0rtfok66" path="res://data/events/events/defeated_player/option_help.tres" id="2_help"]
 [ext_resource type="Resource" uid="uid://8p3ghwve1sxe" path="res://data/events/events/defeated_player/option_rob.tres" id="3_rob"]
@@ -11,6 +12,7 @@
 script = ExtResource("1_script")
 id = 13
 event_name = "Defeated Player"
+image = ExtResource("1_hmg40")
 description = "You find another RPS player collapsed on the ground. They lost all their hands in a brutal match and need help."
 options = Array[ExtResource("1_8th7q")]([ExtResource("2_help"), ExtResource("3_rob"), ExtResource("4_ignore")])
 min_gold = 0

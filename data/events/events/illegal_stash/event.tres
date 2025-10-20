@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://ibtwax5nt6is"]
+[gd_resource type="Resource" script_class="EventData" load_steps=8 format=3 uid="uid://ibtwax5nt6is"]
 
+[ext_resource type="Texture2D" uid="uid://cfkiu8j2x61dg" path="res://data/events/events/sprites/illegal_stash.png" id="1_f02f4"]
 [ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_ik75o"]
 [ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_reward"]
 [ext_resource type="Resource" uid="uid://dwhbmh6ys4ydl" path="res://data/events/events/illegal_stash/option_take_loot.tres" id="2_take"]
@@ -11,6 +12,7 @@
 script = ExtResource("1_reward")
 id = 20
 event_name = "Illegal Stash"
+image = ExtResource("1_f02f4")
 description = "After defeating the shady dealer, you discover their secret collection of banned hand techniques and training scrolls. Some look powerful, but possessing them might attract authorities."
 options = Array[ExtResource("1_ik75o")]([ExtResource("2_take"), ExtResource("3_modest"), ExtResource("4_leave")])
 min_gold = 0
