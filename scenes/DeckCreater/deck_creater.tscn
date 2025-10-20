@@ -29,62 +29,84 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+[node name="BG" type="ColorRect" parent="Control/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 30
+color = Color(0.211765, 0.619608, 0.290196, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
-[node name="ChosenCards" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer"]
+[node name="Content" type="HBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="ChosenCards" type="VBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content"]
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="YourDeck" type="Label" parent="Control/MarginContainer/HBoxContainer/ChosenCards"]
+[node name="YourDeck" type="Label" parent="Control/MarginContainer/BG/VBoxContainer/Content/ChosenCards"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 text = "YOUR DECK HERE
 "
+horizontal_alignment = 1
 
-[node name="DeckRow" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/ChosenCards"]
+[node name="DeckRow" type="HBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content/ChosenCards"]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 32
 alignment = 1
 
-[node name="StockCards" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer"]
+[node name="StockCardsContainer" type="VBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 8
 theme_override_constants/separation = 5
 
-[node name="Search" type="LineEdit" parent="Control/MarginContainer/HBoxContainer/StockCards"]
+[node name="Search" type="LineEdit" parent="Control/MarginContainer/BG/VBoxContainer/Content/StockCardsContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="StockScroll" type="ScrollContainer" parent="Control/MarginContainer/HBoxContainer/StockCards"]
+[node name="StockScroll" type="ScrollContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content/StockCardsContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="StockList" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/StockCards/StockScroll"]
+[node name="StockList" type="VBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content/StockCardsContainer/StockScroll"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="ButtonsContainer" type="HBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="ConfirmDeck" type="Button" parent="Control/MarginContainer/HBoxContainer2"]
+[node name="ConfirmDeck" type="Button" parent="Control/MarginContainer/BG/VBoxContainer/ButtonsContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 text = "CONFIRM DECK
 "
 
-[node name="Cancel" type="Button" parent="Control/MarginContainer/HBoxContainer2"]
+[node name="Cancel" type="Button" parent="Control/MarginContainer/BG/VBoxContainer/ButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "BACK TO MAP"
 

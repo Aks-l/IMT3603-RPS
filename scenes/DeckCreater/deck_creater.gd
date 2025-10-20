@@ -9,13 +9,13 @@ const MAX_TOTAL := 15
 const MAX_UNIQUE_TYPES := 5
 
 #ui node path
-@onready var title_label := $"Control/MarginContainer/HBoxContainer/ChosenCards/YourDeck"
-@onready var deck_row := $"Control/MarginContainer/HBoxContainer/ChosenCards/DeckRow"
-@onready var search_box := $"Control/MarginContainer/HBoxContainer/StockCards/Search"
-@onready var stock_scroll := $"Control/MarginContainer/HBoxContainer/StockCards/StockScroll"
-@onready var stock_list := $"Control/MarginContainer/HBoxContainer/StockCards/StockScroll/StockList"
-@onready var confirm_button := $"Control/MarginContainer/HBoxContainer2/ConfirmDeck"
-@onready var cancel_button := $"Control/MarginContainer/HBoxContainer2/Cancel"
+@onready var title_label := %YourDeck
+@onready var deck_row := %DeckRow
+@onready var search_box := %Search
+@onready var stock_scroll := %StockScroll
+@onready var stock_list := %StockList
+@onready var confirm_button := %ConfirmDeck
+@onready var cancel_button := %Cancel
 
 @onready var cam := $Control/Cam
 
