@@ -1,17 +1,18 @@
-[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://event_fork"]
+[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://bha1n46hx4nsk"]
 
-[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
-[ext_resource type="Resource" uid="uid://fork_left" path="res://data/events/events/three_paths/option_left.tres" id="2_left"]
-[ext_resource type="Resource" uid="uid://fork_right" path="res://data/events/events/three_paths/option_right.tres" id="3_right"]
-[ext_resource type="Resource" uid="uid://fork_middle" path="res://data/events/events/three_paths/option_middle.tres" id="4_middle"]
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_mtxvr"]
+[ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://c7khctu1rgh65" path="res://data/events/events/three_paths/option_left.tres" id="2_left"]
+[ext_resource type="Resource" uid="uid://ce4kynp8l4vxg" path="res://data/events/events/three_paths/option_right.tres" id="3_right"]
+[ext_resource type="Resource" uid="uid://cft04ug08c0hs" path="res://data/events/events/three_paths/option_middle.tres" id="4_middle"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="5_lndkx"]
 
 [resource]
 script = ExtResource("1_script")
 id = 17
 event_name = "Three Paths"
-image = null
 description = "Three paths diverge, each marked with a hand sign: Rock leads to mountains, Paper to libraries, Scissors to dueling grounds. Choose your destiny."
-options = Array[Resource]([ExtResource("2_left"), ExtResource("3_right"), ExtResource("4_middle")])
+options = Array[ExtResource("1_mtxvr")]([ExtResource("2_left"), ExtResource("3_right"), ExtResource("4_middle")])
 min_gold = 0
-required_items = []
+required_items = Array[ExtResource("5_lndkx")]([])
 weight = 1.0

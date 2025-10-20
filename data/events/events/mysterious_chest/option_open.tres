@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="EventOptionData" load_steps=3 format=3 uid="uid://chest_open"]
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=5 format=3 uid="uid://bbdirxw5ncjf8"]
 
-[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
-[ext_resource type="Script" path="res://data/events/scripts/MysteryBoxScript.gd" id="2_script"]
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="2_is4re"]
+[ext_resource type="Script" uid="uid://d08fdg4d15lay" path="res://data/events/scripts/MysteryBoxScript.gd" id="2_script"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="3_pdudu"]
 
 [resource]
 script = ExtResource("1_script")
@@ -9,13 +11,12 @@ option_text = "Open the chest"
 outcome_description = "You carefully open the mysterious chest..."
 gold_reward = 0
 health_change = 0
-items_received = []
-hands_received = []
-removes_items = []
+items_received = Array[ExtResource("3_pdudu")]([])
+hands_received = Array[ExtResource("2_is4re")]([])
+removes_items = Array[ExtResource("3_pdudu")]([])
 gold_cost = 0
 next_event_id = -1
 triggers_combat = false
-combat_enemy = null
 custom_script = ExtResource("2_script")
 custom_code = ""
 custom_data = {}

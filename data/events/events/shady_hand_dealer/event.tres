@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://dvupssge04wln" path="res://data/events/events/sprites/shady_hand_dealer.png" id="1_3l06q"]
 [ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
-[ext_resource type="Resource" path="res://data/events/events/shady_hand_dealer/option_buy.tres" id="2_buy"]
+[ext_resource type="Resource" uid="uid://dwdmq5ok176nm" path="res://data/events/events/shady_hand_dealer/option_buy.tres" id="2_buy"]
 [ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="2_h8ley"]
-[ext_resource type="Resource" path="res://data/events/events/shady_hand_dealer/option_haggle.tres" id="3_haggle"]
-[ext_resource type="Resource" path="res://data/events/events/shady_hand_dealer/option_accuse.tres" id="4_accuse"]
+[ext_resource type="Resource" uid="uid://cxdbe7uedoqp5" path="res://data/events/events/shady_hand_dealer/option_haggle.tres" id="3_haggle"]
+[ext_resource type="Resource" uid="uid://dgjl4snaw4xbf" path="res://data/events/events/shady_hand_dealer/option_accuse.tres" id="4_accuse"]
 [ext_resource type="Resource" uid="uid://b12xcgrkbwknw" path="res://data/events/events/shady_hand_dealer/option_walk.tres" id="5_walk"]
 [ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="7_7bl0p"]
 

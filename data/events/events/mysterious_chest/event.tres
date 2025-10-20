@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_b5bxf"]
 [ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
-[ext_resource type="Resource" path="res://data/events/events/mysterious_chest/option_open.tres" id="2_open"]
-[ext_resource type="Resource" path="res://data/events/events/mysterious_chest/option_examine.tres" id="3_examine"]
-[ext_resource type="Resource" path="res://data/events/events/mysterious_chest/option_leave.tres" id="4_leave"]
+[ext_resource type="Resource" uid="uid://bbdirxw5ncjf8" path="res://data/events/events/mysterious_chest/option_open.tres" id="2_open"]
+[ext_resource type="Resource" uid="uid://b37mmpymykjjk" path="res://data/events/events/mysterious_chest/option_examine.tres" id="3_examine"]
+[ext_resource type="Resource" uid="uid://cs0ovrw27hyk" path="res://data/events/events/mysterious_chest/option_leave.tres" id="4_leave"]
 [ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="5_rcubg"]
 
 [resource]

@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://c1pynht0q5yqd" path="res://data/events/events/sprites/rps_gambler.png" id="1_hcj5v"]
 [ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
-[ext_resource type="Resource" path="res://data/events/events/rps_gambler/option_bet30.tres" id="2_bet30"]
+[ext_resource type="Resource" uid="uid://bjnvnj5wuilje" path="res://data/events/events/rps_gambler/option_bet30.tres" id="2_bet30"]
 [ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="2_sl532"]
-[ext_resource type="Resource" path="res://data/events/events/rps_gambler/option_bet50.tres" id="3_bet50"]
-[ext_resource type="Resource" path="res://data/events/events/rps_gambler/option_decline.tres" id="4_decline"]
+[ext_resource type="Resource" uid="uid://c0v0f2ysn7m62" path="res://data/events/events/rps_gambler/option_bet50.tres" id="3_bet50"]
+[ext_resource type="Resource" uid="uid://ylbadhmjspmr" path="res://data/events/events/rps_gambler/option_decline.tres" id="4_decline"]
 [ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="6_1e6f1"]
 
 [resource]

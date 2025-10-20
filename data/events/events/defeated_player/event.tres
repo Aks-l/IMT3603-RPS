@@ -1,17 +1,18 @@
-[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://event_injured"]
+[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://dvjj5l863hxi7"]
 
-[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
-[ext_resource type="Resource" uid="uid://traveler_help" path="res://data/events/events/defeated_player/option_help.tres" id="2_help"]
-[ext_resource type="Resource" uid="uid://traveler_rob" path="res://data/events/events/defeated_player/option_rob.tres" id="3_rob"]
-[ext_resource type="Resource" uid="uid://traveler_ignore" path="res://data/events/events/defeated_player/option_ignore.tres" id="4_ignore"]
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_8th7q"]
+[ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://u1xk0rtfok66" path="res://data/events/events/defeated_player/option_help.tres" id="2_help"]
+[ext_resource type="Resource" uid="uid://8p3ghwve1sxe" path="res://data/events/events/defeated_player/option_rob.tres" id="3_rob"]
+[ext_resource type="Resource" uid="uid://dos280t3ky0aj" path="res://data/events/events/defeated_player/option_ignore.tres" id="4_ignore"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="5_hmg40"]
 
 [resource]
 script = ExtResource("1_script")
 id = 13
 event_name = "Defeated Player"
-image = null
 description = "You find another RPS player collapsed on the ground. They lost all their hands in a brutal match and need help."
-options = Array[Resource]([ExtResource("2_help"), ExtResource("3_rob"), ExtResource("4_ignore")])
+options = Array[ExtResource("1_8th7q")]([ExtResource("2_help"), ExtResource("3_rob"), ExtResource("4_ignore")])
 min_gold = 0
-required_items = []
+required_items = Array[ExtResource("5_hmg40")]([])
 weight = 1.1

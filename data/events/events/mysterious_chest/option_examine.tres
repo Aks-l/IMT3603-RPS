@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://chest_examine"]
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=4 format=3 uid="uid://b37mmpymykjjk"]
 
-[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_n6myy"]
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="2_vrkuj"]
 
 [resource]
 script = ExtResource("1_script")
@@ -8,10 +10,11 @@ option_text = "Examine it carefully first"
 outcome_description = "You carefully inspect the chest for traps. It seems safe... but you're still cautious. You decide to leave it."
 gold_reward = 10
 health_change = 0
-items_received = []
-hands_received = []
-removes_items = []
+items_received = Array[ExtResource("2_vrkuj")]([])
+hands_received = Array[ExtResource("1_n6myy")]([])
+removes_items = Array[ExtResource("2_vrkuj")]([])
 gold_cost = 0
 next_event_id = -1
 triggers_combat = false
-combat_enemy = null
+custom_code = ""
+custom_data = {}

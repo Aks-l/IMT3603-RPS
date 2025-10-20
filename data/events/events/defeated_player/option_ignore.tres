@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="EventOptionData" load_steps=2 format=3 uid="uid://traveler_ignore"]
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=4 format=3 uid="uid://dos280t3ky0aj"]
 
-[ext_resource type="Script" path="res://data/events/EventOptionData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_bkbky"]
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="2_748op"]
 
 [resource]
 script = ExtResource("1_script")
@@ -8,10 +10,11 @@ option_text = "Keep walking"
 outcome_description = "You pretend not to see them and continue on your way. Not your problem."
 gold_reward = 0
 health_change = 0
-items_received = []
-hands_received = []
-removes_items = []
+items_received = Array[ExtResource("2_748op")]([])
+hands_received = Array[ExtResource("1_bkbky")]([])
+removes_items = Array[ExtResource("2_748op")]([])
 gold_cost = 0
 next_event_id = -1
 triggers_combat = false
-combat_enemy = null
+custom_code = ""
+custom_data = {}
