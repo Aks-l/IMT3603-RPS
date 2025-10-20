@@ -1,17 +1,18 @@
-[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://event_chest"]
+[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://bpwr17iu8uudj"]
 
-[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
-[ext_resource type="Resource" uid="uid://chest_open" path="res://data/events/events/mysterious_chest/option_open.tres" id="2_open"]
-[ext_resource type="Resource" uid="uid://chest_examine" path="res://data/events/events/mysterious_chest/option_examine.tres" id="3_examine"]
-[ext_resource type="Resource" uid="uid://chest_leave" path="res://data/events/events/mysterious_chest/option_leave.tres" id="4_leave"]
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_b5bxf"]
+[ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/events/events/mysterious_chest/option_open.tres" id="2_open"]
+[ext_resource type="Resource" path="res://data/events/events/mysterious_chest/option_examine.tres" id="3_examine"]
+[ext_resource type="Resource" path="res://data/events/events/mysterious_chest/option_leave.tres" id="4_leave"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="5_rcubg"]
 
 [resource]
 script = ExtResource("1_script")
 id = 11
 event_name = "Mysterious Chest"
-image = null
-description = "You find a chest with three hand-shaped locks: Rock, Paper, and Scissors. The right combination might open it, or trigger a trap."
-options = Array[Resource]([ExtResource("2_open"), ExtResource("3_examine"), ExtResource("4_leave")])
+description = "You find a chest with three hand-shaped locks: You recognize the imprints, though you cannot remember where from where. The right combination might open it, or trigger a trap."
+options = Array[ExtResource("1_b5bxf")]([ExtResource("2_open"), ExtResource("3_examine"), ExtResource("4_leave")])
 min_gold = 0
-required_items = []
+required_items = Array[ExtResource("5_rcubg")]([])
 weight = 1.0

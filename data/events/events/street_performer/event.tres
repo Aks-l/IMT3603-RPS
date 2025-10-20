@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="EventData" load_steps=6 format=3 uid="uid://event_performer"]
 
 [ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
-[ext_resource type="Resource" uid="uid://performer_tip5" path="res://data/events/events/hand_sign_master/option_tip5.tres" id="2_tip5"]
-[ext_resource type="Resource" uid="uid://performer_tip20" path="res://data/events/events/hand_sign_master/option_tip20.tres" id="3_tip20"]
-[ext_resource type="Resource" uid="uid://performer_watch" path="res://data/events/events/hand_sign_master/option_watch.tres" id="4_watch"]
-[ext_resource type="Resource" uid="uid://performer_move" path="res://data/events/events/hand_sign_master/option_move.tres" id="5_move"]
+[ext_resource type="Resource" uid="uid://performer_tip5" path="res://data/events/events/street_performer/option_tip5.tres" id="2_tip5"]
+[ext_resource type="Resource" uid="uid://performer_tip20" path="res://data/events/events/street_performer/option_tip20.tres" id="3_tip20"]
+[ext_resource type="Resource" uid="uid://performer_watch" path="res://data/events/events/street_performer/option_watch.tres" id="4_watch"]
+[ext_resource type="Resource" uid="uid://performer_move" path="res://data/events/events/street_performer/option_move.tres" id="5_move"]
 
 [resource]
 script = ExtResource("1_script")

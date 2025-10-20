@@ -1,18 +1,21 @@
-[gd_resource type="Resource" script_class="EventData" load_steps=6 format=3 uid="uid://event_trader"]
+[gd_resource type="Resource" script_class="EventData" load_steps=9 format=3 uid="uid://y8fwiy8rua4a"]
 
-[ext_resource type="Script" path="res://data/events/EventData.gd" id="1_script"]
-[ext_resource type="Resource" uid="uid://trader_buy" path="res://data/events/events/shady_hand_dealer/option_buy.tres" id="2_buy"]
-[ext_resource type="Resource" uid="uid://trader_haggle" path="res://data/events/events/shady_hand_dealer/option_haggle.tres" id="3_haggle"]
-[ext_resource type="Resource" uid="uid://trader_accuse" path="res://data/events/events/shady_hand_dealer/option_accuse.tres" id="4_accuse"]
-[ext_resource type="Resource" uid="uid://trader_walk" path="res://data/events/events/shady_hand_dealer/option_walk.tres" id="5_walk"]
+[ext_resource type="Texture2D" uid="uid://dvupssge04wln" path="res://data/events/events/sprites/shady_hand_dealer.png" id="1_3l06q"]
+[ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/events/events/shady_hand_dealer/option_buy.tres" id="2_buy"]
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="2_h8ley"]
+[ext_resource type="Resource" path="res://data/events/events/shady_hand_dealer/option_haggle.tres" id="3_haggle"]
+[ext_resource type="Resource" path="res://data/events/events/shady_hand_dealer/option_accuse.tres" id="4_accuse"]
+[ext_resource type="Resource" uid="uid://b12xcgrkbwknw" path="res://data/events/events/shady_hand_dealer/option_walk.tres" id="5_walk"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="7_7bl0p"]
 
 [resource]
 script = ExtResource("1_script")
 id = 15
 event_name = "Shady Hand Dealer"
-image = null
+image = ExtResource("1_3l06q")
 description = "A suspicious dealer offers you 'rare hand techniques'. 'Rock that never loses! Paper that cuts everything! Get them before authorities find out!' Something seems off."
-options = Array[Resource]([ExtResource("2_buy"), ExtResource("3_haggle"), ExtResource("4_accuse"), ExtResource("5_walk")])
+options = Array[ExtResource("2_h8ley")]([ExtResource("2_buy"), ExtResource("3_haggle"), ExtResource("4_accuse"), ExtResource("5_walk")])
 min_gold = 0
-required_items = []
+required_items = Array[ExtResource("7_7bl0p")]([])
 weight = 1.0
