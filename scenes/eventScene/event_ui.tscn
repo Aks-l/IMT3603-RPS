@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2k7yh8xwqv3d"]
+[gd_scene load_steps=4 format=3 uid="uid://c2k7yh8xwqv3d"]
 
 [ext_resource type="Script" uid="uid://u61molel0mfv" path="res://scenes/eventScene/event_ui.gd" id="1_6v8nh"]
 [ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="2_2hdqb"]
+[ext_resource type="StyleBox" uid="uid://1a2c4jadlnke" path="res://ui/paneltextures/event_panel_stylebox.tres" id="3_stylebox"]
 
 [node name="EventUI" type="Control"]
 layout_mode = 3
@@ -18,7 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.7)
+color = Color(0, 0, 0, 0.9)
 
 [node name="EventPanel" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(400, 0)
@@ -36,6 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("3_stylebox")
 
 [node name="MarginContainer" type="MarginContainer" parent="EventPanel"]
 layout_mode = 2
@@ -87,6 +89,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("3_stylebox")
 
 [node name="MarginContainer" type="MarginContainer" parent="OutcomePanel"]
 layout_mode = 2
