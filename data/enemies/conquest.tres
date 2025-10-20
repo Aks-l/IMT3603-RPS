@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://7o8l4pdst5cw"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_k41on"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_33pn8"]
+
+[resource]
+script = ExtResource("2_33pn8")
+id = 60
+name = "Conquest"
+description = "The first horseman"
+discovered = false
+biome = "neutral"
+tier = 1
+moveset = Array[ExtResource("1_k41on")]([])
+fixed_moveset = Array[ExtResource("1_k41on")]([])
+weighted_moveset = {}
+reactions = {}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

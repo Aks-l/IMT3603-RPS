@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bgysleh1agms1"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_aqvxe"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_060nf"]
+
+[resource]
+script = ExtResource("2_060nf")
+id = 41
+name = "Roofstreat"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+moveset = Array[ExtResource("1_aqvxe")]([])
+fixed_moveset = Array[ExtResource("1_aqvxe")]([])
+weighted_moveset = {}
+reactions = {}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"
