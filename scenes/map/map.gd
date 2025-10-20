@@ -220,8 +220,24 @@ func _on_encounter_finished(result):
 func _on_deck_button_pressed() -> void:
 	print("Opening deck builder")
 	
-	# Switch to deck creator scene - it will return to map on its own
-	get_tree().change_scene_to_file.call_deferred("res://scenes/DeckCreater/deck_creater.tscn")
+	# Disable map interaction and hide map
+	map_interaction_enabled = false
+	hide()
+	
+	# Spawn deck creator
+	var deck_scene := preload("res://scenes/DeckCreater/deck_creater.tscn")
+	var deck_ui := deck_scene.instantiate()
+	get_tree().root.add_child(deck_ui)
+	
+	# Set up the deck creator
+	deck_ui.set_owned_hands(Globals.inventory)
+	
+	# Connect to close signal
+	deck_ui.tree_exited.connect(func():
+		map_interaction_enabled = true
+		show()
+		print("[Map] Deck builder closed, map interaction restored")
+	)
 
 #func _on_deck_confirmed(deck: Array[HandData]) -> void:
 #	print("Deck confirmed with %d cards" % deck.size())

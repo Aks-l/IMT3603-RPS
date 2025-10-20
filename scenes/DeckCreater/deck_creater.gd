@@ -221,7 +221,7 @@ func _on_confirm_pressed() -> void:
 	Globals.set_current_deck(deck_for_globals)
 	deck_confirmed.emit(deck_for_globals)
 	print("[DeckCreator] Deck confirmed with %d unique cards" % deck_for_globals.size())
-	get_tree().change_scene_to_file.call_deferred("res://scenes/map/map.tscn")
+	queue_free()
 
 
 func _on_cancel_pressed() -> void:
@@ -234,7 +234,7 @@ func _on_cancel_pressed() -> void:
 		print("no changs made - return to menu")
 	else:
 		print("unsaved chagned detected:", diff)
-	get_tree().change_scene_to_file.call_deferred("res://scenes/map/map.tscn")
+	queue_free()
 
 # Returns a dictionary of cards that differ between two decks
 func get_deck_difference(full: Dictionary[HandData, int], subset: Dictionary[HandData, int]) -> Dictionary:
