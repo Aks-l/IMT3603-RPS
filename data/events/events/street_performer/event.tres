@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=9 format=3 uid="uid://carxf2en71h5l"]
+
+[ext_resource type="Texture2D" uid="uid://b4y1w36p53c73" path="res://data/events/events/sprites/street_performer.png" id="1_ix75a"]
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_r0ubc"]
+[ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://corhi674161vp" path="res://data/events/events/street_performer/option_tip5.tres" id="2_tip5"]
+[ext_resource type="Resource" uid="uid://cgyse0j3qrysy" path="res://data/events/events/street_performer/option_tip20.tres" id="3_tip20"]
+[ext_resource type="Resource" uid="uid://d4e8qas7a1ose" path="res://data/events/events/street_performer/option_watch.tres" id="4_watch"]
+[ext_resource type="Resource" uid="uid://k2qx66r37fr" path="res://data/events/events/street_performer/option_move.tres" id="5_move"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="6_ix75a"]
+
+[resource]
+script = ExtResource("1_script")
+id = 14
+event_name = "Street performer"
+image = ExtResource("1_ix75a")
+description = "A street performer demonstrates incredible speed forming Rock, Paper, and Scissors signs. Their hands are a blur! The crowd is amazed."
+options = Array[ExtResource("1_r0ubc")]([ExtResource("2_tip5"), ExtResource("3_tip20"), ExtResource("4_watch"), ExtResource("5_move")])
+min_gold = 0
+required_items = Array[ExtResource("6_ix75a")]([])
+weight = 0.7
