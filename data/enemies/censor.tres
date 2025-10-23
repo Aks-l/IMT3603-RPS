@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_u8cb6"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_qkigg"]
-[ext_resource type="Texture2D" uid="uid://cvsvnwqr8fxwt" path="res://data/enemies/sprites/theChainling.png" id="3_hvdqn"]
+[ext_resource type="Texture2D" uid="uid://blk3ln8ab7xpi" path="res://data/enemies/sprites/censor.png" id="3_hvdqn"]
 
 [resource]
 script = ExtResource("2_qkigg")
 id = 6
 sprite = ExtResource("3_hvdqn")
-name = "The Chengeling "
+name = "Censor"
 description = ""
 discovered = false
 biome = "neutral"
