@@ -4,6 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://1a2c4jadlnke" path="res://ui/paneltextures/event_panel_stylebox.tres" id="2_xt3jj"]
 
 [node name="Almanac" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_0d67t")
 
 [node name="Almanac" type="Control" parent="."]
