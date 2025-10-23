@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=9 format=3 uid="uid://xg3k2mroroue"]
+
+[ext_resource type="Script" uid="uid://dsvgfp6e5drp1" path="res://data/events/EventData.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://earyf6s20guf" path="res://data/events/events/sprites/training_dojo.png" id="1_shudb"]
+[ext_resource type="Resource" uid="uid://c1aa00acclra1" path="res://data/events/events/training_dojo/option_train.tres" id="2_train"]
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="2_u203n"]
+[ext_resource type="Resource" uid="uid://dba5t8lewclby" path="res://data/events/events/training_dojo/option_intense.tres" id="3_intense"]
+[ext_resource type="Resource" uid="uid://jtkq7t5jmc2" path="res://data/events/events/training_dojo/option_test.tres" id="4_test"]
+[ext_resource type="Resource" uid="uid://ck6vvw0xj6cuy" path="res://data/events/events/training_dojo/option_skip.tres" id="5_skip"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="7_32qgx"]
+
+[resource]
+script = ExtResource("1_script")
+id = 19
+event_name = "Training Dojo"
+image = ExtResource("1_shudb")
+description = "You find a training dojo where masters practice their hand techniques. Perhaps you can learn something here."
+options = Array[ExtResource("2_u203n")]([ExtResource("2_train"), ExtResource("3_intense"), ExtResource("4_test"), ExtResource("5_skip")])
+min_gold = 0
+required_items = Array[ExtResource("7_32qgx")]([])
+weight = 0.7

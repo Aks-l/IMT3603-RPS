@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=4 format=3 uid="uid://8p3ghwve1sxe"]
+
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_v7e35"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="2_5ldge"]
+
+[resource]
+script = ExtResource("1_script")
+option_text = "Rob them while they're helpless"
+outcome_description = "You take their coin pouch while they're too weak to resist. As you leave, you hear them crying out for help. You feel terrible."
+gold_reward = 35
+health_change = -1
+items_received = Array[ExtResource("2_5ldge")]([])
+hands_received = Array[ExtResource("1_v7e35")]([])
+removes_items = Array[ExtResource("2_5ldge")]([])
+gold_cost = 0
+next_event_id = -1
+triggers_combat = false
+custom_code = ""
+custom_data = {}
