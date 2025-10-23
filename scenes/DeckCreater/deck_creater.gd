@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 signal deck_confirmed(deck: Array[HandData])
  #emits finalized deck as array
@@ -9,15 +9,15 @@ const MAX_TOTAL := 15
 const MAX_UNIQUE_TYPES := 5
 
 #ui node path
-@onready var title_label := $"MarginContainer/HBoxContainer/ChosenCards/YourDeck"
-@onready var deck_row := $"MarginContainer/HBoxContainer/ChosenCards/DeckRow"
-@onready var search_box := $"MarginContainer/HBoxContainer/StockCards/Search"
-@onready var stock_scroll := $"MarginContainer/HBoxContainer/StockCards/StockScroll"
-@onready var stock_list := $"MarginContainer/HBoxContainer/StockCards/StockScroll/StockList"
-@onready var confirm_button := $"MarginContainer/HBoxContainer2/ConfirmDeck"
-@onready var cancel_button := $"MarginContainer/HBoxContainer2/Cancel"
+@onready var title_label := %YourDeck
+@onready var deck_row := %DeckRow
+@onready var search_box := %Search
+@onready var stock_scroll := %StockScroll
+@onready var stock_list := %StockList
+@onready var confirm_button := %ConfirmDeck
+@onready var cancel_button := %Cancel
 
-@onready var cam := $Cam
+@onready var cam := $Control/Cam
 
 
 #data structure
@@ -25,15 +25,17 @@ var _owned_counts : Dictionary[HandData, int] = {}
 var _deck_list : Array[HandData] = []
 var _original_deck : Dictionary = {}
 
+	
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	search_box.text_changed.connect(_on_search_changed)
 	confirm_button.pressed.connect(_on_confirm_pressed)
 	cancel_button.pressed.connect(_on_cancel_pressed)
 	cam.make_current()
-	
+	hide()
 	#load previously confirmed deck into working memory
 	_original_deck = Globals.get_current_deck().duplicate(true)
-	
+
 	if Globals.inventory.size() > 0:
 		set_owned_hands(Globals.inventory)
 	else: 
@@ -221,7 +223,7 @@ func _on_confirm_pressed() -> void:
 	Globals.set_current_deck(deck_for_globals)
 	deck_confirmed.emit(deck_for_globals)
 	print("[DeckCreator] Deck confirmed with %d unique cards" % deck_for_globals.size())
-	queue_free()
+	_hide_overlay()
 
 
 func _on_cancel_pressed() -> void:
@@ -234,7 +236,7 @@ func _on_cancel_pressed() -> void:
 		print("no changs made - return to menu")
 	else:
 		print("unsaved chagned detected:", diff)
-	queue_free()
+	_hide_overlay()
 
 # Returns a dictionary of cards that differ between two decks
 func get_deck_difference(full: Dictionary[HandData, int], subset: Dictionary[HandData, int]) -> Dictionary:
@@ -266,3 +268,15 @@ func _move_card_right(index: int) -> void:
 	_deck_list.remove_at(index)
 	_deck_list.insert(index + 1, item)
 	_refresh_deck_view()
+
+func _show_overlay():
+	get_tree().paused = true
+	if Globals.inventory.size() > 0:
+		set_owned_hands(Globals.inventory)
+	_refresh_stock_ui()
+	show()
+
+func _hide_overlay():
+	get_tree().paused = false
+	hide()
+	
