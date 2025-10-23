@@ -4,8 +4,7 @@ extends Camera2D
 @export var zoom_step := 0.1                     # how fast to zoom
 @export var zoom_min := 0.5
 @export var zoom_max := 2.0
-
-@export var bounds := Vector4(-500, -500, 1500, 1500) # L, T, R, B
+@export var bounds := Vector4(-1000, -500, 1000, 1000)
 
 var _dragging := false
 var _last_mouse := Vector2.ZERO
@@ -15,6 +14,7 @@ func _ready() -> void:
 	limit_top    = int(bounds.y)
 	limit_right  = int(bounds.z)
 	limit_bottom = int(bounds.w)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Start/stop dragging

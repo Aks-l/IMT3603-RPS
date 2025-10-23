@@ -17,7 +17,6 @@ encounter_scene = ExtResource("2_tqkkf")
 
 [node name="Cam" type="Camera2D" parent="."]
 script = ExtResource("3_a2pkv")
-bounds = Vector4(-1000, -500, 1000, 1500)
 
 [node name="DeckButton" type="Button" parent="."]
 anchors_preset = 1
