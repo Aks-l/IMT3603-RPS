@@ -1,5 +1,5 @@
 extends CanvasLayer
-@onready var grid: GridContainer = $Almanac/Margin/VBoxContainer/Container/Grid
+@onready var grid: GridContainer = %Grid
 @onready var see_enemies = %Enemies
 @onready var see_hands = %Hands
 @onready var back = %Back
