@@ -1,49 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp3d2glfnjbps"]
+[gd_scene load_steps=3 format=3 uid="uid://cp3d2glfnjbps"]
 
 [ext_resource type="Script" uid="uid://dis86gkn12vqn" path="res://scenes/almanac/almanac.gd" id="1_0d67t"]
+[ext_resource type="StyleBox" uid="uid://1a2c4jadlnke" path="res://ui/paneltextures/event_panel_stylebox.tres" id="2_xt3jj"]
 
-[node name="Almanac" type="Control"]
+[node name="Almanac" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_0d67t")
+
+[node name="Almanac" type="Control" parent="."]
+custom_minimum_size = Vector2(192, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0d67t")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="Almanac"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
 
-[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Background" type="PanelContainer" parent="Almanac/Margin"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_xt3jj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Almanac/Margin/Background"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Almanac/Margin/Background/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Enemies" type="Button" parent="VBoxContainer/Buttons"]
+[node name="Buttons" type="HBoxContainer" parent="Almanac/Margin/Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Enemies" type="Button" parent="Almanac/Margin/Background/MarginContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Enemies"
 
-[node name="Hands" type="Button" parent="VBoxContainer/Buttons"]
+[node name="Hands" type="Button" parent="Almanac/Margin/Background/MarginContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Hands"
 
-[node name="Container" type="ScrollContainer" parent="VBoxContainer"]
+[node name="Container" type="ScrollContainer" parent="Almanac/Margin/Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="Grid" type="GridContainer" parent="VBoxContainer/Container"]
+[node name="Grid" type="GridContainer" parent="Almanac/Margin/Background/MarginContainer/VBoxContainer/Container"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 5
 
-[node name="Back" type="Button" parent="VBoxContainer"]
+[node name="Back" type="Button" parent="Almanac/Margin/Background/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"

@@ -17,7 +17,7 @@ func _cleanup_overlays() -> void:
 		map.queue_free()
 
 func _on_almanac_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/almanac/almanac.tscn")
+	AlmanacOverlay._show_overlay()
 
 func _on_play_pressed() -> void:
 	Globals.reset_run()

@@ -15,6 +15,9 @@ extends Node2D
 @onready var encounters_root := $Encounters
 @onready var background := $Background
 @onready var deck_button: Button = $DeckButton
+@onready var almanac_button: Button = $AlmanacButton
+
+var almanac_ui: Control
 
 var layer_ids = []
 var counts = []
@@ -28,8 +31,11 @@ var map_interaction_enabled := true
 
 
 func _ready():
-	EncounterHandler.encounter_finished.connect(_on_encounter_finished)
+	EncounterHandler.encounter_finished.connect(_on_encounter_finished)	
+	deck_button.pressed.connect(_on_deck_button_pressed)
+	almanac_button.pressed.connect(_on_almanac_button_pressed)
 	setup()
+	$Cam.make_current()
 
 func setup():
 	_generate()
@@ -84,7 +90,7 @@ func _generate():
 			w = 1
 		counts.append(w)
 
-	var origin := Vector2(120, 120)
+	var origin := Vector2(0, 0)
 	for i in range(layers):
 		var ids = []
 		var count = counts[i]
@@ -321,60 +327,8 @@ func _on_encounter_finished(result):
 
 func _on_deck_button_pressed() -> void:
 	print("Opening deck builder")
-	
-	# Disable map interaction and hide map
-	map_interaction_enabled = false
-	set_process_mode(PROCESS_MODE_DISABLED)
-	hide()
-	
-	#Hide any active events (they're children of root, not map)
-	var root = get_tree().root
-	var hidden_events = []
-	for child in root.get_children():
-		if child is Control and child.has_method("display_event"):
-			child.hide()
-			hidden_events.append(child)
-	
-	# Spawn deck creator
-	var deck_scene := preload("res://scenes/DeckCreater/deck_creater.tscn")
-	var deck_ui := deck_scene.instantiate()
-	root.add_child(deck_ui)
-	
-	# Set up the deck creator
-	deck_ui.set_owned_hands(Globals.inventory)
-	
-	# Connect to close signal
-	deck_ui.tree_exited.connect(func():
-		map_interaction_enabled = true
-		set_process_mode(PROCESS_MODE_INHERIT)
-		show()
-		
-		#Restore hidden events
-		for event in hidden_events:
-			if is_instance_valid(event):
-				event.show()
-		
-		print("[Map] Deck builder closed, map interaction restored")
-	)
-	# Connect to close signal
-	deck_ui.tree_exited.connect(func():
-		map_interaction_enabled = true
-		set_process_mode(PROCESS_MODE_INHERIT)
-		show()
-		
-		#Restore hidden events
-		for event in hidden_events:
-			if is_instance_valid(event):
-				event.show()
-		
-		print("[Map] Deck builder closed, map interaction restored")
-	)
+	DeckCreater._show_overlay()
 
-#func _on_deck_confirmed(deck: Array[HandData]) -> void:
-#	print("Deck confirmed with %d cards" % deck.size())
-#	Globals.current_deck = deck
-
-#func _set_map_interaction(active: bool) -> void:
-#	map_interaction_enabled = active
-#	#for n in encounters_root.get_children():
-#	#	n.mouse_filter = Control.MOUSE_FILTER_PASS if active else Control.MOUSE_FILTER_IGNORE
+func _on_almanac_button_pressed() -> void:
+	print("pressed button")
+	AlmanacOverlay._show_overlay()
