@@ -196,11 +196,12 @@ func _on_option_chosen(option: EventOptionData):
 ##Apply rewards and consequences
 func _apply_standard_rewards(option: EventOptionData):
 	#Apply rewards
-	Globals.funds += option.gold_reward
+	if option.gold_reward > 0:
+		Globals.add_funds(option.gold_reward)
 	
 	if option.health_change != 0:
 		#Health will be applied by the map/encounter handler
-		pass #TODO: Implement health change application
+		Globals.player_health = clamp(Globals.player_health + option.health_change, 0, Globals.max_health)
 	
 	for item in option.items_received:
 		Globals.consumables.append(item)
@@ -210,7 +211,8 @@ func _apply_standard_rewards(option: EventOptionData):
 		Globals.inventory[hand] = current + 1
 	
 	#Handle consequences
-	Globals.funds -= option.gold_cost
+	if option.gold_cost > 0:
+		Globals.spend_funds(option.gold_cost)
 	
 	for item in option.removes_items:
 		Globals.consumables.erase(item)
@@ -245,7 +247,7 @@ func _on_continue_pressed():
 ##Sets up context for custom scripts
 func _build_context(option: EventOptionData) -> Dictionary:
 	return {
-		"player_health": null,  #TODO: Set player health
+		"player_health": Globals.player_health,
 		"globals": Globals,
 		"encounter_handler": EncounterHandler,
 		"event_ui": self,
