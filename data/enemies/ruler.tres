@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://2dmbus0alpsk"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://2dmbus0alpsk"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_57b66"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_f46nr"]
+[ext_resource type="Texture2D" uid="uid://5a47742ph830" path="res://data/enemies/sprites/ruler.png" id="3_f46nr"]
 
 [resource]
 script = ExtResource("2_f46nr")
 id = 53
-name = "RULE#32473345"
+sprite = ExtResource("3_f46nr")
+name = "RULE#32"
 description = ""
 discovered = false
 biome = "neutral"

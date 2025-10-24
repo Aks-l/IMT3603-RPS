@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://mju0ai252cid"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://mju0ai252cid"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_iyl1s"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_dpo21"]
+[ext_resource type="Texture2D" uid="uid://c2uyr7my42lcf" path="res://data/enemies/sprites/sixSeven.png" id="3_dpo21"]
 
 [resource]
 script = ExtResource("2_dpo21")
 id = 67
+sprite = ExtResource("3_dpo21")
 name = "Six Or Seven"
 description = ""
 discovered = false

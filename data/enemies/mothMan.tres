@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://hg2qb2dbf6d3"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://hg2qb2dbf6d3"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_cid3s"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_38w2t"]
+[ext_resource type="Texture2D" uid="uid://w1weqgochfjl" path="res://data/enemies/sprites/mothMan.png" id="3_38w2t"]
 
 [resource]
 script = ExtResource("2_38w2t")
 id = 48
+sprite = ExtResource("3_38w2t")
 name = "Moth Man"
 description = ""
 discovered = false

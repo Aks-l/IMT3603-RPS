@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://p284s65cogri"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://p284s65cogri"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_a1mof"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_1l4y0"]
+[ext_resource type="Texture2D" uid="uid://doo5ty0rj8n78" path="res://data/enemies/sprites/publicOpinion.png" id="3_1l4y0"]
 
 [resource]
 script = ExtResource("2_1l4y0")
 id = 27
+sprite = ExtResource("3_1l4y0")
 name = "Public Opinion"
 description = ""
 discovered = false

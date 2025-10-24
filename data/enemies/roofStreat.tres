@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bgysleh1agms1"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://bgysleh1agms1"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_aqvxe"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_060nf"]
+[ext_resource type="Texture2D" uid="uid://yta8ud5fkrm6" path="res://data/enemies/sprites/roofStreet.png" id="3_060nf"]
 
 [resource]
 script = ExtResource("2_060nf")
 id = 41
+sprite = ExtResource("3_060nf")
 name = "Roofstreat"
 description = ""
 discovered = false
