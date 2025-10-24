@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://3qcsolbc3j7v"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://3qcsolbc3j7v"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_fpfmm"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_kgj66"]
+[ext_resource type="Texture2D" uid="uid://b866g0t313aoi" path="res://data/enemies/sprites/wrecklessDriver.png" id="3_kgj66"]
 
 [resource]
 script = ExtResource("2_kgj66")
 id = 40
+sprite = ExtResource("3_kgj66")
 name = "Dave Suber"
 description = ""
 discovered = false
