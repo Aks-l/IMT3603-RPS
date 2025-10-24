@@ -11,6 +11,11 @@
 
 [node name="map" type="Node2D"]
 script = ExtResource("1_sxf4j")
+radial_layout = true
+min_endpoints = 4
+max_endpoints = 4
+radial_rings = 7
+ring_radius = 100.0
 path_texture = ExtResource("2_fcby6")
 encounter_scene = ExtResource("2_tqkkf")
 
