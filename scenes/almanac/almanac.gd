@@ -42,7 +42,7 @@ func refresh(type:String):
 	
 func _show_overlay():
 	print("opened almanac")
-	setup("enemy")
+	refresh("enemy")
 	self.visible = true
 	get_tree().paused = true
 	
