@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl7s3vpjvci7w"]
+[gd_scene load_steps=4 format=3 uid="uid://bl7s3vpjvci7w"]
 
 [ext_resource type="Script" uid="uid://cbuxum5kiertc" path="res://mainmenu.gd" id="1_natt5"]
-[ext_resource type="Texture2D" uid="uid://ckbmd3wra2eno" path="res://icon.svg" id="2_r3g3c"]
+[ext_resource type="Texture2D" uid="uid://dtpkj3mw2pyw6" path="res://scenes/RPS-logo.png" id="3_3vvtq"]
+[ext_resource type="Texture2D" uid="uid://cxuon2guqmnv8" path="res://data/events/events/sprites/defeated_player.png" id="3_r3g3c"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +12,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_natt5")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r3g3c")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -27,14 +38,24 @@ theme_override_constants/margin_bottom = 40
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="WhiteSpace" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_r3g3c")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_3vvtq")
+expand_mode = 1
 
 [node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

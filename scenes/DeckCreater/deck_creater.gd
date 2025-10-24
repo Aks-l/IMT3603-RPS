@@ -49,15 +49,6 @@ func _ready() -> void:
 	
 	# Make the search bar keep visible height
 	search_box.custom_minimum_size.y = 36
-	search_box.size_flags_vertical = Control.SIZE_FILL
-	search_box.size_flags_horizontal = Control.SIZE_FILL
-	# Let the scroll area take the leftover space
-	stock_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	stock_scroll.size_flags_horizontal = Control.SIZE_FILL
-	# StockList should not force expansion beyond content
-	stock_list.size_flags_vertical = Control.SIZE_FILL
-	stock_list.size_flags_horizontal = Control.SIZE_FILL
-
 
 #call with palyers oend hands
 func set_owned_hands(inv: Dictionary) -> void:
