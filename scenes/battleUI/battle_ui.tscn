@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5xdkuc18ywuv"]
+[gd_scene load_steps=12 format=3 uid="uid://c5xdkuc18ywuv"]
 
 [ext_resource type="Script" uid="uid://ca2yf48k0yyfh" path="res://scenes/battleUI/battle_ui.gd" id="1_8ao15"]
 [ext_resource type="PackedScene" uid="uid://df4iyjt5y1vmr" path="res://scenes/battleUI/opponent_profile.tscn" id="2_8ao15"]
@@ -10,9 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://7e1uuuf6aa0j" path="res://scenes/battleUI/health/heart_icon.tscn" id="7_npshu"]
 [ext_resource type="PackedScene" uid="uid://bur1pwoqf50ar" path="res://scenes/VictoryScene/victory.tscn" id="9_v8byk"]
 [ext_resource type="PackedScene" uid="uid://cs1m8wvcx1oph" path="res://ui/components/outcome_graph.tscn" id="10_graph"]
+[ext_resource type="PackedScene" uid="uid://bv7xwmn8ksqh1" path="res://ui/components/global_hud.tscn" id="11_globalhud"]
 
 [node name="BattleUI" type="Node3D"]
 script = ExtResource("1_8ao15")
+
+[node name="GlobalHUDLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="GlobalHUD" parent="GlobalHUDLayer" instance=ExtResource("11_globalhud")]
 
 [node name="EnemyArea" type="VBoxContainer" parent="."]
 offset_right = 40.0
