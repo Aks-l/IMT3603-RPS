@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7ycxy"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://badplcikguend"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_vulture"]
+[ext_resource type="Texture2D" uid="uid://6rvpnc1sjund" path="res://data/cards/sprites/VULTURE.png" id="2_lhdou"]
 
 [resource]
 script = ExtResource("1_vulture")
 id = 27
+sprite = ExtResource("2_lhdou")
 name = "vulture"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

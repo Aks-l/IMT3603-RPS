@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=4 format=3 uid="uid://dgjl4snaw4xbf"]
+
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_68f6a"]
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="2_6vmj8"]
+
+[resource]
+script = ExtResource("1_script")
+option_text = "Accuse them of being a fraud"
+outcome_description = "The trader gets angry and challenges you to prove your worth in combat!"
+gold_reward = 0
+health_change = 0
+items_received = Array[ExtResource("2_6vmj8")]([])
+hands_received = Array[ExtResource("1_68f6a")]([])
+removes_items = Array[ExtResource("2_6vmj8")]([])
+gold_cost = 0
+next_event_id = 20
+triggers_combat = true
+custom_code = ""
+custom_data = {}

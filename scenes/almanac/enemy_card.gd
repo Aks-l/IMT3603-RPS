@@ -10,11 +10,13 @@ var undiscovered : Texture2D = preload("res://data/unknown.png")
 # Fill one almanac entry with proper data
 func populate(d: Resource) -> void:
 	var data = d
-	print("added " + d.name)
+
 	if sprite:
 		if d.discovered:
+			print(d.name + " is discovered")
 			sprite.texture = d.sprite
 		else:
+			print(d.name + " is not discovered")
 			sprite.texture = undiscovered
 
 	if name_label:
@@ -22,6 +24,7 @@ func populate(d: Resource) -> void:
 			name_label.text = d.name
 		else:
 			name_label.text = "???"
+			
 	if description_label:
 		if d is EnemyData :
 			description_label.text = d.description

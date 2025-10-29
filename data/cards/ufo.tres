@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7yc3y"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://cf5k1vbbg4tg4"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_ufo"]
+[ext_resource type="Texture2D" uid="uid://d0brod8c7etln" path="res://data/cards/sprites/UFO.png" id="2_dihk7"]
 
 [resource]
 script = ExtResource("1_ufo")
 id = 77
+sprite = ExtResource("2_dihk7")
 name = "ufo"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

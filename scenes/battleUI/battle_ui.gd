@@ -1,18 +1,18 @@
-extends Node3D
+extends Control
 class_name BattleUI
 
 signal finished(result)
 
 @onready var hand_inventory = %HandInventory
-@onready var result_label = $ResultLabel
+@onready var result_label = %ResultLabel
 
-@onready var player_hearts = $PlayerHearts
-@onready var enemy_hearts = $EnemyHearts
+@onready var player_hearts = %PlayerHearts
+@onready var enemy_hearts = %EnemyHearts
 
-@onready var victory = $Victory
+@onready var victory = %Victory
 @onready var outcome_graph_panel = %OutcomeGraphPanel
-@onready var graph_toggle_button = $GraphToggleButton
-@onready var graph_close_button = $OutcomeGraphPanel/VBoxContainer/HBoxContainer/CloseButton
+@onready var graph_toggle_button = %GraphToggleButton
+@onready var graph_close_button = %CloseButton
 
 var _enemy: EnemyData
 var _hand: Dictionary = {}		# CHANGE THESE WHEN HANDS AND 
@@ -46,6 +46,7 @@ func _ready():
 	
 	player_hearts.set_hp(5) #health for player
 	enemy_hearts.set_hp(5) #health for enemy
+	
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
 	

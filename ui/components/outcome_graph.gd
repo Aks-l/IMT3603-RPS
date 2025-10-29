@@ -44,7 +44,7 @@ func load_hands() -> void:
 	
 	for id in hand_ids:
 		var hand = HandDatabase.hands[id]
-		if hand.id != 9999:
+		if hand.id != 9999 and hand.discovered:
 			hands.append(hand)
 
 ###Setup the UI elements for each hand

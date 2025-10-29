@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EventOptionData" load_steps=4 format=3 uid="uid://ba7c8aoo6ga8t"]
+
+[ext_resource type="Script" uid="uid://bchncrj1bqt5r" path="res://data/events/EventOptionData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_yaasl"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="2_ldqy1"]
+
+[resource]
+script = ExtResource("1_script")
+option_text = "Pray at the shrine"
+outcome_description = "You offer a prayer at the ancient shrine. A warm light surrounds you, healing your wounds."
+gold_reward = 0
+health_change = 2
+items_received = Array[ExtResource("2_ldqy1")]([])
+hands_received = Array[ExtResource("1_yaasl")]([])
+removes_items = Array[ExtResource("2_ldqy1")]([])
+gold_cost = 0
+next_event_id = -1
+triggers_combat = false
+custom_code = ""
+custom_data = {}
