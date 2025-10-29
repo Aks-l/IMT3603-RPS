@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://b7x74e450cs72"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://b7x74e450cs72"]
 
-[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_c7chp"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycwu" path="res://data/cards/camera.tres" id="1_he1v8"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc2w" path="res://data/cards/film.tres" id="2_5bw8i"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_ab8bm"]
 [ext_resource type="Texture2D" uid="uid://dnwml3mnyx7mg" path="res://data/enemies/sprites/paparazzi.png" id="3_ab8bm"]
+[ext_resource type="Resource" uid="uid://e4oalawlhjst" path="res://data/cards/helicopter.tres" id="3_l366u"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc3y" path="res://data/cards/ufo.tres" id="4_h0k4f"]
 
 [resource]
 script = ExtResource("2_ab8bm")
@@ -13,8 +16,10 @@ description = ""
 discovered = false
 biome = "neutral"
 tier = 1
-moveset = Array[ExtResource("1_c7chp")]([])
-fixed_moveset = Array[ExtResource("1_c7chp")]([])
-weighted_moveset = {}
-reactions = {}
+deck = {
+ExtResource("1_he1v8"): 3,
+ExtResource("2_5bw8i"): 3,
+ExtResource("3_l366u"): 2,
+ExtResource("4_h0k4f"): 2
+}
 metadata/_custom_type_script = "uid://by12nwuyw45yk"
