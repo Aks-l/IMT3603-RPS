@@ -27,12 +27,12 @@ func reset_deck():
 			current_deck.append(card)
 	current_deck.shuffle()
 
-func draw_card() -> HandData:
+func get_hand() -> HandData:
 	if current_deck.is_empty():
 		reset_deck()
 	
 	if current_deck.is_empty():
 		push_warning("%s has no cards in deck" % name)
-		return Globals.hands[9999] if Globals.hands.has(9999) else null
+		return null
 	
 	return current_deck.pop_back()
