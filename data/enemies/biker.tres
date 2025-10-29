@@ -1,18 +1,16 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://c3jpv82847lft"]
 
-[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_yakbv"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_sfsvi"]
+[ext_resource type="Texture2D" uid="uid://di3ayniw1vvvc" path="res://data/enemies/sprites/biker.png" id="2_yakbv"]
 
 [resource]
 script = ExtResource("2_sfsvi")
 id = 5
+sprite = ExtResource("2_yakbv")
 name = "Mike Crum"
 description = ""
 discovered = false
 biome = "neutral"
 tier = 1
-moveset = Array[ExtResource("1_yakbv")]([])
-fixed_moveset = Array[ExtResource("1_yakbv")]([])
-weighted_moveset = {}
-reactions = {}
+deck = {}
 metadata/_custom_type_script = "uid://by12nwuyw45yk"
