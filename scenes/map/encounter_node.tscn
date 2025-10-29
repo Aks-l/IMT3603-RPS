@@ -11,6 +11,8 @@ font_size = 30
 
 [node name="EncounterNode" type="Node2D"]
 script = ExtResource("1_66jac")
+encounter_id = null
+encounter_type = null
 
 [node name="NodeShape" type="Area2D" parent="."]
 

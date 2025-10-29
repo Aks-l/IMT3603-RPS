@@ -22,7 +22,10 @@ HandsDb="*res://scenes/hands_db.tscn"
 ItemDatabase="*res://autoload/ItemDatabase.gd"
 HandDatabase="*res://autoload/HandDatabase.gd"
 Globals="*res://autoload/Globals.gd"
+EventDatabase="*res://autoload/EventDatabase.gd"
 EncounterHandler="*res://autoload/encounter_handler.gd"
+AlmanacOverlay="*res://scenes/almanac/almanac.tscn"
+DeckCreater="*res://scenes/DeckCreater/deck_creater.tscn"
 
 [editor]
 

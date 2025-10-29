@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7ycww"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://bec4a1ya8som4"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_chainsaw"]
+[ext_resource type="Texture2D" uid="uid://df3saro6ogvyp" path="res://data/cards/sprites/CHAINSAW.png" id="2_fvt41"]
 
 [resource]
 script = ExtResource("1_chainsaw")
 id = 15
+sprite = ExtResource("2_fvt41")
 name = "chainsaw"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

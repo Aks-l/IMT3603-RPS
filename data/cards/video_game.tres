@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7yc40"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://c0sq3syvabwvy"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_video_game"]
+[ext_resource type="Texture2D" uid="uid://duvcskmooss3d" path="res://data/cards/sprites/VIDEOGAME.png" id="2_kf8l8"]
 
 [resource]
 script = ExtResource("1_video_game")
 id = 88
+sprite = ExtResource("2_kf8l8")
 name = "video_game"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

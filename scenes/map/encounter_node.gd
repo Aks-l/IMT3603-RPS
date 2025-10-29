@@ -67,6 +67,14 @@ func _on_area_input(_vp, event: InputEvent, _shape_idx: int) -> void:
 				
 			elif encounter_type == EncounterType.SHOP:
 				EncounterHandler.start_encounter("Shop", {})
+			
+			elif encounter_type == EncounterType.EVENT:
+				#Load a random event from EventDatabase
+				var event_data = EventDatabase.get_random_event()
+				if event_data:
+					EncounterHandler.start_encounter("Event", {"event": event_data})
+				else:
+					push_warning("[EncounterNode] No events available in EventDatabase")
 				
 			else:
 				# Any non-combat encounter goes through the director too

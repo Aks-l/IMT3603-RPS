@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7yc4s"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://bbp4lnulca1ee"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_satan"]
+[ext_resource type="Texture2D" uid="uid://jqb5vgxcpl7n" path="res://data/cards/sprites/SATAN.png" id="2_yuphh"]
 
 [resource]
 script = ExtResource("1_satan")
 id = 81
+sprite = ExtResource("2_yuphh")
 name = "satan"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

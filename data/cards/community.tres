@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=2 format=3 uid="uid://dkhxwd7w7yc1t"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://cm6si1a24q7jc"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_community"]
+[ext_resource type="Texture2D" uid="uid://benjfp440kuhf" path="res://data/cards/sprites/COMMUNITY.png" id="2_0j2xn"]
 
 [resource]
 script = ExtResource("1_community")
 id = 52
+sprite = ExtResource("2_0j2xn")
 name = "community"
-discovered = true
+discovered = false
 max_count = 15
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

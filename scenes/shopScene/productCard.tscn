@@ -18,16 +18,18 @@ offset_left = 19.0
 offset_top = 6.0
 offset_right = 20.0
 offset_bottom = 33.0
-
-[node name="Image" type="TextureRect" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+alignment = 1
 
 [node name="Item_Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Image" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
 [node name="Price_Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+horizontal_alignment = 1
