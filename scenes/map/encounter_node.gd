@@ -50,6 +50,8 @@ func _on_area_input(_vp, event: InputEvent, _shape_idx: int) -> void:
 			#TODO: Dynamic combat encounter generation
 			if encounter_type == EncounterType.COMBAT:
 				var enemy := EnemyDatabase.enemies.values().pick_random() as EnemyData
+				enemy.discovered = true
+				for hand:HandData in enemy.moveset: hand.discovered = true 
 				EncounterHandler.start_encounter("Combat", {
 					"enemy": enemy,
 					"hand": Globals.inventory,
