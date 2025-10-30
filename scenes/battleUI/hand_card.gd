@@ -11,6 +11,7 @@ var remaining: int = 0
 func setup(data: HandData, count: int) -> void:
 	hand = data
 	remaining = count
+	tooltip_text = data.name
 
 	print("HandCard setup:", hand.name)  # DEBUG
 	print("Handcard setup size:", custom_minimum_size)
