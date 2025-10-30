@@ -1,6 +1,6 @@
 extends Control
 
-var invSize = 4
+var invSize = Globals.item_inventory_size
 var itemsLoad = Globals.consumables
 
 func _ready():
