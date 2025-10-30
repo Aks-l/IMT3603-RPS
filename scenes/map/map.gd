@@ -216,7 +216,7 @@ func _on_encounter_finished(result):
 	if result.type == "Combat":
 		Globals.run_levels_completed += 1
 		Globals.biome_levels_completed += 1
-		Globals.total_levels_completed += 1 #TODO: Total-counter must be tracked across boots of the application
+		Globals.total_levels_completed += 1 #TODO: Total-counter must be tracked across reboots/runs of the application
 	if result.type == "Boss":
 		Globals.run_biomes_completed += 1
 		Globals.biome_levels_completed = 0
