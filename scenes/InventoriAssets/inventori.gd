@@ -13,7 +13,6 @@ func _setup_inventory_layout() -> void:
 	
 	#Get the ui panel and its margins
 	var panel = %Panel
-	print(panel.size)
 	var margin_container = %MarginContainer
 	
 	var margin_left = margin_container.get_theme_constant("margin_left")
