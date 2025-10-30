@@ -47,7 +47,6 @@ alignment = 1
 [node name="ChosenCards" type="VBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 20
 alignment = 1
 
 [node name="YourDeck" type="Label" parent="Control/MarginContainer/BG/VBoxContainer/Content/ChosenCards"]
@@ -61,14 +60,14 @@ horizontal_alignment = 1
 [node name="DeckRow" type="HBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content/ChosenCards"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 120
 alignment = 1
 
 [node name="StockCardsContainer" type="VBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 5
+theme_override_constants/separation = 20
 
 [node name="Search" type="LineEdit" parent="Control/MarginContainer/BG/VBoxContainer/Content/StockCardsContainer"]
 unique_name_in_owner = true
@@ -80,6 +79,7 @@ alignment = 1
 
 [node name="StockScroll" type="ScrollContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content/StockCardsContainer"]
 unique_name_in_owner = true
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -90,8 +90,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-theme_override_constants/h_separation = 30
-theme_override_constants/v_separation = 30
+theme_override_constants/h_separation = 120
+theme_override_constants/v_separation = 120
 columns = 3
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer"]

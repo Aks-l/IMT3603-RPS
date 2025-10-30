@@ -14,6 +14,8 @@ signal finished(result)
 @onready var graph_toggle_button = %GraphToggleButton
 @onready var graph_close_button = %CloseButton
 
+@onready var level_label = %LevelLabel
+
 var _enemy: EnemyData
 var _hand: Dictionary = {}		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
@@ -30,6 +32,7 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	player_hearts._draw_hearts()
 	enemy_hearts.set_hp(3) # TODO: Change to enemy.health once implemented
 	enemy_hearts._draw_hearts()
+	level_label.text = "%d - %d" % [Globals.run_biomes_completed+1, Globals.biome_levels_completed+1]
 	
 	var loaded_deck = Globals.get_current_deck()
 	if not loaded_deck.is_empty():

@@ -108,6 +108,7 @@ heart_icon_scene = ExtResource("7_npshu")
 icon_size = Vector2(32, 32)
 
 [node name="LevelLabel" type="Label" parent="Background/MarginContainer/MainContainer/BottomLayer/InfoBox"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "1-1"
 horizontal_alignment = 1
