@@ -51,7 +51,7 @@ func _on_area_input(_vp, event: InputEvent, _shape_idx: int) -> void:
 			if encounter_type == EncounterType.COMBAT:
 				var enemy := EnemyDatabase.enemies.values().pick_random() as EnemyData
 				enemy.discovered = true
-				for hand:HandData in enemy.moveset: hand.discovered = true 
+				for hand:HandData in enemy.deck.keys(): hand.discovered = true 
 				EncounterHandler.start_encounter("Combat", {
 					"enemy": enemy,
 					"hand": Globals.inventory,
@@ -61,6 +61,8 @@ func _on_area_input(_vp, event: InputEvent, _shape_idx: int) -> void:
 			elif encounter_type == EncounterType.BOSS:
 				# TODO: Choose enemy as boss, not any enemy
 				var enemy := EnemyDatabase.enemies.values().pick_random() as EnemyData
+				enemy.discovered = true
+				for hand:HandData in enemy.deck.keys(): hand.discovered = true 
 				EncounterHandler.start_encounter("Boss", {
 					"enemy": enemy,
 					"hand": Globals.inventory,
