@@ -1,36 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://dghcqvyvj8p4a"]
+[gd_scene load_steps=3 format=3 uid="uid://dghcqvyvj8p4a"]
 
 [ext_resource type="Script" uid="uid://bo4utq2av7qe8" path="res://scenes/battleUI/hand_card.gd" id="1_lomd1"]
+[ext_resource type="Texture2D" uid="uid://pc2840gm7tj7" path="res://data/cards/sprites/AIR.png" id="2_16nfe"]
 
 [node name="HandCard" type="Control"]
 layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 0
 script = ExtResource("1_lomd1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -0.5
-offset_top = -27.0
-offset_right = 0.5
 grow_horizontal = 2
-grow_vertical = 0
-alignment = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
 
 [node name="Image" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 mouse_filter = 0
-stretch_mode = 4
+texture = ExtResource("2_16nfe")
+expand_mode = 4
 
 [node name="CountLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+text = "x5"
+horizontal_alignment = 1

@@ -26,26 +26,22 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	_enemy = enemy
 	_consumables = consumables
 	
+	player_hearts.set_hp(Globals.battlehealth)
+	player_hearts._draw_hearts()
+	enemy_hearts.set_hp(3) # TODO: Change to enemy.health once implemented
+	enemy_hearts._draw_hearts()
+	
 	var loaded_deck = Globals.get_current_deck()
 	if not loaded_deck.is_empty():
 		_hand = loaded_deck
 	else:
 		_hand = hand
-	#_hand = hand if not hand.is_empty() else Globals.current_deck
-	#uses DeckBuilder to generate a deck from the available hands
-	#var deck_builder = DeckBuilder.new()
-	#_hand = deck_builder.build_deck(hand, 15) #gives limit of 15
-	#_hand = hand
 	_has_params = true
 	if _is_ready:
 		_apply()
 
 func _ready():
-	victory.visible = false
 	victory.chosen_reward.connect(queue_free)
-	
-	player_hearts.set_hp(5) #health for player
-	enemy_hearts.set_hp(5) #health for enemy
 	
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
@@ -108,6 +104,7 @@ func on_card_played(hand: HandData):
 	if enemy_hearts.get_hp() <= 0:
 		victory.visible = true
 		victory.setup(_enemy, true)
+		get_tree().paused = true
 		
 		## ONCE AN ITEM IS CHOSEN, queue_free()
 		

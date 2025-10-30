@@ -16,30 +16,7 @@ func set_inventory(hand_list: Dictionary[HandData, int]) -> void:
 	print("set_inventory called with", hand_list.size(), "hands")
 	for c in container.get_children():
 		c.queue_free()
-	
-	#group by card name
-	#var grouped := {}
-	#for hand in hand_list:
-	#	if hand.name in grouped:
-	#		grouped[hand.name].count += 1
-	#	else:
-	#		grouped[hand.name] = {
-	#			"data": hand,
-	#			"count": 1
-	#	}
-	#create on card per group
-	#for key in grouped.keys():
-	#	var entry = grouped[key]
-	#	var card := HAND_SCENE.instantiate()
-	#	container.add_child(card)
-	#	card.setup(entry.data, entry.count)
-		
-	#	var card := HAND_SCENE.instantiate()
-	#	container.add_child(card)
-	#	card.setup(hand, hand.max_count)
-	#	card.clicked.connect(_on_card_clicked)
-	#	print("Added card to container:", entry.data.name, "x ", entry.count)
-		
+
 	_inventory = hand_list.duplicate(true)
 	_refresh_ui()
 		

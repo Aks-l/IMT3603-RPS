@@ -3,6 +3,8 @@ extends Node
 var inventory: Dictionary[HandData, int] = {}
 var consumables: Array[ItemData] = []
 var funds: int = 2
+var battlehealth: int = 5
+var item_inventory_size: int = 4
 
 var current_deck: Dictionary[HandData, int] = {}
 

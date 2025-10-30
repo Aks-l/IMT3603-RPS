@@ -12,10 +12,6 @@ var current_red_hearts: int = max_red_hearts
 var current_blue_hearts: int = 0
 
 
-func _ready():
-	current_red_hearts = max_red_hearts
-	_draw_hearts()
-
 func _update_icons():
 	for c in get_children(): #removed old hearts
 		c.queue_free()
