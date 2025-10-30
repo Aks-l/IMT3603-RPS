@@ -23,7 +23,6 @@ func _setup_inventory_layout() -> void:
 	#Calculate available space
 	var available_width = panel.size.x - margin_left - margin_right
 	var available_height = panel.size.y - margin_top - margin_bottom
-	print(available_width, available_height, "---------------------------")
 	
 	#Calculate slot size
 	var columns = 2
