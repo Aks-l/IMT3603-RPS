@@ -1,8 +1,7 @@
-extends CanvasLayer
+extends Control
 
-var invSize = 5
+var invSize = 4
 var itemsLoad = Globals.consumables
-
 
 func _ready():
 	_setup_inventory_layout()
@@ -13,8 +12,9 @@ func _setup_inventory_layout() -> void:
 	var container = %tempItemInv
 	
 	#Get the ui panel and its margins
-	var panel = $Panel
-	var margin_container = panel.get_node("MarginContainer")
+	var panel = %Panel
+	print(panel.size)
+	var margin_container = %MarginContainer
 	
 	var margin_left = margin_container.get_theme_constant("margin_left")
 	var margin_right = margin_container.get_theme_constant("margin_right")
@@ -24,6 +24,7 @@ func _setup_inventory_layout() -> void:
 	#Calculate available space
 	var available_width = panel.size.x - margin_left - margin_right
 	var available_height = panel.size.y - margin_top - margin_bottom
+	print(available_width, available_height, "---------------------------")
 	
 	#Calculate slot size
 	var columns = 2
@@ -47,7 +48,7 @@ func _setup_inventory_layout() -> void:
 func _load_items_into_slots() -> void:
 	var container = %tempItemInv
 	print(itemsLoad.size())
-	
+
 	#Add items to slots
 	for i in itemsLoad.size():
 		var item := tempInvItem.new()
