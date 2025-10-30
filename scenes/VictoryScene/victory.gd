@@ -30,7 +30,7 @@ func choose_reward(event: InputEvent, hand: HandData):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var current := int(Globals.inventory.get(hand, 0))
 		Globals.inventory[hand] = current + 1
-		print(Globals.inventory)
+		get_tree().paused = false
 		chosen_reward.emit()
 		
 func discover_cards(enemy: EnemyData):

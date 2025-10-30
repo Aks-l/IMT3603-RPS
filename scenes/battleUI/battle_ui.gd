@@ -104,6 +104,7 @@ func on_card_played(hand: HandData):
 	if enemy_hearts.get_hp() <= 0:
 		victory.visible = true
 		victory.setup(_enemy, true)
+		get_tree().paused = true
 		
 		## ONCE AN ITEM IS CHOSEN, queue_free()
 		
