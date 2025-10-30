@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://qduuk2leuvgw"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://qduuk2leuvgw"]
 
-[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_scloe"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycwr" path="res://data/cards/death.tres" id="1_ho5w3"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_uwr74"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycyt" path="res://data/cards/princess.tres" id="2_yf7cy"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc3x" path="res://data/cards/rainbow.tres" id="3_iltnm"]
 [ext_resource type="Texture2D" uid="uid://dj5gxm6p8augk" path="res://data/enemies/sprites/death.png" id="3_uwr74"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxy" path="res://data/cards/vulture.tres" id="4_f7sub"]
 
 [resource]
 script = ExtResource("2_uwr74")
@@ -13,8 +16,10 @@ description = "the fourth horseman"
 discovered = false
 biome = "neutral"
 tier = 1
-moveset = Array[ExtResource("1_scloe")]([])
-fixed_moveset = Array[ExtResource("1_scloe")]([])
-weighted_moveset = {}
-reactions = {}
+deck = {
+ExtResource("1_ho5w3"): 4,
+ExtResource("2_yf7cy"): 1,
+ExtResource("3_iltnm"): 1,
+ExtResource("4_f7sub"): 3
+}
 metadata/_custom_type_script = "uid://by12nwuyw45yk"

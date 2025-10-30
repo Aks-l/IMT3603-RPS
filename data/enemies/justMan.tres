@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://oc3taybm50gx"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://oc3taybm50gx"]
 
-[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_egirt"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycyx" path="res://data/cards/man.tres" id="1_hkgcf"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_mwy5l"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc1u" path="res://data/cards/cross.tres" id="2_nyh4k"]
+[ext_resource type="Resource" uid="uid://bsshjrnxjodhv" path="res://data/cards/rock.tres" id="3_c06is"]
 [ext_resource type="Texture2D" uid="uid://bfffeb6a36wib" path="res://data/enemies/sprites/guyJustice.png" id="3_mwy5l"]
 
 [resource]
@@ -13,8 +15,9 @@ description = "He is just a guy"
 discovered = false
 biome = "neutral"
 tier = 1
-moveset = Array[ExtResource("1_egirt")]([])
-fixed_moveset = Array[ExtResource("1_egirt")]([])
-weighted_moveset = {}
-reactions = {}
+deck = {
+ExtResource("1_hkgcf"): 4,
+ExtResource("2_nyh4k"): 1,
+ExtResource("3_c06is"): 1
+}
 metadata/_custom_type_script = "uid://by12nwuyw45yk"

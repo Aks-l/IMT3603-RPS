@@ -11,7 +11,7 @@
 script = ExtResource("2_ahdt6")
 id = 23
 sprite = ExtResource("3_ahdt6")
-name = "Mouth of Progress"
+name = "Maw of Progress"
 description = ""
 discovered = false
 biome = "neutral"

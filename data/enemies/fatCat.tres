@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://boch074egx3rm"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3 uid="uid://boch074egx3rm"]
 
-[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_lvako"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc0x" path="res://data/cards/cat.tres" id="1_33qpw"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_8rivy"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc3t" path="res://data/cards/beer.tres" id="2_vdouj"]
 [ext_resource type="Texture2D" uid="uid://c80t7grb1h7a5" path="res://data/enemies/sprites/fatCat.png" id="3_8rivy"]
 
 [resource]
@@ -13,8 +14,8 @@ description = ""
 discovered = false
 biome = "neutral"
 tier = 1
-moveset = Array[ExtResource("1_lvako")]([])
-fixed_moveset = Array[ExtResource("1_lvako")]([])
-weighted_moveset = {}
-reactions = {}
+deck = {
+ExtResource("1_33qpw"): 3,
+ExtResource("2_vdouj"): 2
+}
 metadata/_custom_type_script = "uid://by12nwuyw45yk"

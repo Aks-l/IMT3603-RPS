@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://dhsko8ta5cf4d"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://dhsko8ta5cf4d"]
 
-[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_2wddk"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxu" path="res://data/cards/castle.tres" id="1_bn1bs"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycw1" path="res://data/cards/cage.tres" id="2_06gnb"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_uhl3p"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxy" path="res://data/cards/vulture.tres" id="3_06gnb"]
 [ext_resource type="Texture2D" uid="uid://bosl33n3ed2s8" path="res://data/enemies/sprites/famine.png" id="3_uhl3p"]
 
 [resource]
@@ -13,8 +15,9 @@ description = "The third horseman"
 discovered = false
 biome = "neutral"
 tier = 1
-moveset = Array[ExtResource("1_2wddk")]([])
-fixed_moveset = Array[ExtResource("1_2wddk")]([])
-weighted_moveset = {}
-reactions = {}
+deck = {
+ExtResource("1_bn1bs"): 2,
+ExtResource("2_06gnb"): 1,
+ExtResource("3_06gnb"): 3
+}
 metadata/_custom_type_script = "uid://by12nwuyw45yk"
