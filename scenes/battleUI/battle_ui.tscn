@@ -142,6 +142,7 @@ anchor_mode = 0
 
 [node name="Victory" parent="." instance=ExtResource("9_v8byk")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
