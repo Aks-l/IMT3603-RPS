@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=8 format=3 uid="uid://caymx65fj88fc"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc51" path="res://data/cards/tank.tres" id="1_jduo3"]
+[ext_resource type="Resource" uid="uid://b6e0vdawx87c1" path="res://data/cards/dynamite.tres" id="2_11fix"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_sa0o7"]
+[ext_resource type="Texture2D" uid="uid://d1c1n0esnyiwh" path="res://data/enemies/sprites/war.png" id="3_hmhj3"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycwv" path="res://data/cards/fire.tres" id="3_tq32f"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc1v" path="res://data/cards/money.tres" id="4_kqf6u"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc5y" path="res://data/cards/nuke.tres" id="5_11fix"]
+
+[resource]
+script = ExtResource("2_sa0o7")
+id = 59
+sprite = ExtResource("3_hmhj3")
+name = "War"
+description = "The second horseman"
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_jduo3"): 3,
+ExtResource("2_11fix"): 1,
+ExtResource("3_tq32f"): 2,
+ExtResource("4_kqf6u"): 1,
+ExtResource("5_11fix"): 3
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://p284s65cogri"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxu" path="res://data/cards/castle.tres" id="1_xqoom"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_1l4y0"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc1s" path="res://data/cards/brain.tres" id="2_g745a"]
+[ext_resource type="Texture2D" uid="uid://doo5ty0rj8n78" path="res://data/enemies/sprites/publicOpinion.png" id="3_1l4y0"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc5w" path="res://data/cards/power.tres" id="3_ix42j"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycyu" path="res://data/cards/police.tres" id="4_g745a"]
+
+[resource]
+script = ExtResource("2_1l4y0")
+id = 27
+sprite = ExtResource("3_1l4y0")
+name = "Public Opinion"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_xqoom"): 1,
+ExtResource("2_g745a"): 1,
+ExtResource("3_ix42j"): 2,
+ExtResource("4_g745a"): 2
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

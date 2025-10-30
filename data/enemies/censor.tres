@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://bdfykt4gy4krs"]
+
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="1"]
+[ext_resource type="Resource" uid="uid://b8ct16qwkyy8g" path="res://data/cards/scissors.tres" id="1_ndjyl"]
+[ext_resource type="Texture2D" uid="uid://blk3ln8ab7xpi" path="res://data/enemies/sprites/censor.png" id="2"]
+[ext_resource type="Resource" uid="uid://b6e0vdawx87c8" path="res://data/cards/whip.tres" id="2_pq7fy"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc3w" path="res://data/cards/tv.tres" id="3_pf3v8"]
+
+[resource]
+script = ExtResource("1")
+id = 6
+sprite = ExtResource("2")
+name = "Censor"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_ndjyl"): 2,
+ExtResource("2_pq7fy"): 1,
+ExtResource("3_pf3v8"): 1
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

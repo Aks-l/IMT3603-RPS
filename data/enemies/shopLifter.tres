@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://dhrm34bwgagw4"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc3t" path="res://data/cards/beer.tres" id="1_g6upk"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycyv" path="res://data/cards/woman.tres" id="2_48ctx"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_nl8jo"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycyu" path="res://data/cards/police.tres" id="3_5v3be"]
+[ext_resource type="Texture2D" uid="uid://ckiaq58ukglwf" path="res://data/enemies/sprites/shopLifter.png" id="5_w8d1q"]
+
+[resource]
+script = ExtResource("2_nl8jo")
+id = 30
+sprite = ExtResource("5_w8d1q")
+name = "Karen Lift"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_g6upk"): 3,
+ExtResource("2_48ctx"): 1,
+ExtResource("3_5v3be"): 1
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

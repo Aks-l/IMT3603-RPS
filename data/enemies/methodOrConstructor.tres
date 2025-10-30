@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://dnod0hsrikuev"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc5t" path="res://data/cards/electricity.tres" id="1_1wy41"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_vfgt3"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycyr" path="res://data/cards/queen.tres" id="2_wmyfn"]
+[ext_resource type="Texture2D" uid="uid://23dxrykqqawa" path="res://data/enemies/sprites/methodOrCunstroctor.png" id="3_vfgt3"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxt" path="res://data/cards/computer.tres" id="3_wmyfn"]
+
+[resource]
+script = ExtResource("2_vfgt3")
+id = 42
+sprite = ExtResource("3_vfgt3")
+name = "Method or Constructor(?)"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_1wy41"): 2,
+ExtResource("2_wmyfn"): 2,
+ExtResource("3_wmyfn"): 3
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

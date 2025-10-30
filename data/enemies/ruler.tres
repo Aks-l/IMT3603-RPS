@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://2dmbus0alpsk"]
+
+[ext_resource type="Resource" uid="uid://e4oalawlhjst" path="res://data/cards/helicopter.tres" id="1_yexf0"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_f46nr"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc5w" path="res://data/cards/power.tres" id="2_x7yda"]
+[ext_resource type="Texture2D" uid="uid://5a47742ph830" path="res://data/enemies/sprites/ruler.png" id="3_f46nr"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycwu" path="res://data/cards/camera.tres" id="3_x7yda"]
+
+[resource]
+script = ExtResource("2_f46nr")
+id = 53
+sprite = ExtResource("3_f46nr")
+name = "RULE#32"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_yexf0"): 1,
+ExtResource("2_x7yda"): 2,
+ExtResource("3_x7yda"): 2
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3 uid="uid://dcxr11rs7onb0"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://dcxr11rs7onb0"]
 
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="1_go4gv"]
-[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_qt705"]
+[ext_resource type="Resource" uid="uid://bsshjrnxjodhv" path="res://data/cards/rock.tres" id="1_ufjf6"]
 [ext_resource type="Texture2D" uid="uid://b1kiir0033bwj" path="res://data/enemies/sprites/bobRock.png" id="2_lhuag"]
-[ext_resource type="Resource" uid="uid://bsshjrnxjodhv" path="res://data/cards/rock.tres" id="2_qt705"]
 
 [resource]
 script = ExtResource("1_go4gv")
@@ -12,5 +11,9 @@ sprite = ExtResource("2_lhuag")
 name = "Bob Rock"
 description = "Supe hard fight"
 discovered = false
-moveset = Array[ExtResource("1_qt705")]([ExtResource("2_qt705")])
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_ufjf6"): 1
+}
 metadata/_custom_type_script = "uid://by12nwuyw45yk"

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://behlmb2hmyk5m"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc4w" path="res://data/cards/gold.tres" id="1_jdmqt"]
+[ext_resource type="Resource" uid="uid://b6e0vdawx87c7" path="res://data/cards/law.tres" id="2_4p7no"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_frafv"]
+[ext_resource type="Texture2D" uid="uid://7qk8ifatxp30" path="res://data/enemies/sprites/predicter.png" id="3_frafv"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycys" path="res://data/cards/prince.tres" id="3_uoe7l"]
+
+[resource]
+script = ExtResource("2_frafv")
+id = 52
+sprite = ExtResource("3_frafv")
+name = "The Predicter"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_jdmqt"): 5,
+ExtResource("2_4p7no"): 2,
+ExtResource("3_uoe7l"): 2
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://dvn8g7j5owugw"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxu" path="res://data/cards/castle.tres" id="1_lyt3b"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc5w" path="res://data/cards/power.tres" id="2_d0nc0"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_elf1t"]
+[ext_resource type="Texture2D" uid="uid://c70b0v15t25sk" path="res://data/enemies/sprites/powerPlant.png" id="3_elf1t"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc0t" path="res://data/cards/tree.tres" id="3_n5i41"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc2v" path="res://data/cards/grass.tres" id="4_f3ltx"]
+
+[resource]
+script = ExtResource("2_elf1t")
+id = 55
+sprite = ExtResource("3_elf1t")
+name = "Power Plant"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_lyt3b"): 4,
+ExtResource("2_d0nc0"): 3,
+ExtResource("3_n5i41"): 1,
+ExtResource("4_f3ltx"): 2
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

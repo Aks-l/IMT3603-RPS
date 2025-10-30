@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://cpoegwtgfoyxq"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycw0" path="res://data/cards/poison.tres" id="1_seuf6"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxv" path="res://data/cards/snake.tres" id="2_fssi4"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_vh3f6"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxy" path="res://data/cards/vulture.tres" id="3_m0dc3"]
+[ext_resource type="Texture2D" uid="uid://c1djhtp8ry6xj" path="res://data/enemies/sprites/gardener.png" id="3_vh3f6"]
+
+[resource]
+script = ExtResource("2_vh3f6")
+id = 10
+sprite = ExtResource("3_vh3f6")
+name = "Crhistopher Fisherman"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_seuf6"): 5,
+ExtResource("2_fssi4"): 2,
+ExtResource("3_m0dc3"): 1
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

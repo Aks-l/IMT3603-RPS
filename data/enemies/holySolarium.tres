@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://bhb86qku38rr4"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycwt" path="res://data/cards/sun.tres" id="1_cjoy4"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_l3lkw"]
+[ext_resource type="Resource" uid="uid://b6e0vdawx87da" path="res://data/cards/sword.tres" id="2_luinn"]
+[ext_resource type="Texture2D" uid="uid://bt7h4wy8x4paf" path="res://data/enemies/sprites/holysolarium.png" id="3_l3lkw"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc4v" path="res://data/cards/platinum.tres" id="3_rpaub"]
+
+[resource]
+script = ExtResource("2_l3lkw")
+id = 13
+sprite = ExtResource("3_l3lkw")
+name = "Holy Sun ( Solarium)"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_cjoy4"): 5,
+ExtResource("2_luinn"): 3,
+ExtResource("3_rpaub"): 2
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

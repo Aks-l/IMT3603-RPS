@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://bgysleh1agms1"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc0x" path="res://data/cards/cat.tres" id="1_wdx7w"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_060nf"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycws" path="res://data/cards/wall.tres" id="2_hxnr4"]
+[ext_resource type="Texture2D" uid="uid://yta8ud5fkrm6" path="res://data/enemies/sprites/roofStreet.png" id="3_060nf"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc4u" path="res://data/cards/diamond.tres" id="3_hxnr4"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc0w" path="res://data/cards/wolf.tres" id="4_8u8qb"]
+
+[resource]
+script = ExtResource("2_060nf")
+id = 41
+sprite = ExtResource("3_060nf")
+name = "Roofstreat"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_wdx7w"): 1,
+ExtResource("2_hxnr4"): 2,
+ExtResource("3_hxnr4"): 1,
+ExtResource("4_8u8qb"): 4
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"
