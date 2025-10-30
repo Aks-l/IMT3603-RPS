@@ -50,7 +50,7 @@ func _load_items_into_slots() -> void:
 	print(itemsLoad.size())
 
 	#Add items to slots
-	for i in itemsLoad.size():
+	for i in min(itemsLoad.size(), invSize):
 		var item := tempInvItem.new()
 		item.init(itemsLoad[i])
 		container.get_child(i).add_child(item)
