@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://bp1155d25f14c"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://bp1155d25f14c"]
 
-[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_fcxrj"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc1r" path="res://data/cards/cockroach.tres" id="1_a3uu4"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_ellio"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc5t" path="res://data/cards/electricity.tres" id="2_us1g4"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycyy" path="res://data/cards/home.tres" id="3_48m40"]
 [ext_resource type="Texture2D" uid="uid://dl6re07h6gwyw" path="res://data/enemies/sprites/vacumCleaner.png" id="3_ellio"]
 
 [resource]
@@ -13,8 +15,9 @@ description = ""
 discovered = false
 biome = "neutral"
 tier = 1
-moveset = Array[ExtResource("1_fcxrj")]([])
-fixed_moveset = Array[ExtResource("1_fcxrj")]([])
-weighted_moveset = {}
-reactions = {}
+deck = {
+ExtResource("1_a3uu4"): 1,
+ExtResource("2_us1g4"): 2,
+ExtResource("3_48m40"): 1
+}
 metadata/_custom_type_script = "uid://by12nwuyw45yk"
