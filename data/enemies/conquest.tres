@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://c6mdgprf1j3u5"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc2y" path="res://data/cards/air.tres" id="1_p8bdl"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_33pn8"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc3r" path="res://data/cards/bowl.tres" id="2_m2xsn"]
+[ext_resource type="Texture2D" uid="uid://c51anqt2etfmt" path="res://data/enemies/sprites/conquest.png" id="3_33pn8"]
+[ext_resource type="Resource" uid="uid://b6e0vdawx87c7" path="res://data/cards/law.tres" id="3_kforb"]
+
+[resource]
+script = ExtResource("2_33pn8")
+id = 60
+sprite = ExtResource("3_33pn8")
+name = "Conquest"
+description = "The first horseman"
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_p8bdl"): 3,
+ExtResource("2_m2xsn"): 2,
+ExtResource("3_kforb"): 3
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

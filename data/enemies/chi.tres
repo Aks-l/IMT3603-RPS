@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://bumihs460prk2"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc4t" path="res://data/cards/dragon.tres" id="1_oxyet"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc0y" path="res://data/cards/bird.tres" id="2_04g3h"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_hyhdj"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc1x" path="res://data/cards/sponge.tres" id="3_fhsyn"]
+[ext_resource type="Texture2D" uid="uid://b4f7nl3mpde2y" path="res://data/enemies/sprites/chi.png" id="3_hyhdj"]
+
+[resource]
+script = ExtResource("2_hyhdj")
+id = 46
+sprite = ExtResource("3_hyhdj")
+name = "Chi"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_oxyet"): 4,
+ExtResource("2_04g3h"): 2,
+ExtResource("3_fhsyn"): 2
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://cwwrhg247x64e"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3 uid="uid://cwwrhg247x64e"]
 
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="1_1tm4e"]
-[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_aof5u"]
-[ext_resource type="Resource" uid="uid://dxvgrlorqgs6j" path="res://data/cards/axe.tres" id="2_qsq5h"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc4v" path="res://data/cards/platinum.tres" id="1_aof5u"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxr" path="res://data/cards/axe.tres" id="2_23iok"]
 [ext_resource type="Texture2D" uid="uid://ckbmd3wra2eno" path="res://icon.svg" id="2_qujtf"]
-[ext_resource type="Resource" uid="uid://c1kerky3ou5ed" path="res://data/cards/platinum.tres" id="3_qsq5h"]
 
 [resource]
 script = ExtResource("1_1tm4e")
@@ -13,5 +12,10 @@ sprite = ExtResource("2_qujtf")
 name = "Test enemy"
 description = "the enemy used for testing"
 discovered = true
-moveset = Array[ExtResource("1_aof5u")]([ExtResource("2_qsq5h"), ExtResource("3_qsq5h")])
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_aof5u"): 2,
+ExtResource("2_23iok"): 1
+}
 metadata/_custom_type_script = "uid://by12nwuyw45yk"

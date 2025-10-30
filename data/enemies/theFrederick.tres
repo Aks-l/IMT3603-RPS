@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=8 format=3 uid="uid://y6umm6egpcyv"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc1y" path="res://data/cards/church.tres" id="1_a38ns"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_ee71u"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc10" path="res://data/cards/butter.tres" id="2_f5cb8"]
+[ext_resource type="Texture2D" uid="uid://20fommholi5b" path="res://data/enemies/sprites/theFrederick.png" id="3_ee71u"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxw" path="res://data/cards/blood.tres" id="3_leigt"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc5s" path="res://data/cards/heart.tres" id="4_2xl42"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycxr" path="res://data/cards/axe.tres" id="5_f5cb8"]
+
+[resource]
+script = ExtResource("2_ee71u")
+id = 37
+sprite = ExtResource("3_ee71u")
+name = "The Frederick"
+description = "He is not just Frederick. He is The Frederic"
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_a38ns"): 3,
+ExtResource("2_f5cb8"): 1,
+ExtResource("3_leigt"): 2,
+ExtResource("4_2xl42"): 1,
+ExtResource("5_f5cb8"): 3
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

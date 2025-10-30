@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=8 format=3 uid="uid://c86q3dtjt67ae"]
+
+[ext_resource type="Resource" uid="uid://b6e0vdawx87c1" path="res://data/cards/dynamite.tres" id="1_65e1q"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc2s" path="res://data/cards/cloud.tres" id="2_cyiy7"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_ops4p"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc51" path="res://data/cards/tank.tres" id="3_d6ut6"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycwv" path="res://data/cards/fire.tres" id="4_bkoea"]
+[ext_resource type="Texture2D" uid="uid://c6ncj2enuw0kt" path="res://data/enemies/sprites/terrorist.png" id="5_bkoea"]
+[ext_resource type="Resource" uid="uid://b6e0vdawx87c6" path="res://data/cards/gun.tres" id="5_dd1k6"]
+
+[resource]
+script = ExtResource("2_ops4p")
+id = 34
+sprite = ExtResource("5_bkoea")
+name = "Harry Grim"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_65e1q"): 3,
+ExtResource("2_cyiy7"): 2,
+ExtResource("3_d6ut6"): 2,
+ExtResource("4_bkoea"): 1,
+ExtResource("5_dd1k6"): 1
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

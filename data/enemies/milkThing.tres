@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://07k2wnjnibw2"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycyx" path="res://data/cards/man.tres" id="1_mmbyw"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycwx" path="res://data/cards/school.tres" id="2_oekcp"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_otkyh"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc1r" path="res://data/cards/cockroach.tres" id="3_oekcp"]
+[ext_resource type="Texture2D" uid="uid://charnfpulw4mj" path="res://data/enemies/sprites/milkThing.png" id="3_otkyh"]
+
+[resource]
+script = ExtResource("2_otkyh")
+id = 21
+sprite = ExtResource("3_otkyh")
+name = "Milkthing"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_mmbyw"): 2,
+ExtResource("2_oekcp"): 2,
+ExtResource("3_oekcp"): 2
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

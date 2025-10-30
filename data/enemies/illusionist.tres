@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://bmhi4q2el0st6"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc2u" path="res://data/cards/moon.tres" id="1_dnucn"]
+[ext_resource type="Resource" uid="uid://b6e0vdawx87c4" path="res://data/cards/pit.tres" id="2_akkt7"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_v0wqb"]
+[ext_resource type="Texture2D" uid="uid://cic3wlxv1sjd7" path="res://data/enemies/sprites/illusionist.png" id="3_v0wqb"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycws" path="res://data/cards/wall.tres" id="3_xybmo"]
+
+[resource]
+script = ExtResource("2_v0wqb")
+id = 15
+sprite = ExtResource("3_v0wqb")
+name = "Opal \"Illusionist\" Pham"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_dnucn"): 4,
+ExtResource("2_akkt7"): 2,
+ExtResource("3_xybmo"): 2
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

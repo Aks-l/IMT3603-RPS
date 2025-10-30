@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://badufi7aq8ctf"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc2v" path="res://data/cards/grass.tres" id="1_yvaib"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc4y" path="res://data/cards/fence.tres" id="2_3gmlo"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_goonl"]
+[ext_resource type="Texture2D" uid="uid://bti8gnwibpk05" path="res://data/enemies/sprites/funeralTracker.png" id="3_goonl"]
+[ext_resource type="Resource" uid="uid://bsshjrnxjodhv" path="res://data/cards/rock.tres" id="3_wu2kl"]
+
+[resource]
+script = ExtResource("2_goonl")
+id = 63
+sprite = ExtResource("3_goonl")
+name = "The Funeral Tracker"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_yvaib"): 4,
+ExtResource("2_3gmlo"): 4,
+ExtResource("3_wu2kl"): 2
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

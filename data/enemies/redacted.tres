@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://6s44qybwljhe"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc41" path="res://data/cards/math.tres" id="1_llvhe"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc20" path="res://data/cards/planet.tres" id="2_a38dh"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_nqdb4"]
+[ext_resource type="Texture2D" uid="uid://bl4m0ue641n5s" path="res://data/enemies/sprites/redacted.png" id="2_qqlas"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycw0" path="res://data/cards/poison.tres" id="3_a38dh"]
+
+[resource]
+script = ExtResource("2_nqdb4")
+id = 54
+sprite = ExtResource("2_qqlas")
+name = "[REDACTED]"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_llvhe"): 1,
+ExtResource("2_a38dh"): 2,
+ExtResource("3_a38dh"): 1
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"

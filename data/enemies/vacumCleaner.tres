@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://bp1155d25f14c"]
+
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc1r" path="res://data/cards/cockroach.tres" id="1_a3uu4"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_ellio"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc5t" path="res://data/cards/electricity.tres" id="2_us1g4"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycyy" path="res://data/cards/home.tres" id="3_48m40"]
+[ext_resource type="Texture2D" uid="uid://dl6re07h6gwyw" path="res://data/enemies/sprites/vacumCleaner.png" id="3_ellio"]
+
+[resource]
+script = ExtResource("2_ellio")
+id = 39
+sprite = ExtResource("3_ellio")
+name = "Vacum Cleaner"
+description = ""
+discovered = false
+biome = "neutral"
+tier = 1
+deck = {
+ExtResource("1_a3uu4"): 1,
+ExtResource("2_us1g4"): 2,
+ExtResource("3_48m40"): 1
+}
+metadata/_custom_type_script = "uid://by12nwuyw45yk"
