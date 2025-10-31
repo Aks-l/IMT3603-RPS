@@ -38,3 +38,10 @@ func get_hand() -> HandData:
 		return null
 	
 	return current_deck.pop_back()
+	
+#defines how enemies reacts to played cards
+#this is overwritten persinally for enemy if script is assigned
+func react_to_card(card: HandData) -> void:
+	if card == null:
+		return
+	print("%s ignores %s." % [name, card.name])
