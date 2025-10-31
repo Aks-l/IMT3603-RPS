@@ -17,6 +17,7 @@ class_name EnemyData
 #internal working deck, this is used during battle
 var current_deck: Array[HandData] = []
 
+#deck handeling
 func ready():
 	reset_deck()
 
