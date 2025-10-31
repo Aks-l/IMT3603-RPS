@@ -13,10 +13,8 @@ func populate(d: Resource) -> void:
 
 	if sprite:
 		if d.discovered:
-			print(d.name + " is discovered")
 			sprite.texture = d.sprite
 		else:
-			print(d.name + " is not discovered")
 			sprite.texture = undiscovered
 
 	if name_label:

@@ -213,7 +213,14 @@ func _etype_to_dropdown(t):
 		_: return 1
 
 func _on_encounter_finished(result):
+	if result.type == "Combat":
+		Globals.run_levels_completed += 1
+		Globals.biome_levels_completed += 1
+		Globals.total_levels_completed += 1 #TODO: Total-counter must be tracked across reboots/runs of the application
 	if result.type == "Boss":
+		Globals.run_biomes_completed += 1
+		Globals.biome_levels_completed = 0
+		Globals.total_levels_completed += 1
 		for i in edges_root.get_children():
 			i.queue_free()
 		for i in encounters_root.get_children():

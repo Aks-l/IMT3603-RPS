@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi42rijnwgbh1"]
+[gd_scene load_steps=4 format=3 uid="uid://bi42rijnwgbh1"]
 
 [ext_resource type="Script" uid="uid://drnwove1mai7a" path="res://scenes/DeckCreater/deck_creater.gd" id="1_4jg51"]
 [ext_resource type="StyleBox" uid="uid://1a2c4jadlnke" path="res://ui/paneltextures/event_panel_stylebox.tres" id="2_13a5i"]
+[ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="2_ysyxy"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_4jg51")
@@ -17,6 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("2_ysyxy")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -47,7 +49,6 @@ alignment = 1
 [node name="ChosenCards" type="VBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 20
 alignment = 1
 
 [node name="YourDeck" type="Label" parent="Control/MarginContainer/BG/VBoxContainer/Content/ChosenCards"]
@@ -61,14 +62,14 @@ horizontal_alignment = 1
 [node name="DeckRow" type="HBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content/ChosenCards"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 120
 alignment = 1
 
 [node name="StockCardsContainer" type="VBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 5
+theme_override_constants/separation = 20
 
 [node name="Search" type="LineEdit" parent="Control/MarginContainer/BG/VBoxContainer/Content/StockCardsContainer"]
 unique_name_in_owner = true
@@ -80,6 +81,7 @@ alignment = 1
 
 [node name="StockScroll" type="ScrollContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content/StockCardsContainer"]
 unique_name_in_owner = true
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -90,8 +92,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-theme_override_constants/h_separation = 30
-theme_override_constants/v_separation = 30
+theme_override_constants/h_separation = 120
+theme_override_constants/v_separation = 120
 columns = 3
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer"]

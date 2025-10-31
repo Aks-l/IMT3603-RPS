@@ -12,7 +12,7 @@ var num_buyables: int = 3
 func _ready():
 	get_random_shop_items()
 	populate_shop()
-	fund_label.text = "Money: " + str(Globals.funds)
+	fund_label.text = "Gold: " + str(Globals.funds)
 	leave_button.pressed.connect(func ():
 		emit_signal("finished", {"won": true}) # or: finished.emit({"won": true})
 		call_deferred("queue_free")            # frees this node safely after signal dispatch
@@ -30,4 +30,4 @@ func get_random_shop_items():
 		buyables.append(ItemDatabase.items.values().pick_random())
 	
 func refresh_after_purchase(_item):
-	fund_label.text = "Money: " + str(Globals.funds)
+	fund_label.text = "Gold: " + str(Globals.funds)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5xdkuc18ywuv"]
+[gd_scene load_steps=14 format=3 uid="uid://c5xdkuc18ywuv"]
 
 [ext_resource type="Script" uid="uid://ca2yf48k0yyfh" path="res://scenes/battleUI/battle_ui.gd" id="1_8ao15"]
+[ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="1_ggklf"]
 [ext_resource type="Texture2D" uid="uid://ds32vp8f3hm80" path="res://scenes/battleUI/battle_bg.png" id="2_2xmln"]
 [ext_resource type="PackedScene" uid="uid://df4iyjt5y1vmr" path="res://scenes/battleUI/opponent_profile.tscn" id="2_8ao15"]
 [ext_resource type="PackedScene" uid="uid://su1ofpnm7rut" path="res://scenes/battleUI/hand_inventory.tscn" id="3_88761"]
@@ -20,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ggklf")
 script = ExtResource("1_8ao15")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -107,9 +109,21 @@ blue_heart_texture = ExtResource("6_3ewwt")
 heart_icon_scene = ExtResource("7_npshu")
 icon_size = Vector2(32, 32)
 
-[node name="LevelLabel" type="Label" parent="Background/MarginContainer/MainContainer/BottomLayer/InfoBox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/MainContainer/BottomLayer/InfoBox"]
 layout_mode = 2
-text = "1-1"
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="Background/MarginContainer/MainContainer/BottomLayer/InfoBox/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Level: 1-1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoldLabel" type="Label" parent="Background/MarginContainer/MainContainer/BottomLayer/InfoBox/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Gold: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 

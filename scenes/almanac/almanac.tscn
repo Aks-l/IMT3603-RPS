@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp3d2glfnjbps"]
+[gd_scene load_steps=4 format=3 uid="uid://cp3d2glfnjbps"]
 
 [ext_resource type="Script" uid="uid://dis86gkn12vqn" path="res://scenes/almanac/almanac.gd" id="1_0d67t"]
+[ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="2_8dtg4"]
 [ext_resource type="StyleBox" uid="uid://1a2c4jadlnke" path="res://ui/paneltextures/event_panel_stylebox.tres" id="2_xt3jj"]
 
 [node name="Almanac" type="CanvasLayer"]
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_8dtg4")
 
 [node name="Margin" type="MarginContainer" parent="Almanac"]
 layout_mode = 1
