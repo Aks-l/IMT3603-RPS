@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://d00qv1ugsp0ff"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dkhxwd7w7ycx0"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_monkey"]
 [ext_resource type="Texture2D" uid="uid://b3ypcbhfh84om" path="res://data/cards/sprites/MONKEY.png" id="2_c6spn"]
@@ -10,4 +10,19 @@ sprite = ExtResource("2_c6spn")
 name = "monkey"
 discovered = false
 max_count = 15
+living = true
+aquatic = false
+dry = true
+holy = false
+concept = false
+evil = false
+plant = false
+elemental = false
+metalic = false
+airborne = false
+land = true
+weird = false
+wood = false
+electric = false
+equal = false
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

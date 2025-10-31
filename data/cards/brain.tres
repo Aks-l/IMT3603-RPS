@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://cejg5crmqxm6u"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dkhxwd7w7yc1s"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_brain"]
 [ext_resource type="Texture2D" uid="uid://bvcugji4yoj1f" path="res://data/cards/sprites/BRAIN.png" id="2_t0pnb"]
@@ -10,4 +10,19 @@ sprite = ExtResource("2_t0pnb")
 name = "brain"
 discovered = false
 max_count = 15
+living = true
+aquatic = false
+dry = false
+holy = false
+concept = true
+evil = false
+plant = false
+elemental = false
+metalic = false
+airborne = false
+land = false
+weird = true
+wood = false
+electric = false
+equal = false
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

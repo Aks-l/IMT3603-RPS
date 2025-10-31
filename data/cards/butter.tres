@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://bvbghbmew7322"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dkhxwd7w7yc10"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_butter"]
 [ext_resource type="Texture2D" uid="uid://dm4inof4io00u" path="res://data/cards/sprites/BUTTER.png" id="2_j1agj"]
@@ -10,4 +10,19 @@ sprite = ExtResource("2_j1agj")
 name = "butter"
 discovered = false
 max_count = 15
+living = false
+aquatic = false
+dry = false
+holy = false
+concept = false
+evil = false
+plant = false
+elemental = false
+metalic = false
+airborne = false
+land = false
+weird = false
+wood = false
+electric = false
+equal = true
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"
