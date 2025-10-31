@@ -25,4 +25,5 @@ weird = false
 wood = false
 electric = false
 equal = false
+human = true
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

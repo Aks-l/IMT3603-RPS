@@ -27,6 +27,7 @@ class_name HandData
 @export var wood: bool #(partially) made of wood
 @export var electric: bool #electric, made of electricity, need electricity to function
 @export var equal: bool #some enemies are similar to hands, puts them in tie
+@export var human: bool #marks if the character is human or not
 
 
 #how many copies of each card
