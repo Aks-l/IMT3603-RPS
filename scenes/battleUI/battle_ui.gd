@@ -27,6 +27,8 @@ var _is_ready := false
 # THE LAST OF SETUP AND READY WILL CALL _apply
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
 	_enemy = enemy
+	# TEMPORARY: Used for testning of certain enemy. can me changed to other tres-files
+	#_enemy = load("res://data/enemies/medusa.tres")
 	_consumables = consumables
 	
 	player_hearts.set_hp(Globals.battlehealth)
@@ -87,6 +89,12 @@ func _apply():
 ##Updates health and checks for victory/loss
 func on_card_played(hand: HandData):
 	print("BattleUI received card:", hand.name)
+	
+	# Let the enemy react first (Medusa, etc.)
+	if _enemy and _enemy.has_method("react_to_card"):
+		_enemy.react_to_card(hand)
+	
+	
 	var enemy_hand = _enemy.get_hand()
 	print("on_card_played called with: ", hand.name)
 	
