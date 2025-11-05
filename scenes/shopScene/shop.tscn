@@ -36,6 +36,10 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="funds" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4

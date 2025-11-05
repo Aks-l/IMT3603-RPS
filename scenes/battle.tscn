@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwxje3kq4dn8n"]
+[gd_scene load_steps=2 format=3 uid="uid://ebx1jgyu3ubf"]
 
 [ext_resource type="PackedScene" uid="uid://su1ofpnm7rut" path="res://scenes/battleUI/hand_inventory.tscn" id="1_dn72j"]
 

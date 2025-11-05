@@ -106,25 +106,20 @@ func on_card_played(hand: HandData):
 		0:
 			result_label.text = "It's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
-	if enemy_hearts.get_hp() <= 0:
-		victory.visible = true
-		victory.setup(_enemy, true)
-		get_tree().paused = true
-		
-		## ONCE AN ITEM IS CHOSEN, queue_free()
-		
-	elif player_hearts.get_hp() <= 0:
-		push_error("TODO: implement gameover/loss resolution")
-		victory.setup(_enemy, false)
-		assert(false)
+	if enemy_hearts.get_hp() <= 0: resolve_win()
+	elif player_hearts.get_hp() <= 0: resolve_loss()
 
-##Item Used, handles effects of used items TODO: move to separate script?
-func _on_item_used(item: ItemData):
-	match item.type:
-		ItemData.Type.HEAL:
-			player_hearts.heal(1)
-		ItemData.Type.SHIELD:
-			player_hearts.add_blue(1)
+func resolve_win():
+	for owned_item in Globals.consumables:
+		owned_item.item_script.call("carried",owned_item)
+	victory.visible = true
+	victory.setup(_enemy, true)
+	get_tree().paused = true
+
+func resolve_loss():
+	push_error("TODO: implement gameover/loss resolution")
+	victory.setup(_enemy, false)
+	assert(false)
 
 func _toggle_outcome_graph():
 	if outcome_graph_panel:

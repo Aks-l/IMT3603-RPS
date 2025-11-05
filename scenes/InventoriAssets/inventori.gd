@@ -50,9 +50,15 @@ func _load_items_into_slots() -> void:
 	#Add items to slots
 	for i in min(itemsLoad.size(), invSize):
 		var item := tempInvItem.new()
+		item.gui_input.connect(func(event): item_clicked(event, item))
 		item.init(itemsLoad[i])
 		container.get_child(i).add_child(item)
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_text_indent"):
 		self.visible = !self.visible
+
+func item_clicked(event: InputEvent, item:tempInvItem):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		item.data.item_script.call("used", item.data)
+		item.queue_free()

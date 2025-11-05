@@ -13,6 +13,7 @@ func get_current_deck() -> Dictionary[HandData, int]:
 	return current_deck
 
 ## Run-specific variables
+var globalhealth: int = 3
 var battlehealth: int = 5
 var item_inventory_size: int = 4
 var funds = 5
