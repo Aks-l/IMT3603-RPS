@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cfbdfe47ksqlu"]
+
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="1_lpdl2"]
+[ext_resource type="Script" uid="uid://dpro74p0tcp03" path="res://data/items/scripts/test_script.gd" id="1_vxqry"]
+
+[resource]
+script = ExtResource("1_lpdl2")
+type = 0
+id = 11
+name = "cleaver"
+description = "Chop up a hand and sell it on the hand market"
+discovered = false
+price = 2
+item_script = ExtResource("1_vxqry")
+metadata/_custom_type_script = "uid://cne068h4eo8sm"

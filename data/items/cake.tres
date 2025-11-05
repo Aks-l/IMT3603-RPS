@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://6hb6coeoxr04"]
+
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="1_vuvyg"]
+[ext_resource type="Script" uid="uid://dpro74p0tcp03" path="res://data/items/scripts/test_script.gd" id="2_7v8nk"]
+
+[resource]
+script = ExtResource("1_vuvyg")
+type = 1
+id = 1
+name = "Cake"
+description = "Heal one life"
+discovered = false
+price = 5
+item_script = ExtResource("2_7v8nk")
+metadata/_custom_type_script = "uid://cne068h4eo8sm"
