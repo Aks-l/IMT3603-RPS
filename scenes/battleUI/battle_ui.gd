@@ -26,9 +26,9 @@ var _is_ready := false
 
 # THE LAST OF SETUP AND READY WILL CALL _apply
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
-	_enemy = enemy
-	# TEMPORARY: Used for testning of certain enemy. can me changed to other tres-files
-	#_enemy = load("res://data/enemies/medusa.tres")
+	#_enemy = enemy
+	#TEMPORARY: Used for testning of certain enemy. can me changed to other tres-files
+	_enemy = load("res://data/enemies/medusa.tres")
 	_consumables = consumables
 	
 	player_hearts.set_hp(Globals.battlehealth)
@@ -46,6 +46,9 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	_has_params = true
 	if _is_ready:
 		_apply()
+	if _enemy and _enemy.has_signal("petrified"):
+		_enemy.petrified.connect(_on_enemy_petrified)
+		print("Connected Medusa petrify signal") # DEBUG
 
 func _ready():
 	victory.chosen_reward.connect(queue_free)
@@ -89,6 +92,8 @@ func _apply():
 ##Updates health and checks for victory/loss
 func on_card_played(hand: HandData):
 	print("BattleUI received card:", hand.name)
+	result_label.text = ""  # clear before a new turn
+
 	
 	# Let the enemy react first (Medusa, etc.)
 	if _enemy and _enemy.has_method("react_to_card"):
@@ -104,15 +109,15 @@ func on_card_played(hand: HandData):
 	var result = HandsDb.get_result(hand, enemy_hand)
 	match result:
 		1:
-			result_label.text = "You win! " + hand.name + " beats " + enemy_hand.name
+			result_label.text += "\nYou win! " + hand.name + " beats " + enemy_hand.name
 			print(result_label.text) #DEBUG
 			enemy_hearts.take_damage(1)
 		-1:
-			result_label.text = "You lose! " + enemy_hand.name + " beats " + hand.name
+			result_label.text += "\nYou lose! " + enemy_hand.name + " beats " + hand.name
 			print(result_label.text) #DEBUG
 			player_hearts.take_damage(1)
 		0:
-			result_label.text = "It's a tie! Both played " + hand.name
+			result_label.text += "\nIt's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
 	if enemy_hearts.get_hp() <= 0:
 		victory.visible = true
@@ -143,3 +148,9 @@ func _input(event: InputEvent):
 	# Toggle outcome graph with 'G' key
 	if event.is_action_pressed("input_keyboard_key_G"):
 		_toggle_outcome_graph()
+
+func _on_enemy_petrified(card: HandData) -> void:
+	var msg = "%s: Turnm to stone! %s as has been petrified!" % [_enemy.name, card.name]
+	# show this message above the nomral win/lose link
+	result_label.text = msg + "\n" + result_label.text
+	print(">>> UI received petrify signal") # DEBUG

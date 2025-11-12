@@ -1,5 +1,7 @@
 extends "res://data/enemies/EnemyData.gd"
 
+signal petrified(card: HandData)
+
 # Reference to your Rock card resource
 @export var rock_card: HandData = preload("res://data/cards/rock.tres")
 
@@ -10,6 +12,8 @@ func react_to_card(card: HandData) -> void:
 	if card.living:
 		print("%s turns %s to stone!" % [name, card.name])
 		petrify_card(card)
+		emit_signal("petrified", card)
+		print(">>> Signal emitted for petrified card:", card.name)
 	else:
 		print("%s is unaffected by %s's gaze." % [card.name, name])
 

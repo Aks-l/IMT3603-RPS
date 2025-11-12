@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=7 format=3 uid="uid://cqyg3ubiga7fs"]
+[gd_resource type="Resource" load_steps=8 format=3 uid="uid://cqyg3ubiga7fs"]
 
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc5v" path="res://data/cards/medusa.tres" id="1_ydci4"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7ycxv" path="res://data/cards/snake.tres" id="2_pv5c5"]
@@ -6,11 +6,13 @@
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc31" path="res://data/cards/prayer.tres" id="4_dnl3t"]
 [ext_resource type="Script" uid="uid://crx0i2y4ngsxy" path="res://data/enemies/scripts/medusa.gd" id="5_sd7sk"]
 [ext_resource type="Resource" uid="uid://bsshjrnxjodhv" path="res://data/cards/rock.tres" id="5_ydci4"]
+[ext_resource type="Texture2D" uid="uid://fu4tv64gdnfw" path="res://data/enemies/sprites/medusa.png" id="7_pv5c5"]
 
 [resource]
 script = ExtResource("5_sd7sk")
 rock_card = ExtResource("5_ydci4")
 id = 69
+sprite = ExtResource("7_pv5c5")
 name = "Medusa"
 description = ""
 discovered = false
