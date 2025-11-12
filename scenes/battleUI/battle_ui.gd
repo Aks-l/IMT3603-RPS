@@ -46,8 +46,8 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	_has_params = true
 	if _is_ready:
 		_apply()
-	if _enemy and _enemy.has_signal("petrified"):
-		_enemy.petrified.connect(_on_enemy_petrified)
+	if _enemy and _enemy.has_signal("feedback"):
+		_enemy.feedback.connect(_on_enemy_feedback)
 		print("Connected Medusa petrify signal") # DEBUG
 
 func _ready():
@@ -80,10 +80,17 @@ func _apply():
 		print("No enemy found; opponent_profile.gd")
 	
 	if inv_node:
-		print("[BattleUI] Using deck:", Globals.get_current_deck)
+	#	print("[BattleUI] Using deck:", Globals.get_current_deck)
+	#	var deck : Dictionary[HandData, int] = Globals.get_current_deck()
+	#	print("[BattleUI] Converted deck for HandInventory:", deck)
+	#	inv_node.set_inventory(deck)
 		var deck : Dictionary[HandData, int] = Globals.get_current_deck()
-		print("[BattleUI] Converted deck for HandInventory:", deck)
-		inv_node.set_inventory(deck)
+		var local_deck : Dictionary[HandData, int] = {}
+		
+		for card_data in deck.keys():
+			var duplicated_card: HandData = card_data.duplicate(true)
+			local_deck[card_data.duplicate(true)] = deck[card_data]
+			inv_node.set_inventory(local_deck)
 	else:
 		print("No HandInventory found")
 
@@ -149,8 +156,7 @@ func _input(event: InputEvent):
 	if event.is_action_pressed("input_keyboard_key_G"):
 		_toggle_outcome_graph()
 
-func _on_enemy_petrified(card: HandData) -> void:
-	var msg = "%s: Turnm to stone! %s as has been petrified!" % [_enemy.name, card.name]
+func _on_enemy_feedback(message: String) -> void:
 	# show this message above the nomral win/lose link
-	result_label.text = msg + "\n" + result_label.text
+	result_label.text = message + "\n" + result_label.text
 	print(">>> UI received petrify signal") # DEBUG
