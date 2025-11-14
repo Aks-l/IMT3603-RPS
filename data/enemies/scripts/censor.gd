@@ -3,6 +3,9 @@ extends "res://data/enemies/EnemyData.gd"
 # Reference to your Rock card resource
 @export var max_censored_cards: int = 1
 
+var censored_cards: Array[HandData] = []
+
+
 func on_combat_start(inventory_hand: Array[HandData]) -> void:
 	if inventory_hand.is_empty():
 		return
@@ -11,12 +14,20 @@ func on_combat_start(inventory_hand: Array[HandData]) -> void:
 		var card = inventory_hand.pick_random()
 		if not card.censored:
 			card.censored = true
+			censored_cards.append(card)
 			emit_signal("feedback", "%s has been censored!" % card.name)
 			print("Censorship applied to: ", card.name)
 
 func react_to_card(card: HandData) -> void:
 	if card.censored:
 		emit_signal("feedback", "%s is censored and cannot act!" % card.name)
+		
+		# Mark this card type as visually revealed (generic)
+		card.status_revealed = true
+		
+		# Tell UI to update visuals
+		emit_signal("update_hand_visuals", card)
+		
 		print("Censored card played: ", card.name)
 	else:
 		print("%s ignores %s" % [name, card.name])

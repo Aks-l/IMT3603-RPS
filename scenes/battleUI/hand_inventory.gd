@@ -52,3 +52,8 @@ func _on_card_clicked(hand: HandData) -> void:
 
 		### WHAT HAPPENS WHEN CARD IN INVENTORY IS CLICKED
 		#card.clicked.connect(func(h): card_clicked.emit(h))
+
+func update_visuals_for(hand: HandData) -> void:
+	for card_node in container.get_children():
+		if card_node.hand.id == hand.id:
+			card_node._update_visuals()

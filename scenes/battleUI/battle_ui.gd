@@ -49,6 +49,9 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	if _enemy and _enemy.has_signal("feedback"):
 		_enemy.feedback.connect(_on_enemy_feedback)
 		print("Connected Medusa petrify signal") # DEBUG
+	
+	if _enemy.has_signal("update_hand_visuals"):
+		_enemy.update_hand_visuals.connect(_on_enemy_update_hand_visuals)
 
 func _ready():
 	victory.chosen_reward.connect(queue_free)
@@ -167,7 +170,11 @@ func _input(event: InputEvent):
 	if event.is_action_pressed("input_keyboard_key_G"):
 		_toggle_outcome_graph()
 
+#For special enemies
 func _on_enemy_feedback(message: String) -> void:
 	# show this message above the nomral win/lose link
 	result_label.text = message + "\n" + result_label.text
 	print(">>> UI received petrify signal") # DEBUG
+
+func _on_enemy_update_hand_visuals(hand: HandData):
+	hand_inventory.update_visuals_for(hand)

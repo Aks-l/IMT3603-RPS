@@ -2,6 +2,7 @@ extends Resource
 class_name EnemyData
 
 signal feedback(message: String)
+signal update_hand_visual(hand: HandData)
 
 @export var id: int
 @export var sprite: Texture2D

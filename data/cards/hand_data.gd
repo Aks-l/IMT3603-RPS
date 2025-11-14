@@ -30,6 +30,7 @@ class_name HandData
 @export var human: bool #marks if the character is human or not
 @export var censored: bool = false
 
+var status_revealed: bool = false
 
 #how many copies of each card
 #temporarily because max count will change

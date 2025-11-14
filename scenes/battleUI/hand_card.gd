@@ -5,6 +5,7 @@ signal clicked(hand: HandData)
 var hand: HandData
 var remaining: int = 0 
 
+
 @onready var img: TextureRect = $VBoxContainer/Image
 @onready var count_label: Label = $VBoxContainer/CountLabel
 
@@ -22,6 +23,8 @@ func setup(data: HandData, count: int) -> void:
 	img.mouse_filter = Control.MOUSE_FILTER_STOP
 	img.gui_input.connect(_on_img_gui_input)
 	_update_count()
+	_update_visuals()
+
 
 #no longer mutates "remainging" parent decides waht to change
 func _on_img_gui_input(event: InputEvent) -> void:
@@ -41,3 +44,9 @@ func _update_count() -> void:
 		count_label.text = "x" + str(remaining)
 	else:
 		count_label.text = ""
+
+func _update_visuals():
+	if hand.status_revealed:
+		modulate = Color(0.6, 0.6, 0.6)
+	else:
+		modulate = Color(1, 1, 1)
