@@ -39,10 +39,16 @@ func get_hand() -> HandData:
 		return null
 	
 	return current_deck.pop_back()
-	
+
+
 #defines how enemies reacts to played cards
 #this is overwritten persinally for enemy if script is assigned
 func react_to_card(card: HandData) -> void:
 	if card == null:
 		return
 	print("%s ignores %s." % [name, card.name])
+
+#allows special enemies to change the result.
+#only counts for the ruslt of the round, not the battle itself
+func modify_result(player_card: HandData, enemy_card: HandData, base_result: int) -> int:
+	return base_result  # default: do nothing

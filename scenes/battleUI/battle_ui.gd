@@ -28,7 +28,7 @@ var _is_ready := false
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
 	#_enemy = enemy
 	#TEMPORARY: Used for testning of certain enemy. can me changed to other tres-files
-	_enemy = load("res://data/enemies/medusa.tres")
+	_enemy = load("res://data/enemies/censor.tres")
 	_consumables = consumables
 	
 	player_hearts.set_hp(Globals.battlehealth)
@@ -89,8 +89,14 @@ func _apply():
 		
 		for card_data in deck.keys():
 			var duplicated_card: HandData = card_data.duplicate(true)
-			local_deck[card_data.duplicate(true)] = deck[card_data]
-			inv_node.set_inventory(local_deck)
+			local_deck[duplicated_card] = deck[card_data]
+		inv_node.set_inventory(local_deck)
+		
+		if _enemy and _enemy.has_method("on_combat_start"):
+			var players_cards: Array[HandData] = []
+			for card in local_deck.keys():
+				players_cards.append(card)
+			_enemy.on_combat_start(players_cards)
 	else:
 		print("No HandInventory found")
 
@@ -114,6 +120,11 @@ func on_card_played(hand: HandData):
 	#print("Enemy played: " + enemy_hand.name)
 	
 	var result = HandsDb.get_result(hand, enemy_hand)
+	
+	#special enemy hook. see enemydata for more info
+	if _enemy and _enemy.has_method("modify_result"):
+		result = _enemy.modify_result(hand, enemy_hand, result)
+	
 	match result:
 		1:
 			result_label.text += "\nYou win! " + hand.name + " beats " + enemy_hand.name
