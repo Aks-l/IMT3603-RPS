@@ -28,10 +28,11 @@ class_name HandData
 @export var electric: bool #electric, made of electricity, need electricity to function
 @export var equal: bool #some enemies are similar to hands, puts them in tie
 @export var human: bool #marks if the character is human or not
-@export var censored: bool = false
 
 var status_revealed: bool = false
+var status_tint: Color = Color.TRANSPARENT
 
+var status_flags: Dictionary = {}
 #how many copies of each card
 #temporarily because max count will change
 #@export var max_count: int = 15

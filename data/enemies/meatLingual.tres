@@ -1,17 +1,16 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=8 format=3 uid="uid://ojt30gad8dfs"]
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://ojt30gad8dfs"]
 
 [ext_resource type="Resource" uid="uid://b6e0vdawx87c3" path="res://data/cards/quicksand.tres" id="1_8kg2e"]
-[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_6etyy"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7ycxy" path="res://data/cards/vulture.tres" id="2_i84hc"]
-[ext_resource type="Texture2D" uid="uid://b0ccobtplkmh5" path="res://data/enemies/sprites/meatLingual.png" id="3_6etyy"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7ycxx" path="res://data/cards/porcupine.tres" id="3_jy2xf"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7ycyv" path="res://data/cards/woman.tres" id="4_hlr4o"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc1w" path="res://data/cards/vampire.tres" id="5_i84hc"]
+[ext_resource type="Script" uid="uid://8lj3c03cmaj8" path="res://data/enemies/scripts/meatLingual.gd" id="6_8kg2e"]
 
 [resource]
-script = ExtResource("2_6etyy")
+script = ExtResource("6_8kg2e")
+drowned_message = "Drowns instantly!"
 id = 20
-sprite = ExtResource("3_6etyy")
 name = "Meat Lingual"
 description = ""
 discovered = false

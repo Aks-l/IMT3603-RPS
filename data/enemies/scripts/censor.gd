@@ -12,8 +12,11 @@ func on_combat_start(inventory_hand: Array[HandData]) -> void:
 		
 	for i in range(max_censored_cards):
 		var card = inventory_hand.pick_random()
-		if not card.censored:
-			card.censored = true
+		if not ("censored" in card.status_flags):
+			card.status_flags["censored"] = true
+			card.status_revealed = true
+			card.status_tint = Color(0.7, 0.2, 0.7)
+			
 			censored_cards.append(card)
 			emit_signal("feedback", "%s has been censored!" % card.name)
 			print("Censorship applied to: ", card.name)

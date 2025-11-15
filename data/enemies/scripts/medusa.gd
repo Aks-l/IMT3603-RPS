@@ -22,6 +22,10 @@ func petrify_card(card: HandData) -> void:
 	if rock_card == null:
 		push_warning("Medusa tried to petrify, but no rock_card was assigned!")
 		return
+	
+	card.status_flags["petrified"] = true
+	card.status_revealed = true
+	card.status_tint = Color(0.6, 0.6, 0.6)
 
 	# Copy visual & metadata from the rock card
 	card.name = rock_card.name

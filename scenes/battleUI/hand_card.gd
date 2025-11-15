@@ -47,6 +47,6 @@ func _update_count() -> void:
 
 func _update_visuals():
 	if hand.status_revealed:
-		modulate = Color(0.6, 0.6, 0.6)
+		modulate = hand.status_tint
 	else:
 		modulate = Color(1, 1, 1)

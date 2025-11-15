@@ -28,7 +28,7 @@ var _is_ready := false
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
 	#_enemy = enemy
 	#TEMPORARY: Used for testning of certain enemy. can me changed to other tres-files
-	_enemy = load("res://data/enemies/censor.tres")
+	_enemy = load("res://data/enemies/meatLingual.tres")
 	_consumables = consumables
 	
 	player_hearts.set_hp(Globals.battlehealth)
