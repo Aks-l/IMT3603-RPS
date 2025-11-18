@@ -32,9 +32,14 @@ var detail_noise: FastNoiseLite
 var edge_noise: FastNoiseLite
 var continent_noise: FastNoiseLite
 var island_centers: Array = []
+var shared_image: Image
+var thread_mutex: Mutex = Mutex.new()
+var active_threads: Array[Thread] = []
+var completed_threads: int = 0
+var total_threads: int = 0
 
 func _init() -> void:
-	# Helper to create noise generators with common settings
+	#Helper to create noise generators with common settings
 	var create_noise = func(seed_offset: int, freq: float, octaves: int = 1, type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH) -> FastNoiseLite:
 		var n = FastNoiseLite.new()
 		n.seed = randi() + seed_offset
@@ -50,17 +55,19 @@ func _init() -> void:
 	edge_noise = create_noise.call(3000, 0.01, 3, FastNoiseLite.TYPE_PERLIN)
 	continent_noise = create_noise.call(4000, 0.008, 3, FastNoiseLite.TYPE_PERLIN)
 
+##Set the graph data and start terrain generation
 func set_graph(p:Dictionary, e:Array) -> void:
 	positions = p
 	edges = e
-	_generate_terrain_texture()
+	_generate_terrain_texture_async()
 	queue_redraw()
 
-func _generate_terrain_texture() -> void:
+##Asynchronous terrain generation
+func _generate_terrain_texture_async() -> void:
 	if positions.is_empty():
 		return
 	
-	# Calculate bounds of all node positions
+	#Pre-calculate shared data
 	var get_bounds = func() -> Array:
 		var min_p := Vector2.INF
 		var max_p := Vector2(-INF, -INF)
@@ -74,7 +81,7 @@ func _generate_terrain_texture() -> void:
 	var max_pos: Vector2 = bounds[1]
 	var center: Vector2 = (min_pos + max_pos) * 0.5
 	
-	# Generate random island centers
+	#Generate island centers once
 	island_centers = range(island_count).map(func(_i):
 		var angle := randf() * TAU
 		var distance := ocean_margin * terrain_scale * (0.4 + randf() * 0.4)
@@ -84,9 +91,34 @@ func _generate_terrain_texture() -> void:
 	var scaled_margin := ocean_margin * terrain_scale
 	min_pos -= Vector2.ONE * scaled_margin
 	max_pos += Vector2.ONE * scaled_margin
+	
+	#Create shared image
+	shared_image = Image.create(terrain_resolution.x, terrain_resolution.y, true, Image.FORMAT_RGBA8)
+	
+	#Use half available cores
+	var thread_count = max(1, OS.get_processor_count() / 2)
+	total_threads = thread_count
+	completed_threads = 0
+	
+	#Show generating label if parent has one
+	var parent_map = get_parent()
+	if parent_map and parent_map.has_node("GeneratingLabel"):
+		parent_map.get_node("GeneratingLabel").visible = true
+	
+	active_threads.clear()
+	for i in range(thread_count):
+		var thread = Thread.new()
+		active_threads.append(thread)
+		thread.start(_generate_terrain_texture_threaded.bind(i, thread_count, min_pos, max_pos))
+	
+##Threaded terrain generation
+func _generate_terrain_texture_threaded(thread_id: int, thread_count: int, min_pos: Vector2, max_pos: Vector2) -> void:
 	var map_size: Vector2 = max_pos - min_pos
 	
-	var img = Image.create(terrain_resolution.x, terrain_resolution.y, true, Image.FORMAT_RGBA8)
+	#Determine rows to process
+	var rows_per_thread = terrain_resolution.y / thread_count
+	var start_y = thread_id * rows_per_thread
+	var end_y = start_y + rows_per_thread if thread_id < thread_count - 1 else terrain_resolution.y
 	
 	# Convert pixel coordinates to world position
 	var pixel_to_world = func(x: int, y: int) -> Vector2:
@@ -102,25 +134,57 @@ func _generate_terrain_texture() -> void:
 		var variation := edge_noise.get_noise_2d(world_pos.x * 2.0, world_pos.y * 2.0) * 0.2
 		return pow(elev, 0.4) + detail + variation
 	
-	for y in range(terrain_resolution.y):
+	for y in range(start_y, end_y):
 		for x in range(terrain_resolution.x):
 			var world_pos: Vector2 = pixel_to_world.call(x, y)
 			var land_factor := _get_land_factor(world_pos)
 			var elevation: float = get_elevation.call(world_pos)
-			img.set_pixel(x, y, _get_terrain_color(land_factor, elevation))
+			var color = _get_terrain_color(land_factor, elevation)
+			
+			#Share image
+			thread_mutex.lock()
+			shared_image.set_pixel(x, y, color)
+			thread_mutex.unlock()
 	
-	img.generate_mipmaps()
-	terrain_texture = ImageTexture.create_from_image(img)
+	call_deferred("_on_thread_completed")
 
+
+##Update after thread completion
+func _on_thread_completed() -> void:
+	completed_threads += 1
+	
+	#Update texture
+	if not terrain_texture:
+		terrain_texture = ImageTexture.create_from_image(shared_image)
+	else:
+		terrain_texture.update(shared_image)
+	queue_redraw()
+	
+	if completed_threads >= total_threads:
+		#Clean up
+		for thread in active_threads:
+			thread.wait_to_finish()
+		active_threads.clear()
+
+		shared_image.generate_mipmaps()
+		terrain_texture.update(shared_image)
+		queue_redraw()
+		
+		#Hide generating label
+		var parent_map = get_parent()
+		if parent_map and parent_map.has_node("GeneratingLabel"):
+			parent_map.get_node("GeneratingLabel").visible = false
+
+##Distance from point to nearest path
 func _distance_to_path(point: Vector2) -> float:
 	var min_dist := INF
 	
-	# Distance to nodes
+	#Distance to nodes
 	for pos_vec in positions.values():
 		var dist := point.distance_to(pos_vec)
 		min_dist = min(min_dist, dist)
 	
-	# Distance to edges
+	#Distance to edges
 	for edge in edges:
 		var a: Vector2 = positions[edge[0]]
 		var b: Vector2 = positions[edge[1]]
@@ -129,6 +193,7 @@ func _distance_to_path(point: Vector2) -> float:
 	
 	return min_dist
 
+##Calculate distance from point to line segment
 func _point_to_segment_distance(point: Vector2, a: Vector2, b: Vector2) -> float:
 	var ab := b - a
 	var ap := point - a
@@ -142,15 +207,18 @@ func _point_to_segment_distance(point: Vector2, a: Vector2, b: Vector2) -> float
 	var closest: Vector2 = a + ab * t
 	return point.distance_to(closest)
 
+##Calculate land factor at world position
 func _get_land_factor(world_pos: Vector2) -> float:
-	# Sample noise at world position with optional scale factor
+	#Sample noise
 	var get_noise = func(noise_gen: FastNoiseLite, scale_factor: float = 1.0) -> float:
 		return noise_gen.get_noise_2d(world_pos.x * scale_factor, world_pos.y * scale_factor)
 	
+	#Distance to nodes
 	var min_dist := INF
 	for pos_vec in positions.values():
 		min_dist = min(min_dist, world_pos.distance_to(pos_vec))
 	
+	#Distance to edges
 	var total_distortion: float = get_noise.call(edge_noise) * edge_roughness + get_noise.call(detail_noise, 2.0) * edge_roughness * 0.4
 	var node_influence := clampf(1.0 - (min_dist + total_distortion - room_r - 50.0) / (landmass_padding * 0.3), 0.0, 1.0)
 	node_influence = pow(node_influence, 1.5)
@@ -172,6 +240,7 @@ func _get_land_factor(world_pos: Vector2) -> float:
 	continent_factor = pow(continent_factor, 0.6)
 	continent_factor = clampf(continent_factor + get_noise.call(continent_noise) * 0.6 + get_noise.call(detail_noise, 0.3) * 0.4, 0.0, 1.0)
 	
+	#Island influence
 	var island_influence := 0.0
 	for i in range(island_centers.size()):
 		var island_pos: Vector2 = island_centers[i]
@@ -193,12 +262,14 @@ func _get_land_factor(world_pos: Vector2) -> float:
 	
 	return max(max(node_influence, continent_factor * 0.85), island_influence)
 
+##Calculate terrain color based on land factor and elevation
 func _get_terrain_color(land_factor: float, elevation: float) -> Color:
-	# Smooth color interpolation helper
+	#Interpolation helper
 	var smooth_lerp = func(from_color: Color, to_color: Color, value: float, min_val: float, max_val: float) -> Color:
 		var t := clampf((value - min_val) / (max_val - min_val), 0.0, 1.0)
 		return from_color.lerp(to_color, smoothstep(0.0, 1.0, t))
 	
+	#Land colors
 	if land_factor < 0.45:
 		return ocean_color
 	if land_factor < 0.55:
@@ -217,13 +288,14 @@ func _get_terrain_color(land_factor: float, elevation: float) -> Color:
 		[1.0, snow_color]
 	]
 	
-	# Find appropriate band and interpolate
+	#Interpolate between bands
 	for i in range(bands.size() - 1):
 		if land_elev < bands[i + 1][0]:
 			return smooth_lerp.call(bands[i][1], bands[i + 1][1], land_elev, bands[i][0], bands[i + 1][0])
 	
 	return snow_color
 
+##Draw the map background
 func _draw() -> void:
 	if positions.is_empty():
 		return
