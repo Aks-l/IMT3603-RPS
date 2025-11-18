@@ -3,22 +3,22 @@ class_name MapGenerator
 extends Node
 
 # Generation settings
-var radial_layout: bool
-var layers: int
-var max_width: int
-var min_endpoints: int
-var max_endpoints: int
-var nodes_per_ring: int
-var ring_radius: float
-var radial_rings: int
-var angle_randomness: float
-var min_node_separation: float
-var x_spacing: float
-var y_spacing: float
-var organic_layout: bool
-var x_randomness: float
-var y_randomness: float
-var seed_value: int
+@export var radial_layout: bool = false
+@export var layers: int = 7
+@export var max_width: int = 4
+@export var min_endpoints: int = 1
+@export var max_endpoints: int = 3
+@export var nodes_per_ring: int = 8
+@export var ring_radius: float = 200.0
+@export var radial_rings: int = 4
+@export var angle_randomness: float = 10.0
+@export var min_node_separation: float = 80.0
+@export var x_spacing: float = 140.0
+@export var y_spacing: float = 140.0
+@export var organic_layout: bool = true
+@export var x_randomness: float = 90.0
+@export var y_randomness: float = 70.0
+@export var seed_value: int = -1
 
 # Output data
 var layer_ids = []
