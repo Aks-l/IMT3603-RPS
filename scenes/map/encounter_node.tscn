@@ -52,7 +52,8 @@ horizontal_alignment = 1
 [node name="CenterContainer" type="CenterContainer" parent="UI/VBox"]
 layout_mode = 2
 
-[node name="NodeImage" type="ColorRect" parent="UI/VBox/CenterContainer"]
+[node name="NodeImage" type="TextureRect" parent="UI/VBox/CenterContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-color = Color(0, 1, 0, 1)
+expand_mode = 1
+stretch_mode = 5

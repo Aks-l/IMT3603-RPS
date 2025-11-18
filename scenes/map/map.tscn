@@ -1,16 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbdc5kjycg2va"]
+[gd_scene load_steps=12 format=3 uid="uid://dbdc5kjycg2va"]
 
 [ext_resource type="Script" uid="uid://chpjeeb7bu5g5" path="res://scenes/map/map.gd" id="1_sxf4j"]
+[ext_resource type="Texture2D" uid="uid://c5wixxw6ydt51" path="res://ui/map_textures/path_texture.png" id="2_fcby6"]
 [ext_resource type="PackedScene" uid="uid://ihtu1uv52bk1" path="res://scenes/map/encounter_node.tscn" id="2_tqkkf"]
 [ext_resource type="Script" uid="uid://cp4dp6kikshgc" path="res://scenes/map/cam.gd" id="3_a2pkv"]
-[ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="4_ph54e"]
+[ext_resource type="Script" uid="uid://b3cocd65kvh24" path="res://scenes/map/map_background.gd" id="4_cnyx2"]
+[ext_resource type="PackedScene" path="res://scenes/map/map_generator.tscn" id="5_7oq43"]
+[ext_resource type="Shader" uid="uid://dlw8f0j8nmw13" path="res://scenes/map/fog_of_war.gdshader" id="6_04w0f"]
+[ext_resource type="PackedScene" uid="uid://bv7xwmn8ksqh1" path="res://ui/components/global_hud.tscn" id="6_cqrs2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqgf4"]
+shader = ExtResource("6_04w0f")
+shader_parameter/revealed_count = 0
+shader_parameter/revealed_positions = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/fog_offset = Vector2(0, 0)
+shader_parameter/fog_size = Vector2(1920, 1080)
+shader_parameter/reveal_radius = 150.0
+shader_parameter/fade_distance = 100.0
+shader_parameter/fog_color = Color(0, 0, 0, 1)
+shader_parameter/vignette_strength = 0.8
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_a2pkv"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_04w0f"]
+font_size = 20
+
 [node name="map" type="Node2D"]
 script = ExtResource("1_sxf4j")
-seed = 20000
+radial_layout = true
+min_endpoints = 4
+max_endpoints = 4
+ring_radius = 100.0
+radial_rings = 7
+path_texture = ExtResource("2_fcby6")
 encounter_scene = ExtResource("2_tqkkf")
+
+[node name="GlobalHUDLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="GlobalHUD" parent="GlobalHUDLayer" instance=ExtResource("6_cqrs2")]
+
+[node name="MapGenerator" parent="." instance=ExtResource("5_7oq43")]
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("4_cnyx2")
+width = 0.0
+room_r = 0.0
+noise_strength = 0.0
+noise_segments = 0
+ocean_margin = 400.0
+terrain_scale = 4.0
+elevation_frequency = 0.008
+landmass_padding = 800.0
+edge_roughness = 150.0
+island_count = 11
+coast_width = 50.0
+
+[node name="FogOfWarContainer" type="Node2D" parent="."]
+z_index = 5
+
+[node name="FogOverlay" type="ColorRect" parent="FogOfWarContainer"]
+material = SubResource("ShaderMaterial_sqgf4")
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Edges" type="Node2D" parent="."]
 
@@ -20,6 +73,7 @@ encounter_scene = ExtResource("2_tqkkf")
 script = ExtResource("3_a2pkv")
 
 [node name="DeckButton" type="Button" parent="."]
+z_index = 10
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -33,9 +87,24 @@ text = "Deck Builder"
 icon = SubResource("CanvasTexture_a2pkv")
 
 [node name="AlmanacButton" type="Button" parent="."]
+z_index = 10
 offset_left = 283.0
 offset_top = -53.0
 offset_right = 358.0
 offset_bottom = -22.0
 theme = ExtResource("4_ph54e")
 text = "Almanac"
+
+[node name="GeneratingLabel" type="Label" parent="."]
+z_index = 10
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_top = -296.0
+offset_right = 88.0
+offset_bottom = -268.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "Generating map..."
+label_settings = SubResource("LabelSettings_04w0f")

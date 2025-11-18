@@ -20,6 +20,7 @@ signal finished(result)
 var _enemy: EnemyData
 var _hand: Dictionary = {}		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
+var _battle_ended := false		# Prevent card plays after battle ends
 
 var _has_params := false
 var _is_ready := false
@@ -86,37 +87,40 @@ func _apply():
 ##Resolves the outcome of a played card against the enemy's card
 ##Updates health and checks for victory/loss
 func on_card_played(hand: HandData):
+	# Prevent playing cards after battle has ended
+	if _battle_ended:
+		return
+		
 	print("BattleUI received card:", hand.name)
 	var enemy_hand = _enemy.get_hand()
 	print("on_card_played called with: ", hand.name)
-	
-	#print("You played: " + hand.name)
-	#print("Enemy played: " + enemy_hand.name)
 	
 	var result = HandsDb.get_result(hand, enemy_hand)
 	match result:
 		1:
 			result_label.text = "You win! " + hand.name + " beats " + enemy_hand.name
-			print(result_label.text) #DEBUG
+			print(result_label.text)
 			enemy_hearts.take_damage(1)
 		-1:
 			result_label.text = "You lose! " + enemy_hand.name + " beats " + hand.name
-			print(result_label.text) #DEBUG
+			print(result_label.text)
 			player_hearts.take_damage(1)
 		0:
 			result_label.text = "It's a tie! Both played " + hand.name
-			print(result_label.text) #DEBUG
+			print(result_label.text)
+	
 	if enemy_hearts.get_hp() <= 0:
+		_battle_ended = true
 		victory.visible = true
 		victory.setup(_enemy, true)
-		get_tree().paused = true
 		
 		## ONCE AN ITEM IS CHOSEN, queue_free()
 		
 	elif player_hearts.get_hp() <= 0:
-		push_error("TODO: implement gameover/loss resolution")
+		_battle_ended = true
+		Globals.take_damage(1)
+		victory.visible = true
 		victory.setup(_enemy, false)
-		assert(false)
 
 ##Item Used, handles effects of used items TODO: move to separate script?
 func _on_item_used(item: ItemData):

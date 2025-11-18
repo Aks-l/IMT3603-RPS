@@ -13,6 +13,7 @@
 [ext_resource type="StyleBox" uid="uid://ddk6kp182ii65" path="res://ui/paneltextures/inventory_border.tres" id="9_78lt8"]
 [ext_resource type="PackedScene" uid="uid://bur1pwoqf50ar" path="res://scenes/VictoryScene/victory.tscn" id="9_v8byk"]
 [ext_resource type="PackedScene" uid="uid://cs1m8wvcx1oph" path="res://ui/components/outcome_graph.tscn" id="10_graph"]
+[ext_resource type="PackedScene" uid="uid://bv7xwmn8ksqh1" path="res://ui/components/global_hud.tscn" id="11_globalhud"]
 
 [node name="BattleUI" type="Control"]
 layout_mode = 3
@@ -23,6 +24,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ggklf")
 script = ExtResource("1_8ao15")
+
+[node name="GlobalHUDLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="GlobalHUD" parent="GlobalHUDLayer" instance=ExtResource("11_globalhud")]
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
