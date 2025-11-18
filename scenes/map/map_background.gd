@@ -26,11 +26,7 @@ extends Node2D
 var positions := {}
 var edges := []
 var terrain_texture: ImageTexture
-var noise: FastNoiseLite
-var elevation_noise: FastNoiseLite
-var detail_noise: FastNoiseLite
-var edge_noise: FastNoiseLite
-var continent_noise: FastNoiseLite
+var noise_generator: TerrainNoiseGenerator
 var island_centers: Array = []
 var shared_image: Image
 var thread_mutex: Mutex = Mutex.new()
@@ -38,22 +34,15 @@ var active_threads: Array[Thread] = []
 var completed_threads: int = 0
 var total_threads: int = 0
 
-func _init() -> void:
-	#Helper to create noise generators with common settings
-	var create_noise = func(seed_offset: int, freq: float, octaves: int = 1, type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH) -> FastNoiseLite:
-		var n = FastNoiseLite.new()
-		n.seed = randi() + seed_offset
-		n.frequency = freq
-		n.noise_type = type
-		if octaves > 1:
-			n.fractal_octaves = octaves
-		return n
-	
-	noise = create_noise.call(0, 0.15)
-	elevation_noise = create_noise.call(1000, elevation_frequency, 4, FastNoiseLite.TYPE_PERLIN)
-	detail_noise = create_noise.call(2000, 0.12, 1, FastNoiseLite.TYPE_PERLIN)
-	edge_noise = create_noise.call(3000, 0.01, 3, FastNoiseLite.TYPE_PERLIN)
-	continent_noise = create_noise.call(4000, 0.008, 3, FastNoiseLite.TYPE_PERLIN)
+func _ready() -> void:
+	_initialize_noise_generator()
+
+func _initialize_noise_generator() -> void:
+	#Create TerrainNoiseGenerator
+	noise_generator = TerrainNoiseGenerator.new()
+	noise_generator.elevation_frequency = elevation_frequency
+	add_child(noise_generator)
+	noise_generator._initialize_noise_generators()
 
 ##Set the graph data and start terrain generation
 func set_graph(p:Dictionary, e:Array) -> void:
@@ -129,9 +118,9 @@ func _generate_terrain_texture_threaded(thread_id: int, thread_count: int, min_p
 	
 	# Sample multiple noise layers for elevation
 	var get_elevation = func(world_pos: Vector2) -> float:
-		var elev := elevation_noise.get_noise_2d(world_pos.x, world_pos.y) * 0.5 + 0.5
-		var detail := detail_noise.get_noise_2d(world_pos.x, world_pos.y) * 0.4
-		var variation := edge_noise.get_noise_2d(world_pos.x * 2.0, world_pos.y * 2.0) * 0.2
+		var elev := noise_generator.elevation_noise.get_noise_2d(world_pos.x, world_pos.y) * 0.5 + 0.5
+		var detail := noise_generator.detail_noise.get_noise_2d(world_pos.x, world_pos.y) * 0.4
+		var variation := noise_generator.edge_noise.get_noise_2d(world_pos.x * 2.0, world_pos.y * 2.0) * 0.2
 		return pow(elev, 0.4) + detail + variation
 	
 	for y in range(start_y, end_y):
@@ -219,7 +208,7 @@ func _get_land_factor(world_pos: Vector2) -> float:
 		min_dist = min(min_dist, world_pos.distance_to(pos_vec))
 	
 	#Distance to edges
-	var total_distortion: float = get_noise.call(edge_noise) * edge_roughness + get_noise.call(detail_noise, 2.0) * edge_roughness * 0.4
+	var total_distortion: float = get_noise.call(noise_generator.edge_noise) * edge_roughness + get_noise.call(noise_generator.detail_noise, 2.0) * edge_roughness * 0.4
 	var node_influence := clampf(1.0 - (min_dist + total_distortion - room_r - 50.0) / (landmass_padding * 0.3), 0.0, 1.0)
 	node_influence = pow(node_influence, 1.5)
 	var center_pos := Vector2.ZERO
@@ -231,14 +220,14 @@ func _get_land_factor(world_pos: Vector2) -> float:
 	var dist_from_center := from_center.length()
 	var angle_from_center := atan2(from_center.y, from_center.x)
 	
-	var arm_noise: float = get_noise.call(continent_noise, 0.005)
-	var arm_strength: float = (sin(angle_from_center * continent_arms) * 0.2 + arm_noise * 0.6 + get_noise.call(edge_noise, 0.02) * 0.2)
+	var arm_noise: float = get_noise.call(noise_generator.continent_noise, 0.005)
+	var arm_strength: float = (sin(angle_from_center * continent_arms) * 0.2 + arm_noise * 0.6 + get_noise.call(noise_generator.edge_noise, 0.02) * 0.2)
 	arm_strength = pow(arm_strength * 0.5 + 0.5, 1.2)
 	
 	var arm_extension: float = arm_strength * 600.0 + arm_noise * 400.0
 	var continent_factor := clampf(1.0 - (dist_from_center - arm_extension) / (landmass_padding * 1.5), 0.0, 1.0)
 	continent_factor = pow(continent_factor, 0.6)
-	continent_factor = clampf(continent_factor + get_noise.call(continent_noise) * 0.6 + get_noise.call(detail_noise, 0.3) * 0.4, 0.0, 1.0)
+	continent_factor = clampf(continent_factor + get_noise.call(noise_generator.continent_noise) * 0.6 + get_noise.call(noise_generator.detail_noise, 0.3) * 0.4, 0.0, 1.0)
 	
 	#Island influence
 	var island_influence := 0.0
@@ -248,14 +237,14 @@ func _get_land_factor(world_pos: Vector2) -> float:
 		var island_angle := atan2((world_pos - island_pos).y, (world_pos - island_pos).x)
 		
 		var seed_offset := i * 1000.0
-		var island_noise := edge_noise.get_noise_2d(island_pos.x + seed_offset, island_pos.y + seed_offset)
-		var island_detail: float = get_noise.call(continent_noise, 0.05)
+		var island_noise := noise_generator.edge_noise.get_noise_2d(island_pos.x + seed_offset, island_pos.y + seed_offset)
+		var island_detail: float = get_noise.call(noise_generator.continent_noise, 0.05)
 		
 		var shape_freq := 2.0 + (island_noise + 1.0) * 2.0
 		var island_shape := sin(island_angle * shape_freq + island_noise * 3.0) * 0.25 + sin(island_angle * shape_freq * 1.7 + island_detail * 2.0) * 0.15 + 0.7
 		
 		var island_size := (200.0 + island_noise * 150.0) * island_shape
-		var island_dist_adjusted: float = dist_to_island + get_noise.call(detail_noise, 1.2) * 100.0
+		var island_dist_adjusted: float = dist_to_island + get_noise.call(noise_generator.detail_noise, 1.2) * 100.0
 		
 		if island_dist_adjusted < island_size:
 			island_influence = max(island_influence, pow(1.0 - island_dist_adjusted / island_size, 0.4))
@@ -350,7 +339,7 @@ func _noisy_circle(center: Vector2, radius: float) -> PackedVector2Array:
 	var poly := PackedVector2Array()
 	for i in range(noise_segments):
 		var angle := (float(i) / noise_segments) * TAU
-		var noise_val = noise.get_noise_2d(
+		var noise_val = noise_generator.noise.get_noise_2d(
 			center.x + cos(angle) * 100,
 			center.y + sin(angle) * 100
 		)
