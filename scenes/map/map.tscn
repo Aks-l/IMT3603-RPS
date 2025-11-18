@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbdc5kjycg2va"]
+[gd_scene load_steps=12 format=3 uid="uid://dbdc5kjycg2va"]
 
 [ext_resource type="Script" uid="uid://chpjeeb7bu5g5" path="res://scenes/map/map.gd" id="1_sxf4j"]
 [ext_resource type="Texture2D" uid="uid://c5wixxw6ydt51" path="res://ui/map_textures/path_texture.png" id="2_fcby6"]
 [ext_resource type="PackedScene" uid="uid://ihtu1uv52bk1" path="res://scenes/map/encounter_node.tscn" id="2_tqkkf"]
 [ext_resource type="Script" uid="uid://cp4dp6kikshgc" path="res://scenes/map/cam.gd" id="3_a2pkv"]
 [ext_resource type="Script" uid="uid://b3cocd65kvh24" path="res://scenes/map/map_background.gd" id="4_cnyx2"]
+[ext_resource type="PackedScene" path="res://scenes/map/map_generator.tscn" id="5_7oq43"]
 [ext_resource type="Shader" uid="uid://dlw8f0j8nmw13" path="res://scenes/map/fog_of_war.gdshader" id="6_04w0f"]
-[ext_resource type="PackedScene" uid="uid://bv7xwmn8ksqh1" path="res://ui/components/global_hud.tscn" id="6_globalhud"]
+[ext_resource type="PackedScene" uid="uid://bv7xwmn8ksqh1" path="res://ui/components/global_hud.tscn" id="6_cqrs2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sqgf4"]
 shader = ExtResource("6_04w0f")
@@ -37,7 +38,9 @@ encounter_scene = ExtResource("2_tqkkf")
 [node name="GlobalHUDLayer" type="CanvasLayer" parent="."]
 layer = 100
 
-[node name="GlobalHUD" parent="GlobalHUDLayer" instance=ExtResource("6_globalhud")]
+[node name="GlobalHUD" parent="GlobalHUDLayer" instance=ExtResource("6_cqrs2")]
+
+[node name="MapGenerator" parent="." instance=ExtResource("5_7oq43")]
 
 [node name="Background" type="Node2D" parent="."]
 script = ExtResource("4_cnyx2")

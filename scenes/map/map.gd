@@ -30,13 +30,13 @@ extends Node2D
 @onready var edges_root := $Edges
 @onready var encounters_root := $Encounters
 @onready var background := $Background
+@onready var map_generator: MapGenerator = $MapGenerator
 @onready var deck_button: Button = $DeckButton
 @onready var almanac_button: Button = $AlmanacButton
 @onready var fog_overlay: ColorRect = $FogOfWarContainer/FogOverlay
 @onready var generating_label: Label = $GeneratingLabel
 
 var almanac_ui: Control
-var map_generator: Node  # MapGenerator instance
 
 var layer_ids = []
 var counts = []
@@ -48,28 +48,25 @@ var cleared = {}
 
 var map_interaction_enabled := true
 
-# Fog of war
+#Fog of war
 var fog_material: ShaderMaterial
 var revealed_nodes: Array[String] = []
 
-
+##Initialization
 func _ready():
 	add_to_group("map")
 	EncounterHandler.encounter_finished.connect(_on_encounter_finished)	
 	deck_button.pressed.connect(_on_deck_button_pressed)
 	almanac_button.pressed.connect(_on_almanac_button_pressed)
 	
-	# Initialize MapGenerator
-	var MapGeneratorClass = load("res://scenes/map/map_generator.gd")
-	map_generator = MapGeneratorClass.new()
-	add_child(map_generator)
+	_sync_generator_settings()
 	
 	$Cam.make_current()
 	setup()
 	_setup_fog_of_war()
 
+##Update fog shader
 func _process(_delta):
-	# Update fog shader positions continuously to account for camera movement
 	if enable_fog_of_war and fog_material:
 		_update_fog_overlay_size()
 		_update_fog_shader()
@@ -98,6 +95,24 @@ func _setup_fog_of_war():
 	_update_fog_overlay_size()
 	_update_fog_shader()
 
+##Sync settings from map to generator
+func _sync_generator_settings():
+	map_generator.radial_layout = radial_layout
+	map_generator.layers = layers
+	map_generator.max_width = max_width
+	map_generator.min_endpoints = min_endpoints
+	map_generator.max_endpoints = max_endpoints
+	map_generator.radial_rings = radial_rings
+	map_generator.ring_radius = ring_radius
+	map_generator.angle_randomness = angle_randomness
+	map_generator.min_node_separation = min_node_separation
+	map_generator.x_spacing = x_spacing
+	map_generator.y_spacing = y_spacing
+	map_generator.organic_layout = organic_layout
+	map_generator.x_randomness = x_randomness
+	map_generator.y_randomness = y_randomness
+	map_generator.seed_value = seed
+
 ##Generates a map based on seed, or randomly if seed is set to negative values
 func _generate():
 	var rng = RandomNumberGenerator.new()
@@ -113,21 +128,8 @@ func _generate():
 	etype.clear()
 	edges.clear()
 	
-	#Setup generator parameters
-	map_generator.radial_layout = radial_layout
-	map_generator.layers = layers
-	map_generator.max_width = max_width
-	map_generator.min_endpoints = min_endpoints
-	map_generator.max_endpoints = max_endpoints
-	map_generator.radial_rings = radial_rings
-	map_generator.ring_radius = ring_radius
-	map_generator.angle_randomness = angle_randomness
-	map_generator.min_node_separation = min_node_separation
-	map_generator.x_spacing = x_spacing
-	map_generator.y_spacing = y_spacing
-	map_generator.organic_layout = organic_layout
-	map_generator.x_randomness = x_randomness
-	map_generator.y_randomness = y_randomness
+	#Sync settings before generation
+	_sync_generator_settings()
 	
 	#Generate map using MapGenerator
 	var map_data = map_generator.generate(rng)
