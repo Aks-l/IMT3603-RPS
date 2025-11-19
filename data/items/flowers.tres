@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://1j4ccyuhf8h4"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://1j4ccyuhf8h4"]
 
 [ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="1_nd56y"]
+[ext_resource type="Texture2D" uid="uid://c2kg8j5xgluvj" path="res://data/items/sprites/flower.png" id="2_d047e"]
 
 [resource]
 script = ExtResource("1_nd56y")
 type = null
-id = 8
+id = 10
+sprite = ExtResource("2_d047e")
 name = "Flowers"
 description = "Give to enemy to increase friendship"
 discovered = null
 price = 4
+value = 0
 metadata/_custom_type_script = "uid://cne068h4eo8sm"

@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://6reknqpjst02"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://6reknqpjst02"]
 
 [ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="1_46eh5"]
 [ext_resource type="Script" uid="uid://dpro74p0tcp03" path="res://data/items/scripts/test_script.gd" id="1_obry0"]
+[ext_resource type="Texture2D" uid="uid://xisg2qnkoijo" path="res://data/items/sprites/extrahand.png" id="3_r80oo"]
 
 [resource]
 script = ExtResource("1_46eh5")
 type = 0
 id = 7
+sprite = ExtResource("3_r80oo")
 name = "Extra hand"
 description = "Increase inventory size by one"
 discovered = false
 price = 4
+value = 0
 item_script = ExtResource("1_obry0")
 metadata/_custom_type_script = "uid://cne068h4eo8sm"

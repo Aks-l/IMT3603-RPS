@@ -10,5 +10,6 @@ enum Type {ACCESSORY, HEAL, DAMAGE, SHIELD}
 @export var description: String
 @export var discovered: bool
 @export var price: int
+@export var value: int
 
 @export var item_script: Script

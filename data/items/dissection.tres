@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dtl2x5q6aud2i"]
+
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="1_jk8jj"]
+[ext_resource type="Texture2D" uid="uid://yerstiyt33av" path="res://data/items/sprites/dissectiontools.png" id="2_gkkvk"]
+
+[resource]
+script = ExtResource("1_jk8jj")
+type = 0
+id = 12
+sprite = ExtResource("2_gkkvk")
+name = "Dissection tools"
+description = "May create a copy of an owned hand, may destroy one owned hand"
+discovered = false
+price = 8
+value = 0
+metadata/_custom_type_script = "uid://cne068h4eo8sm"

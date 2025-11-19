@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://0rrosd5t5gnk"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://0rrosd5t5gnk"]
 
 [ext_resource type="Script" uid="uid://dpro74p0tcp03" path="res://data/items/scripts/test_script.gd" id="1_cnm0i"]
 [ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="1_u7ixb"]
+[ext_resource type="Texture2D" uid="uid://dpspx5yuo2bcl" path="res://data/items/sprites/punch.png" id="3_sq7cl"]
 
 [resource]
 script = ExtResource("1_u7ixb")
 type = 0
 id = 4
+sprite = ExtResource("3_sq7cl")
 name = "Punch"
 description = "Deal one damage to opponent"
 discovered = false
 price = 5
+value = 0
 item_script = ExtResource("1_cnm0i")
 metadata/_custom_type_script = "uid://cne068h4eo8sm"
