@@ -64,7 +64,6 @@ func get_current_deck() -> Dictionary[HandData, int]:
 ## Run-specific variables
 var battlehealth: int = 5
 var item_inventory_size: int = 4
-var funds = 5
 
 ## Progress variables
 var biome_levels_completed: int = 0
