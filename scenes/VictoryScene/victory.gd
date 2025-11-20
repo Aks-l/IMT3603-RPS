@@ -23,7 +23,6 @@ func setup(enemy: EnemyData, defeated: bool):
 	if defeated:
 		label.text = "You defeated\n%s\n\nChoose your reward:" % enemy.name
 		populate_rewards(enemy)
-		discover_cards(enemy)
 		continue_button.visible = false
 	else:
 		label.text = "You were defeated by %s" % enemy.name
@@ -34,11 +33,13 @@ func setup(enemy: EnemyData, defeated: bool):
 func _on_continue_pressed() -> void:
 	if Globals.health <= 0:
 		# Game over - use a global flag and change scene
+		get_tree().paused = false
 		Globals.reset_run()
 		Globals.set_meta("returning_from_game_over", true)
 		get_tree().change_scene_to_file("res://scenes/mainmenu.tscn")
 	else:
 		# Normal victory - continue playing
+		get_tree().paused = false
 		chosen_reward.emit()
 
 func populate_rewards(enemy: EnemyData):
@@ -55,6 +56,7 @@ func populate_rewards(enemy: EnemyData):
 		reward_container.add_child(container)
 
 func choose_reward(event: InputEvent, hand: HandData):
+	print("chosen")
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var current := int(Globals.inventory.get(hand, 0))
 		Globals.inventory[hand] = current + 1
