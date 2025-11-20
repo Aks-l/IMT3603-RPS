@@ -113,6 +113,7 @@ func on_card_played(hand: HandData):
 		_battle_ended = true
 		victory.visible = true
 		victory.setup(_enemy, true)
+		get_tree().paused = true
 		
 		## ONCE AN ITEM IS CHOSEN, queue_free()
 		
@@ -121,6 +122,7 @@ func on_card_played(hand: HandData):
 		Globals.take_damage(1)
 		victory.visible = true
 		victory.setup(_enemy, false)
+		get_tree().paused = true
 
 ##Item Used, handles effects of used items TODO: move to separate script?
 func _on_item_used(item: ItemData):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5xdkuc18ywuv"]
+[gd_scene load_steps=15 format=3 uid="uid://c5xdkuc18ywuv"]
 
 [ext_resource type="Script" uid="uid://ca2yf48k0yyfh" path="res://scenes/battleUI/battle_ui.gd" id="1_8ao15"]
 [ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="1_ggklf"]
@@ -162,6 +162,7 @@ anchor_mode = 0
 
 [node name="Victory" parent="." instance=ExtResource("9_v8byk")]
 unique_name_in_owner = true
+process_mode = 3
 visible = false
 layout_mode = 1
 anchors_preset = 8
