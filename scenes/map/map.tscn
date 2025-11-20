@@ -60,10 +60,12 @@ coast_width = 50.0
 z_index = 5
 
 [node name="FogOverlay" type="ColorRect" parent="FogOfWarContainer"]
+z_index = 901
 material = SubResource("ShaderMaterial_sqgf4")
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Edges" type="Node2D" parent="."]
 
@@ -82,9 +84,9 @@ offset_top = -61.0
 offset_right = -238.0
 offset_bottom = -30.0
 grow_horizontal = 0
-theme = ExtResource("4_ph54e")
 text = "Deck Builder"
 icon = SubResource("CanvasTexture_a2pkv")
+metadata/_edit_use_anchors_ = true
 
 [node name="AlmanacButton" type="Button" parent="."]
 z_index = 10
@@ -92,8 +94,8 @@ offset_left = 283.0
 offset_top = -53.0
 offset_right = 358.0
 offset_bottom = -22.0
-theme = ExtResource("4_ph54e")
 text = "Almanac"
+metadata/_edit_use_anchors_ = true
 
 [node name="GeneratingLabel" type="Label" parent="."]
 z_index = 10
@@ -108,3 +110,4 @@ grow_horizontal = 2
 size_flags_vertical = 0
 text = "Generating map..."
 label_settings = SubResource("LabelSettings_04w0f")
+metadata/_edit_use_anchors_ = true
