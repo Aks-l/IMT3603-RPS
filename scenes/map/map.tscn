@@ -75,7 +75,7 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("3_a2pkv")
 
 [node name="DeckButton" type="Button" parent="."]
-z_index = 10
+z_index = 1000
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -89,7 +89,7 @@ icon = SubResource("CanvasTexture_a2pkv")
 metadata/_edit_use_anchors_ = true
 
 [node name="AlmanacButton" type="Button" parent="."]
-z_index = 10
+z_index = 1000
 offset_left = 283.0
 offset_top = -53.0
 offset_right = 358.0
