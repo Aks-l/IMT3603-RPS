@@ -26,6 +26,7 @@ EventDatabase="*res://autoload/EventDatabase.gd"
 EncounterHandler="*res://autoload/encounter_handler.gd"
 AlmanacOverlay="*res://scenes/almanac/almanac.tscn"
 DeckCreater="*res://scenes/DeckCreater/deck_creater.tscn"
+outcome_graph_panel="*res://ui/components/outcome_graph_panel.tscn"
 
 [editor]
 

@@ -10,9 +10,6 @@ signal finished(result)
 @onready var enemy_hearts = %EnemyHearts
 
 @onready var victory = %Victory
-@onready var outcome_graph_panel = %OutcomeGraphPanel
-@onready var graph_toggle_button = %GraphToggleButton
-@onready var graph_close_button = %CloseButton
 
 @onready var level_label = %LevelLabel
 @onready var gold_label = %GoldLabel
@@ -52,14 +49,6 @@ func _ready():
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
 	
-	#Setup outcome graph toggle
-	if outcome_graph_panel:
-		outcome_graph_panel.visible = false
-	if graph_toggle_button:
-		graph_toggle_button.pressed.connect(_toggle_outcome_graph)
-	if graph_close_button:
-		graph_close_button.pressed.connect(_toggle_outcome_graph)
-	
 	_is_ready = true
 	if _has_params:
 		_apply()
@@ -82,6 +71,8 @@ func _apply():
 		inv_node.set_inventory(deck)
 	else:
 		print("No HandInventory found")
+		
+	outcome_graph_panel._refresh()
 
 ##Card Played
 ##Resolves the outcome of a played card against the enemy's card
@@ -131,13 +122,3 @@ func _on_item_used(item: ItemData):
 			player_hearts.heal(1)
 		ItemData.Type.SHIELD:
 			player_hearts.add_blue(1)
-
-func _toggle_outcome_graph():
-	if outcome_graph_panel:
-		outcome_graph_panel.visible = !outcome_graph_panel.visible
-
-##Input Handling, toggles outcome graph with 'G' key
-func _input(event: InputEvent):
-	# Toggle outcome graph with 'G' key
-	if event.is_action_pressed("input_keyboard_key_G"):
-		_toggle_outcome_graph()

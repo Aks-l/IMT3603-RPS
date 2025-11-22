@@ -2,6 +2,7 @@ extends Control
 
 @onready var health_container: HBoxContainer = %HealthContainer
 @onready var funds_label: Label = %FundsLabel
+@onready var toggle_graph_button: Button = %ToggleGraph
 
 const HEART_FULL = "♥"
 const HEART_EMPTY = "♡"
@@ -12,7 +13,9 @@ func _ready() -> void:
 	
 	_update_health_display(Globals.health)
 	_update_funds_display(Globals.funds)
-
+	
+	toggle_graph_button.pressed.connect(toggle_graph)
+	
 func _on_health_changed(new_health: int) -> void:
 	_update_health_display(new_health)
 
@@ -38,3 +41,12 @@ func _update_health_display(current_health: int) -> void:
 
 func _update_funds_display(current_funds: int) -> void:
 	funds_label.text = "Gold: %d" % current_funds
+
+func toggle_graph():
+	outcome_graph_panel._toggle_outcome_graph()
+
+##Input Handling, toggles outcome graph with 'G' key
+func _input(event: InputEvent):
+	# Toggle outcome graph with 'G' key
+	if event.is_action_pressed("input_keyboard_key_G"):
+		toggle_graph()
