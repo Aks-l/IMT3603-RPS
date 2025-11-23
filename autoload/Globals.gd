@@ -14,6 +14,19 @@ var funds: int = STARTING_FUNDS
 
 var current_deck: Dictionary[HandData, int] = {}
 
+## Run-specific variables
+var globalhealth: int = 3
+var battlehealth: int = 5
+var item_inventory_size: int = 4
+
+## Progress variables
+var biome_levels_completed: int = 0
+var run_levels_completed: int = 0
+var total_levels_completed: int = 0
+
+var run_biomes_completed: int = 0
+var total_biomes_completed: int = 0
+
 func _ready() -> void:
 	reset_run()
 
@@ -23,8 +36,14 @@ func take_damage(amount: int = 1) -> void:
 	print("[Globals] Health reduced to: ", health)
 	
 	if health <= 0:
-		game_over.emit()
-		print("[Globals] Game Over - No health remaining")
+		# Emit deferred to avoid synchronous handlers running while the tree may be paused
+		call_deferred("_emit_game_over")
+
+# Deferred emitter so receivers run after current frame / pause state resolves
+func _emit_game_over() -> void:
+	game_over.emit()
+	print("[Globals] Game Over - No health remaining")
+
 
 func heal(amount: int = 1) -> void:
 	health = min(MAX_HEALTH, health + amount)
@@ -52,6 +71,9 @@ func reset_run() -> void:
 	current_deck.clear()
 	health_changed.emit(health)
 	funds_changed.emit(funds)
+	run_levels_completed = 0
+	biome_levels_completed = 0
+	run_biomes_completed = 0
 	print("[Globals] Run reset - Health: ", health, ", Funds: ", funds)
 
 func set_current_deck(deck: Dictionary[HandData, int]) -> void:
@@ -60,16 +82,3 @@ func set_current_deck(deck: Dictionary[HandData, int]) -> void:
 
 func get_current_deck() -> Dictionary[HandData, int]:
 	return current_deck
-
-## Run-specific variables
-var globalhealth: int = 3
-var battlehealth: int = 5
-var item_inventory_size: int = 4
-
-## Progress variables
-var biome_levels_completed: int = 0
-var run_levels_completed: int = 0
-var total_levels_completed: int = 0
-
-var run_biomes_completed: int = 0
-var total_biomes_completed: int = 0
