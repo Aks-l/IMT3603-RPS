@@ -7,15 +7,15 @@ extends Node2D
 @export var min_endpoints := 1  ##Minimum number of endpoint nodes
 @export var max_endpoints := 3  ##Maximum number of endpoint nodes
 @export var nodes_per_ring := 8  ##Base number of nodes per ring
-@export var ring_radius := 200.0  ##Distance between rings
+@export var ring_radius := 300.0  ##Distance between rings
 @export var radial_rings := 4  ##Number of concentric rings for radial layout
 @export var angle_randomness := 10 ##Range of random angle offset for branches, from - to + value in degrees
-@export var min_node_separation := 80.0  ##Minimum distance between nodes
-@export var x_spacing := 140.0 ##Spacing between nodes in the X direction
-@export var y_spacing := 140.0 ##Spacing between nodes in the Y direction
+@export var min_node_separation := 250.0  ##Minimum distance between nodes
+@export var x_spacing := 250.0 ##Spacing between nodes in the X direction
+@export var y_spacing := 250.0 ##Spacing between nodes in the Y direction
 @export var organic_layout := true ##Use organic/randomized layout instead of grid-like
-@export var x_randomness := 90.0 ##Randomness factor for node positioning in the X direction
-@export var y_randomness := 70.0 ##Randomness factor for node positioning in the Y direction
+@export var x_randomness := 50.0 ##Randomness factor for node positioning in the X direction
+@export var y_randomness := 40.0 ##Randomness factor for node positioning in the Y direction
 @export var path_texture: Texture2D ##Texture for map paths
 @export var seed := -1 ##If set to positive number, will generate from seed, otherwise random
 @export var encounter_scene: PackedScene

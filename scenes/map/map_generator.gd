@@ -9,15 +9,15 @@ extends Node
 @export var min_endpoints: int = 1
 @export var max_endpoints: int = 3
 @export var nodes_per_ring: int = 8
-@export var ring_radius: float = 200.0
+@export var ring_radius: float = 300.0
 @export var radial_rings: int = 4
 @export var angle_randomness: float = 10.0
-@export var min_node_separation: float = 80.0
-@export var x_spacing: float = 140.0
-@export var y_spacing: float = 140.0
+@export var min_node_separation: float = 250.0
+@export var x_spacing: float = 250.0
+@export var y_spacing: float = 250.0
 @export var organic_layout: bool = true
-@export var x_randomness: float = 90.0
-@export var y_randomness: float = 70.0
+@export var x_randomness: float = 40.0
+@export var y_randomness: float = 30.0
 @export var seed_value: int = -1
 
 # Output data
@@ -38,12 +38,12 @@ func setup_parameters(settings: Dictionary):
 	ring_radius = settings.get("ring_radius", 200.0)
 	radial_rings = settings.get("radial_rings", 4)
 	angle_randomness = settings.get("angle_randomness", 10.0)
-	min_node_separation = settings.get("min_node_separation", 80.0)
-	x_spacing = settings.get("x_spacing", 140.0)
-	y_spacing = settings.get("y_spacing", 140.0)
+	min_node_separation = settings.get("min_node_separation", 200.0)
+	x_spacing = settings.get("x_spacing", 200.0)
+	y_spacing = settings.get("y_spacing", 200.0)
 	organic_layout = settings.get("organic_layout", true)
-	x_randomness = settings.get("x_randomness", 90.0)
-	y_randomness = settings.get("y_randomness", 70.0)
+	x_randomness = settings.get("x_randomness", 50.0)
+	y_randomness = settings.get("y_randomness", 40.0)
 	seed_value = settings.get("seed", -1)
 
 ##Generate the map layout
@@ -91,83 +91,120 @@ func _generate_radial(rng: RandomNumberGenerator):
 	
 	#Branching out from center
 	for branch_idx in range(num_branches):
-		var base_angle = (float(branch_idx) / num_branches) * TAU - PI/4 + rng.randf_range(-angle_randomness, angle_randomness) * PI / 180.0
-		var prev_ring_nodes = [start_id]
+		#Spread branches evenly
+		var base_angle = (float(branch_idx) / num_branches) * TAU
 		
+		#Track previous nodes to connect from
+		var prev_nodes = [start_id]
+		
+		#Generate rings for this branch
 		for ring in range(1, radial_rings):
 			#Layer setup
 			if layer_ids.size() <= ring:
 				layer_ids.append([])
 				counts.append(0)
-			
 			if not all_ring_nodes.has(ring):
 				all_ring_nodes[ring] = []
 			
-			#Nodes in this ring
-			var nodes_in_ring = 1 if ring == radial_rings - 1 else clamp(prev_ring_nodes.size() + (1 if rng.randf() < (0.35 if prev_ring_nodes.size() == 1 else 0.15) and ring > 1 else 0), 1, 3) if ring > 1 else (2 if num_branches <= 2 and rng.randf() < 0.4 else 1)
+			#Determine number of nodes
+			var nodes_count = 1
+			if ring == radial_rings - 1:
+				#Boss ring: always 1
+				nodes_count = 1
+			elif ring <= 2:
+				#Early: branch to 2-3
+				nodes_count = 2 if num_branches > 2 else 3
+			elif ring > radial_rings - 3:
+				#Late: converge to 1
+				nodes_count = 1
+			else:
+				#Middle: 2-3 nodes
+				nodes_count = 2 if rng.randf() < 0.6 else 3
 			
-			var current_ring_nodes = []
-			for node_idx in range(nodes_in_ring):
+
+			var curr_nodes = []
+			
+			#Calculate how space per branch
+			var branch_sector = TAU / num_branches
+			
+			for node_idx in range(nodes_count):
 				var id = "B%d_R%d_N%d" % [branch_idx, ring, node_idx]
 				
-				#Randomize angle and radius
-				var angle = base_angle + (node_idx - (nodes_in_ring - 1) * 0.5) * (0.5 if ring < 3 else 0.7) / num_branches if nodes_in_ring > 1 else base_angle
-				angle += rng.randf_range(-0.08, 0.08)
-				var radius = ring * ring_radius + (rng.randf_range(-ring_radius * 0.15, ring_radius * 0.15) if organic_layout else 0.0)
+				#Determine position
+				var node_angle = base_angle
+				var node_radius = ring * ring_radius
 				
-				#Find valid position
-				var candidate_pos = origin + Vector2(cos(angle), sin(angle)) * radius
-				for _attempt in range(30):
-					var valid = true
-					for existing_id in all_ring_nodes[ring]:
-						if pos.has(existing_id) and pos[existing_id].distance_to(candidate_pos) < min_node_separation:
-							valid = false
-							break
-					if valid:
-						break
-					angle += rng.randf_range(-0.2, 0.2)
-					candidate_pos = origin + Vector2(cos(angle), sin(angle)) * max(radius + rng.randf_range(-30, 30), 50.0)
+				if nodes_count > 1:
+					#Spread nodes within branch sector
+					var usable_sector = branch_sector * 0.7
+					var offset = (node_idx - (nodes_count - 1) * 0.5) * (usable_sector / nodes_count)
+					node_angle += offset
+					node_radius += (node_idx - (nodes_count - 1) * 0.5) * (ring_radius * 0.4)
 				
-				pos[id] = candidate_pos
-				etype[id] = "Boss" if ring == radial_rings - 1 else (["Event", "Shop", "Combat"][[0.25, 0.4, 1.0].map(func(t): return rng.randf() < t).find(true)])
+				#Place node
+				pos[id] = origin + Vector2(cos(node_angle), sin(node_angle)) * node_radius
+				
+				#Set type
+				if ring == radial_rings - 1:
+					etype[id] = "Boss"
+				else:
+					var r = rng.randf()
+					etype[id] = "Event" if r < 0.2 else "Shop" if r < 0.35 else "Combat"
+				
 				all_ring_nodes[ring].append(id)
-				current_ring_nodes.append(id)
+				curr_nodes.append(id)
 			
 			#Connect rings
-			var p = prev_ring_nodes.size()
-			var c = current_ring_nodes.size()
-			if p == 1 and c == 1:
-				edges.append([prev_ring_nodes[0], current_ring_nodes[0]])
-			elif p == 1:
-				for curr in current_ring_nodes:
-					edges.append([prev_ring_nodes[0], curr])
-			elif c == 1:
-				for prev in prev_ring_nodes:
-					edges.append([prev, current_ring_nodes[0]])
+			if prev_nodes.size() == 1 and curr_nodes.size() == 1:
+				edges.append([prev_nodes[0], curr_nodes[0]])
+			elif prev_nodes.size() == 1:
+				for curr in curr_nodes:
+					edges.append([prev_nodes[0], curr])
+			elif curr_nodes.size() == 1:
+				for prev in prev_nodes:
+					edges.append([prev, curr_nodes[0]])
 			else:
-				for prev in prev_ring_nodes:
-					var sorted = current_ring_nodes.duplicate()
-					sorted.sort_custom(func(a, b): return pos[prev].distance_to(pos[a]) < pos[prev].distance_to(pos[b]))
-					edges.append([prev, sorted[0]])
-					if sorted.size() > 1 and rng.randf() < 0.4:
-						edges.append([prev, sorted[1]])
+
+				var connected_curr = {}
+				for prev in prev_nodes:
+					var closest = curr_nodes[0]
+					var closest_dist = pos[prev].distance_to(pos[closest])
+					for curr in curr_nodes:
+						var dist = pos[prev].distance_to(pos[curr])
+						if dist < closest_dist:
+							closest_dist = dist
+							closest = curr
+					edges.append([prev, closest])
+					connected_curr[closest] = true
+				
+				#Ensure no orphaned nodes
+				for curr in curr_nodes:
+					if not connected_curr.has(curr):
+						#Node is orphaned, connect to closest in previous
+						var closest_prev = prev_nodes[0]
+						var closest_dist = pos[curr].distance_to(pos[closest_prev])
+						for prev in prev_nodes:
+							var dist = pos[curr].distance_to(pos[prev])
+							if dist < closest_dist:
+								closest_dist = dist
+								closest_prev = prev
+						edges.append([closest_prev, curr])
 			
-			prev_ring_nodes = current_ring_nodes
+			# Move to next ring
+			prev_nodes = curr_nodes
 	
 	#Finalize layer data
 	for ring in range(1, radial_rings):
 		if all_ring_nodes.has(ring):
 			layer_ids[ring] = all_ring_nodes[ring]
 			counts[ring] = all_ring_nodes[ring].size()
-	
-	_ensure_connectivity(rng)
 
 ##Generate linear layout
 func _generate_linear(rng: RandomNumberGenerator):
 	var mid := int(layers / 2)
 	var w := 1
 
-    #Number of nodes per layer
+	#Number of nodes per layer
 	for i in range(layers):
 		if i == 0:
 			w = 1
@@ -189,7 +226,7 @@ func _generate_linear(rng: RandomNumberGenerator):
 			w = 1
 		counts.append(w)
 
-    #Node positions and types
+	#Node positions and types
 	var origin := Vector2(0, 0)
 	for i in range(layers):
 		var ids = []
@@ -197,7 +234,7 @@ func _generate_linear(rng: RandomNumberGenerator):
 		
 		var layer_y_offset = 0.0
 		if organic_layout:
-			layer_y_offset = (rng.randf() - 0.5) * y_randomness * 0.8
+			layer_y_offset = (rng.randf() - 0.5) * y_randomness * 0.5
 		
 		for j in range(count):
 			var id = _rid(i, j)
@@ -211,13 +248,30 @@ func _generate_linear(rng: RandomNumberGenerator):
 			if organic_layout:
 				offset_x = (rng.randf() - 0.5) * x_randomness
 				offset_y = (rng.randf() - 0.5) * y_randomness
-				
+					
 				if i == 0 or i == layers - 1:
-					offset_x *= 0.4
-					offset_y *= 0.4
+					offset_x *= 0.3
+					offset_y *= 0.3
 			
-			pos[id] = Vector2(base_x + offset_x, base_y + offset_y)
+			#Ensure minimum separation
+			var candidate_pos = Vector2(base_x + offset_x, base_y + offset_y)
 			
+			#Validate position
+			if organic_layout:
+				for attempt in range(20):
+					var valid = true
+					for existing_id in pos.keys():
+						if pos[existing_id].distance_to(candidate_pos) < min_node_separation:
+							valid = false
+							break
+					if valid:
+						break
+					#Retry
+					offset_x = (rng.randf() - 0.5) * x_randomness * 0.8
+					offset_y = (rng.randf() - 0.5) * y_randomness * 0.8
+					candidate_pos = Vector2(base_x + offset_x, base_y + offset_y)
+			
+			pos[id] = candidate_pos			
 			if i == 0:
 				etype[id] = "Start"
 			elif i == layers - 1:
@@ -278,10 +332,15 @@ func _generate_linear(rng: RandomNumberGenerator):
 					if base_tj + 1 < c_to and rng.randf() < 0.35:
 						edges.append([from_id, _rid(i + 1, base_tj + 1)])
 	
-	_ensure_connectivity(rng)
+	_ensure_connectivity(rng, false)
 
 ##Ensure all nodes have at least one inbound connection
-func _ensure_connectivity(rng: RandomNumberGenerator):
+##For radial layouts, only connect within the same branch to avoid crossing paths
+func _ensure_connectivity(rng: RandomNumberGenerator, is_radial: bool = false):
+	if is_radial:
+		# For radial, branches are independent - no cross-branch connectivity needed
+		return
+	
 	var inbound = {}
 	for e in edges:
 		inbound[e[1]] = true
@@ -298,7 +357,7 @@ func _ensure_connectivity(rng: RandomNumberGenerator):
 					if d < best_d:
 						best_d = d
 						best = f
-                        
+						
 				edges.append([best, t])
 
 ##Map index mapping helper

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c5wixxw6ydt51" path="res://ui/map_textures/path_texture.png" id="2_fcby6"]
 [ext_resource type="PackedScene" uid="uid://ihtu1uv52bk1" path="res://scenes/map/encounter_node.tscn" id="2_tqkkf"]
 [ext_resource type="Script" uid="uid://cp4dp6kikshgc" path="res://scenes/map/cam.gd" id="3_a2pkv"]
-[ext_resource type="Script" path="res://scenes/map/map_background.gd" id="4_cnyx2"]
+[ext_resource type="Script" uid="uid://b3cocd65kvh24" path="res://scenes/map/map_background.gd" id="4_cnyx2"]
 [ext_resource type="PackedScene" uid="uid://bq7xwmn8ksqh2" path="res://scenes/map/map_generator.tscn" id="5_7oq43"]
 [ext_resource type="Shader" uid="uid://dlw8f0j8nmw13" path="res://scenes/map/fog_of_war.gdshader" id="6_04w0f"]
 [ext_resource type="PackedScene" uid="uid://bv7xwmn8ksqh1" path="res://ui/components/global_hud.tscn" id="6_cqrs2"]
