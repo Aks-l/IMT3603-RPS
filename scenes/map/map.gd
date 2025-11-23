@@ -19,6 +19,7 @@ extends Node2D
 @export var path_texture: Texture2D ##Texture for map paths
 @export var seed := -1 ##If set to positive number, will generate from seed, otherwise random
 @export var encounter_scene: PackedScene
+@export var biome: BiomeData
 
 @export_group("Fog of War Settings")
 @export var enable_fog_of_war := true ##Enable shader-based fog of war effect
@@ -72,6 +73,7 @@ func _process(_delta):
 		_update_fog_shader()
 
 func setup():
+	biome = BiomeDatabase.biomes.values().pick_random()
 	_generate()
 	_draw_edges()
 	_spawn_encounters()
@@ -79,6 +81,7 @@ func setup():
 	
 	#Generate terrain background based on map
 	if background:
+		background.set_palette(biome)
 		background.set_graph(pos, edges)
 
 func _setup_fog_of_war():
