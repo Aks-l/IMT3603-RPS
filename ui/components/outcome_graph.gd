@@ -87,6 +87,25 @@ func setup_ui() -> void:
 		add_child(button)
 		hand_buttons[hand] = button
 
+func redraw_all() -> void:
+	# Remove existing hand buttons
+	for h in hand_buttons.keys():
+		var btn = hand_buttons[h]
+		if is_instance_valid(btn):
+			if btn.get_parent() == self:
+				remove_child(btn)
+			btn.queue_free()
+
+	hand_buttons.clear()
+	hand_positions.clear()
+	hands.clear()
+	hovered_hand = null
+
+	load_hands()
+	setup_ui()
+
+	queue_redraw()
+
 
 ##Draw the outcome graph
 func _draw() -> void:

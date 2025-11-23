@@ -1,28 +1,26 @@
-extends Control
+extends CanvasLayer
 
 signal event_completed(result: Dictionary)
 
-@onready var overlay: ColorRect = $Overlay
-@onready var event_panel: PanelContainer = $EventPanel
-@onready var event_image: TextureRect = $EventPanel/MarginContainer/VBoxContainer/EventImage
-@onready var event_title: Label = $EventPanel/MarginContainer/VBoxContainer/TitleLabel
-@onready var event_description: Label = $EventPanel/MarginContainer/VBoxContainer/DescriptionLabel
-@onready var options_container: VBoxContainer = $EventPanel/MarginContainer/VBoxContainer/OptionsContainer
-@onready var outcome_panel: PanelContainer = $OutcomePanel
-@onready var outcome_label: Label = $OutcomePanel/MarginContainer/VBoxContainer/OutcomeLabel
-@onready var continue_button: Button = $OutcomePanel/MarginContainer/VBoxContainer/ContinueButton
+@onready var event_panel: PanelContainer = $EventUIControl/EventPanel
+@onready var event_image: TextureRect = $EventUIControl/EventPanel/MarginContainer/VBoxContainer/EventImage
+@onready var event_title: Label = $EventUIControl/EventPanel/MarginContainer/VBoxContainer/TitleLabel
+@onready var event_description: Label = $EventUIControl/EventPanel/MarginContainer/VBoxContainer/DescriptionLabel
+@onready var options_container: VBoxContainer = $EventUIControl/EventPanel/MarginContainer/VBoxContainer/OptionsContainer
+@onready var outcome_panel: PanelContainer = $EventUIControl/OutcomePanel
+@onready var outcome_label: Label = $EventUIControl/OutcomePanel/MarginContainer/VBoxContainer/OutcomeLabel
+@onready var continue_button: Button = $EventUIControl/OutcomePanel/MarginContainer/VBoxContainer/ContinueButton
 
 var current_event: EventData
 var selected_option: EventOptionData
 
 func _ready():
-	#Disable map interaction while event is active
+	set_process_input(false)
+	set_process_unhandled_input(false)
+	
+	#Disable node inputs when event is active
 	var map = get_tree().root.get_node_or_null("map")
 	if map:
-		map.set_process_input(false)
-		map.set_process_unhandled_input(false)
-		
-		#Disable all encounter node inputs
 		var encounters_root = map.get_node_or_null("Encounters")
 		if encounters_root:
 			for encounter in encounters_root.get_children():
@@ -36,12 +34,9 @@ func _ready():
 	continue_button.pressed.connect(_on_continue_pressed)
 
 func _exit_tree():
-	#Re-enable map interaction when event closes
+	#Re-enable encounter node inputs when event closes
 	var map = get_tree().root.get_node_or_null("map")
 	if map:
-		map.set_process_input(true)
-		map.set_process_unhandled_input(true)
-
 		#Re-enable all encounter node inputs
 		var encounters_root = map.get_node_or_null("Encounters")
 		if encounters_root:
@@ -50,15 +45,14 @@ func _exit_tree():
 				if area and area is Area2D:
 					area.input_pickable = true
 
-##Display the event
+##Display an event, setting up options and UI
 func display_event(event: EventData):
 	current_event = event
 	
-	#Clear existing options
+	#Event setup
 	for child in options_container.get_children():
 		child.queue_free()
 	
-	#Set up event display
 	if event.image:
 		event_image.texture = event.image
 		event_image.visible = true
@@ -73,11 +67,9 @@ func display_event(event: EventData):
 	for option in event.options:
 		print("[EventUI] Processing option: ", option.option_text if option else "NULL")
 		
-		#Create a panel container for each button for better visibility
 		var option_panel = PanelContainer.new()
 		option_panel.custom_minimum_size = Vector2(0, 40)
 		
-		#Add margin inside the panel
 		var margin = MarginContainer.new()
 		margin.add_theme_constant_override("margin_left", 8)
 		margin.add_theme_constant_override("margin_top", 4)
@@ -91,16 +83,14 @@ func display_event(event: EventData):
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		margin.add_child(button)
 		
-		#Check if option is available
+		#Check option availability
 		var is_available = true
 		var unavailable_reason = ""
 		
-		#Check gold cost
 		if option.gold_cost > 0 and Globals.funds < option.gold_cost:
 			is_available = false
 			unavailable_reason = "Not enough gold (need %d)" % option.gold_cost
 		
-		#Check required items
 		if is_available and not option.removes_items.is_empty():
 			for required_item in option.removes_items:
 				if not Globals.consumables.has(required_item):
@@ -114,7 +104,6 @@ func display_event(event: EventData):
 			var context = _build_context(option)
 			is_available = script_instance.can_execute(context)
 			
-			#Add tooltip if custom script provides one
 			var tooltip = script_instance.get_tooltip(context)
 			if tooltip != "":
 				button.tooltip_text = tooltip
@@ -122,10 +111,9 @@ func display_event(event: EventData):
 			if not is_available and unavailable_reason == "":
 				unavailable_reason = "Requirements not met"
 		
-		#Grey out and disable unavailable options
+		#Disable button if not available
 		if not is_available:
 			button.disabled = true
-			#More visible greyed out style
 			button.modulate = Color(1.2, 0.6, 0.6, 1.0)
 			option_panel.modulate = Color(0.7, 0.7, 0.7, 0.5)
 			if button.tooltip_text == "":
@@ -140,14 +128,15 @@ func display_event(event: EventData):
 	
 	print("[EventUI] Total buttons created: ", button_count)
 	
-	#Show the event UI
 	show()
 
+##Handle option selection
 func _on_option_chosen(option: EventOptionData):
 	selected_option = option
 	
 	#Hide event panel, prepare to show outcome
 	event_panel.visible = false
+	outcome_panel.visible = true
 	
 	var outcome_text := ""
 	var result := {}
@@ -183,7 +172,6 @@ func _on_option_chosen(option: EventOptionData):
 	
 	#Display outcome
 	outcome_label.text = outcome_text
-	outcome_panel.visible = true
 	
 	#Handle followup actions
 	if option.triggers_combat and option.combat_enemy:
@@ -196,11 +184,15 @@ func _on_option_chosen(option: EventOptionData):
 ##Apply rewards and consequences
 func _apply_standard_rewards(option: EventOptionData):
 	#Apply rewards
-	Globals.funds += option.gold_reward
+	if option.gold_reward > 0:
+		Globals.add_funds(option.gold_reward)
 	
 	if option.health_change != 0:
 		#Health will be applied by the map/encounter handler
-		pass #TODO: Implement health change application
+		if option.health_change < 0:
+			Globals.take_damage(abs(option.health_change))
+		else:
+			Globals.heal(option.health_change)
 	
 	for item in option.items_received:
 		Globals.consumables.append(item)
@@ -210,7 +202,8 @@ func _apply_standard_rewards(option: EventOptionData):
 		Globals.inventory[hand] = current + 1
 	
 	#Handle consequences
-	Globals.funds -= option.gold_cost
+	if option.gold_cost > 0:
+		Globals.spend_funds(option.gold_cost)
 	
 	for item in option.removes_items:
 		Globals.consumables.erase(item)
@@ -245,7 +238,7 @@ func _on_continue_pressed():
 ##Sets up context for custom scripts
 func _build_context(option: EventOptionData) -> Dictionary:
 	return {
-		"player_health": null,  #TODO: Set player health
+		"player_health": Globals.health,
 		"globals": Globals,
 		"encounter_handler": EncounterHandler,
 		"event_ui": self,
