@@ -104,7 +104,8 @@ func on_card_played(hand: HandData):
 
 func resolve_win():
 	for owned_item in Globals.consumables:
-		owned_item.item_script.call("carried",owned_item)
+		if owned_item.item_script:
+			owned_item.item_script.call("carried",owned_item)
 	_battle_ended = true
 	victory.visible = true
 	victory.setup(_enemy, true)
