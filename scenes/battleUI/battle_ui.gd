@@ -98,27 +98,32 @@ func on_card_played(hand: HandData):
 			player_hearts.take_damage(1)
 		0:
 			result_label.text = "It's a tie! Both played " + hand.name
-			print(result_label.text)
-	
-	if enemy_hearts.get_hp() <= 0:
-		_battle_ended = true
-		victory.visible = true
-		victory.setup(_enemy, true)
-		get_tree().paused = true
-		
-		## ONCE AN ITEM IS CHOSEN, queue_free()
-		
-	elif player_hearts.get_hp() <= 0:
-		_battle_ended = true
-		Globals.take_damage(1)
-		victory.visible = true
-		victory.setup(_enemy, false)
-		get_tree().paused = true
+			print(result_label.text) 
+	if enemy_hearts.get_hp() <= 0: resolve_win()
+	elif player_hearts.get_hp() <= 0: resolve_loss()
 
-##Item Used, handles effects of used items TODO: move to separate script?
-func _on_item_used(item: ItemData):
-	match item.type:
-		ItemData.Type.HEAL:
-			player_hearts.heal(1)
-		ItemData.Type.SHIELD:
-			player_hearts.add_blue(1)
+func resolve_win():
+	for owned_item in Globals.consumables:
+		if owned_item.item_script:
+			owned_item.item_script.call("carried",owned_item)
+	_battle_ended = true
+	victory.visible = true
+	victory.setup(_enemy, true)
+	get_tree().paused = true
+
+func resolve_loss():
+	_battle_ended = true
+	Globals.take_damage(1)	
+	victory.visible = true
+	victory.setup(_enemy, false)
+	get_tree().paused = true
+
+func _toggle_outcome_graph():
+	if outcome_graph_panel:
+		outcome_graph_panel.visible = !outcome_graph_panel.visible
+
+##Input Handling, toggles outcome graph with 'G' key
+func _input(event: InputEvent):
+	# Toggle outcome graph with 'G' key
+	if event.is_action_pressed("input_keyboard_key_G"):
+		_toggle_outcome_graph()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bv7xwmn8ksqh1"]
 
-[ext_resource type="Script" uid="uid://cv7jysg6i4knr" path="res://ui/components/global_hud.gd" id="1_h8yko"]
+[ext_resource type="Script" path="res://ui/components/global_hud.gd" id="1_h8yko"]
 
 [node name="GlobalHUD" type="Control"]
 layout_mode = 3

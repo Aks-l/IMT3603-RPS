@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b7d5xaqn8s1jy"]
+
+[ext_resource type="Script" uid="uid://dpro74p0tcp03" path="res://data/items/scripts/test_script.gd" id="1_ott5n"]
+[ext_resource type="Script" uid="uid://cne068h4eo8sm" path="res://data/items/ItemData.gd" id="1_tdeb6"]
+[ext_resource type="Texture2D" uid="uid://xeni1qevmfdm" path="res://data/items/sprites/omnihand.png" id="3_8itu3"]
+
+[resource]
+script = ExtResource("1_tdeb6")
+type = 0
+id = 5
+sprite = ExtResource("3_8itu3")
+name = "Omnihand"
+description = "Next hand played is random"
+discovered = false
+price = 3
+value = 0
+item_script = ExtResource("1_ott5n")
+metadata/_custom_type_script = "uid://cne068h4eo8sm"
