@@ -56,7 +56,6 @@ func populate_rewards(enemy: EnemyData):
 		reward_container.add_child(container)
 
 func choose_reward(event: InputEvent, hand: HandData):
-	print("chosen")
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var current := int(Globals.inventory.get(hand, 0))
 		Globals.inventory[hand] = current + 1
