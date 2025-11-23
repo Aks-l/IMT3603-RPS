@@ -52,7 +52,8 @@ func _load_items_into_slots() -> void:
 		var item := tempInvItem.new()
 		item.init(itemsLoad[i])
 		item.item_used.connect(func(data: ItemData):
-			item.data.item_script.call("used", item.data)
+			if item.data.item_script:
+				item.data.item_script.call("used", item.data)
 			item.queue_free()
 		)
 		container.get_child(i).add_child(item)

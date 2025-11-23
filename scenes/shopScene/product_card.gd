@@ -27,7 +27,8 @@ func _gui_input(event: InputEvent) -> void:
 
 		if Globals.spend_funds(item.price):
 			print(item.name + " was bought")
-			item.item_script.call("purchased", item)
+			if item.item_script:
+				item.item_script.call("purchased", item)
 
 			Globals.consumables.append(item)
 			emit_signal("on_purchase", item)
