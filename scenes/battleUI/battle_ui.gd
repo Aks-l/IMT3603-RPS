@@ -10,9 +10,6 @@ signal finished(result)
 @onready var enemy_hearts = %EnemyHearts
 
 @onready var victory = %Victory
-@onready var outcome_graph_panel = %OutcomeGraphPanel
-@onready var graph_toggle_button = %GraphToggleButton
-@onready var graph_close_button = %CloseButton
 
 @onready var level_label = %LevelLabel
 @onready var gold_label = %GoldLabel
@@ -20,6 +17,7 @@ signal finished(result)
 var _enemy: EnemyData
 var _hand: Dictionary = {}		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
+var _battle_ended := false		# Prevent card plays after battle ends
 
 var _has_params := false
 var _is_ready := false
@@ -51,14 +49,6 @@ func _ready():
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
 	
-	#Setup outcome graph toggle
-	if outcome_graph_panel:
-		outcome_graph_panel.visible = false
-	if graph_toggle_button:
-		graph_toggle_button.pressed.connect(_toggle_outcome_graph)
-	if graph_close_button:
-		graph_close_button.pressed.connect(_toggle_outcome_graph)
-	
 	_is_ready = true
 	if _has_params:
 		_apply()
@@ -81,45 +71,51 @@ func _apply():
 		inv_node.set_inventory(deck)
 	else:
 		print("No HandInventory found")
+		
+	outcome_graph_panel._refresh()
 
 ##Card Played
 ##Resolves the outcome of a played card against the enemy's card
 ##Updates health and checks for victory/loss
 func on_card_played(hand: HandData):
+	# Prevent playing cards after battle has ended
+	if _battle_ended:
+		return
+		
 	print("BattleUI received card:", hand.name)
 	var enemy_hand = _enemy.get_hand()
 	print("on_card_played called with: ", hand.name)
-	
-	#print("You played: " + hand.name)
-	#print("Enemy played: " + enemy_hand.name)
 	
 	var result = HandsDb.get_result(hand, enemy_hand)
 	match result:
 		1:
 			result_label.text = "You win! " + hand.name + " beats " + enemy_hand.name
-			print(result_label.text) #DEBUG
+			print(result_label.text)
 			enemy_hearts.take_damage(1)
 		-1:
 			result_label.text = "You lose! " + enemy_hand.name + " beats " + hand.name
-			print(result_label.text) #DEBUG
+			print(result_label.text)
 			player_hearts.take_damage(1)
 		0:
 			result_label.text = "It's a tie! Both played " + hand.name
-			print(result_label.text) #DEBUG
+			print(result_label.text) 
 	if enemy_hearts.get_hp() <= 0: resolve_win()
 	elif player_hearts.get_hp() <= 0: resolve_loss()
 
 func resolve_win():
 	for owned_item in Globals.consumables:
 		owned_item.item_script.call("carried",owned_item)
+	_battle_ended = true
 	victory.visible = true
 	victory.setup(_enemy, true)
 	get_tree().paused = true
 
 func resolve_loss():
-	push_error("TODO: implement gameover/loss resolution")
+	_battle_ended = true
+	Globals.take_damage(1)	
+	victory.visible = true
 	victory.setup(_enemy, false)
-	assert(false)
+	get_tree().paused = true
 
 func _toggle_outcome_graph():
 	if outcome_graph_panel:

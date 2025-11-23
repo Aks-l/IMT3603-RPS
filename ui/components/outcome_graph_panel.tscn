@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdqtxun1roe70"]
+
+[ext_resource type="Script" uid="uid://0pn1jisqdiqd" path="res://ui/components/outcome_graph_panel.gd" id="1_4fssh"]
+[ext_resource type="PackedScene" uid="uid://cs1m8wvcx1oph" path="res://ui/components/outcome_graph.tscn" id="2_65fkx"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_4fssh")
+
+[node name="OutcomeGraphPanel" type="PanelContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -342.0
+offset_top = -315.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OutcomeGraphPanel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OutcomeGraphPanel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="OutcomeGraphPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hand Guide"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="OutcomeGraphPanel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "X"
+
+[node name="OutcomeGraph" parent="OutcomeGraphPanel/VBoxContainer" instance=ExtResource("2_65fkx")]
+unique_name_in_owner = true
+layout_mode = 2

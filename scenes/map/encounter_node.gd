@@ -4,6 +4,15 @@ signal clicked(encounter_id)
 
 enum EncounterType { START, COMBAT, EVENT, SHOP, REST, BOSS }
 
+# Icon paths for each encounter type
+const ENCOUNTER_ICONS := {
+	EncounterType.START: preload("res://ui/encounter_icons/start_encounter.png"),
+	EncounterType.COMBAT: preload("res://ui/encounter_icons/combat_encounter.png"),
+	EncounterType.EVENT: preload("res://ui/encounter_icons/event_encounter.png"),
+	EncounterType.SHOP: preload("res://ui/encounter_icons/shop_encounter.png"),
+	EncounterType.BOSS: preload("res://ui/encounter_icons/boss_encounter.png"),
+}
+
 @export var encounter_id: String = ""
 @export_enum("Start","Combat","Event","Shop","Rest","Boss")
 var encounter_type: int = EncounterType.COMBAT
@@ -12,12 +21,17 @@ var reachable := false
 var cleared := false
 var _hovered := false
 
-@onready var marker: ColorRect = $UI/VBox/CenterContainer/NodeImage            # ColorRect
+@onready var marker: TextureRect = $UI/VBox/CenterContainer/NodeImage            # Now TextureRect with icon
 @onready var name_label: Label = $UI/VBox/TypeLabel      # Label above
 @onready var area: Area2D = $NodeShape                   # Has a CircleShape2D
 
 func _ready() -> void:
 	name_label.text = _type_to_string(encounter_type)
+	
+	# Set the icon texture based on encounter type
+	if ENCOUNTER_ICONS.has(encounter_type):
+		marker.texture = ENCOUNTER_ICONS[encounter_type]
+	
 	for c in [$UI, $UI/VBox, $UI/VBox/CenterContainer, name_label, marker]:
 		(c as Control).mouse_filter = Control.MOUSE_FILTER_IGNORE
 	# Hover & click via Area2D
@@ -99,7 +113,7 @@ func _refresh_visual() -> void:
 	elif reachable:
 		c = Color(1.0, 0.9, 0.3)          # reachable (normal)
 
-	marker.color = c
+	marker.modulate = c
 
 func _type_to_string(t: int) -> String:
 	match t:
