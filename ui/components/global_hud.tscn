@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://ui/components/global_hud.gd" id="1_h8yko"]
 
 [node name="GlobalHUD" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
