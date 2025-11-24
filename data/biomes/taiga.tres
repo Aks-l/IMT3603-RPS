@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://cx4cjai0b1vbw"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 4
+name = "Taiga"
+difficulty = 2
+discovered = false
+encountered = false
+ocean_color = Color(0.152941, 0.262745, 0.388235, 1)
+shallow_water_color = Color(0.219608, 0.345098, 0.458824, 1)
+sand_color = Color(0.705882, 0.615686, 0.482353, 1)
+grass_color = Color(0.203922, 0.466667, 0.239216, 1)
+forest_color = Color(0.188235, 0.34902, 0.164706, 1)
+hill_color = Color(0.396078, 0.439216, 0.329412, 1)
+mountain_color = Color(0.490196, 0.521569, 0.470588, 1)
+snow_color = Color(0.941176, 0.956863, 0.968627, 1)

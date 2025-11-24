@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://c4tmpua2ywyto"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 10
+name = "Coral_Reef"
+difficulty = 1
+discovered = false
+encountered = false
+ocean_color = Color(0.035294, 0.231373, 0.403922, 1)
+shallow_water_color = Color(0.039216, 0.560784, 0.709804, 1)
+sand_color = Color(0.937255, 0.862745, 0.737255, 1)
+grass_color = Color(0.12549, 0.686275, 0.439216, 1)
+forest_color = Color(0.992157, 0.439216, 0.466667, 1)
+hill_color = Color(0.72549, 0.454902, 0.411765, 1)
+mountain_color = Color(0.356863, 0.427451, 0.45098, 1)
+snow_color = Color(0.941176, 0.960784, 0.972549, 1)
