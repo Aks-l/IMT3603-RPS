@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-scoured-barrens"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 45
+name = "Scoured Barrens"
+difficulty = 5
+ocean_color = Color(0.156863, 0.188235, 0.211765, 1)
+shallow_water_color = Color(0.188235, 0.231373, 0.254902, 1)
+sand_color = Color(0.823529, 0.752941, 0.662745, 1)
+grass_color = Color(0.427451, 0.419608, 0.32549, 1)
+forest_color = Color(0.356863, 0.341176, 0.266667, 1)
+hill_color = Color(0.509804, 0.478431, 0.368627, 1)
+mountain_color = Color(0.556863, 0.537255, 0.509804, 1)
+snow_color = Color(0.937255, 0.941176, 0.945098, 1)

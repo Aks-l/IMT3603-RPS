@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-bloodstained-mire2"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 26
+name = "Bloodstained Mire"
+difficulty = 3
+ocean_color = Color(0.07451, 0.117647, 0.117647, 1)
+shallow_water_color = Color(0.137255, 0.184314, 0.160784, 1)
+sand_color = Color(0.603922, 0.439216, 0.372549, 1)
+grass_color = Color(0.12549, 0.341176, 0.211765, 1)
+forest_color = Color(0.17549, 0.180392, 0.098039, 1)
+hill_color = Color(0.423529, 0.290196, 0.254902, 1)
+mountain_color = Color(0.486275, 0.435294, 0.423529, 1)
+snow_color = Color(0.894118, 0.901961, 0.905882, 1)

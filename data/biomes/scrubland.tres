@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://bkrcr3854l1xw"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 16
+name = "Scrubland"
+difficulty = 2
+discovered = false
+encountered = false
+ocean_color = Color(0.176471, 0.243137, 0.309804, 1)
+shallow_water_color = Color(0.223529, 0.298039, 0.337255, 1)
+sand_color = Color(0.839216, 0.788235, 0.678431, 1)
+grass_color = Color(0.615686, 0.615686, 0.439216, 1)
+forest_color = Color(0.211765, 0.27451, 0.176471, 1)
+hill_color = Color(0.396078, 0.364706, 0.286274, 1)
+mountain_color = Color(0.490196, 0.467059, 0.439216, 1)
+snow_color = Color(0.941176, 0.952941, 0.960784, 1)

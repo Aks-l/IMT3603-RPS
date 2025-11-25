@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-forest"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 5
+name = "Forest"
+difficulty = 1
+ocean_color = Color(0.160784, 0.270588, 0.388235, 1)
+shallow_water_color = Color(0.219608, 0.333333, 0.411765, 1)
+sand_color = Color(0.721569, 0.627451, 0.513725, 1)
+grass_color = Color(0.109804, 0.533333, 0.227451, 1)
+forest_color = Color(0.051, 0.372549, 0.145098, 1)
+hill_color = Color(0.403922, 0.447059, 0.337255, 1)
+mountain_color = Color(0.498039, 0.517647, 0.486275, 1)
+snow_color = Color(0.931373, 0.945098, 0.956863, 1)

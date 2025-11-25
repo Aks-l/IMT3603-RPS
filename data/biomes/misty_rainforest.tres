@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-misty-rainforest2"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 22
+name = "Misty Rainforest"
+difficulty = 3
+ocean_color = Color(0.082353, 0.25098, 0.34902, 1)
+shallow_water_color = Color(0.101961, 0.419608, 0.482353, 1)
+sand_color = Color(0.741176, 0.658824, 0.517647, 1)
+grass_color = Color(0.101961, 0.658824, 0.337255, 1)
+forest_color = Color(0.011765, 0.458824, 0.211765, 1)
+hill_color = Color(0.352941, 0.466667, 0.329412, 1)
+mountain_color = Color(0.435294, 0.466667, 0.439216, 1)
+snow_color = Color(0.92549, 0.941176, 0.94902, 1)

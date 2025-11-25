@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://bgbbqlaemu4ap"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 19
+name = "Bayou"
+difficulty = 2
+discovered = false
+encountered = false
+ocean_color = Color(0.090196, 0.156863, 0.176471, 1)
+shallow_water_color = Color(0.152941, 0.231373, 0.192157, 1)
+sand_color = Color(0.654902, 0.556863, 0.407843, 1)
+grass_color = Color(0.133333, 0.494118, 0.270588, 1)
+forest_color = Color(0.086275, 0.341176, 0.180392, 1)
+hill_color = Color(0.352941, 0.298039, 0.207843, 1)
+mountain_color = Color(0.431373, 0.423529, 0.380392, 1)
+snow_color = Color(0.913725, 0.929412, 0.937255, 1)

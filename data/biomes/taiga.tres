@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://cx4cjai0b1vbw"]
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://ckbmwdyhlhe44"]
 
 [ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
 
 [resource]
 script = ExtResource("1_80ggj")
-id = 4
+id = 14
 name = "Taiga"
 difficulty = 2
 discovered = false

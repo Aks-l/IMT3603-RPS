@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://bprx28qmo10ji"]
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://6am1cpjpk1e3"]
 
 [ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
 
 [resource]
 script = ExtResource("1_80ggj")
-id = 3
-name = "Savanna"
-difficulty = 1
+id = 15
+name = "Savannah"
+difficulty = 2
 discovered = false
 encountered = false
 ocean_color = Color(0.160784, 0.278431, 0.411765, 1)

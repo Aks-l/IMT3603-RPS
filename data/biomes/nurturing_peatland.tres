@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-nurturing-peatland"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 38
+name = "Nurturing Peatland"
+difficulty = 4
+ocean_color = Color(0.098039, 0.14902, 0.137255, 1)
+shallow_water_color = Color(0.137255, 0.2, 0.164706, 1)
+sand_color = Color(0.67451, 0.556863, 0.470588, 1)
+grass_color = Color(0.133333, 0.486275, 0.239216, 1)
+forest_color = Color(0.090196, 0.321569, 0.137255, 1)
+hill_color = Color(0.392157, 0.356863, 0.305882, 1)
+mountain_color = Color(0.447059, 0.466667, 0.443137, 1)
+snow_color = Color(0.913725, 0.92549, 0.937255, 1)

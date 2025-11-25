@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://dho8rnt5xcevr"]
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://ccxilxlmgdnhv"]
 
 [ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
 
 [resource]
 script = ExtResource("1_80ggj")
-id = 1
+id = 7
 name = "Minecraft"
 difficulty = 1
 discovered = false
