@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 44
 name = "Rugged Highlands"
+prefix = "in the"
 difficulty = 5
 discovered = false
 encountered = false

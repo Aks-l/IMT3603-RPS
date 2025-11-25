@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 47
 name = "Thornwood Falls"
+prefix = "in the"
 difficulty = 5
 ocean_color = Color(0.090196, 0.180392, 0.270588, 1)
 shallow_water_color = Color(0.141176, 0.298039, 0.360784, 1)

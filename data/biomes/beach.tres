@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-beach"]
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://b7rm4vjxe3r02"]
 
 [ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
 
@@ -6,7 +6,10 @@
 script = ExtResource("1_80ggj")
 id = 8
 name = "Beach"
+prefix = "on a"
 difficulty = 1
+discovered = false
+encountered = false
 ocean_color = Color(0.127451, 0.219608, 0.341176, 1)
 shallow_water_color = Color(0.196078, 0.345098, 0.447059, 1)
 sand_color = Color(0.956863, 0.886275, 0.721569, 1)

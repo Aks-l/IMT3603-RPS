@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 46
 name = "Swiftwater Cliffs"
+prefix = "on the"
 difficulty = 5
 ocean_color = Color(0.07451, 0.152941, 0.223529, 1)
 shallow_water_color = Color(0.141176, 0.278431, 0.34902, 1)

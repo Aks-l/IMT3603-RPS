@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 36
 name = "Silent Clearing"
+prefix = "in a"
 difficulty = 4
 ocean_color = Color(0.160784, 0.223529, 0.294118, 1)
 shallow_water_color = Color(0.219608, 0.27451, 0.337255, 1)

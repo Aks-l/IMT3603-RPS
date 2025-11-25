@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 2
 name = "Island"
+prefix = "on an"
 difficulty = 1
 ocean_color = Color(0.035294, 0.223529, 0.403922, 1)
 shallow_water_color = Color(0.090196, 0.431373, 0.65098, 1)

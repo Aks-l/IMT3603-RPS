@@ -16,7 +16,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
-color = Color(0.169245, 0.169245, 0.169245, 1)
+color = Color(0.00820201, 0.00820203, 0.00820202, 1)
 
 [node name="Message" type="Label" parent="ColorRect"]
 unique_name_in_owner = true

@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 34
 name = "Cinder Glade"
+prefix = "in a"
 difficulty = 4
 ocean_color = Color(0.098039, 0.129412, 0.152941, 1)
 shallow_water_color = Color(0.141176, 0.160784, 0.172549, 1)

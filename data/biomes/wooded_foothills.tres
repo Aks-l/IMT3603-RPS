@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 30
 name = "Wooded Foothills"
+prefix = "in the"
 difficulty = 3
 discovered = false
 encountered = false

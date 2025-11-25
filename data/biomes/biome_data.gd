@@ -4,6 +4,7 @@ class_name BiomeData
 @export_group("Metadata")
 @export var id: int
 @export var name: String
+@export var prefix: String
 @export var difficulty: int
 @export var discovered: bool = false
 @export var encountered: bool = false # prevent encountering same biome twice in one run

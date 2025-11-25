@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 23
 name = "Scalding Tarn"
+prefix = "by a"
 difficulty = 3
 discovered = false
 encountered = false

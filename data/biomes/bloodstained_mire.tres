@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 26
 name = "Bloodstained Mire"
+prefix = "in the"
 difficulty = 3
 ocean_color = Color(0.07451, 0.117647, 0.117647, 1)
 shallow_water_color = Color(0.137255, 0.184314, 0.160784, 1)

@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 32
 name = "Sunken Hollow"
+prefix = "in a"
 difficulty = 4
 ocean_color = Color(0.039216, 0.156863, 0.239216, 1)
 shallow_water_color = Color(0.082353, 0.329412, 0.490196, 1)

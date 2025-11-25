@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 35
 name = "Canopy Vista"
+prefix = "in the"
 difficulty = 4
 ocean_color = Color(0.101961, 0.223529, 0.34902, 1)
 shallow_water_color = Color(0.141176, 0.32549, 0.423529, 1)

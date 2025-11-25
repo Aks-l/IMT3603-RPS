@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-jungle-hollow"]
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://ctqtntatt76sj"]
 
 [ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
 
@@ -6,7 +6,10 @@
 script = ExtResource("1_80ggj")
 id = 43
 name = "Jungle Hollow"
+prefix = "in a"
 difficulty = 5
+discovered = false
+encountered = false
 ocean_color = Color(0.086275, 0.211765, 0.333333, 1)
 shallow_water_color = Color(0.101961, 0.423529, 0.466667, 1)
 sand_color = Color(0.74902, 0.666667, 0.517647, 1)

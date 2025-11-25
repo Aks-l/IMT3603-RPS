@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 19
 name = "Bayou"
+prefix = "in a"
 difficulty = 2
 discovered = false
 encountered = false

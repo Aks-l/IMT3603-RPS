@@ -11,7 +11,7 @@ func trigger():
 	var biome = Globals.current_biome
 	visible = true
 	color_rect.size = message.size
-	message.text = "You wake up in %s" % biome.name
+	message.text = "You wake up %s %s..." % [biome.prefix, biome.name]
 	color_rect.self_modulate.a = 1
 	timer.start(5)
 

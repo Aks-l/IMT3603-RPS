@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 24
 name = "Verdant Catacombs"
+prefix = "in the"
 difficulty = 3
 ocean_color = Color(0.101961, 0.152941, 0.196078, 1)
 shallow_water_color = Color(0.141176, 0.211765, 0.227451, 1)

@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 37
 name = "Fiery Islet"
+prefix = "on a"
 difficulty = 4
 ocean_color = Color(0.082353, 0.098039, 0.137255, 1)
 shallow_water_color = Color(0.160784, 0.164706, 0.160784, 1)

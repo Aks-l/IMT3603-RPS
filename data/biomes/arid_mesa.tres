@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 21
 name = "Arid Mesa"
+prefix = "on a"
 difficulty = 3
 discovered = false
 encountered = false

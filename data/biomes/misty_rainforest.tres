@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 22
 name = "Misty Rainforest"
+prefix = "in a"
 difficulty = 3
 ocean_color = Color(0.082353, 0.25098, 0.34902, 1)
 shallow_water_color = Color(0.101961, 0.419608, 0.482353, 1)

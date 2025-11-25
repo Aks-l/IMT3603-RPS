@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 38
 name = "Nurturing Peatland"
+prefix = "in a"
 difficulty = 4
 ocean_color = Color(0.098039, 0.14902, 0.137255, 1)
 shallow_water_color = Color(0.137255, 0.2, 0.164706, 1)

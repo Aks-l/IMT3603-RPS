@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 39
 name = "Sunbaked Canyon"
+prefix = "in a"
 difficulty = 4
 ocean_color = Color(0.14902, 0.188235, 0.219608, 1)
 shallow_water_color = Color(0.196078, 0.243137, 0.266667, 1)

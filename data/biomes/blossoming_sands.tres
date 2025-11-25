@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 41
 name = "Blossoming Sands"
+prefix = "in the"
 difficulty = 5
 ocean_color = Color(0.109804, 0.2, 0.294118, 1)
 shallow_water_color = Color(0.188235, 0.345098, 0.407843, 1)

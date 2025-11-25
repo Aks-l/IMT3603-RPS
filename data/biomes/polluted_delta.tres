@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 28
 name = "Polluted Delta"
+prefix = "in the"
 difficulty = 3
 discovered = false
 encountered = false

@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 27
 name = "Flooded Strand"
+prefix = "on a"
 difficulty = 3
 ocean_color = Color(0.039216, 0.188235, 0.321569, 1)
 shallow_water_color = Color(0.066667, 0.329412, 0.505882, 1)

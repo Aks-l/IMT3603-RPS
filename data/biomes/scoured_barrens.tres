@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 45
 name = "Scoured Barrens"
+prefix = "in the"
 difficulty = 5
 ocean_color = Color(0.156863, 0.188235, 0.211765, 1)
 shallow_water_color = Color(0.188235, 0.231373, 0.254902, 1)

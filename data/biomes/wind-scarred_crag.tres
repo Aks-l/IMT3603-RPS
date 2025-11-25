@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 49
 name = "Wind-Scarred Crag"
+prefix = "on a"
 difficulty = 5
 ocean_color = Color(0.133333, 0.184314, 0.235294, 1)
 shallow_water_color = Color(0.184314, 0.235294, 0.286275, 1)

@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 9
 name = "Cavern"
+prefix = "in a"
 difficulty = 1
 ocean_color = Color(0.078431, 0.098039, 0.12549, 1)
 shallow_water_color = Color(0.101961, 0.160784, 0.176471, 1)

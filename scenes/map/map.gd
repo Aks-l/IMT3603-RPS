@@ -72,10 +72,10 @@ func _process(_delta):
 		_update_fog_shader()
 
 func choose_biome() -> BiomeData:
-	var chosen = BiomeDatabase.biomes.values().filter(
-			func(biome: BiomeData) -> bool:
-			return not biome.encountered
-			).pick_random()
+	var chosen: BiomeData = BiomeDatabase.biomes.values().filter(
+		func(biome: BiomeData) -> bool:
+			return not biome.encountered and biome.difficulty == Globals.run_biomes_completed / 3 + 1
+	).pick_random()
 	# If all are encountered, choose completely random
 	if chosen == null: BiomeDatabase.biomes.values().pick_random()
 	chosen.discovered = true
@@ -89,7 +89,7 @@ func setup():
 	_draw_edges()
 	_spawn_encounters()
 	_unlock_starts()
-	
+	BiomeIntro.trigger()
 	#Generate terrain background based on map
 	if background:
 		background.set_palette(Globals.current_biome)

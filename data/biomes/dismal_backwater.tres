@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 42
 name = "Dismal Backwater"
+prefix = "in a"
 difficulty = 5
 ocean_color = Color(0.082353, 0.121569, 0.109804, 1)
 shallow_water_color = Color(0.137255, 0.172549, 0.156863, 1)

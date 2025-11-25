@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 7
 name = "Minecraft"
+prefix = "in a"
 difficulty = 1
 discovered = false
 encountered = false

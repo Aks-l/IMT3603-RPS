@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 48
 name = "Tranquil Cove"
+prefix = "in a"
 difficulty = 5
 ocean_color = Color(0.058824, 0.227451, 0.337255, 1)
 shallow_water_color = Color(0.101961, 0.356863, 0.482353, 1)

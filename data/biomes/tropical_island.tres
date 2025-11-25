@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 17
 name = "Tropical Island"
+prefix = "on a"
 difficulty = 2
 discovered = false
 encountered = false

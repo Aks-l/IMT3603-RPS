@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 40
 name = "Waterlogged Grove"
+prefix = "in a"
 difficulty = 4
 ocean_color = Color(0.070588, 0.188235, 0.278431, 1)
 shallow_water_color = Color(0.094118, 0.352941, 0.517647, 1)

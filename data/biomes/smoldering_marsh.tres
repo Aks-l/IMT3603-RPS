@@ -6,6 +6,7 @@
 script = ExtResource("1_80ggj")
 id = 33
 name = "Smoldering Marsh"
+prefix = "in a"
 difficulty = 4
 ocean_color = Color(0.078431, 0.098039, 0.086275, 1)
 shallow_water_color = Color(0.152941, 0.176471, 0.14902, 1)
