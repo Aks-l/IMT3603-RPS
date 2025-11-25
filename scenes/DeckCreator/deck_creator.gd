@@ -206,6 +206,10 @@ func get_deck_dictionary() -> Dictionary[HandData, int]:
 func _on_confirm_pressed() -> void:
 	var final_deck := get_deck_dictionary()
 	
+	if sum(final_deck.values()) <= 3:
+		push_error("Cannot save deck of 3 or less cards.")
+		return
+	
 	var deck_for_globals: Dictionary[HandData, int] = {}
 	for entry in final_deck:
 		var hand: HandData = entry
@@ -216,7 +220,7 @@ func _on_confirm_pressed() -> void:
 	deck_confirmed.emit(deck_for_globals)
 	print("[DeckCreator] Deck confirmed with %d unique cards" % deck_for_globals.size())
 	_hide_overlay()
-
+	
 
 func _on_cancel_pressed() -> void:
 	print("Returning to map without changes")
@@ -273,8 +277,6 @@ func _hide_overlay():
 	hide()
 
 func _refresh_labels() -> void:
-	print("trying")
-
 	# Total number of cards in the deck
 	var current_total: int = _deck_list.size()
 	var possible_total: int = Globals.card_inventory_amount_size
@@ -289,13 +291,9 @@ func _refresh_labels() -> void:
 
 	var possible_types: int = Globals.card_inventory_type_size
 
-	print("did it")
-
 	total_label.text = "Total cards:\n%d/%d" % [current_total, possible_total]
 	separate_label.text = "Card types:\n%d/%d" % [current_types, possible_types]
 
-	print("succeeded")
-	
 func sum(arr: Array[int]):
 	var _sum=0
 	for i in arr: _sum += i
