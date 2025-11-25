@@ -5,9 +5,6 @@ signal deck_confirmed(deck: Array[HandData])
 
 const HAND_SCENE: PackedScene = preload("res://scenes/battleUI/hand_card.tscn")
 
-const MAX_TOTAL := 15
-const MAX_UNIQUE_TYPES := 5
-
 #ui node path
 @onready var title_label := %YourDeck
 @onready var deck_row := %DeckRow
@@ -18,6 +15,9 @@ const MAX_UNIQUE_TYPES := 5
 @onready var cancel_button := %Cancel
 
 @onready var cam := $Control/Cam
+
+@onready var total_label = %Total
+@onready var separate_label = %Separate
 
 
 #data structure
@@ -79,7 +79,7 @@ func set_owned_hands(inv: Dictionary) -> void:
 
 	_refresh_stock_ui()
 	_refresh_deck_view()
-
+	_refresh_labels()
 
 
 
@@ -112,7 +112,7 @@ func _refresh_deck_view() -> void:
 
 	if _deck_list.is_empty():
 		var lbl = Label.new()
-		lbl.text = "Deck empty (max %d cards, %d types)" % [MAX_TOTAL, MAX_UNIQUE_TYPES]
+		lbl.text = "Deck empty (max %d cards, %d types)" % [Globals.card_inventory_amount_size, Globals.card_inventory_type_size]
 		deck_row.add_child(lbl)
 		return
 
@@ -144,7 +144,7 @@ func _remove_one_from_deck(hand: HandData) -> void:
 
 	_refresh_stock_ui()
 	_refresh_deck_view()
-
+	_refresh_labels()
 
 func _on_deck_card_clicked(hand: HandData) -> void:
 	for i in range(_deck_list.size()):
@@ -156,6 +156,7 @@ func _on_deck_card_clicked(hand: HandData) -> void:
 			
 	_refresh_stock_ui()
 	_refresh_deck_view()
+	_refresh_labels()
 
 
 #stock clicked
@@ -174,17 +175,17 @@ func _on_stock_card_clicked(hand: HandData) -> void:
 
 	_refresh_stock_ui()
 	_refresh_deck_view()
-
+	_refresh_labels()
 
 
 #rules
 func _can_add_to_deck(hand: HandData) -> bool:
-	if _deck_list.size() + 1 > MAX_TOTAL:
+	if _deck_list.size() + 1 > Globals.card_inventory_amount_size:
 		return false
 	var types := {}
 	for h in _deck_list:
 		types[h.name] = true
-	if not (hand.name in types) and types.size() + 1 > MAX_UNIQUE_TYPES:
+	if not (hand.name in types) and types.size() + 1 > Globals.card_inventory_type_size:
 		return false
 	return true
 
@@ -270,4 +271,33 @@ func _show_overlay():
 func _hide_overlay():
 	get_tree().paused = false
 	hide()
+
+func _refresh_labels() -> void:
+	print("trying")
+
+	# Total number of cards in the deck
+	var current_total: int = _deck_list.size()
+	var possible_total: int = Globals.card_inventory_amount_size
+
+	# Number of unique card types in the deck
+	var seen_types := {}
+	var current_types: int = 0
+	for hand in _deck_list:
+		if not seen_types.has(hand):
+			seen_types[hand] = true
+			current_types += 1
+
+	var possible_types: int = Globals.card_inventory_type_size
+
+	print("did it")
+
+	total_label.text = "Total cards:\n%d/%d" % [current_total, possible_total]
+	separate_label.text = "Card types:\n%d/%d" % [current_types, possible_types]
+
+	print("succeeded")
 	
+func sum(arr: Array[int]):
+	var _sum=0
+	for i in arr: _sum += i
+	return _sum
+		

@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://bi42rijnwgbh1"]
 
-[ext_resource type="Script" uid="uid://drnwove1mai7a" path="res://scenes/DeckCreater/deck_creater.gd" id="1_4jg51"]
-[ext_resource type="StyleBox" uid="uid://1a2c4jadlnke" path="res://ui/paneltextures/event_panel_stylebox.tres" id="2_13a5i"]
-[ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="2_ysyxy"]
+[ext_resource type="Script" uid="uid://drnwove1mai7a" path="res://scenes/DeckCreator/deck_creator.gd" id="1_0t4r4"]
+[ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="2_jkh7o"]
+[ext_resource type="StyleBox" uid="uid://1a2c4jadlnke" path="res://ui/paneltextures/event_panel_stylebox.tres" id="3_j7ba0"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-script = ExtResource("1_4jg51")
+script = ExtResource("1_0t4r4")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("2_ysyxy")
+theme = ExtResource("2_jkh7o")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -34,7 +34,7 @@ theme_override_constants/margin_bottom = 100
 
 [node name="BG" type="PanelContainer" parent="Control/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("2_13a5i")
+theme_override_styles/panel = ExtResource("3_j7ba0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/BG"]
 layout_mode = 2
@@ -55,15 +55,37 @@ alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-text = "YOUR DECK HERE
-"
+text = "YOUR DECK"
 horizontal_alignment = 1
 
 [node name="DeckRow" type="HBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content/ChosenCards"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_constants/separation = 120
 alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content/ChosenCards"]
+layout_mode = 2
+alignment = 1
+
+[node name="Total" type="Label" parent="Control/MarginContainer/BG/VBoxContainer/Content/ChosenCards/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Total cards:
+15/15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separate" type="Label" parent="Control/MarginContainer/BG/VBoxContainer/Content/ChosenCards/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Card types:
+3/5"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StockCardsContainer" type="VBoxContainer" parent="Control/MarginContainer/BG/VBoxContainer/Content"]
 custom_minimum_size = Vector2(300, 0)
