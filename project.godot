@@ -28,6 +28,7 @@ AlmanacOverlay="*res://scenes/almanac/almanac.tscn"
 DeckCreater="*res://scenes/DeckCreater/deck_creater.tscn"
 outcome_graph_panel="*res://ui/components/outcome_graph_panel.tscn"
 BiomeDatabase="*res://autoload/BiomeDatabase.gd"
+BiomeIntro="*res://ui/components/biome_intro.tscn"
 
 [editor]
 
