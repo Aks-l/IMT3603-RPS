@@ -77,7 +77,7 @@ func choose_biome() -> BiomeData:
 			return not biome.encountered and biome.difficulty == Globals.run_biomes_completed / 3 + 1
 	).pick_random()
 	# If all are encountered, choose completely random
-	if chosen == null: BiomeDatabase.biomes.values().pick_random()
+	if chosen == null: chosen = BiomeDatabase.biomes.values().pick_random()
 	chosen.discovered = true
 	chosen.encountered = true
 	return chosen

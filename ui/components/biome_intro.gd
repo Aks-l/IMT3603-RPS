@@ -14,10 +14,11 @@ func trigger():
 	message.text = "You wake up %s %s..." % [biome.prefix, biome.name]
 	color_rect.self_modulate.a = 1
 	timer.start(5)
+	timer.timeout.connect(close_message)
+
+func close_message() -> void:
+	get_tree().paused = false
+	visible = false
 
 func _process(float) -> void:
 	color_rect.modulate.a = timer.time_left/fade_time
-	if timer.time_left == 0:
-		visible = false
-		get_tree().paused = false
-	

@@ -5,6 +5,7 @@
 
 [node name="BiomeIntro" type="CanvasLayer"]
 process_mode = 3
+visible = false
 script = ExtResource("1_8fixt")
 
 [node name="ColorRect" type="ColorRect" parent="."]
