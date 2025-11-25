@@ -27,6 +27,9 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	_enemy = enemy
 	_consumables = consumables
 	
+	_enemy.discovered = true
+	for _hand:HandData in enemy.deck.keys(): _hand.discovered = true 
+	
 	player_hearts.set_hp(Globals.battlehealth)
 	player_hearts._draw_hearts()
 	enemy_hearts.set_hp(3) # TODO: Change to enemy.health once implemented
