@@ -1,11 +1,10 @@
 extends CanvasLayer
 
-signal deck_confirmed(deck: Array[HandData])
- #emits finalized deck as array
+signal deck_confirmed(deck: Dictionary) # now matches the emitted value
 
 const HAND_SCENE: PackedScene = preload("res://scenes/battleUI/hand_card.tscn")
 
-#ui node path
+# ui node path
 @onready var title_label := %YourDeck
 @onready var deck_row := %DeckRow
 @onready var search_box := %Search
@@ -19,13 +18,11 @@ const HAND_SCENE: PackedScene = preload("res://scenes/battleUI/hand_card.tscn")
 @onready var total_label = %Total
 @onready var separate_label = %Separate
 
+# data structure
+var _inventory: Dictionary = {}         # HandData -> total copies owned
+var _deck: Dictionary = {}              # HandData -> copies in current deck
 
-#data structure
-var _owned_counts : Dictionary[HandData, int] = {}
-var _deck_list : Array[HandData] = []
-var _original_deck : Dictionary = {}
 
-	
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	search_box.text_changed.connect(_on_search_changed)
@@ -33,269 +30,244 @@ func _ready() -> void:
 	cancel_button.pressed.connect(_on_cancel_pressed)
 	cam.make_current()
 	hide()
-	#load previously confirmed deck into working memory
-	_original_deck = Globals.get_current_deck().duplicate(true)
+
+	# load previously confirmed deck into working memory
+	var current_deck: Dictionary = Globals.get_current_deck()
+	_deck = current_deck.duplicate(true)
 
 	if Globals.inventory.size() > 0:
 		set_owned_hands(Globals.inventory)
-	else: 
+	else:
 		print("[DeckCreator] warning: player inventory empty")
-	
-	#DEBUG
-	print("DECK CREATOR SCENE LOADED CORRECTCTLY")
-	
-	assert(stock_list and stock_list.get_parent() is ScrollContainer, 
-		"StockList must be a direct child of ScrollContainer")
-	
-	# Make the search bar keep visible height
+
+	print("DECK CREATOR SCENE LOADED CORRECTLY")
+
+	assert(
+		stock_list and stock_list.get_parent() is ScrollContainer,
+		"StockList must be a direct child of ScrollContainer"
+	)
+
+	# Keep the search bar a fixed height
 	search_box.custom_minimum_size.y = 36
 
-#call with palyers oend hands
+
+# call with player owned hands
 func set_owned_hands(inv: Dictionary) -> void:
-	_owned_counts.clear()
+	_inventory = inv.duplicate(true)
 
-	# Start from the player’s global inventory
-	for hand: HandData in inv.keys():
-		var total_count: int = inv[hand]
-		var deck_count: int = 0
-
-		# If this hand is already in the saved deck, remove that many from stock
-		for d: HandData in Globals.get_current_deck().keys():
-			if d == hand:
-				deck_count = Globals.get_current_deck()[d]
-				break
-
-		var remaining: int = max(0, total_count - deck_count)
-
-		_owned_counts[hand] = remaining
-		
-
-	# Rebuild working deck list from saved deck
-	_deck_list.clear()
-	for hand: HandData in Globals.get_current_deck().keys():
-		var count: int = Globals.get_current_deck()[hand]
-		for i in range(count):
-			_deck_list.append(hand)
+	# Ensure the working deck is a copy of the saved deck
+	_deck = Globals.get_current_deck().duplicate(true)
 
 	_refresh_stock_ui()
 	_refresh_deck_view()
 	_refresh_labels()
 
 
-
-#stock ui
+# stock ui
 func _refresh_stock_ui() -> void:
 	# Clear UI
 	for c in stock_list.get_children():
-		c.call_deferred("free")  # (queued) remove
+		c.call_deferred("free")
 
-	var filter_text = search_box.text.strip_edges().to_lower()
+	var filter_text :String= search_box.text.strip_edges().to_lower()
 
-	# Iterate DICTIONARY KEYS (hands)
-	for hand in _owned_counts:
-		var count: int = _owned_counts.get(hand, 0)
-		if count <= 0:
+	# Iterate inventory keys (hands) and compute remaining = inventory - deck
+	for hand in _inventory.keys():
+		var total_count: int = _inventory.get(hand, 0)
+		var deck_count: int = _deck.get(hand, 0)
+		var remaining: int = max(0, total_count - deck_count)
+
+		if remaining <= 0:
 			continue
+
 		if filter_text != "" and not String(hand.name).to_lower().contains(filter_text):
 			continue
 
 		var card = HAND_SCENE.instantiate()
 		stock_list.add_child(card)
-		card.setup(hand, count)
+		card.setup(hand, remaining)
 		card.clicked.connect(_on_stock_card_clicked)
 
 
-#deck ui
+# deck ui
 func _refresh_deck_view() -> void:
 	for c in deck_row.get_children():
 		c.queue_free()
 
-	if _deck_list.is_empty():
-		var lbl = Label.new()
-		lbl.text = "Deck empty (max %d cards, %d types)" % [Globals.card_inventory_amount_size, Globals.card_inventory_type_size]
+	if _deck.is_empty():
+		var lbl := Label.new()
+		lbl.text = "Deck empty (max %d cards, %d types)" \
+			% [Globals.card_inventory_amount_size, Globals.card_inventory_type_size]
 		deck_row.add_child(lbl)
 		return
 
-	# Group cards by name
-	var grouped : Dictionary[HandData, int] = {}
-	for h in _deck_list:
-		var amount = grouped.get(h, 0)
-		grouped[h] = amount + 1
-
-	# Display each group as one stacked card (e.g. “Rock ×3”)
-	for hand in grouped:
-		var amount = grouped[hand]
+	# Display each hand using the stored amount
+	for hand in _deck.keys():
+		var amount: int = _deck[hand]
 		var card = HAND_SCENE.instantiate()
 		deck_row.add_child(card)
 		card.setup(hand, amount)
 
 		# When clicked, remove one of that card type
-		card.clicked.connect(func(_hand: HandData):
+		card.clicked.connect(func(_hand: HandData) -> void:
 			_remove_one_from_deck(hand)
 		)
 
+
 func _remove_one_from_deck(hand: HandData) -> void:
-	for i in range(_deck_list.size()):
-		if _deck_list[i] == hand:
-			var removed: HandData = _deck_list.pop_at(i)
-			var amount = _owned_counts.get(hand, 0)
-			_owned_counts[hand] = amount + 1
-			break
+	if not _deck.has(hand):
+		return
+
+	var current_amount: int = _deck[hand]
+	if current_amount <= 1:
+		_deck.erase(hand)
+	else:
+		_deck[hand] = current_amount - 1
 
 	_refresh_stock_ui()
 	_refresh_deck_view()
 	_refresh_labels()
 
+
+# If you still want a direct handler for deck card clicked, it can reuse the same logic
 func _on_deck_card_clicked(hand: HandData) -> void:
-	for i in range(_deck_list.size()):
-		if _deck_list[i] == hand:
-			var removed: HandData = _deck_list.pop_at(i)
-			var amount = _owned_counts.get(hand, 0)
-			_owned_counts[hand] = amount + 1
-			break
-			
-	_refresh_stock_ui()
-	_refresh_deck_view()
-	_refresh_labels()
+	_remove_one_from_deck(hand)
 
 
-#stock clicked
+# stock clicked
 func _on_stock_card_clicked(hand: HandData) -> void:
 	if not _can_add_to_deck(hand):
 		_show_status("Cannot add %s: would exceed deck limits" % hand.name)
 		return
 
-	_deck_list.append(hand)
+	var current_amount: int = _deck.get(hand, 0)
+	var max_available: int = _inventory.get(hand, 0)
 
-	# Subtract from inventory
-	if hand in _owned_counts:
-		_owned_counts[hand] -= 1
-		if _owned_counts[hand]< 0:
-			_owned_counts[hand] = 0
+	if current_amount >= max_available:
+		_show_status("Cannot add %s: not enough copies in inventory" % hand.name)
+		return
+
+	_deck[hand] = current_amount + 1
 
 	_refresh_stock_ui()
 	_refresh_deck_view()
 	_refresh_labels()
 
 
-#rules
+# rules
 func _can_add_to_deck(hand: HandData) -> bool:
-	if _deck_list.size() + 1 > Globals.card_inventory_amount_size:
+	var deck_total: int = _get_deck_total_cards()
+	var deck_types: int = _deck.size()
+
+	if deck_total + 1 > Globals.card_inventory_amount_size:
 		return false
-	var types := {}
-	for h in _deck_list:
-		types[h.name] = true
-	if not (hand.name in types) and types.size() + 1 > Globals.card_inventory_type_size:
+
+	var will_be_new_type := not _deck.has(hand)
+	if will_be_new_type and deck_types + 1 > Globals.card_inventory_type_size:
 		return false
+
 	return true
 
-#søk
+
+func _get_deck_total_cards() -> int:
+	var total := 0
+	for hand in _deck.keys():
+		total += _deck[hand]
+	return total
+
+
+# søk
 func _on_search_changed(_new_text: String) -> void:
 	_refresh_stock_ui()
 
-# Returns the deck as a dictionary grouped by card name (and accessible by ID)
-func get_deck_dictionary() -> Dictionary[HandData, int]:
-	var deck_dict :Dictionary[HandData, int]= {}
-	for h in _deck_list:
-		var val :int= deck_dict.get(h, 0)
-		deck_dict[h] = val+1
-	return deck_dict
+
+# Returns the deck dictionary (working copy)
+func get_deck_dictionary() -> Dictionary:
+	return _deck.duplicate(true)
 
 
-#confirm/cancel
+# confirm / cancel
 func _on_confirm_pressed() -> void:
 	var final_deck := get_deck_dictionary()
-	
-	if sum(final_deck.values()) <= 3:
+
+	if _get_deck_total_cards() <= 3:
 		push_error("Cannot save deck of 3 or less cards.")
 		return
-	
-	var deck_for_globals: Dictionary[HandData, int] = {}
-	for entry in final_deck:
-		var hand: HandData = entry
-		var count: int = final_deck[entry]
-		deck_for_globals[hand] = count
-		
-	Globals.set_current_deck(deck_for_globals)
-	deck_confirmed.emit(deck_for_globals)
-	print("[DeckCreator] Deck confirmed with %d unique cards" % deck_for_globals.size())
+
+	Globals.set_current_deck(final_deck.duplicate(true))
+	deck_confirmed.emit(final_deck)
+	print("[DeckCreator] Deck confirmed with %d unique cards" % final_deck.size())
 	_hide_overlay()
-	
+
 
 func _on_cancel_pressed() -> void:
 	print("Returning to map without changes")
 	var current := get_deck_dictionary()
 	var saved := Globals.get_current_deck()
 	var diff := get_deck_difference(current, saved)
-	
+
 	if diff.is_empty():
-		print("no changs made - return to menu")
+		print("No changes made - return to menu")
 	else:
-		print("unsaved chagned detected:", diff)
+		print("Unsaved changes detected:", diff)
+
 	_hide_overlay()
 
+
 # Returns a dictionary of cards that differ between two decks
-func get_deck_difference(full: Dictionary[HandData, int], subset: Dictionary[HandData, int]) -> Dictionary:
+# Positive amount means full has more; negative means subset has more
+func get_deck_difference(full: Dictionary, subset: Dictionary) -> Dictionary:
 	var diff := {}
+
+	# Difference for keys present in full
 	for k in full.keys():
 		var amount: int = full.get(k, 0) - subset.get(k, 0)
-		if amount > 0:
+		if amount != 0:
 			diff[k] = amount
+
+	# Keys present only in subset (full does not have them)
+	for k in subset.keys():
+		if not full.has(k):
+			diff[k] = -subset[k]
+
 	return diff
 
 
-#status
+# status
 func _show_status(text: String) -> void:
 	print("[DeckCreator] ", text)
 
-#reorder
-func _move_card_left(index: int) -> void:
-	if index <= 0 or index >= _deck_list.size():
-		return
-	var item = _deck_list[index]
-	_deck_list.remove_at(index)
-	_deck_list.insert(index - 1, item)
-	_refresh_deck_view()
-	
-func _move_card_right(index: int) -> void:
-	if index < 0 or index >= _deck_list.size() - 1:
-		return
-	var item = _deck_list[index]
-	_deck_list.remove_at(index)
-	_deck_list.insert(index + 1, item)
-	_refresh_deck_view()
 
-func _show_overlay():
+# reorder
+# With dictionary based storage there is no inherent order, so these are placeholders.
+func _move_card_left(_index: int) -> void:
+	# If you later need deck order, keep a separate Array and sync it with _deck.
+	pass
+
+
+func _move_card_right(_index: int) -> void:
+	pass
+
+
+func _show_overlay() -> void:
 	get_tree().paused = true
 	if Globals.inventory.size() > 0:
 		set_owned_hands(Globals.inventory)
 	_refresh_stock_ui()
 	show()
 
-func _hide_overlay():
+
+func _hide_overlay() -> void:
 	get_tree().paused = false
 	hide()
 
+
 func _refresh_labels() -> void:
-	# Total number of cards in the deck
-	var current_total: int = _deck_list.size()
+	var current_total: int = _get_deck_total_cards()
 	var possible_total: int = Globals.card_inventory_amount_size
 
-	# Number of unique card types in the deck
-	var seen_types := {}
-	var current_types: int = 0
-	for hand in _deck_list:
-		if not seen_types.has(hand):
-			seen_types[hand] = true
-			current_types += 1
-
+	var current_types: int = _deck.size()
 	var possible_types: int = Globals.card_inventory_type_size
 
 	total_label.text = "Total cards:\n%d/%d" % [current_total, possible_total]
 	separate_label.text = "Card types:\n%d/%d" % [current_types, possible_types]
-
-func sum(arr: Array[int]):
-	var _sum=0
-	for i in arr: _sum += i
-	return _sum
-		
