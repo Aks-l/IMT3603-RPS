@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://mju0ai252cid"]
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://mju0ai252cid"]
 
+[ext_resource type="Script" uid="uid://c7akjjacf2irm" path="res://data/enemies/scripts/sixSeven.gd" id="1_ax0lj"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc40" path="res://data/cards/video_game.tres" id="1_f0a8c"]
-[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_dpo21"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc5x" path="res://data/cards/laser.tres" id="2_j8yxq"]
 [ext_resource type="Texture2D" uid="uid://c2uyr7my42lcf" path="res://data/enemies/sprites/sixSeven.png" id="3_dpo21"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7ycyw" path="res://data/cards/baby.tres" id="3_h5st6"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycwx" path="res://data/cards/school.tres" id="4_j8yxq"]
 
 [resource]
-script = ExtResource("2_dpo21")
+script = ExtResource("1_ax0lj")
 id = 67
 sprite = ExtResource("3_dpo21")
-name = "Six Or Seven"
+name = ""
 description = ""
 discovered = false
 biome = "neutral"
@@ -18,6 +19,7 @@ tier = 1
 deck = {
 ExtResource("1_f0a8c"): 1,
 ExtResource("2_j8yxq"): 2,
-ExtResource("3_h5st6"): 1
+ExtResource("3_h5st6"): 1,
+ExtResource("4_j8yxq"): 1
 }
 metadata/_custom_type_script = "uid://by12nwuyw45yk"

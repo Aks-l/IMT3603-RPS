@@ -14,7 +14,6 @@ func on_combat_start(inventory_hand: Array[HandData]) -> void:
 		var card = inventory_hand.pick_random()
 		if not ("censored" in card.status_flags):
 			card.status_flags["censored"] = true
-			card.status_revealed = true
 			card.status_tint = Color(0.7, 0.2, 0.7)
 			
 			censored_cards.append(card)
@@ -22,7 +21,7 @@ func on_combat_start(inventory_hand: Array[HandData]) -> void:
 			print("Censorship applied to: ", card.name)
 
 func react_to_card(card: HandData) -> void:
-	if card.censored:
+	if "censored" in card.status_flags:
 		emit_signal("feedback", "%s is censored and cannot act!" % card.name)
 		
 		# Mark this card type as visually revealed (generic)
@@ -36,7 +35,7 @@ func react_to_card(card: HandData) -> void:
 		print("%s ignores %s" % [name, card.name])
 
 func modify_result(player_card: HandData, enemy_card: HandData, base_result: int) -> int:
-	if player_card.censored:
+	if player_card.status_flags:
 		print("Censorship forced draw for: ", player_card.name)
 		return 0 #auto draw
 	return base_result
