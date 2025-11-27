@@ -28,7 +28,7 @@ var _is_ready := false
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
 	#_enemy = enemy
 	#TEMPORARY: Used for testning of certain enemy. can me changed to other tres-files
-	_enemy = load("res://data/enemies/censor.tres")
+	_enemy = load("res://data/enemies/sixSeven.tres")
 	_consumables = consumables
 	
 	player_hearts.set_hp(Globals.battlehealth)
@@ -137,9 +137,15 @@ func on_card_played(hand: HandData):
 			result_label.text += "\nYou lose! " + enemy_hand.name + " beats " + hand.name
 			print(result_label.text) #DEBUG
 			player_hearts.take_damage(1)
+			
+			if _enemy and _enemy.has_method("on_damage_taken"):
+				_enemy.on_damage_taken(enemy_hearts.get_hp())
+				
 		0:
 			result_label.text += "\nIt's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
+			
+			
 	if enemy_hearts.get_hp() <= 0:
 		victory.visible = true
 		victory.setup(_enemy, true)
