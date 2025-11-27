@@ -17,6 +17,7 @@ signal finished(result)
 @onready var level_label = %LevelLabel
 @onready var gold_label = %GoldLabel
 
+
 var _enemy: EnemyData
 var _hand: Dictionary = {}		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
@@ -133,14 +134,16 @@ func on_card_played(hand: HandData):
 			result_label.text += "\nYou win! " + hand.name + " beats " + enemy_hand.name
 			print(result_label.text) #DEBUG
 			enemy_hearts.take_damage(1)
+			
+			if _enemy.has_method("on_damage_taken"):
+				_enemy.on_damage_taken(enemy_hearts.get_hp())
+				
+			
 		-1:
 			result_label.text += "\nYou lose! " + enemy_hand.name + " beats " + hand.name
 			print(result_label.text) #DEBUG
 			player_hearts.take_damage(1)
 			
-			if _enemy and _enemy.has_method("on_damage_taken"):
-				_enemy.on_damage_taken(enemy_hearts.get_hp())
-				
 		0:
 			result_label.text += "\nIt's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
