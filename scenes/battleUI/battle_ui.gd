@@ -28,8 +28,9 @@ var _is_ready := false
 # THE LAST OF SETUP AND READY WILL CALL _apply
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
 	#_enemy = enemy
-	#TEMPORARY: Used for testning of certain enemy. can me changed to other tres-files
-	_enemy = load("res://data/enemies/sixSeven.tres")
+	#TEMPORARY: Used for testning of certain enemy. can be changed to other tres-files
+	_enemy = load("res://data/enemies/famine.tres").duplicate(true)
+
 	_consumables = consumables
 	
 	player_hearts.set_hp(Globals.battlehealth)
@@ -129,6 +130,11 @@ func on_card_played(hand: HandData):
 	if _enemy and _enemy.has_method("modify_result"):
 		result = _enemy.modify_result(hand, enemy_hand, result)
 	
+	#dialoge for special enemy
+	if _enemy.has_method("emit_round_line"):
+		_enemy.emit_round_line()
+
+	
 	match result:
 		1:
 			result_label.text += "\nYou win! " + hand.name + " beats " + enemy_hand.name
@@ -183,7 +189,9 @@ func _input(event: InputEvent):
 func _on_enemy_feedback(message: String) -> void:
 	# show this message above the nomral win/lose link
 	result_label.text = message + "\n" + result_label.text
-	print(">>> UI received petrify signal") # DEBUG
+	print(">>> UI received feedback signal") # DEBUG
 
 func _on_enemy_update_hand_visuals(hand: HandData):
 	hand_inventory.update_visuals_for(hand)
+	
+	

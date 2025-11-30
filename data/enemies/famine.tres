@@ -11,10 +11,10 @@ script = ExtResource("2_uhl3p")
 id = 61
 sprite = ExtResource("3_uhl3p")
 name = "Famine"
-description = "The Third Horseman"
-discovered = false
-biome = "neutral"
-tier = 1
+description = "The Third of the Horsemen"
+discovered = null
+biome = null
+tier = null
 deck = {
 ExtResource("1_bn1bs"): 2,
 ExtResource("2_06gnb"): 1,

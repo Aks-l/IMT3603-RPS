@@ -1,117 +1,112 @@
 extends "res://data/enemies/EnemyData.gd"
 
 var is_dead: bool = false
-var line_to_say: String = ""
-enum LinePriority {DEATH = 3, STARVE = 2, ALREADY = 1, REJECT = 0}
-var current_priority: int = -1
+var next_line: String = ""
 
-var starve_lines: Array[String] = [
+var battle_lines: Array[String] = [
 	"'You should have eaten at home!'",
-	"'Hollow... empty... how fitting.'",
 	"'The body fails long before the spirit.'",
 	"'I only take what is already fading.'",
-	"'Have you met my siblings yet?'"
-]
-
-var already_starved_lines: Array[String] = [
-	"'%s has nothing more to give.'",
-	"'I pity your frail attempt.'",
+	"'Have you met my siblings yet?'",
+	"'Do I exist in your world, too?'",
 ]
 
 var death_lines: Array[String] = [
-	"'I wish Fiona was here.'",
-	"'At last… I, too, fade.'",
-	"'The feast… ends with me.'",
+	"'I wish Fiona was here...'",
+	"'At last... I, too, fade.'",
+	"'The feast ends with me.'",
 ]
-
-
 
 func on_combat_start(inv: Array[HandData]) -> void:
 	is_dead = false
-	line_to_say = ""
+	next_line = ""
 
 
-# ----------------------------------------
+# ---------------------------------------------------------
 # CARD REACTION
-# ----------------------------------------
+# ---------------------------------------------------------
 func react_to_card(card: HandData) -> void:
-	if is_dead or card == null:
+	if card == null or is_dead:
 		return
 
-	line_to_say = ""  # reset this round
+	# reset any previous stored line
+	next_line = ""
 
 	if card.living:
-		# already starved?
-		if "starved" in card.status_flags:
-			line_to_say = _make_line(already_starved_lines, card)
-		else:
-			# first starvation
-			starve_card(card)
+		starve_card(card)
 	else:
-		# non-living: no line at this stage
-		pass
+		# Non-living → still give a battle line!
+		_set_battle_line(card)
 
 
 func starve_card(card: HandData) -> void:
+	if "starved" in card.status_flags:
+		# Still just battle lines — nothing special
+		_set_battle_line(card)
+		return
+
 	card.status_flags["starved"] = true
 	card.status_revealed = true
 	card.status_tint = Color(0.3, 0.6, 0.2)
+
 	emit_signal("update_hand_visual", card)
 
-	line_to_say = _make_line(starve_lines, card)
+	# Starving a card = also battle line
+	_set_battle_line(card)
 
 
-# ----------------------------------------
+# ---------------------------------------------------------
 # ROUND RESULT
-# ----------------------------------------
+# ---------------------------------------------------------
 func modify_result(card: HandData, enemy: HandData, base_result: int) -> int:
 	if is_dead:
 		return base_result
 
-	var result := base_result
-
-	# starved cards ALWAYS lose, override base_result
+	# Starved cards ALWAYS lose
 	if "starved" in card.status_flags:
-		result = -1
-		line_to_say = _make_line(already_starved_lines, card)
-		return result
+		_set_battle_line(card)
+		return -1
 
-	# NORMAL ROUND LINES:
-	match result:
-		-1:
-			# Player loses → starve line
-			line_to_say = _make_line(starve_lines, card)
+	# Always set a battle line regardless of win/lose/tie
+	_set_battle_line(card)
 
-		0:
-			# Tie → NO LINE
-			pass
-
-		1:
-			# Player hits famine → handled after HP changes
-			pass
-
-	return result
+	return base_result
 
 
-# ----------------------------------------
-# DAMAGE TO FAMINE
-# ----------------------------------------
+# ---------------------------------------------------------
+# DAMAGE / DEATH
+# ---------------------------------------------------------
 func on_damage_taken(current_hp: int) -> void:
-	if current_hp <= 0 and not is_dead:
-		is_dead = true
-		emit_signal("feedback", death_lines.pick_random())
+	if is_dead:
 		return
 
-	# If famine loses 1HP but survives → NO extra line
-	if line_to_say != "":
-		emit_signal("feedback", line_to_say)
+	if current_hp <= 0:
+		is_dead = true
+		_emit_death_line()
+		return
+
+	# Not dead → emit the stored battle line
+	_emit_stored_line()
 
 
-# ----------------------------------------
-# LINE GENERATOR
-# ----------------------------------------
-func _make_line(lines: Array, card: HandData) -> String:
-	var line: String = lines.pick_random()
-	if card and "%s" in line:
-		line = line % card.name
-	return line
+# ---------------------------------------------------------
+# LINE HELPERS
+# ---------------------------------------------------------
+func _set_battle_line(card: HandData) -> void:
+	# Pick random battle line
+	var l: String = battle_lines.pick_random()
+	if "%s" in l and card:
+		l = l % card.name
+	next_line = l
+
+
+func _emit_stored_line() -> void:
+	if next_line != "":
+		emit_signal("feedback", next_line)
+	next_line = ""
+
+
+func _emit_death_line() -> void:
+	var l: String = death_lines.pick_random()
+	emit_signal("feedback", l)
+	next_line = ""
