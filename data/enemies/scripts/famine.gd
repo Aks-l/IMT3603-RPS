@@ -22,9 +22,8 @@ func on_combat_start(inv: Array[HandData]) -> void:
 	next_line = ""
 
 
-# ---------------------------------------------------------
+
 # CARD REACTION
-# ---------------------------------------------------------
 func react_to_card(card: HandData) -> void:
 	if card == null or is_dead:
 		return
@@ -55,9 +54,8 @@ func starve_card(card: HandData) -> void:
 	_set_battle_line(card)
 
 
-# ---------------------------------------------------------
 # ROUND RESULT
-# ---------------------------------------------------------
+
 func modify_result(card: HandData, enemy: HandData, base_result: int) -> int:
 	if is_dead:
 		return base_result
@@ -79,9 +77,7 @@ func emit_round_line() -> void:
 	pass
 
 
-# ---------------------------------------------------------
 # DAMAGE / DEATH
-# ---------------------------------------------------------
 func on_damage_taken(current_hp: int) -> void:
 	if is_dead:
 		return
@@ -103,9 +99,8 @@ func on_round_end() -> void:
 		_emit_stored_line()
 
 
-# ---------------------------------------------------------
+
 # LINE HELPERS
-# ---------------------------------------------------------
 func _set_battle_line(card: HandData) -> void:
 	# Pick random battle line
 	var l: String = battle_lines.pick_random()
