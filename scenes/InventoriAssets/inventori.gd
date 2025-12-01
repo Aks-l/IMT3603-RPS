@@ -51,7 +51,13 @@ func _load_items_into_slots() -> void:
 	for i in min(itemsLoad.size(), invSize):
 		var item := tempInvItem.new()
 		item.init(itemsLoad[i])
+		item.item_used.connect(func(data: ItemData):
+			if item.data.item_script:
+				item.data.item_script.call("used", item.data)
+			item.queue_free()
+		)
 		container.get_child(i).add_child(item)
+	
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_text_indent"):

@@ -24,5 +24,5 @@ func populate(d: Resource) -> void:
 			name_label.text = "???"
 			
 	if description_label:
-		if d is EnemyData :
+		if d.discovered and d is EnemyData :
 			description_label.text = d.description
