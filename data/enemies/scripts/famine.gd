@@ -73,6 +73,12 @@ func modify_result(card: HandData, enemy: HandData, base_result: int) -> int:
 	return base_result
 
 
+func emit_round_line() -> void:
+	# Called after modify_result for ALL outcomes (win/lose/tie)
+	# Don't emit anything here - let on_damage_taken handle it
+	pass
+
+
 # ---------------------------------------------------------
 # DAMAGE / DEATH
 # ---------------------------------------------------------
@@ -82,11 +88,19 @@ func on_damage_taken(current_hp: int) -> void:
 
 	if current_hp <= 0:
 		is_dead = true
+		next_line = ""  # Clear battle line so only death line shows
 		_emit_death_line()
 		return
-
-	# Not dead → emit the stored battle line
+	
+	# Enemy survived - emit the stored battle line
 	_emit_stored_line()
+
+
+func on_round_end() -> void:
+	# Called at the end of every round (even ties and player losses)
+	# Emit battle line if enemy is still alive
+	if not is_dead and next_line != "":
+		_emit_stored_line()
 
 
 # ---------------------------------------------------------

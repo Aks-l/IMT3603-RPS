@@ -29,7 +29,7 @@ var _is_ready := false
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
 	#_enemy = enemy
 	#TEMPORARY: Used for testning of certain enemy. can be changed to other tres-files
-	_enemy = load("res://data/enemies/famine.tres").duplicate(true)
+	_enemy = load("res://data/enemies/humanResources.tres")
 
 	_consumables = consumables
 	
@@ -46,14 +46,17 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	else:
 		_hand = hand
 	_has_params = true
-	if _is_ready:
-		_apply()
+	
+	# Connect signals BEFORE applying
 	if _enemy and _enemy.has_signal("feedback"):
 		_enemy.feedback.connect(_on_enemy_feedback)
-		print("Connected Medusa petrify signal") # DEBUG
+		print("Connected enemy feedback signal") # DEBUG
 	
 	if _enemy.has_signal("update_hand_visuals"):
 		_enemy.update_hand_visuals.connect(_on_enemy_update_hand_visuals)
+	
+	if _is_ready:
+		_apply()
 
 func _ready():
 	victory.chosen_reward.connect(queue_free)
@@ -153,6 +156,10 @@ func on_card_played(hand: HandData):
 		0:
 			result_label.text += "\nIt's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
+	
+	# Call on_round_end after all damage has been applied
+	if _enemy and _enemy.has_method("on_round_end"):
+		_enemy.on_round_end()
 			
 			
 	if enemy_hearts.get_hp() <= 0:
