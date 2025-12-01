@@ -29,7 +29,7 @@ var _is_ready := false
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
 	#_enemy = enemy
 	#TEMPORARY: Used for testning of certain enemy. can be changed to other tres-files
-	_enemy = load("res://data/enemies/humanResources.tres")
+	_enemy = load("res://data/enemies/holySolarium.tres")
 
 	_consumables = consumables
 	
