@@ -22,7 +22,7 @@ func react_to_card(card: HandData) -> void:
 	if card == null:
 		return
 
-	# 🌧️ Rust metal/wood cards
+	# Rust metal/wood cards
 	if card.metalic or card.wood:
 		if not ("rusted" in card.status_flags):
 			card.status_flags["rusted"] = true
@@ -35,7 +35,7 @@ func react_to_card(card: HandData) -> void:
 		else:
 			emit_signal("feedback", "%s is already rusted beyond use." % card.name)
 
-	# ☁️ Player plays Cloud — one-time HP drain
+	# Player plays Cloud — one-time HP drain
 	elif card.name == cloud_card_name and not cloud_stolen_once:
 		cloud_stolen_once = true
 		current_hp -= 1
@@ -49,7 +49,7 @@ func react_to_card(card: HandData) -> void:
 func modify_result(player: HandData, enemy: HandData, base_result: int) -> int:
 	var result = base_result
 
-	# 🔩 Auto-lose if card is rusted
+	# Auto-lose if card is rusted
 	if "rusted" in player.status_flags:
 		emit_signal("feedback", "%s is too corroded to fight!" % player.name)
 		result = -1
