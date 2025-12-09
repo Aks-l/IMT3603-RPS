@@ -11,8 +11,8 @@
 script = ExtResource("1_ax0lj")
 id = 67
 sprite = ExtResource("3_dpo21")
-name = ""
-description = ""
+name = "Six Seven"
+description = "A battle beyond numbers"
 discovered = false
 biome = "neutral"
 tier = 1
