@@ -55,7 +55,7 @@ func react_to_card(card: HandData) -> void:
 
 	# Evil is purified immediately -> overrides battle line this turn.
 	if card.evil:
-		# Visuals
+		
 		card.status_revealed = true
 		card.status_tint = Color.WHITE
 		emit_signal("update_hand_visuals", card)
@@ -77,10 +77,6 @@ func react_to_card(card: HandData) -> void:
 		return
 
 
-	# Holy cards: no special line here; they will auto-tie in modify_result.
-	# Leave next_line as the stored battle line.
-	
-
 func modify_result(card: HandData, enemy_card: HandData, result: int) -> int:
 	if is_dead or card == null:
 		return result
@@ -94,7 +90,7 @@ func modify_result(card: HandData, enemy_card: HandData, result: int) -> int:
 		
 		return -1
 
-	# Holy auto-tie (no special line here; battle line will show normally)
+	# Holy auto-tie
 	if card.holy:
 		card.status_revealed = true
 		card.status_tint = Color(0.9, 0.9, 0.5)
