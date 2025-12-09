@@ -13,4 +13,4 @@ func load_biomes():
 
 func _ready():
 	load_biomes()
-	print(biomes.size())
+	print("Loaded %d biomes" % biomes.size())
