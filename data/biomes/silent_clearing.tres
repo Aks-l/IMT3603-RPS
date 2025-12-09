@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-silent-clearing"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 36
+name = "Silent Clearing"
+prefix = "in a"
+difficulty = 4
+ocean_color = Color(0.160784, 0.223529, 0.294118, 1)
+shallow_water_color = Color(0.219608, 0.27451, 0.337255, 1)
+sand_color = Color(0.882353, 0.827451, 0.705882, 1)
+grass_color = Color(0.623529, 0.717647, 0.533333, 1)
+forest_color = Color(0.321569, 0.466667, 0.282353, 1)
+hill_color = Color(0.470588, 0.443137, 0.360784, 1)
+mountain_color = Color(0.513725, 0.498039, 0.482353, 1)
+snow_color = Color(0.941176, 0.952941, 0.964706, 1)

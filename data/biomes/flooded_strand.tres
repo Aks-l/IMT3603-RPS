@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-flooded-strand2"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 27
+name = "Flooded Strand"
+prefix = "on a"
+difficulty = 3
+ocean_color = Color(0.039216, 0.188235, 0.321569, 1)
+shallow_water_color = Color(0.066667, 0.329412, 0.505882, 1)
+sand_color = Color(0.913725, 0.854902, 0.713725, 1)
+grass_color = Color(0.12549, 0.588235, 0.352941, 1)
+forest_color = Color(0.082353, 0.411765, 0.203922, 1)
+hill_color = Color(0.392157, 0.372549, 0.294118, 1)
+mountain_color = Color(0.435294, 0.466667, 0.458824, 1)
+snow_color = Color(0.937255, 0.94902, 0.956863, 1)

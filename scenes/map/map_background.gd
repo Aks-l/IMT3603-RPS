@@ -5,14 +5,14 @@ extends Node2D
 @export var noise_segments: int = 32
 
 @export_group("Terrain Generation")
-@export var ocean_color: Color = Color(0.18, 0.28, 0.42)  # Vibrant blue
-@export var shallow_water_color: Color = Color(0.25, 0.40, 0.52)  # Lighter blue
-@export var sand_color: Color = Color(0.76, 0.70, 0.50)  # Sandy beach
-@export var grass_color: Color = Color(0.35, 0.55, 0.30)  # Rich green
-@export var forest_color: Color = Color(0.25, 0.45, 0.25)  # Dark green
-@export var hill_color: Color = Color(0.50, 0.48, 0.40)  # Brown hills
-@export var mountain_color: Color = Color(0.55, 0.55, 0.55)  # Gray mountains
-@export var snow_color: Color = Color(0.85, 0.88, 0.90)  # White peaks
+@export var ocean_color: Color
+@export var shallow_water_color: Color
+@export var sand_color: Color
+@export var grass_color: Color
+@export var forest_color: Color
+@export var hill_color: Color
+@export var mountain_color: Color
+@export var snow_color: Color
 @export var terrain_resolution: Vector2i = Vector2i(512, 512)
 @export var ocean_margin: float = 1200.0
 @export var terrain_scale: float = 3.0
@@ -43,6 +43,17 @@ func _initialize_noise_generator() -> void:
 	noise_generator.elevation_frequency = elevation_frequency
 	add_child(noise_generator)
 	noise_generator._initialize_noise_generators()
+
+##Apply colors to palette based on biome
+func set_palette(b: BiomeData) -> void:
+	ocean_color = b.ocean_color
+	shallow_water_color = b.shallow_water_color
+	sand_color = b.sand_color
+	grass_color = b.grass_color
+	forest_color = b.forest_color
+	hill_color = b.hill_color
+	mountain_color = b.mountain_color
+	snow_color = b.snow_color
 
 ##Set the graph data and start terrain generation
 func set_graph(p:Dictionary, e:Array) -> void:

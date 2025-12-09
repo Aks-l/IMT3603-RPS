@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-wind-scarred-crag"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 49
+name = "Wind-Scarred Crag"
+prefix = "on a"
+difficulty = 5
+ocean_color = Color(0.133333, 0.184314, 0.235294, 1)
+shallow_water_color = Color(0.184314, 0.235294, 0.286275, 1)
+sand_color = Color(0.8, 0.74902, 0.686275, 1)
+grass_color = Color(0.360784, 0.498039, 0.333333, 1)
+forest_color = Color(0.235294, 0.392157, 0.235294, 1)
+hill_color = Color(0.545098, 0.509804, 0.427451, 1)
+mountain_color = Color(0.603922, 0.584314, 0.568627, 1)
+snow_color = Color(0.952941, 0.960784, 0.968627, 1)

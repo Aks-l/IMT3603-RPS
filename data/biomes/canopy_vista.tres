@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-canopy-vista"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 35
+name = "Canopy Vista"
+prefix = "in the"
+difficulty = 4
+ocean_color = Color(0.101961, 0.223529, 0.34902, 1)
+shallow_water_color = Color(0.141176, 0.32549, 0.423529, 1)
+sand_color = Color(0.741176, 0.658824, 0.517647, 1)
+grass_color = Color(0.082353, 0.658824, 0.290196, 1)
+forest_color = Color(0.039216, 0.513725, 0.227451, 1)
+hill_color = Color(0.411765, 0.454902, 0.337255, 1)
+mountain_color = Color(0.490196, 0.517647, 0.498039, 1)
+snow_color = Color(0.929412, 0.945098, 0.956863, 1)

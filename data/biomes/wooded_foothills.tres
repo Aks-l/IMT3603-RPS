@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://c5v4jgcvvyq06"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 30
+name = "Wooded Foothills"
+prefix = "in the"
+difficulty = 3
+discovered = false
+encountered = false
+ocean_color = Color(0.160784, 0.247059, 0.352941, 1)
+shallow_water_color = Color(0.221569, 0.34902, 0.435294, 1)
+sand_color = Color(0.705882, 0.627451, 0.513725, 1)
+grass_color = Color(0.180392, 0.517647, 0.298039, 1)
+forest_color = Color(0.082353, 0.372549, 0.188235, 1)
+hill_color = Color(0.403922, 0.447059, 0.333333, 1)
+mountain_color = Color(0.490196, 0.517647, 0.486275, 1)
+snow_color = Color(0.929412, 0.945098, 0.956863, 1)

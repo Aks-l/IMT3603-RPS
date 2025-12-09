@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-smoldering-marsh"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 33
+name = "Smoldering Marsh"
+prefix = "in a"
+difficulty = 4
+ocean_color = Color(0.078431, 0.098039, 0.086275, 1)
+shallow_water_color = Color(0.152941, 0.176471, 0.14902, 1)
+sand_color = Color(0.603922, 0.464706, 0.384314, 1)
+grass_color = Color(0.164706, 0.356863, 0.203922, 1)
+forest_color = Color(0.12549, 0.247059, 0.117647, 1)
+hill_color = Color(0.435294, 0.321569, 0.286275, 1)
+mountain_color = Color(0.486275, 0.439216, 0.415686, 1)
+snow_color = Color(0.87451, 0.882353, 0.894118, 1)
