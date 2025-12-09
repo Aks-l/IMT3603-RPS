@@ -21,4 +21,4 @@ func close_message() -> void:
 	visible = false
 
 func _process(float) -> void:
-	color_rect.modulate.a = timer.time_left/fade_time
+	color_rect.modulate.a = timer.time_left/max(fade_time, 0.001)
