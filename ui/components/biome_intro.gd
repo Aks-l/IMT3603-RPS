@@ -12,7 +12,7 @@ func trigger():
 	visible = true
 	color_rect.size = message.size
 	message.text = "You wake up %s %s..." % [biome.prefix, biome.name]
-	color_rect.self_modulate.a = 1
+	color_rect.modulate.a = 1
 	timer.start(5)
 	timer.timeout.connect(close_message)
 
