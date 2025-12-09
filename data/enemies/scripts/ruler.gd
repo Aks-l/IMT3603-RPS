@@ -29,8 +29,8 @@ func on_combat_start(players_cards: Array[HandData]) -> void:
 	next_line = ""
 	turn_count = 0
 
-func react_to_card(hand: HandData) -> void:
-	if is_dead or hand == null:
+func react_to_card(card: HandData) -> void:
+	if is_dead or card == null:
 		return
 
 	turn_count += 1
@@ -38,15 +38,15 @@ func react_to_card(hand: HandData) -> void:
 	# Store a random battle line for this turn
 	next_line = battle_lines.pick_random()
 
-	if _is_unphotographable(hand):
-		emit_signal("feedback", "'Rule 32: " + hand.name + " is too unspecific.'")
+	if _is_unphotographable(card):
+		emit_signal("feedback", "'Rule 32: " + card.name + " is too unspecific.'")
 		return
 
-func modify_result(hand: HandData, enemy_hand: HandData, result: int) -> int:
-	if is_dead or hand == null:
+func modify_result(card: HandData, enemy_card: HandData, result: int) -> int:
+	if is_dead or card == null:
 		return result
 
-	if _is_unphotographable(hand):
+	if _is_unphotographable(card):
 		return -1  # Auto-lose if card cannot be pictured
 
 	return result
@@ -80,8 +80,8 @@ func _emit_stored_line() -> void:
 	next_line = ""
 
 # --- Helpers ---
-func _is_unphotographable(hand: HandData) -> bool:
+func _is_unphotographable(card: HandData) -> bool:
 	# Any card that is elemental, conceptual, holy, or evil is invalid
-	if hand.elemental or hand.concept or hand.holy or hand.evil:
+	if card.elemental or card.concept or card.holy or card.evil:
 		return true
 	return false

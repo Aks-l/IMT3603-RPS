@@ -24,44 +24,44 @@ func on_combat_start(players_cards: Array[HandData]) -> void:
 	is_dead = false
 	next_line = ""
 
-func react_to_card(hand: HandData) -> void:
-	if is_dead or hand == null:
+func react_to_card(card: HandData) -> void:
+	if is_dead or card == null:
 		return
 
 	# Store a random battle line for this turn
 	next_line = battle_lines.pick_random()
 
 	# Block evil and holy cards
-	if hand.evil:
-		emit_signal("feedback", "'I reject your " + hand.name + "' — evil cannot act under sacred light.")
+	if card.evil:
+		emit_signal("feedback", "'I reject your " + card.name + "' — evil cannot act under sacred light.")
 		# Turn card white
-		hand.status_revealed = true
-		hand.status_tint = Color.WHITE
-		emit_signal("update_hand_visual", hand)
+		card.status_revealed = true
+		card.status_tint = Color.WHITE
+		emit_signal("update_hand_visual", card)
 		return
 	
-	if hand.holy:
-		emit_signal("feedback", "'I reject your " + hand.name + "' — only I am truly holy here.")
+	if card.holy:
+		emit_signal("feedback", "'I reject your " + card.name + "' — only I am truly holy here.")
 		# Turn card white
-		hand.status_revealed = true
-		hand.status_tint = Color.WHITE
-		emit_signal("update_hand_visual", hand)
+		card.status_revealed = true
+		card.status_tint = Color.WHITE
+		emit_signal("update_hand_visual", card)
 		return
 
 	# Block the Sun card (check by name)
-	if _is_sun_card(hand):
+	if _is_sun_card(card):
 		emit_signal("feedback", "I reject imitation. Your fake Sun cannot act here.")
 		# Turn card white
-		hand.status_revealed = true
-		hand.status_tint = Color.WHITE
-		emit_signal("update_hand_visual", hand)
+		card.status_revealed = true
+		card.status_tint = Color.WHITE
+		emit_signal("update_hand_visual", card)
 		return
 
-func modify_result(hand: HandData, enemy_hand: HandData, result: int) -> int:
-	if is_dead or hand == null:
+func modify_result(card: HandData, enemy_card: HandData, result: int) -> int:
+	if is_dead or card == null:
 		return result
 
-	if hand.evil or hand.holy or _is_sun_card(hand):
+	if card.evil or card.holy or _is_sun_card(card):
 		return -1  # Auto-lose if forbidden
 	return result
 
@@ -94,7 +94,7 @@ func _emit_stored_line() -> void:
 	next_line = ""
 
 # --- Helpers ---
-func _is_sun_card(hand: HandData) -> bool:
+func _is_sun_card(card: HandData) -> bool:
 	# Some decks duplicate cards, losing their original resource path.
 	# The safest way is to check the name field only.
-	return hand.name.strip_edges().to_lower() == "the sun"
+	return card.name.strip_edges().to_lower() == "the sun"

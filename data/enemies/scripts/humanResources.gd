@@ -35,27 +35,27 @@ func on_combat_start(players_cards: Array[HandData]) -> void:
 	_set_random_policy()
 
 # --- Called each time the player plays a card ---
-func react_to_card(hand: HandData) -> void:
+func react_to_card(card: HandData) -> void:
 	if is_dead:
 		return
 	
 	# Don't announce policy here - it's already been announced
-	if hand == null:
+	if card == null:
 		return
 	
 	# Check if the card is blocked by current policy
 	for tag in _disabled_tags:
-		var tag_value = hand.get(tag)
-		print("Checking tag '", tag, "' on card '", hand.name, "': ", tag_value)
+		var tag_value = card.get(tag)
+		print("Checking tag '", tag, "' on card '", card.name, "': ", tag_value)
 		if tag_value == true:
 			# Card is banned, just show a reminder
-			var msg = "Your " + hand.name + " card is banned by the current policy!"
+			var msg = "Your " + card.name + " card is banned by the current policy!"
 			emit_signal("feedback", msg)
 			return
 
 # --- Optional: Change RPS result if card is disabled ---
-func modify_result(hand: HandData, enemy_hand: HandData, result: int) -> int:
-	if hand == null or is_dead:
+func modify_result(card: HandData, enemy_card: HandData, result: int) -> int:
+	if card == null or is_dead:
 		return result
 	
 	print("modify_result called - checking ", _disabled_tags.size(), " banned tags")
@@ -63,10 +63,10 @@ func modify_result(hand: HandData, enemy_hand: HandData, result: int) -> int:
 	
 	# Force loss if card matches banned tags
 	for tag in _disabled_tags:
-		var tag_value = hand.get(tag)
-		print("  Checking if '", hand.name, "' has tag '", tag, "': ", tag_value)
+		var tag_value = card.get(tag)
+		print("  Checking if '", card.name, "' has tag '", tag, "': ", tag_value)
 		if tag_value == true:
-			print("!!! POLICY VIOLATION: Card '", hand.name, "' has banned tag '", tag, "' - forcing loss!")
+			print("!!! POLICY VIOLATION: Card '", card.name, "' has banned tag '", tag, "' - forcing loss!")
 			return -1  # auto lose if your card is "banned" this turn
 	
 	print("No policy violation detected, returning original result: ", result)

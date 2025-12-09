@@ -126,8 +126,8 @@ func on_combat_start(players_cards: Array[HandData]) -> void:
 	
 	print("[EnvySlothWrath] Active sin: ", active_sin)
 
-func react_to_card(hand: HandData) -> void:
-	if is_dead or hand == null:
+func react_to_card(card: HandData) -> void:
+	if is_dead or card == null:
 		return
 	
 	# Store battle line for later
@@ -136,23 +136,23 @@ func react_to_card(hand: HandData) -> void:
 			next_line = envy_battle.pick_random()
 		"Sloth":
 			# Check if player played same card twice
-			if last_played_card != null and last_played_card.name == hand.name:
+			if last_played_card != null and last_played_card.name == card.name:
 				played_same_twice = true
 				next_line = sloth_punish.pick_random()
 			else:
 				next_line = sloth_battle.pick_random()
-			last_played_card = hand
+			last_played_card = card
 		"Wrath":
 			next_line = wrath_battle.pick_random()
 
-func modify_result(hand: HandData, enemy_hand: HandData, result: int) -> int:
-	if is_dead or hand == null:
+func modify_result(card: HandData, enemy_card: HandData, result: int) -> int:
+	if is_dead or card == null:
 		return result
 	
 	match active_sin:
 		"Envy":
 			# Envy: If tags match, force tie
-			if _share_tags(hand, enemy_hand):
+			if _share_tags(card, enemy_card):
 				next_line = envy_tie.pick_random()
 				return 0
 		
