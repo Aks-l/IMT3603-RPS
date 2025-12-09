@@ -9,8 +9,8 @@
 script = ExtResource("2_8rivy")
 id = 3
 sprite = ExtResource("3_8rivy")
-name = "Fred Fran"
-description = ""
+name = "Henry"
+description = "Too smug for not doing anything"
 discovered = false
 biome = "neutral"
 tier = 1

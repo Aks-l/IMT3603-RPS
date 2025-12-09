@@ -10,8 +10,8 @@
 script = ExtResource("2_cx21m")
 id = 45
 sprite = ExtResource("3_cx21m")
-name = "Shougun"
-description = ""
+name = "Shogun"
+description = "The All Mighty Shogun of the West, East, North and South"
 discovered = false
 biome = "neutral"
 tier = 1

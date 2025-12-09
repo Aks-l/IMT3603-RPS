@@ -1,19 +1,25 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://dvcgrs2alk0gj"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://dvcgrs2alk0gj"]
 
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc1s" path="res://data/cards/brain.tres" id="1_pmm14"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_4y7gf"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc1r" path="res://data/cards/cockroach.tres" id="2_dr348"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc1x" path="res://data/cards/sponge.tres" id="3_0hgh3"]
 [ext_resource type="Texture2D" uid="uid://b7re8bavjd6be" path="res://data/enemies/sprites/conspiracist.png" id="3_4y7gf"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc4y" path="res://data/cards/fence.tres" id="4_ju02i"]
 
 [resource]
 script = ExtResource("2_4y7gf")
 id = 8
 sprite = ExtResource("3_4y7gf")
 name = "Jake \"Conspiracist\" Wood"
-description = ""
+description = "His mind can comprehend me, just sligtly"
 discovered = false
 biome = "neutral"
 tier = 1
 deck = {
-ExtResource("1_pmm14"): 2
+ExtResource("1_pmm14"): 2,
+ExtResource("2_dr348"): 1,
+ExtResource("3_0hgh3"): 1,
+ExtResource("4_ju02i"): 2
 }
 metadata/_custom_type_script = "uid://by12nwuyw45yk"

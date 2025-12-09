@@ -11,8 +11,8 @@
 script = ExtResource("2_ab8bm")
 id = 24
 sprite = ExtResource("3_ab8bm")
-name = "Fred Cameron"
-description = ""
+name = "Adam Cameron"
+description = "I shouldn't be in a museum"
 discovered = false
 biome = "neutral"
 tier = 1

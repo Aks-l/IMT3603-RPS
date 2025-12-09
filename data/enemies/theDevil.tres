@@ -1,23 +1,27 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://bxcg2yrrsbxv0"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=8 format=3 uid="uid://bxcg2yrrsbxv0"]
 
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc4x" path="res://data/cards/devil.tres" id="1_j0gmp"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7ycx1" path="res://data/cards/king.tres" id="2_7p4fy"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_hqir5"]
 [ext_resource type="Texture2D" uid="uid://rhftphgexi2f" path="res://data/enemies/sprites/theDevil.png" id="3_hqir5"]
 [ext_resource type="Resource" uid="uid://b6e0vdawx87c8" path="res://data/cards/whip.tres" id="3_rutsf"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycyw" path="res://data/cards/baby.tres" id="4_rutsf"]
+[ext_resource type="Resource" uid="uid://b6e0vdawx87c7" path="res://data/cards/law.tres" id="5_7i3l8"]
 
 [resource]
 script = ExtResource("2_hqir5")
 id = 36
 sprite = ExtResource("3_hqir5")
 name = "The Devil"
-description = ""
+description = "A baby with a comically large hat"
 discovered = false
 biome = "neutral"
 tier = 1
 deck = {
 ExtResource("1_j0gmp"): 4,
 ExtResource("2_7p4fy"): 2,
-ExtResource("3_rutsf"): 1
+ExtResource("3_rutsf"): 1,
+ExtResource("4_rutsf"): 2,
+ExtResource("5_7i3l8"): 1
 }
 metadata/_custom_type_script = "uid://by12nwuyw45yk"
