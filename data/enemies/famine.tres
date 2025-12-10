@@ -12,9 +12,10 @@ id = 61
 sprite = ExtResource("3_uhl3p")
 name = "Famine"
 description = "The Third Horsemen"
-discovered = null
-biome = null
-tier = null
+discovered = false
+encounter_count = 0
+biome = "neutral"
+tier = 1
 deck = {
 ExtResource("1_bn1bs"): 2,
 ExtResource("2_06gnb"): 1,
