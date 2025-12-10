@@ -86,6 +86,7 @@ func on_combat_start(players_cards: Array[HandData]) -> void:
 func react_to_card(card: HandData) -> void:
 	if is_dead or card == null:
 		return
+	next_line = _get_line("battle")
 
 func on_damage_taken(current_hp: int) -> void:
 	if is_dead:

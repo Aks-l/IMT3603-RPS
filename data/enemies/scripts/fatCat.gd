@@ -96,6 +96,7 @@ func react_to_card(card: HandData) -> void:
 func on_damage_taken(current_hp: int) -> void:
 	if is_dead:
 		return
+	next_line = _get_line("battle")
 
 	if current_hp <= 0:
 		is_dead = true
