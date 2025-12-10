@@ -36,7 +36,7 @@ var dialogue := {
 	},
 	"death": {
 		"default": [
-			"'Not inyo the light.'"
+			"'Not into the light.'"
 		],
 		"discovered1": [
 			"'Could have been worse.'",
@@ -82,6 +82,12 @@ func on_combat_start(players_cards: Array[HandData]) -> void:
 
 func react_to_card(card: HandData) -> void:
 	if is_dead or card == null:
+		return
+	
+	##differemt line if player usees the sun card
+	if card.name == "sun":
+		emit_signal("feedback", "AAAAaaaa... oh, i thought it was her.")
+		next_line = ""
 		return
 	next_line = _get_line("battle")
 
