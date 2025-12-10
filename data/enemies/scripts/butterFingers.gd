@@ -43,7 +43,7 @@ var dialogue := {
 		],
 		"discovered1": [
 			"'Leave the apron. It’s seen enough.'",
-			"'INo.. my macrons.'"
+			"'No.. my macrons.'"
 		]
 	}
 }
@@ -86,13 +86,6 @@ func on_combat_start(players_cards: Array[HandData]) -> void:
 func react_to_card(card: HandData) -> void:
 	if is_dead or card == null:
 		return
-	
-	##differemt line if player usees the sun card
-	if card.name == "sun":
-		emit_signal("feedback", "AAAAaaaa... oh, i thought it was her.")
-		next_line = ""
-		return
-	next_line = _get_line("battle")
 
 func on_damage_taken(current_hp: int) -> void:
 	if is_dead:
