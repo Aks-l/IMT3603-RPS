@@ -15,13 +15,14 @@ weird = true
 id = 65
 sprite = ExtResource("3_tikxb")
 name = "Envy, Sloth and Wrath"
-description = "I guess I was annoying enough to stop their fight"
+description = "I guess I am in the way of their fighting"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_otr43"): 1,
 ExtResource("2_50bss"): 2,
-ExtResource("3_50bss"): 1
+ExtResource("3_50bss"): 3
 }
 metadata/_custom_type_script = "uid://by12nwuyw45yk"
