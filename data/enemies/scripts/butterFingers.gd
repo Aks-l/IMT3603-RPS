@@ -39,7 +39,7 @@ var dialogue := {
 	},
 	"death": {
 		"default": [
-			"'At least I won’t burn anything from here."
+			"'At least I won’t burn anything anymore."
 		],
 		"discovered1": [
 			"'Leave the apron. It’s seen enough.'",
