@@ -14,8 +14,9 @@ sprite = ExtResource("3_ef4sf")
 name = "Jay Walker"
 description = "A walker in space is a walker in danger"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_ja6s1"): 1,
 ExtResource("2_e8t73"): 1,

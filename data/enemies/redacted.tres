@@ -13,8 +13,9 @@ sprite = ExtResource("2_qqlas")
 name = "[REDACTED]"
 description = "Something existed here at some point"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_llvhe"): 1,
 ExtResource("2_a38dh"): 2,

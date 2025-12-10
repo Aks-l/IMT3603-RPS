@@ -13,8 +13,9 @@ sprite = ExtResource("3_ellio")
 name = "Vacum Cleaner"
 description = "my reliable friend in all universes"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_a3uu4"): 1,
 ExtResource("2_us1g4"): 2,

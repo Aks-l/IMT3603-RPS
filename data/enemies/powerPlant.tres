@@ -14,8 +14,9 @@ sprite = ExtResource("3_elf1t")
 name = "Power Plant"
 description = "The eternal source of energy "
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_lyt3b"): 4,
 ExtResource("2_d0nc0"): 3,

@@ -13,8 +13,9 @@ sprite = ExtResource("3_4brn4")
 name = "Static"
 description = "Don't look too long"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_cwyfl"): 6,
 ExtResource("2_foyu6"): 2,

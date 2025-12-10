@@ -13,8 +13,9 @@ sprite = ExtResource("3_2mnf4")
 name = "The Golden Witch"
 description = "Her reflection is different than her appearance"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_oquxo"): 3,
 ExtResource("2_b4d1r"): 1,

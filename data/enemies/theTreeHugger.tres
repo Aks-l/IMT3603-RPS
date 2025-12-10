@@ -14,8 +14,9 @@ sprite = ExtResource("3_8eepm")
 name = "Terry Truce"
 description = "The wonderfull giver of the woods"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_g15t4"): 4,
 ExtResource("2_dhq21"): 1,

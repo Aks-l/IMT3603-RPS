@@ -14,8 +14,9 @@ sprite = ExtResource("3_ab8bm")
 name = "Adam Cameron"
 description = "I shouldn't be in a museum"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_he1v8"): 3,
 ExtResource("2_5bw8i"): 3,

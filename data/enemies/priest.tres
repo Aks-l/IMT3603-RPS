@@ -17,8 +17,9 @@ sprite = ExtResource("3_7u8ue")
 name = "Monsieu Jean Jack Rosseau"
 description = "The Chaplin of Stove"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_gffx5"): 2,
 ExtResource("2_k8k3b"): 2,

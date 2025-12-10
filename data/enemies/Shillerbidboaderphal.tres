@@ -14,8 +14,9 @@ sprite = ExtResource("3_f3qb5")
 name = "Shillerbidboaderphal"
 description = "Horrors beyond comprehension"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_1amdl"): 1,
 ExtResource("2_k05hn"): 2,

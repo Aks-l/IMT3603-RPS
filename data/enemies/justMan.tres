@@ -13,8 +13,9 @@ sprite = ExtResource("3_mwy5l")
 name = "Guy Justice"
 description = "He is just a guy"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_hkgcf"): 4,
 ExtResource("2_nyh4k"): 1,

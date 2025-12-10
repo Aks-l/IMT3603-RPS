@@ -13,8 +13,9 @@ sprite = ExtResource("3_otkyh")
 name = "Milkthing"
 description = "A forest of bacteria refusing to die"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_mmbyw"): 2,
 ExtResource("2_oekcp"): 2,

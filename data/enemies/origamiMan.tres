@@ -14,8 +14,9 @@ sprite = ExtResource("6_2ltlu")
 name = "Torn"
 description = "Is he even supposed to be here?"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_ppmeh"): 2,
 ExtResource("2_t3t6g"): 1,

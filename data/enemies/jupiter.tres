@@ -14,8 +14,9 @@ sprite = ExtResource("3_bsfmg")
 name = "Jupiter"
 description = "An being feared by mere humans"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_nsk4h"): 3,
 ExtResource("2_73kgg"): 1,

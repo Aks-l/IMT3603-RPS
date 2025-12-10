@@ -14,8 +14,9 @@ sprite = ExtResource("3_ahdt6")
 name = "Maw of Progress"
 description = "Progress is inevitable"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_ky55x"): 1,
 ExtResource("2_pdyo2"): 3,

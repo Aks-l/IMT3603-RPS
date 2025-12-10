@@ -14,8 +14,9 @@ sprite = ExtResource("3_d00no")
 name = "Midas"
 description = "Rotting for the sake of so little"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_23c7p"): 1,
 ExtResource("2_55dnu"): 3,

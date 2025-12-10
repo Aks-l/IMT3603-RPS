@@ -14,8 +14,9 @@ sprite = ExtResource("3_jf81y")
 name = "Recycle Bin"
 description = "From earth to earth"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_o1ruv"): 1,
 ExtResource("2_q4q48"): 1,

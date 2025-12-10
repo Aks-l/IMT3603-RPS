@@ -14,8 +14,9 @@ sprite = ExtResource("3_dpo21")
 name = "Six Seven"
 description = "I have seen this one before"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_f0a8c"): 1,
 ExtResource("2_j8yxq"): 2,

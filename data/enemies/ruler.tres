@@ -16,8 +16,9 @@ sprite = ExtResource("3_f46nr")
 name = "RULE#32"
 description = "I must have pictures to prove my statements?"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_yexf0"): 1,
 ExtResource("2_x7yda"): 2,

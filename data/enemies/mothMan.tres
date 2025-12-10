@@ -13,8 +13,9 @@ sprite = ExtResource("3_38w2t")
 name = "Moth Man"
 description = "I am not on the menu for this thing"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_twbln"): 1,
 ExtResource("2_bl3je"): 2,

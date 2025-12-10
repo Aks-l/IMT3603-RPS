@@ -14,8 +14,9 @@ sprite = ExtResource("3_y4jod")
 name = "Sun's Scissors"
 description = "A prisoner of light"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_5qjg4"): 3,
 ExtResource("2_gpsct"): 1,

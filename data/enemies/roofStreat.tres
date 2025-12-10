@@ -14,8 +14,9 @@ sprite = ExtResource("3_060nf")
 name = "Roofstreat"
 description = "They have a cat"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_wdx7w"): 1,
 ExtResource("2_hxnr4"): 2,

@@ -13,8 +13,9 @@ sprite = ExtResource("3_1a1kt")
 name = "OpenMinded"
 description = "Many souls have given themselvs to this knowledge"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_7pxnv"): 4,
 ExtResource("2_a84os"): 1,

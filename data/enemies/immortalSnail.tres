@@ -13,8 +13,9 @@ sprite = ExtResource("3_o0d50")
 name = "The Immortal Snail"
 description = "Where is the other half?"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_txlh1"): 2,
 ExtResource("2_8vuor"): 4,

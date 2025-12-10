@@ -15,8 +15,9 @@ sprite = ExtResource("3_hqir5")
 name = "The Devil"
 description = "A baby with a comically large hat"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_j0gmp"): 4,
 ExtResource("2_7p4fy"): 2,

@@ -13,8 +13,9 @@ sprite = ExtResource("3_ny5y5")
 name = "Rattle"
 description = "He will ask you to rattle him this: \"Rattle me that!\""
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_uhffx"): 3,
 ExtResource("2_8gv37"): 1,

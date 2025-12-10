@@ -13,8 +13,9 @@ sprite = ExtResource("3_kgj66")
 name = "Dave Suber"
 description = "He will crash"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_qpgll"): 4,
 ExtResource("2_lintc"): 2,

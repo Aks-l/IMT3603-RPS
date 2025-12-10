@@ -15,8 +15,9 @@ sprite = ExtResource("3_ee71u")
 name = "The Frederick"
 description = "He is not just Frederick. He is The Frederick"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_a38ns"): 3,
 ExtResource("2_f5cb8"): 1,

@@ -13,8 +13,9 @@ sprite = ExtResource("3_v0wqb")
 name = "Opal \"Illusionist\" Pham"
 description = "The great mage of Nothing"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_dnucn"): 4,
 ExtResource("2_akkt7"): 2,
