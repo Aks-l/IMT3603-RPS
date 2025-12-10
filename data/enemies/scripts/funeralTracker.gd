@@ -7,102 +7,84 @@ var next_line: String = ""
 var dialogue := {
 	"intro": {
 		"default": [
-			"'Will you join me?'",
+			"'Will you join me for the road?'",
 			"'A small break from the journey never hurt.'",
 			"'Maybe a friend?'"
 		],
-		"discovered": [
+		"discovered1": [
 			"'Have I seen you before?'",
-			"'If I am allowed, I will leave a flower'"
-		]
-	
+			"'If I may, I will leave a flower'"
+		],
+		},
 	"battle": {
 		"default": [
-			"'Will you join me?'",
-			"'A small break from the journey never hurt.'",
-			"'Maybe a friend?'"
+			"'There is no place for me to stay.'",
+			"'There are so many who travel alone.'",
+			"'No shame in asking, friend.'",
+			"'I wasn't expecting this'"
 		],
-		"discovered": [
-			"'Have I seen you before?'",
-			"'If I am allowed, I will leave a flower'"
+		"discovered1": [
+			"'Is there a chance I win?'",
+			"'After this, we can pick flowers'",
+			"'There should be some rules to this?'"
+		],
+		"discovered2": [
+			"'No shame in asking, friend.'",
+			"'Do you understand yourself?'",
+			"'Tell me, have this happend before?'"
+		],
+	},
+	"death": {
+		"default": [
+			"'Is this... possible?'"
+		],
+		"discovered1": [
+			"'Leave me a flower.'",
+			"'I have to warn them...'"
 		]
 	}
-	}
-	
 }
 
-var battle_lines: Array[String] = [
-	"'The divine shall decide!'",
-	"'Faith shall triumph!'",
-	"'Your sins weigh heavy...'"
-]
+#decides how to get lines
+func _get_line(category: String) -> String:
+	if not dialogue.has(category):
+		return ""
+		
+	var tiers := _get_discovery()
+	var sections: Dictionary = dialogue[category]
+	var pool: Array[String] = []
+		
+	for tier in tiers:
+		if sections.has(tier):
+			pool.append_array(sections[tier])
+			
+	if pool.is_empty() and sections.has("default"):
+		pool = sections["default"]
+		
+	return "" if pool.is_empty() else pool.pick_random()
 
-var death_lines: Array[String] = [
-	"'Even in death, I shall serve the light.'",
-	"'May I see Him...'",
-	"'How can your resolve be heavier than my faith...'"
-]
+#prints lines based on how many times you have encountered them
+
+func _get_discovery() -> Array[String]:
+	if encounter_count <= 1:
+		return ["default"]
+	if encounter_count <= 2:
+		return ["default", "discovered1"]
+#	if encounter_count <= 3:
+#		return ["default", "discovered1", "discovered2"]
+	return ["default", "discovered1"] #and discovered2 if needed
+
 
 func on_combat_start(players_cards: Array[HandData]) -> void:
 	is_dead = false
 	next_line = ""
-	emit_signal("feedback", intro_lines.pick_random())
+	emit_signal("feedback", _get_line("intro"))
 
 func react_to_card(card: HandData) -> void:
 	if is_dead or card == null:
 		return
-
-	# Default: prepare a battle line to show later this turn.
-	next_line = battle_lines.pick_random()
-
-	# Evil is purified immediately -> overrides battle line this turn.
-	if card.evil:
-		
-		card.status_revealed = true
-		card.status_tint = Color.WHITE
-		emit_signal("update_hand_visuals", card)
-
-		# Purify line overrides and is emitted now. Clear stored battle line.
-		var line: String = purify_lines.pick_random()
-		emit_signal("feedback", line)
-		next_line = ""  # prevent a second line this turn
-		return
-	 
-	if card.holy:
-		card.status_revealed = true
-		card.status_tint = Color.WHITE
-		emit_signal("update_handvisuals", card)
-		
-		var line: String = holy_lines.pick_random()
-		emit_signal("feedback", line)
-		next_line = ""
-		return
-
-
-func modify_result(card: HandData, enemy_card: HandData, result: int) -> int:
-	if is_dead or card == null:
-		return result
-
-	# Evil auto-lose against the Priest
-	if card.evil:
-		card.status_revealed = true
-		card.status_tint = Color(0.9, 0.3, 0.3)
-		card.status_flags["evil"] = true
-		emit_signal("update_hand_visuals", card)
-		
-		return -1
-
-	# Holy auto-tie
-	if card.holy:
-		card.status_revealed = true
-		card.status_tint = Color(0.9, 0.9, 0.5)
-		card.status_flags["evil"] = true
-		emit_signal("update_hand_visuals", card)
-
-		return 0
-	
-	return result
-
+	next_line = _get_line("battle")
+	print("DEBUG battle lines: ", next_line)
 
 func on_damage_taken(current_hp: int) -> void:
 	if is_dead:
@@ -110,15 +92,13 @@ func on_damage_taken(current_hp: int) -> void:
 
 	if current_hp <= 0:
 		is_dead = true
-		next_line = ""  # ensure nothing else prints
-		emit_signal("feedback", death_lines.pick_random())
+		next_line = ""
+		emit_signal("feedback", _get_line("death"))
 		return
 
-	# Enemy survived — emit any stored battle line for this turn.
 	_emit_stored_line()
 
 func on_round_end() -> void:
-	# Called even on ties/losses; show a single stored line if any and not dead.
 	if not is_dead and next_line != "":
 		_emit_stored_line()
 
