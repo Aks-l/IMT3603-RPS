@@ -7,7 +7,7 @@ var next_line: String = ""
 var dialogue := {
 	"intro": {
 		"default": [
-			"'Name’s Mike Crum. I ride anything with wheels and destiny.'"
+			"'Name’s Mike Crum. I ride with wind and destiny.'"
 		],
 		"discovered1": [
 			"'You feel that breeze? That’s freedom breaking the speed limit.'",
