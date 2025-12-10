@@ -13,8 +13,9 @@ sprite = ExtResource("3_352u0")
 name = "Brad Bred"
 description = "I will bring extra coins later"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_l4hgk"): 5,
 ExtResource("2_pu5bf"): 2,

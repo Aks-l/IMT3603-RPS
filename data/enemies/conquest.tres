@@ -13,8 +13,9 @@ sprite = ExtResource("3_33pn8")
 name = "Conquest"
 description = "The First Horseman"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_p8bdl"): 3,
 ExtResource("2_m2xsn"): 2,

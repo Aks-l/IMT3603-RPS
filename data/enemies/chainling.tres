@@ -13,8 +13,9 @@ sprite = ExtResource("5_wcfrr")
 name = "The Chainling"
 description = "His weigts are as heavy as his duty"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_86sn7"): 2,
 ExtResource("2_4enpd"): 3,

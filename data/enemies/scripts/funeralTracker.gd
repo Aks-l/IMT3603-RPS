@@ -70,9 +70,9 @@ func _get_discovery() -> Array[String]:
 		return ["default"]
 	if encounter_count <= 2:
 		return ["default", "discovered1"]
-#	if encounter_count <= 3:
-#		return ["default", "discovered1", "discovered2"]
-	return ["default", "discovered1"] #and discovered2 if needed
+	if encounter_count <= 3:
+		return ["default", "discovered1", "discovered2"]
+	return ["default", "discovered1", "discovered2"]
 
 
 func on_combat_start(players_cards: Array[HandData]) -> void:
@@ -84,7 +84,6 @@ func react_to_card(card: HandData) -> void:
 	if is_dead or card == null:
 		return
 	next_line = _get_line("battle")
-	print("DEBUG battle lines: ", next_line)
 
 func on_damage_taken(current_hp: int) -> void:
 	if is_dead:

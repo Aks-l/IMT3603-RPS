@@ -14,8 +14,9 @@ sprite = ExtResource("2")
 name = "Censor"
 description = "He can't censor all I say"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_ndjyl"): 2,
 ExtResource("2_pq7fy"): 1,

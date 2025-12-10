@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://cpoegwtgfoyxq"]
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://cpoegwtgfoyxq"]
 
 [ext_resource type="Resource" uid="uid://dkhxwd7w7ycw0" path="res://data/cards/poison.tres" id="1_seuf6"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7ycxv" path="res://data/cards/snake.tres" id="2_fssi4"]
@@ -14,6 +14,7 @@ sprite = ExtResource("3_vh3f6")
 name = "Cristopher Fisherman"
 description = "Maybe we could have been friends in another time"
 discovered = false
+encounter_count = 0
 biome = "neutral"
 tier = 1
 deck = {

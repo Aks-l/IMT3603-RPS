@@ -17,8 +17,9 @@ sprite = ExtResource("7_pv5c5")
 name = "Medusa"
 description = "A soul free of worries"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_ydci4"): 2,
 ExtResource("2_pv5c5"): 2,

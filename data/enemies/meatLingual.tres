@@ -15,8 +15,9 @@ sprite = ExtResource("7_i84hc")
 name = "Meat Lingual"
 description = "A beast from the depths deciding to see the beach"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_8kg2e"): 2,
 ExtResource("2_i84hc"): 3,

@@ -20,8 +20,9 @@ sprite = ExtResource("3_xtodb")
 name = "Human Resources"
 description = "The best policy is to not have a choice I guess"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_aojn8"): 3,
 ExtResource("2_nbnl0"): 2,

@@ -16,8 +16,9 @@ sprite = ExtResource("3_l3lkw")
 name = "Holy Sun"
 description = "A god in search of their possessions"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_cjoy4"): 5,
 ExtResource("2_luinn"): 3,

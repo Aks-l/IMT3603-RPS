@@ -13,8 +13,9 @@ sprite = ExtResource("3_amubt")
 name = "The Cartographer"
 description = "Maybe I should ask for directions?"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_dof2n"): 4,
 ExtResource("2_lu5sm"): 3,

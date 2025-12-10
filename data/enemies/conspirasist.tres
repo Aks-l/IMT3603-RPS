@@ -14,8 +14,9 @@ sprite = ExtResource("3_4y7gf")
 name = "Jake \"Conspiracist\" Wood"
 description = "His mind can comprehend me, just sligtly"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_pmm14"): 2,
 ExtResource("2_dr348"): 1,

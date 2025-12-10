@@ -15,8 +15,9 @@ sprite = ExtResource("6_6vw0r")
 name = "Claudia"
 description = "Sometimes she cries"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_6vw0r"): 4,
 ExtResource("2_wypc1"): 3,
