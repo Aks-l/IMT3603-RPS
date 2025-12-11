@@ -8,6 +8,8 @@ var dead := preload("res://scenes/FightScene/DeadObject/dead_object.tscn")
 
 const HAND_TARGET_SIZE := Vector2(250, 250)
 
+const BATTLE_SPEED_FACTOR: float = 2.5 # Lower number -> higher speed
+
 var _battle_speed: float = 400.0
 var _winner_id: int = 0
 var _resolved: bool = false
@@ -70,7 +72,7 @@ func _position_hands() -> void:
 	hand1.position = center + Vector2(half_gap, 0.0)
 	hand2.position = center - Vector2(half_gap, 0.0)
 	
-	_battle_speed = viewport_size.x / 2.5
+	_battle_speed = viewport_size.x / BATTLE_SPEED_FACTOR
 
 
 func _animate_clash() -> void:
