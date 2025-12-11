@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://d18alayi8h3wc"]
+
+[ext_resource type="PackedScene" uid="uid://cdauji33dueoi" path="res://scenes/FightScene/DeathItem/deathItem.tscn" id="1_eiley"]
+
+[node name="DeadObject" type="Node2D"]
+
+[node name="DeathItem" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-55, -47)
+
+[node name="DeathItem2" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(51, -50)
+
+[node name="DeathItem3" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-55, 55)
+
+[node name="DeathItem4" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(26, -27)
+
+[node name="DeathItem5" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(0, 57)
+
+[node name="DeathItem6" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(59, 2)
+
+[node name="DeathItem7" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(2, -54)
+
+[node name="DeathItem8" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-59, 2)
+
+[node name="DeathItem9" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-21, -56)
+
+[node name="DeathItem10" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(57, 56)
+
+[node name="DeathItem11" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-34, 31)
+
+[node name="DeathItem12" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-20, 46)
+
+[node name="DeathItem13" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(34, 37)
+
+[node name="DeathItem14" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(45, -21)
+
+[node name="DeathItem15" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(31, -41)
+
+[node name="DeathItem16" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-7, -32)
+
+[node name="DeathItem17" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-30, -39)
+
+[node name="DeathItem18" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-5, -1)
+
+[node name="DeathItem19" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-43, -28)
+
+[node name="DeathItem20" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(21, -13)
+
+[node name="DeathItem21" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-5, 26)
+
+[node name="DeathItem22" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(31, 15)
+
+[node name="DeathItem23" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(19, 45)
+
+[node name="DeathItem24" parent="." instance=ExtResource("1_eiley")]
+position = Vector2(-31, 5)
