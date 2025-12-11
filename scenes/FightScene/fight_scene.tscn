@@ -20,23 +20,21 @@ contact_monitor = true
 max_contacts_reported = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand1"]
-position = Vector2(304, 310.5)
-scale = Vector2(0.126953, 0.116211)
+position = Vector2(316, 311.5)
 texture = ExtResource("2_dwiup")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand1"]
-position = Vector2(301.375, 307.875)
+position = Vector2(313.375, 308.875)
 shape = SubResource("RectangleShape2D_vs0yo")
 
 [node name="Hand2" type="RigidBody2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(789, 317)
+position = Vector2(824, 324)
 gravity_scale = 0.0
 contact_monitor = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand2"]
 position = Vector2(-3.5, -7.5)
-scale = Vector2(0.108398, 0.102539)
 texture = ExtResource("3_vs0yo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand2"]

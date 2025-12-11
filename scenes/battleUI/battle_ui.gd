@@ -3,6 +3,8 @@ class_name BattleUI
 
 signal finished(result)
 
+@onready var BATTLE_SCENE: PackedScene = preload("res://scenes/FightScene/fight_scene.tscn")
+
 @onready var hand_inventory = %HandInventory
 @onready var result_label = %ResultLabel
 
@@ -76,6 +78,7 @@ func _apply():
 		print("No HandInventory found")
 		
 	outcome_graph_panel._refresh()
+	
 
 ##Card Played
 ##Resolves the outcome of a played card against the enemy's card
@@ -90,6 +93,14 @@ func on_card_played(hand: HandData):
 	print("on_card_played called with: ", hand.name)
 	
 	var result = HandsDb.get_result(hand, enemy_hand)
+	# Play combat animation
+	var showdown = BATTLE_SCENE.instantiate()
+	add_child(showdown)
+	showdown.setup(enemy_hand, hand, result)
+	
+	await showdown.finished
+	showdown.queue_free()
+	
 	match result:
 		1:
 			result_label.text = "You win! " + hand.name + " beats " + enemy_hand.name
@@ -102,8 +113,12 @@ func on_card_played(hand: HandData):
 		0:
 			result_label.text = "It's a tie! Both played " + hand.name
 			print(result_label.text) 
+
 	if enemy_hearts.get_hp() <= 0: resolve_win()
 	elif player_hearts.get_hp() <= 0: resolve_loss()
+	
+	hand_inventory._in_battle = false
+	
 
 func resolve_win():
 	for owned_item in Globals.consumables:
