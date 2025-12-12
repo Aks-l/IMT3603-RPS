@@ -96,7 +96,7 @@ func on_card_played(hand: HandData):
 	# Play combat animation
 	var showdown = BATTLE_SCENE.instantiate()
 	add_child(showdown)
-	showdown.setup(enemy_hand, hand, result)
+	showdown.setup(hand, enemy_hand, result)
 	
 	await showdown.finished
 	showdown.queue_free()
