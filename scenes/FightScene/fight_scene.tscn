@@ -28,7 +28,7 @@ shape = SubResource("RectangleShape2D_vs0yo")
 unique_name_in_owner = true
 gravity_scale = 0.0
 contact_monitor = true
-
+max_contacts_reported = 1
 [node name="Sprite2D" type="Sprite2D" parent="Hand2"]
 texture = ExtResource("2_wvpwg")
 
