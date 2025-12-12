@@ -130,10 +130,6 @@ func _remove_one_from_deck(hand: HandData) -> void:
 
 
 # If you still want a direct handler for deck card clicked, it can reuse the same logic
-func _on_deck_card_clicked(hand: HandData) -> void:
-	_remove_one_from_deck(hand)
-
-
 # stock clicked
 func _on_stock_card_clicked(hand: HandData) -> void:
 	if not _can_add_to_deck(hand):
