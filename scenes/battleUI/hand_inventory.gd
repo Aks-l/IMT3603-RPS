@@ -41,7 +41,7 @@ func _on_card_clicked(hand: HandData) -> void:
 	if _in_battle:
 		print("Cannot play card while in battle")
 		return
-	_in_battle = true
+	lock_battle()
 	print("HandInventory caught click:", hand.name)
 	
 	if not _inventory.has(hand):
@@ -53,3 +53,9 @@ func _on_card_clicked(hand: HandData) -> void:
 	
 	_refresh_ui()
 	card_clicked.emit(hand)
+
+func lock_battle():
+	_in_battle = true
+
+func unlock_battle():
+	_in_battle = false

@@ -117,7 +117,7 @@ func on_card_played(hand: HandData):
 	if enemy_hearts.get_hp() <= 0: resolve_win()
 	elif player_hearts.get_hp() <= 0: resolve_loss()
 	
-	hand_inventory._in_battle = false
+	hand_inventory.unlock_battle()
 	
 
 func resolve_win():

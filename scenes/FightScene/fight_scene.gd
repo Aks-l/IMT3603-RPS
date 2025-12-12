@@ -47,16 +47,18 @@ func setup(player_hand: HandData, enemy_hand: HandData, winner_id: int) -> void:
 func _setup_hand_size(hand: RigidBody2D) -> void:
 	var sprite := hand.get_node("Sprite2D") as Sprite2D
 	var shape_node := hand.get_node("CollisionShape2D") as CollisionShape2D
+	var viewport_size := get_viewport_rect().size
 
 	if sprite.texture:
 		var tex_size := sprite.texture.get_size()
 		if tex_size.x != 0.0 and tex_size.y != 0.0:
 			var scale_vec := HAND_TARGET_SIZE / tex_size
+			scale_vec *= viewport_size.x/2000
 			sprite.scale = scale_vec
 
 	if shape_node.shape is RectangleShape2D:
 		var rect := shape_node.shape as RectangleShape2D
-		rect.size = HAND_TARGET_SIZE
+		rect.size = HAND_TARGET_SIZE * (viewport_size.x/2000)
 
 
 # New helper: put hands in the middle, hand1 on the right and hand2 on the left
@@ -116,6 +118,9 @@ func kill_hand(hand: RigidBody2D) -> void:
 
 	var dead_instance := dead.instantiate()
 	parent.add_child(dead_instance)
+
+	var vw = get_viewport_rect().size.x
+	(dead_instance as Node2D).scale = Vector2.ONE * (vw/2000)
 
 	dead_instance.position = parent.to_local(loser_sprite.global_position)
 
