@@ -20,6 +20,9 @@ var battlehealth: int = 5
 var item_inventory_size: int = 4
 var current_biome: BiomeData
 
+var card_inventory_amount_size: int = 15
+var card_inventory_type_size: int = 5
+
 ## Progress variables
 var biome_levels_completed: int = 0
 var run_levels_completed: int = 0

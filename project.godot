@@ -26,7 +26,7 @@ Globals="*res://autoload/Globals.gd"
 EventDatabase="*res://autoload/EventDatabase.gd"
 EncounterHandler="*res://autoload/encounter_handler.gd"
 AlmanacOverlay="*res://scenes/almanac/almanac.tscn"
-DeckCreater="*res://scenes/DeckCreater/deck_creater.tscn"
+DeckCreater="*res://scenes/DeckCreator/deck_creator.tscn"
 outcome_graph_panel="*res://ui/components/outcome_graph_panel.tscn"
 BiomeIntro="*res://ui/components/biome_intro.tscn"
 
