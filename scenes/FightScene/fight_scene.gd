@@ -99,9 +99,6 @@ func _on_hand_body_entered(body: Node2D) -> void:
 	# linger for 2 seconds before telling the outside world we are done
 	await get_tree().create_timer(2.0).timeout
 	emit_signal("finished")
-	queue_free()
-
-
 func kill_hand(hand: RigidBody2D) -> void:
 	if hand == null or not is_instance_valid(hand):
 		return
