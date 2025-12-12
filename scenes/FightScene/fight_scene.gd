@@ -65,7 +65,7 @@ func _position_hands() -> void:
 	var center := viewport_size * 0.5
 
 	# Distance from center so they are ready to move towards each other
-	var half_gap :float = viewport_size.x * 0.3
+	var half_gap : float = viewport_size.x * 0.3
 	print(viewport_size, half_gap)
 
 	# hand1 on the right, hand2 on the left
