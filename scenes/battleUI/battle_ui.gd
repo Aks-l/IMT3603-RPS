@@ -114,7 +114,6 @@ func on_card_played(hand: HandData):
 			result_label.text = "It's a tie! Both played " + hand.name
 			print(result_label.text) 
 
-	hand_inventory._in_battle = false
 	if enemy_hearts.get_hp() <= 0: resolve_win()
 	elif player_hearts.get_hp() <= 0: resolve_loss()
 	
