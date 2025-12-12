@@ -25,8 +25,8 @@ func setup(player_hand: HandData, enemy_hand: HandData, winner_id: int) -> void:
 	var sprite1 := hand1.get_node("Sprite2D") as Sprite2D
 	var sprite2 := hand2.get_node("Sprite2D") as Sprite2D
 
-	sprite1.texture = enemy_hand.sprite
-	sprite2.texture = player_hand.sprite
+	sprite1.texture = player_hand.sprite
+	sprite2.texture = enemy_hand.sprite
 
 	_setup_hand_size(hand1)
 	_setup_hand_size(hand2)
@@ -67,7 +67,9 @@ func _position_hands() -> void:
 	var center := viewport_size * 0.5
 
 	# Distance from center so they are ready to move towards each other
-	var half_gap : float = viewport_size.x * 0.3
+	var half_gap :float = viewport_size.x * 0.3
+	print(viewport_size, half_gap)
+
 	# hand1 on the right, hand2 on the left
 	hand1.position = center + Vector2(half_gap, 0.0)
 	hand2.position = center - Vector2(half_gap, 0.0)
@@ -99,6 +101,9 @@ func _on_hand_body_entered(body: Node2D) -> void:
 	# linger for 2 seconds before telling the outside world we are done
 	await get_tree().create_timer(2.0).timeout
 	emit_signal("finished")
+	queue_free()
+
+
 func kill_hand(hand: RigidBody2D) -> void:
 	if hand == null or not is_instance_valid(hand):
 		return
