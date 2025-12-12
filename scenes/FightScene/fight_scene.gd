@@ -67,9 +67,7 @@ func _position_hands() -> void:
 	var center := viewport_size * 0.5
 
 	# Distance from center so they are ready to move towards each other
-	var half_gap :float = viewport_size.x * 0.3
-	print(viewport_size, half_gap)
-
+	var half_gap : float = viewport_size.x * 0.3
 	# hand1 on the right, hand2 on the left
 	hand1.position = center + Vector2(half_gap, 0.0)
 	hand2.position = center - Vector2(half_gap, 0.0)
@@ -101,9 +99,6 @@ func _on_hand_body_entered(body: Node2D) -> void:
 	# linger for 2 seconds before telling the outside world we are done
 	await get_tree().create_timer(2.0).timeout
 	emit_signal("finished")
-	queue_free()
-
-
 func kill_hand(hand: RigidBody2D) -> void:
 	if hand == null or not is_instance_valid(hand):
 		return

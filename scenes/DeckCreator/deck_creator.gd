@@ -69,7 +69,7 @@ func _refresh_stock_ui() -> void:
 	for c in stock_list.get_children():
 		c.call_deferred("free")
 
-	var filter_text :String= search_box.text.strip_edges().to_lower()
+	var filter_text: String = search_box.text.strip_edges().to_lower()
 
 	# Iterate inventory keys (hands) and compute remaining = inventory - deck
 	for hand in _inventory.keys():
@@ -176,7 +176,7 @@ func _get_deck_total_cards() -> int:
 	return total
 
 
-# søk
+# search
 func _on_search_changed(_new_text: String) -> void:
 	_refresh_stock_ui()
 

@@ -96,7 +96,7 @@ func on_card_played(hand: HandData):
 	# Play combat animation
 	var showdown = BATTLE_SCENE.instantiate()
 	add_child(showdown)
-	showdown.setup(enemy_hand, hand, result)
+	showdown.setup(hand, enemy_hand, result)
 	
 	await showdown.finished
 	showdown.queue_free()
@@ -114,6 +114,7 @@ func on_card_played(hand: HandData):
 			result_label.text = "It's a tie! Both played " + hand.name
 			print(result_label.text) 
 
+	hand_inventory._in_battle = false
 	if enemy_hearts.get_hp() <= 0: resolve_win()
 	elif player_hearts.get_hp() <= 0: resolve_loss()
 	
