@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://fb28bfwyixed"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 13
+name = "Badlands"
+prefix = "in the"
+difficulty = 2
+discovered = false
+encountered = false
+ocean_color = Color(0.180392, 0.278431, 0.419608, 1)
+shallow_water_color = Color(0.270588, 0.384314, 0.466667, 1)
+sand_color = Color(0.87451, 0.588235, 0.372549, 1)
+grass_color = Color(0.643137, 0.439216, 0.262745, 1)
+forest_color = Color(0.556863, 0.34902, 0.203922, 1)
+hill_color = Color(0.678431, 0.517647, 0.368627, 1)
+mountain_color = Color(0.466667, 0.403922, 0.360784, 1)
+snow_color = Color(0.94902, 0.937255, 0.92549, 1)

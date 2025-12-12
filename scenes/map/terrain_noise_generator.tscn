@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq7xwmn8ksqh3"]
+
+[ext_resource type="Script" path="res://scenes/map/terrain_noise_generator.gd" id="1_noise_gen"]
+
+[node name="TerrainNoiseGenerator" type="Node"]
+script = ExtResource("1_noise_gen")

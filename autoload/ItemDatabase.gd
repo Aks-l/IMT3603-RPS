@@ -13,7 +13,3 @@ func load_items():
 
 func _ready():
 	load_items()
-	add_items()
-	
-func add_items():
-	Globals.consumables.append(items[0])

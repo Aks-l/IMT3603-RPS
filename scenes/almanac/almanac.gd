@@ -8,7 +8,6 @@ var card_scene := preload("res://scenes/almanac/enemyCard.tscn")
 
 # Initialize with enemies shown, and connect buttons to their function
 func _ready() -> void:
-	setup("enemy")
 	see_enemies.pressed.connect(refresh.bind("enemy"))
 	see_hands.pressed.connect(refresh.bind("hand"))
 	back.pressed.connect(_leave)
@@ -43,6 +42,7 @@ func refresh(type:String):
 	
 func _show_overlay():
 	print("opened almanac")
+	refresh("enemy")
 	self.visible = true
 	get_tree().paused = true
 	

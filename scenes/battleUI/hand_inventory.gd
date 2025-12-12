@@ -10,7 +10,7 @@ const IMAGE_SIZE := Vector2(144, 144)   # square art inside
 
 var _inventory: Dictionary[HandData, int] = {}
 
-
+var _in_battle = false
 
 func set_inventory(hand_list: Dictionary[HandData, int]) -> void:
 	print("set_inventory called with", hand_list.size(), "hands")
@@ -38,6 +38,10 @@ func _refresh_ui() -> void:
 
 
 func _on_card_clicked(hand: HandData) -> void:
+	if _in_battle:
+		print("Cannot play card while in battle")
+		return
+	lock_battle()
 	print("HandInventory caught click:", hand.name)
 	
 	if not _inventory.has(hand):
@@ -50,5 +54,8 @@ func _on_card_clicked(hand: HandData) -> void:
 	_refresh_ui()
 	card_clicked.emit(hand)
 
-		### WHAT HAPPENS WHEN CARD IN INVENTORY IS CLICKED
-		#card.clicked.connect(func(h): card_clicked.emit(h))
+func lock_battle():
+	_in_battle = true
+
+func unlock_battle():
+	_in_battle = false

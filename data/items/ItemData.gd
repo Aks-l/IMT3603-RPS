@@ -8,6 +8,8 @@ enum Type {ACCESSORY, HEAL, DAMAGE, SHIELD}
 @export var sprite: Texture2D
 @export var name: String
 @export var description: String
-@export var owned: bool
-@export var ammInInvetory: int
+@export var discovered: bool
 @export var price: int
+@export var value: int
+
+@export var item_script: Script

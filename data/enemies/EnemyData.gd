@@ -8,8 +8,6 @@ class_name EnemyData
 @export var description: String
 @export var discovered: bool = false
 @export var biome: String = "neutral"
-#for difficulty
-@export var tier: int = 1 #1 er tidlig, 2 is mid, and 3 is last biome 
 
 #Dictionary of HandData, number of copies
 @export var deck: Dictionary = {}

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-cinder-glade"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 34
+name = "Cinder Glade"
+prefix = "in a"
+difficulty = 4
+ocean_color = Color(0.098039, 0.129412, 0.152941, 1)
+shallow_water_color = Color(0.141176, 0.160784, 0.172549, 1)
+sand_color = Color(0.54902, 0.411765, 0.298039, 1)
+grass_color = Color(0.219608, 0.27451, 0.152941, 1)
+forest_color = Color(0.141176, 0.2, 0.090196, 1)
+hill_color = Color(0.431373, 0.341176, 0.298039, 1)
+mountain_color = Color(0.462745, 0.435294, 0.415686, 1)
+snow_color = Color(0.847059, 0.858824, 0.870588, 1)

@@ -2,16 +2,24 @@
 
 [ext_resource type="Script" uid="uid://u61molel0mfv" path="res://scenes/eventScene/event_ui.gd" id="1_6v8nh"]
 [ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="2_2hdqb"]
-[ext_resource type="StyleBox" uid="uid://1a2c4jadlnke" path="res://ui/paneltextures/event_panel_stylebox.tres" id="3_stylebox"]
+[ext_resource type="StyleBox" uid="uid://1a2c4jadlnke" path="res://ui/paneltextures/event_panel_stylebox.tres" id="3_e73h1"]
 
-[node name="EventUI" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-mouse_filter = 2
-theme = ExtResource("2_2hdqb")
+[node name="EventUI" type="CanvasLayer"]
+layer = 10
 script = ExtResource("1_6v8nh")
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="EventUIControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_2hdqb")
+
+[node name="Overlay" type="ColorRect" parent="EventUIControl"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +29,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.9)
 
-[node name="EventPanel" type="PanelContainer" parent="."]
+[node name="EventPanel" type="PanelContainer" parent="EventUIControl"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -37,42 +45,42 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = ExtResource("3_stylebox")
+theme_override_styles/panel = ExtResource("3_e73h1")
 
-[node name="MarginContainer" type="MarginContainer" parent="EventPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="EventUIControl/EventPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EventPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EventUIControl/EventPanel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="EventImage" type="TextureRect" parent="EventPanel/MarginContainer/VBoxContainer"]
+[node name="EventImage" type="TextureRect" parent="EventUIControl/EventPanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TitleLabel" type="Label" parent="EventPanel/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="EventUIControl/EventPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Event Title"
 horizontal_alignment = 1
 
-[node name="DescriptionLabel" type="Label" parent="EventPanel/MarginContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="EventUIControl/EventPanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 text = "Event description goes here. This is where the story and context of the event will be displayed to the player."
 autowrap_mode = 3
 
-[node name="OptionsContainer" type="VBoxContainer" parent="EventPanel/MarginContainer/VBoxContainer"]
+[node name="OptionsContainer" type="VBoxContainer" parent="EventUIControl/EventPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="OutcomePanel" type="PanelContainer" parent="."]
+[node name="OutcomePanel" type="PanelContainer" parent="EventUIControl"]
 visible = false
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 1
@@ -89,20 +97,20 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = ExtResource("3_stylebox")
+theme_override_styles/panel = ExtResource("3_e73h1")
 
-[node name="MarginContainer" type="MarginContainer" parent="OutcomePanel"]
+[node name="MarginContainer" type="MarginContainer" parent="EventUIControl/OutcomePanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OutcomePanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EventUIControl/OutcomePanel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="OutcomeLabel" type="Label" parent="OutcomePanel/MarginContainer/VBoxContainer"]
+[node name="OutcomeLabel" type="Label" parent="EventUIControl/OutcomePanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -110,7 +118,7 @@ text = "Outcome description will be shown here after choosing an option."
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ContinueButton" type="Button" parent="OutcomePanel/MarginContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="EventUIControl/OutcomePanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Continue"
