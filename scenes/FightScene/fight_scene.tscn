@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://rpu54n2r23ix"]
+
+[ext_resource type="Script" uid="uid://ckgrgddtmheeg" path="res://scenes/FightScene/fight_scene.gd" id="1_0mwsx"]
+[ext_resource type="Texture2D" uid="uid://ckbmd3wra2eno" path="res://icon.svg" id="2_wvpwg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vs0yo"]
+size = Vector2(128.75, 124.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwiup"]
+size = Vector2(109, 108)
+
+[node name="FightScene" type="Node2D"]
+script = ExtResource("1_0mwsx")
+
+[node name="Hand1" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand1"]
+texture = ExtResource("2_wvpwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand1"]
+shape = SubResource("RectangleShape2D_vs0yo")
+
+[node name="Hand2" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+[node name="Sprite2D" type="Sprite2D" parent="Hand2"]
+texture = ExtResource("2_wvpwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand2"]
+shape = SubResource("RectangleShape2D_dwiup")
