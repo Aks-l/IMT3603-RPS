@@ -176,7 +176,7 @@ func _get_deck_total_cards() -> int:
 	return total
 
 
-# søk
+# search
 func _on_search_changed(_new_text: String) -> void:
 	_refresh_stock_ui()
 
