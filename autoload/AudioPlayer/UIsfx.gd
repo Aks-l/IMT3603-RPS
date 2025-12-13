@@ -1,20 +1,14 @@
 extends Node
 
-var click_player: AudioStreamPlayer
-var click_stream: AudioStream = preload("res://audio/click_002.wav")
+@onready var music_player = $music_player
+@onready var click_player: AudioStreamPlayer = $click_player
+
 
 func _enter_tree() -> void:
 	# Connect as early as possible
 	get_tree().node_added.connect(_on_node_added)
 
 func _ready() -> void:
-	# Create the player in code (no node needed)
-	click_player = AudioStreamPlayer.new()
-	click_player.bus = "UI"
-	click_player.stream = click_stream
-	add_child(click_player)
-
-	# Also connect buttons that already exist (main menu, first scene, etc.)
 	_connect_existing(get_tree().root)
 
 func _connect_existing(n: Node) -> void:
@@ -34,3 +28,8 @@ func _connect_button(b: BaseButton) -> void:
 func _generic_click_sound() -> void:
 	click_player.stop()
 	click_player.play()
+
+func play_sound(sound: AudioStream, skip: float = 0.0):
+	music_player.stop()
+	music_player.stream = sound
+	music_player.play(skip)

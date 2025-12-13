@@ -36,6 +36,8 @@ extends Node2D
 @onready var fog_overlay: ColorRect = $FogOfWarContainer/FogOverlay
 @onready var generating_label: Label = $GeneratingLabel
 
+@onready var map_theme = preload("res://audio/1204676_Hide-n-Seek-Ranch.mp3")
+
 var almanac_ui: Control
 
 var layer_ids = []
@@ -282,7 +284,6 @@ func _on_encounter_clicked(id):
 
 	_apply_state_to_nodes()
 	_update_fog_shader()
-	$AudioStreamPlayer2D.stop()
 
 ##Update fog overlay size and position to match camera view
 func _update_fog_overlay_size():
@@ -389,7 +390,10 @@ func _on_encounter_finished(result):
 			for id in layer_ids[0]:
 				revealed_nodes.append(id)
 			_update_fog_shader()
-	$AudioStreamPlayer2D.play()
+	if result.type in ["Combat", "Boss", "Start"]:
+		AudioPlayer.music_player.stop()
+		AudioPlayer.music_player.stream = map_theme
+		AudioPlayer.music_player.play()
 
 ##Deck and Almanac button handlers
 func _on_deck_button_pressed() -> void:

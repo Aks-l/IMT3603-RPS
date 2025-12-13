@@ -19,8 +19,6 @@ signal finished(result)
 @onready var level_label = %LevelLabel
 @onready var gold_label = %GoldLabel
 
-@onready var fanfare_player: AudioStreamPlayer = $FanfarePlayer
-
 var _enemy: EnemyData
 var _hand: Dictionary = {}		# CHANGE THESE WHEN HANDS AND 
 var _consumables: Array = []	# CONSUMABLES ARE IMPLEMENTED
@@ -59,7 +57,7 @@ func _ready():
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
 	
-	play_sound(battle_theme, 1.0)
+	AudioPlayer.play_sound(battle_theme, 1.0)
 	
 	_is_ready = true
 	if _has_params:
@@ -134,7 +132,7 @@ func resolve_win():
 	_battle_ended = true
 	victory.visible = true
 	victory.setup(_enemy, true)
-	play_sound(victory_fanfare)
+	AudioPlayer.play_sound(victory_fanfare)
 	await get_tree().process_frame
 	get_tree().paused = true
 
@@ -143,7 +141,7 @@ func resolve_loss():
 	Globals.take_damage(1)
 	victory.visible = true
 	victory.setup(_enemy, false)
-	play_sound(losing_fanfare)
+	AudioPlayer.play_sound(losing_fanfare)
 	await get_tree().process_frame
 	get_tree().paused = true
 
@@ -156,9 +154,3 @@ func _input(event: InputEvent):
 	# Toggle outcome graph with 'G' key
 	if event.is_action_pressed("input_keyboard_key_G"):
 		_toggle_outcome_graph()
-
-func play_sound(sound: AudioStream, skip: float = 0.0, loop: bool = false):
-	fanfare_player.stop()
-	fanfare_player.CONNECT_ONE_SHOT
-	fanfare_player.stream = sound
-	fanfare_player.play(skip)
