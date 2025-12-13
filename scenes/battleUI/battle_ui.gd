@@ -4,6 +4,9 @@ class_name BattleUI
 signal finished(result)
 
 @onready var BATTLE_SCENE: PackedScene = preload("res://scenes/FightScene/fight_scene.tscn")
+@onready var victory_fanfare = preload("res://audio/win.wav")
+@onready var losing_fanfare = preload("res://audio/lose.wav")
+@onready var battle_theme = preload("res://audio/battle.wav")
 
 @onready var hand_inventory = %HandInventory
 @onready var result_label = %ResultLabel
@@ -15,6 +18,8 @@ signal finished(result)
 
 @onready var level_label = %LevelLabel
 @onready var gold_label = %GoldLabel
+
+@onready var fanfare_player: AudioStreamPlayer = $FanfarePlayer
 
 var _enemy: EnemyData
 var _hand: Dictionary = {}		# CHANGE THESE WHEN HANDS AND 
@@ -53,6 +58,8 @@ func _ready():
 	
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
+	
+	play_sound(battle_theme, 1.0)
 	
 	_is_ready = true
 	if _has_params:
@@ -127,13 +134,17 @@ func resolve_win():
 	_battle_ended = true
 	victory.visible = true
 	victory.setup(_enemy, true)
+	play_sound(victory_fanfare)
+	await get_tree().process_frame
 	get_tree().paused = true
 
 func resolve_loss():
 	_battle_ended = true
-	Globals.take_damage(1)	
+	Globals.take_damage(1)
 	victory.visible = true
 	victory.setup(_enemy, false)
+	play_sound(losing_fanfare)
+	await get_tree().process_frame
 	get_tree().paused = true
 
 func _toggle_outcome_graph():
@@ -145,3 +156,9 @@ func _input(event: InputEvent):
 	# Toggle outcome graph with 'G' key
 	if event.is_action_pressed("input_keyboard_key_G"):
 		_toggle_outcome_graph()
+
+func play_sound(sound: AudioStream, skip: float = 0.0, loop: bool = false):
+	fanfare_player.stop()
+	fanfare_player.CONNECT_ONE_SHOT
+	fanfare_player.stream = sound
+	fanfare_player.play(skip)

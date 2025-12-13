@@ -282,6 +282,7 @@ func _on_encounter_clicked(id):
 
 	_apply_state_to_nodes()
 	_update_fog_shader()
+	$AudioStreamPlayer2D.stop()
 
 ##Update fog overlay size and position to match camera view
 func _update_fog_overlay_size():
@@ -388,6 +389,7 @@ func _on_encounter_finished(result):
 			for id in layer_ids[0]:
 				revealed_nodes.append(id)
 			_update_fog_shader()
+	$AudioStreamPlayer2D.play()
 
 ##Deck and Almanac button handlers
 func _on_deck_button_pressed() -> void:
