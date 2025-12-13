@@ -99,9 +99,13 @@ func on_card_played(hand: HandData):
 	
 	var result = HandsDb.get_result(hand, enemy_hand)
 	# Play combat animation
+	
 	var showdown = BATTLE_SCENE.instantiate()
 	add_child(showdown)
 	showdown.setup(hand, enemy_hand, result)
+	
+	await get_tree().create_timer(0.5).timeout
+	$sound_effects.play()
 	
 	await showdown.finished
 	showdown.queue_free()
