@@ -119,6 +119,7 @@ func on_card_played(hand: HandData):
 	
 
 func resolve_win():
+	result_label.text = ""
 	for owned_item in Globals.consumables:
 		if owned_item.item_script:
 			owned_item.item_script.call("carried",owned_item)
@@ -128,6 +129,7 @@ func resolve_win():
 	get_tree().paused = true
 
 func resolve_loss():
+	result_label.text = ""
 	_battle_ended = true
 	Globals.take_damage(1)	
 	victory.visible = true
