@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 EnemyDatabase="*res://autoload/EnemyDatabase.gd"
-HandsDb="*res://scenes/hands_db.tscn"
 ItemDatabase="*res://autoload/ItemDatabase.gd"
 HandDatabase="*res://autoload/HandDatabase.gd"
 BiomeDatabase="*res://autoload/BiomeDatabase.gd"
@@ -29,6 +28,7 @@ AlmanacOverlay="*res://scenes/almanac/almanac.tscn"
 DeckCreater="*res://scenes/DeckCreator/deck_creator.tscn"
 outcome_graph_panel="*res://ui/components/outcome_graph_panel.tscn"
 BiomeIntro="*res://ui/components/biome_intro.tscn"
+HandsDb="*res://autoload/hands_db.gd"
 
 [editor]
 

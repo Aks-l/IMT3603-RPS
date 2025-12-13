@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bl7s3vpjvci7w"]
 
 [ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="1_3vvtq"]
-[ext_resource type="Script" uid="uid://cbuxum5kiertc" path="res://mainmenu.gd" id="1_natt5"]
+[ext_resource type="Script" uid="uid://i6gmv8xx3myi" path="res://scenes/mainMenu/mainmenu.gd" id="2_7kwmc"]
 [ext_resource type="Texture2D" uid="uid://dtpkj3mw2pyw6" path="res://scenes/RPS-logo.png" id="3_3vvtq"]
 [ext_resource type="Texture2D" uid="uid://cxuon2guqmnv8" path="res://data/events/events/sprites/defeated_player.png" id="3_r3g3c"]
 
@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_3vvtq")
-script = ExtResource("1_natt5")
+script = ExtResource("2_7kwmc")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
