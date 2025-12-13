@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_80ggj")
 id = 7
-name = "Minecraft"
+name = "wast landscape"
 prefix = "in a"
 difficulty = 1
 discovered = false
