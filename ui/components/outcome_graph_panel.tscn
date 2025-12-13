@@ -36,6 +36,7 @@ vertical_alignment = 1
 
 [node name="CloseButton" type="Button" parent="OutcomeGraphPanel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 2
 text = "X"
 
