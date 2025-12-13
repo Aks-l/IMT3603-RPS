@@ -123,6 +123,7 @@ func resolve_win():
 	for owned_item in Globals.consumables:
 		if owned_item.item_script:
 			owned_item.item_script.call("carried",owned_item)
+	Globals.add_funds(4)
 	_battle_ended = true
 	victory.visible = true
 	victory.setup(_enemy, true)
