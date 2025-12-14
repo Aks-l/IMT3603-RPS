@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://btojwk0qhrv72"]
+
+[ext_resource type="Script" uid="uid://bag0l6udbauc7" path="res://autoload/AudioPlayer/UIsfx.gd" id="1_0fdpu"]
+[ext_resource type="AudioStream" uid="uid://k7bsl3lfsmkd" path="res://audio/click_002.wav" id="2_0fdpu"]
+
+[node name="AudioPlayer" type="Node2D"]
+script = ExtResource("1_0fdpu")
+
+[node name="music_player" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+
+[node name="click_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0fdpu")

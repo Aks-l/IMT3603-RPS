@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+AudioPlayer="*res://autoload/AudioPlayer/AudioPlayer.tscn"
 EnemyDatabase="*res://autoload/EnemyDatabase.gd"
 HandsDb="*res://scenes/hands_db.tscn"
 ItemDatabase="*res://autoload/ItemDatabase.gd"
