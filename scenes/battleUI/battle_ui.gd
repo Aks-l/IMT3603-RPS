@@ -17,7 +17,6 @@ signal finished(result)
 @onready var victory = %Victory
 
 @onready var level_label = %LevelLabel
-@onready var gold_label = %GoldLabel
 
 var _enemy: EnemyData
 var _hand: Dictionary = {}		# CHANGE THESE WHEN HANDS AND 
@@ -44,9 +43,7 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	enemy_hearts.set_hp(3) # TODO: Change to enemy.health once implemented
 	enemy_hearts._draw_hearts()
 	level_label.text = "Level: %d - %d" % [Globals.run_biomes_completed+1, Globals.biome_levels_completed+1]
-
-	gold_label.text = "Gold: %d" % Globals.funds
-
+	
 	if not loaded_deck.is_empty():
 		_hand = loaded_deck
 	else:
@@ -134,9 +131,11 @@ func on_card_played(hand: HandData):
 	
 
 func resolve_win():
+	result_label.text = ""
 	for owned_item in Globals.consumables:
 		if owned_item.item_script:
 			owned_item.item_script.call("carried",owned_item)
+	Globals.add_funds(4)
 	_battle_ended = true
 	victory.visible = true
 	victory.setup(_enemy, true)
@@ -145,6 +144,7 @@ func resolve_win():
 	get_tree().paused = true
 
 func resolve_loss():
+	result_label.text = ""
 	_battle_ended = true
 	Globals.take_damage(1)
 	victory.visible = true
