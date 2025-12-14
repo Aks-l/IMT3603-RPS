@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5xdkuc18ywuv"]
+[gd_scene load_steps=15 format=3 uid="uid://c5xdkuc18ywuv"]
 
 [ext_resource type="Script" uid="uid://ca2yf48k0yyfh" path="res://scenes/battleUI/battle_ui.gd" id="1_8ao15"]
 [ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="1_ggklf"]
@@ -13,6 +13,7 @@
 [ext_resource type="StyleBox" uid="uid://ddk6kp182ii65" path="res://ui/paneltextures/inventory_border.tres" id="9_78lt8"]
 [ext_resource type="PackedScene" uid="uid://bur1pwoqf50ar" path="res://scenes/VictoryScene/victory.tscn" id="9_v8byk"]
 [ext_resource type="PackedScene" uid="uid://bv7xwmn8ksqh1" path="res://ui/components/global_hud.tscn" id="11_globalhud"]
+[ext_resource type="AudioStream" uid="uid://dbo5ckcm2lr33" path="res://audio/punch_h_05-224063.mp3" id="14_ewjmb"]
 
 [node name="BattleUI" type="Control"]
 layout_mode = 3
@@ -82,9 +83,13 @@ blue_heart_texture = ExtResource("6_3ewwt")
 heart_icon_scene = ExtResource("7_npshu")
 icon_size = Vector2(32, 32)
 
-[node name="Padding" type="Control" parent="Background/MarginContainer/MainContainer/TopLayer"]
+[node name="ResultLabel" type="Label" parent="Background/MarginContainer/MainContainer/TopLayer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Result will appear here"
+horizontal_alignment = 1
 
 [node name="GeneralInventori" parent="Background/MarginContainer/MainContainer/TopLayer" instance=ExtResource("4_8ao15")]
 layout_mode = 2
@@ -146,16 +151,6 @@ theme_override_styles/panel = ExtResource("9_78lt8")
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ResultLabel" type="Label" parent="."]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 0
-offset_left = 359.0
-offset_top = 85.0
-offset_right = 703.0
-offset_bottom = 168.0
-text = "Result will appear here"
-
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
@@ -173,3 +168,6 @@ offset_left = 6.0
 offset_top = -23.0
 offset_right = 6.25598
 offset_bottom = -22.0
+
+[node name="sound_effects" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_ewjmb")

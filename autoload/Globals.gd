@@ -18,6 +18,10 @@ var current_deck: Dictionary[HandData, int] = {}
 var globalhealth: int = 3
 var battlehealth: int = 5
 var item_inventory_size: int = 4
+var current_biome: BiomeData
+
+var card_inventory_amount_size: int = 15
+var card_inventory_type_size: int = 5
 
 ## Progress variables
 var biome_levels_completed: int = 0
@@ -74,6 +78,7 @@ func reset_run() -> void:
 	run_levels_completed = 0
 	biome_levels_completed = 0
 	run_biomes_completed = 0
+	for b in BiomeDatabase.biomes.values(): b.encountered = false
 	print("[Globals] Run reset - Health: ", health, ", Funds: ", funds)
 
 func set_current_deck(deck: Dictionary[HandData, int]) -> void:
