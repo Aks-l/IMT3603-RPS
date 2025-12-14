@@ -31,7 +31,7 @@ var _is_ready := false
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
 	#_enemy = enemy
 	#TEMPORARY: Used for testning of certain enemy. can be changed to other tres-files
-	_enemy = load("res://data/enemies/medusa.tres")
+	#_enemy = load("res://data/enemies/medusa.tres")
 	
 	_enemy.encounter_count += 1
 	_enemy.discovered = true
@@ -39,7 +39,7 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	_consumables = consumables
 	
 	_enemy.discovered = true
-	for _hand:HandData in enemy.deck.keys(): _hand.discovered = true 
+	for _hand:HandData in _enemy.deck.keys(): _hand.discovered = true 
 	
 	# Mark player's hands as discovered
 	var loaded_deck = Globals.get_current_deck()
