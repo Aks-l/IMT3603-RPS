@@ -35,14 +35,18 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	_enemy.discovered = true
 	for _hand:HandData in enemy.deck.keys(): _hand.discovered = true 
 	
+	# Mark player's hands as discovered
+	var loaded_deck = Globals.get_current_deck()
+	for _hand:HandData in loaded_deck.keys(): _hand.discovered = true
+	
 	player_hearts.set_hp(Globals.battlehealth)
 	player_hearts._draw_hearts()
 	enemy_hearts.set_hp(3) # TODO: Change to enemy.health once implemented
 	enemy_hearts._draw_hearts()
 	level_label.text = "Level: %d - %d" % [Globals.run_biomes_completed+1, Globals.biome_levels_completed+1]
+
 	gold_label.text = "Gold: %d" % Globals.funds
-	
-	var loaded_deck = Globals.get_current_deck()
+
 	if not loaded_deck.is_empty():
 		_hand = loaded_deck
 	else:
