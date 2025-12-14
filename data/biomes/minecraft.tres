@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://ccxilxlmgdnhv"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 7
+name = "Minecraft"
+prefix = "in a"
+difficulty = 1
+discovered = false
+encountered = false
+ocean_color = Color(0.180392, 0.278431, 0.419608, 1)
+shallow_water_color = Color(0.25098, 0.4, 0.521569, 1)
+sand_color = Color(0.760784, 0.698039, 0.501961, 1)
+grass_color = Color(0.34902, 0.54902, 0.298039, 1)
+forest_color = Color(0.25098, 0.45098, 0.25098, 1)
+hill_color = Color(0.501961, 0.478431, 0.4, 1)
+mountain_color = Color(0.54902, 0.54902, 0.54902, 1)
+snow_color = Color(0.85098, 0.878431, 0.901961, 1)
+metadata/_custom_type_script = "uid://cynt50q10vvuw"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-waterlogged-grove"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 40
+name = "Waterlogged Grove"
+prefix = "in a"
+difficulty = 4
+ocean_color = Color(0.070588, 0.188235, 0.278431, 1)
+shallow_water_color = Color(0.094118, 0.352941, 0.517647, 1)
+sand_color = Color(0.827451, 0.74902, 0.619608, 1)
+grass_color = Color(0.117647, 0.596078, 0.356863, 1)
+forest_color = Color(0.082353, 0.454902, 0.219608, 1)
+hill_color = Color(0.419608, 0.396078, 0.329412, 1)
+mountain_color = Color(0.466667, 0.486275, 0.466667, 1)
+snow_color = Color(0.941176, 0.952941, 0.964706, 1)

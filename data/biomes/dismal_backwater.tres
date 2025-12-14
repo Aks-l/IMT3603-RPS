@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://palette-dismal-backwater"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 42
+name = "Dismal Backwater"
+prefix = "in a"
+difficulty = 5
+ocean_color = Color(0.082353, 0.121569, 0.109804, 1)
+shallow_water_color = Color(0.137255, 0.172549, 0.156863, 1)
+sand_color = Color(0.662745, 0.529412, 0.435294, 1)
+grass_color = Color(0.152941, 0.411765, 0.235294, 1)
+forest_color = Color(0.086275, 0.341176, 0.156863, 1)
+hill_color = Color(0.427451, 0.360784, 0.309804, 1)
+mountain_color = Color(0.47451, 0.458824, 0.443137, 1)
+snow_color = Color(0.905882, 0.917647, 0.933333, 1)

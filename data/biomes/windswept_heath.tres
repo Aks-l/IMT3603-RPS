@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BiomeData" load_steps=2 format=3 uid="uid://b4frb5p75cdxe"]
+
+[ext_resource type="Script" uid="uid://cynt50q10vvuw" path="res://data/biomes/biome_data.gd" id="1_80ggj"]
+
+[resource]
+script = ExtResource("1_80ggj")
+id = 29
+name = "Windswept Heath"
+prefix = "on a"
+difficulty = 3
+discovered = false
+encountered = false
+ocean_color = Color(0.176471, 0.223529, 0.294118, 1)
+shallow_water_color = Color(0.219608, 0.290196, 0.333333, 1)
+sand_color = Color(0.862745, 0.815686, 0.72549, 1)
+grass_color = Color(0.556863, 0.580392, 0.466667, 1)
+forest_color = Color(0.372549, 0.392157, 0.309804, 1)
+hill_color = Color(0.466667, 0.435294, 0.368627, 1)
+mountain_color = Color(0.513725, 0.494118, 0.486275, 1)
+snow_color = Color(0.945098, 0.952941, 0.960784, 1)
