@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("4_6lal6")
-id = 0
+id = 70
 sprite = ExtResource("3_352u0")
 name = "Jason Brack"
 description = "I should bring extra coins for next time"

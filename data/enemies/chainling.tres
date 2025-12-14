@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("4_8e880")
-id = 0
+id = 4
 sprite = ExtResource("5_wcfrr")
 name = "The Chainling"
 description = "His weigts are as heavy as his duty"
