@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cdauji33dueoi"]
+
+[node name="DeathItem" type="RigidBody2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-5.96046e-08, 5.96046e-08)
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)

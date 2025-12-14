@@ -3,6 +3,11 @@ class_name BattleUI
 
 signal finished(result)
 
+@onready var BATTLE_SCENE: PackedScene = preload("res://scenes/FightScene/fight_scene.tscn")
+@onready var victory_fanfare = preload("res://audio/win.wav")
+@onready var losing_fanfare = preload("res://audio/lose.wav")
+@onready var battle_theme = preload("res://audio/battle.wav")
+
 @onready var hand_inventory = %HandInventory
 @onready var result_label = %ResultLabel
 
@@ -68,6 +73,8 @@ func _ready():
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
 	
+	AudioPlayer.play_sound(battle_theme, 1.0)
+	
 	_is_ready = true
 	if _has_params:
 		_apply()
@@ -105,6 +112,7 @@ func _apply():
 		print("No HandInventory found")
 		
 	outcome_graph_panel._refresh()
+	
 
 ##Card Played
 ##Resolves the outcome of a played card against the enemy's card
@@ -127,6 +135,7 @@ func on_card_played(hand: HandData):
 	print("on_card_played called with: ", hand.name)
 	
 	var result = HandsDb.get_result(hand, enemy_hand)
+<<<<<<< HEAD
 	
 	#special enemy hook. see enemydata for more info
 	if _enemy and _enemy.has_method("modify_result"):
@@ -136,6 +145,19 @@ func on_card_played(hand: HandData):
 	if _enemy.has_method("emit_round_line"):
 		_enemy.emit_round_line()
 
+=======
+	# Play combat animation
+	
+	var showdown = BATTLE_SCENE.instantiate()
+	add_child(showdown)
+	showdown.setup(hand, enemy_hand, result)
+	
+	await get_tree().create_timer(0.5).timeout
+	$sound_effects.play()
+	
+	await showdown.finished
+	showdown.queue_free()
+>>>>>>> main
 	
 	match result:
 		1:
@@ -153,6 +175,7 @@ func on_card_played(hand: HandData):
 			player_hearts.take_damage(1)
 			
 		0:
+<<<<<<< HEAD
 			result_label.text += "\nIt's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
 	
@@ -172,6 +195,16 @@ func on_card_played(hand: HandData):
 		push_error("TODO: implement gameover/loss resolution")
 		victory.setup(_enemy, false)
 		assert(false)
+=======
+			result_label.text = "It's a tie! Both played " + hand.name
+			print(result_label.text) 
+
+	if enemy_hearts.get_hp() <= 0: resolve_win()
+	elif player_hearts.get_hp() <= 0: resolve_loss()
+	
+	hand_inventory.unlock_battle()
+	
+>>>>>>> main
 
 func resolve_win():
 	for owned_item in Globals.consumables:
@@ -180,13 +213,17 @@ func resolve_win():
 	_battle_ended = true
 	victory.visible = true
 	victory.setup(_enemy, true)
+	AudioPlayer.play_sound(victory_fanfare)
+	await get_tree().process_frame
 	get_tree().paused = true
 
 func resolve_loss():
 	_battle_ended = true
-	Globals.take_damage(1)	
+	Globals.take_damage(1)
 	victory.visible = true
 	victory.setup(_enemy, false)
+	AudioPlayer.play_sound(losing_fanfare)
+	await get_tree().process_frame
 	get_tree().paused = true
 
 func _toggle_outcome_graph():
