@@ -4,6 +4,9 @@ class_name BattleUI
 signal finished(result)
 
 @onready var BATTLE_SCENE: PackedScene = preload("res://scenes/FightScene/fight_scene.tscn")
+@onready var victory_fanfare = preload("res://audio/win.wav")
+@onready var losing_fanfare = preload("res://audio/lose.wav")
+@onready var battle_theme = preload("res://audio/battle.wav")
 
 @onready var hand_inventory = %HandInventory
 @onready var result_label = %ResultLabel
@@ -31,13 +34,16 @@ func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array
 	_enemy.discovered = true
 	for _hand:HandData in enemy.deck.keys(): _hand.discovered = true 
 	
+	# Mark player's hands as discovered
+	var loaded_deck = Globals.get_current_deck()
+	for _hand:HandData in loaded_deck.keys(): _hand.discovered = true
+	
 	player_hearts.set_hp(Globals.battlehealth)
 	player_hearts._draw_hearts()
 	enemy_hearts.set_hp(3) # TODO: Change to enemy.health once implemented
 	enemy_hearts._draw_hearts()
 	level_label.text = "Level: %d - %d" % [Globals.run_biomes_completed+1, Globals.biome_levels_completed+1]
 	
-	var loaded_deck = Globals.get_current_deck()
 	if not loaded_deck.is_empty():
 		_hand = loaded_deck
 	else:
@@ -51,6 +57,8 @@ func _ready():
 	
 	result_label.text = ""  #start with empty result
 	hand_inventory.card_clicked.connect(on_card_played)
+	
+	AudioPlayer.play_sound(battle_theme, 1.0)
 	
 	_is_ready = true
 	if _has_params:
@@ -92,9 +100,13 @@ func on_card_played(hand: HandData):
 	
 	var result = HandsDb.get_result(hand, enemy_hand)
 	# Play combat animation
+	
 	var showdown = BATTLE_SCENE.instantiate()
 	add_child(showdown)
 	showdown.setup(hand, enemy_hand, result)
+	
+	await get_tree().create_timer(0.5).timeout
+	$sound_effects.play()
 	
 	await showdown.finished
 	showdown.queue_free()
@@ -127,14 +139,18 @@ func resolve_win():
 	_battle_ended = true
 	victory.visible = true
 	victory.setup(_enemy, true)
+	AudioPlayer.play_sound(victory_fanfare)
+	await get_tree().process_frame
 	get_tree().paused = true
 
 func resolve_loss():
 	result_label.text = ""
 	_battle_ended = true
-	Globals.take_damage(1)	
+	Globals.take_damage(1)
 	victory.visible = true
 	victory.setup(_enemy, false)
+	AudioPlayer.play_sound(losing_fanfare)
+	await get_tree().process_frame
 	get_tree().paused = true
 
 func _toggle_outcome_graph():

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl7s3vpjvci7w"]
+[gd_scene load_steps=6 format=3 uid="uid://bl7s3vpjvci7w"]
 
 [ext_resource type="Theme" uid="uid://dtmq8n0c0o4sh" path="res://ui/DefaultTheme.tres" id="1_3vvtq"]
 [ext_resource type="Script" uid="uid://i6gmv8xx3myi" path="res://scenes/mainMenu/mainmenu.gd" id="2_7kwmc"]
 [ext_resource type="Texture2D" uid="uid://dtpkj3mw2pyw6" path="res://scenes/RPS-logo.png" id="3_3vvtq"]
 [ext_resource type="Texture2D" uid="uid://cxuon2guqmnv8" path="res://data/events/events/sprites/defeated_player.png" id="3_r3g3c"]
+[ext_resource type="AudioStream" uid="uid://ddbdqe4avvvja" path="res://audio/mainmenu.mp3" id="5_s5g8n"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -59,6 +60,11 @@ size_flags_horizontal = 3
 texture = ExtResource("3_3vvtq")
 expand_mode = 1
 
+[node name="Continue" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Continue"
+
 [node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Play"
@@ -75,6 +81,13 @@ text = "Options"
 layout_mode = 2
 text = "Quit"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("5_s5g8n")
+volume_db = 20.0
+autoplay = true
+parameters/looping = true
+
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -84,5 +97,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Almanac" to="." method="_on_almanac_pressed"]
