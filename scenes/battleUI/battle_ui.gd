@@ -30,9 +30,9 @@ var _is_ready := false
 
 # THE LAST OF SETUP AND READY WILL CALL _apply
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
-	_enemy = enemy
+	#_enemy = enemy
 	#TEMPORARY: Used for testning of certain enemy. can be changed to other tres-files
-	#_enemy = load("res://data/enemies/funeralTracker.tres")
+	_enemy = load("res://data/enemies/medusa.tres")
 	
 	_enemy.encounter_count += 1
 	_enemy.discovered = true
@@ -108,6 +108,7 @@ func _apply():
 			for card in local_deck.keys():
 				players_cards.append(card)
 			_enemy.on_combat_start(players_cards)
+			hand_inventory._refresh_ui()
 	else:
 		print("No HandInventory found")
 		
@@ -135,7 +136,7 @@ func on_card_played(hand: HandData):
 	print("on_card_played called with: ", hand.name)
 	
 	var result = HandsDb.get_result(hand, enemy_hand)
-<<<<<<< HEAD
+
 	
 	#special enemy hook. see enemydata for more info
 	if _enemy and _enemy.has_method("modify_result"):
@@ -145,7 +146,7 @@ func on_card_played(hand: HandData):
 	if _enemy.has_method("emit_round_line"):
 		_enemy.emit_round_line()
 
-=======
+
 	# Play combat animation
 	
 	var showdown = BATTLE_SCENE.instantiate()
@@ -157,7 +158,7 @@ func on_card_played(hand: HandData):
 	
 	await showdown.finished
 	showdown.queue_free()
->>>>>>> main
+
 	
 	match result:
 		1:
@@ -175,27 +176,6 @@ func on_card_played(hand: HandData):
 			player_hearts.take_damage(1)
 			
 		0:
-<<<<<<< HEAD
-			result_label.text += "\nIt's a tie! Both played " + hand.name
-			print(result_label.text) #DEBUG
-	
-	# Call on_round_end after all damage has been applied
-	if _enemy and _enemy.has_method("on_round_end"):
-		_enemy.on_round_end()
-			
-			
-	if enemy_hearts.get_hp() <= 0:
-		victory.visible = true
-		victory.setup(_enemy, true)
-		get_tree().paused = true
-		
-		## ONCE AN ITEM IS CHOSEN, queue_free()
-		
-	elif player_hearts.get_hp() <= 0:
-		push_error("TODO: implement gameover/loss resolution")
-		victory.setup(_enemy, false)
-		assert(false)
-=======
 			result_label.text = "It's a tie! Both played " + hand.name
 			print(result_label.text) 
 
@@ -203,8 +183,7 @@ func on_card_played(hand: HandData):
 	elif player_hearts.get_hp() <= 0: resolve_loss()
 	
 	hand_inventory.unlock_battle()
-	
->>>>>>> main
+
 
 func resolve_win():
 	for owned_item in Globals.consumables:
