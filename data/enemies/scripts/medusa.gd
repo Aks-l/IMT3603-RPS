@@ -32,7 +32,7 @@ func on_combat_start(players_cards: Array[HandData]) -> void:
 
 	for card in players_cards:
 		# Petrify ALL living cards except the Medusa card itself
-		if card.living and card.name != "Medusa":
+		if card.living:
 			has_petrified = true
 			petrify_card(card)
 			_set_battle_line(card)
@@ -65,10 +65,6 @@ func modify_result(player_card: HandData, enemy_card: HandData, base_result: int
 	# Medusa card always ties Medusa
 	if player_card.name == "medusa":
 		return 0
-
-	# Petrified cards always lose
-	if player_card.status_flags.get("petrified", false):
-		return -1
 
 	return base_result
 

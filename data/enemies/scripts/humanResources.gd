@@ -6,11 +6,11 @@ extends "res://data/enemies/EnemyData.gd"
 @export var human := true
 @export var concept := true
 @export var evil := true
-@export var metallic := true
+@export var metalic := true
 @export var land := true
 @export var weird := true
 
-# --- Internal state ---
+#Internal state
 var _current_policy: Dictionary = {}
 var _disabled_tags: Array[String] = []
 var _players_cards: Array[HandData] = []
@@ -18,13 +18,15 @@ var _policy_announced: bool = false
 var _policy_displayed: bool = false
 var is_dead: bool = false
 
-var death_lines: Array[String] = [
-	"'The exit interview is... eternal.'",
-	"'We're downsizing... including me.'",
-	"'My contract... has been terminated.'"
-]
+var dialogue := {
+	"death": [
+		"'The exit interview is... eternal.'",
+		"'We're downsizing... including me.'",
+		"'My contract... has been terminated.'"
+	],
+}
 
-# --- Called once when combat starts ---
+#  Called once when combat starts 
 func on_combat_start(players_cards: Array[HandData]) -> void:
 	_players_cards = players_cards
 	_policy_announced = false
@@ -34,7 +36,7 @@ func on_combat_start(players_cards: Array[HandData]) -> void:
 	print("Combat started, setting initial policy...")
 	_set_random_policy()
 
-# --- Called each time the player plays a card ---
+# Called each time the player plays a card 
 func react_to_card(card: HandData) -> void:
 	if is_dead:
 		return
@@ -53,7 +55,7 @@ func react_to_card(card: HandData) -> void:
 			emit_signal("feedback", msg)
 			return
 
-# --- Optional: Change RPS result if card is disabled ---
+#  Change RPS result if card is disabled 
 func modify_result(card: HandData, enemy_card: HandData, result: int) -> int:
 	if card == null or is_dead:
 		return result
@@ -72,9 +74,9 @@ func modify_result(card: HandData, enemy_card: HandData, result: int) -> int:
 	print("No policy violation detected, returning original result: ", result)
 	return result
 
-# --- Called after each round ends ---
+# called after each round ends
 func on_round_end() -> void:
-	if is_dead:
+	if is_dead or _policy_announced:
 		return
 	# Announce new policy for the NEXT turn
 	_set_random_policy()
@@ -90,10 +92,10 @@ func on_damage_taken(current_hp: int) -> void:
 		return
 
 func _emit_death_line() -> void:
-	var l: String = death_lines.pick_random()
+	var l: String = dialogue["death"].pick_random()
 	emit_signal("feedback", l)
 
-# --- Internal: Select a new random policy ---
+# Internal: Select a new random policy
 func _set_random_policy() -> void:
 	var policies = [
 		{
