@@ -7,18 +7,20 @@ extends "res://data/enemies/EnemyData.gd"
 var is_dead: bool = false
 var next_line: String = ""
 
-var battle_lines: Array[String] = [
-	"'Fear my light!'",
-	"'Your shadow cannot hide from truth.'",
-	"'Have you seen my scissors, actually?'",
-	"'I am but a moment. An eternal one!'"
-]
+var dialogue := {
+	"battle": [
+		"'Fear my light!'",
+		"'Your shadow cannot hide from truth.'",
+		"'Have you seen my scissors, actually?'",
+		"'I am but a moment. An eternal one!'"
+	],
 
-var death_lines: Array[String] = [
-	"'You cannot keep the light in this world...'",
-	"'Can I come back like you?'",
-	"'I shouldn't have underestimated you...'"
-]
+	"death": [
+		"'You cannot keep the light in this world...'",
+		"'Can I come back like you?'",
+		"'I shouldn't have underestimated you...'"
+	]
+}
 
 func on_combat_start(players_cards: Array[HandData]) -> void:
 	is_dead = false
@@ -29,7 +31,7 @@ func react_to_card(card: HandData) -> void:
 		return
 
 	# Store a random battle line for this turn
-	next_line = battle_lines.pick_random()
+	next_line = dialogue["battle"].pick_random()
 
 	# Block evil and holy cards
 	if card.evil:
@@ -76,7 +78,7 @@ func on_damage_taken(current_hp: int) -> void:
 	if current_hp <= 0:
 		is_dead = true
 		next_line = ""  # Clear battle line so only death line shows
-		emit_signal("feedback", death_lines.pick_random())
+		emit_signal("feedback", dialogue["death"].pick_random())
 		return
 	
 	# Enemy survived - emit the stored battle line

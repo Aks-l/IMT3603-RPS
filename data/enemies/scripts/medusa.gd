@@ -3,20 +3,33 @@ extends "res://data/enemies/EnemyData.gd"
 # Reference to your Rock card resource
 @export var rock_card: HandData = preload("res://data/cards/rock.tres")
 
+var has_petrified := false
+
+func on_combat_start(players_cards: Array[HandData]) -> void:
+	for card in players_cards:
+		if card.living:
+			has_petrified = true
+			var original_name := card.name
+			petrify_card(card)
+			emit_signal(
+				"feedback",
+				"Turn to stone! %s has been petrified!" % original_name)
+			return  # IMPORTANT: only petrify ONE card
+
+func modify_result(player_card: HandData, enemy_card: HandData, result: int) -> int:
+	if player_card.name == "medusa":
+		return 0  # force tie
+
+	return result
+
+
 func react_to_card(card: HandData) -> void:
 	if card == null:
 		return
 	
-	if card.living:
-		var original_name = card.name
-		print("%s turns %s to stone!" % [name, card.name])
-		petrify_card(card)
-		emit_signal("feedback", "Turn to stone! %s has been petrified!" % original_name)
-		print(">>> Signal emitted for petrified card:", card.name)
-	else:
-		emit_signal("feedback", "%s is unnaffected by the gaze." % card.name)
-		print("%s is unaffected by %s's gaze." % [card.name, name])
-
+	if card.status_flags.get("petrified", false):
+		emit_signal("feedback", "Throwing rocks?")
+		return
 
 func petrify_card(card: HandData) -> void:
 	if rock_card == null:
@@ -25,7 +38,6 @@ func petrify_card(card: HandData) -> void:
 	
 	card.status_flags["petrified"] = true
 	card.status_revealed = true
-	card.status_tint = Color(0.6, 0.6, 0.6)
 
 	# Copy visual & metadata from the rock card
 	card.name = rock_card.name
