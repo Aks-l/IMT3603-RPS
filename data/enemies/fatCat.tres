@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3 uid="uid://boch074egx3rm"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://boch074egx3rm"]
 
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc0x" path="res://data/cards/cat.tres" id="1_33qpw"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_8rivy"]
@@ -9,9 +9,10 @@
 script = ExtResource("2_8rivy")
 id = 3
 sprite = ExtResource("3_8rivy")
-name = "Fred Fran"
-description = ""
+name = "Henry"
+description = "Too smug for not doing anything"
 discovered = false
+encounter_count = 0
 biome = "neutral"
 tier = 1
 deck = {

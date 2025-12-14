@@ -9,10 +9,11 @@ script = ExtResource("1_go4gv")
 id = 1
 sprite = ExtResource("2_lhuag")
 name = "Bob Rock"
-description = "Supe hard fight"
+description = "Super hard fight"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_ufjf6"): 1
 }

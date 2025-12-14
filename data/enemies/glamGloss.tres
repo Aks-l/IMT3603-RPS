@@ -11,10 +11,11 @@ script = ExtResource("2_4n254")
 id = 44
 sprite = ExtResource("3_4n254")
 name = "Girl Glam Gloss"
-description = ""
+description = "Her skin looks perfect in this weather"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_c2bjn"): 4,
 ExtResource("2_savmb"): 2,

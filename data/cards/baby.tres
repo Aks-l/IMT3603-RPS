@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dajd2m1rp7j1q"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dkhxwd7w7ycyw"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_baby"]
 [ext_resource type="Texture2D" uid="uid://dcqof3lnkco7s" path="res://data/cards/sprites/BABY.png" id="2_ro6d4"]
@@ -10,4 +10,20 @@ sprite = ExtResource("2_ro6d4")
 name = "baby"
 discovered = false
 max_count = 15
+living = true
+aquatic = false
+dry = true
+holy = false
+concept = false
+evil = false
+plant = false
+elemental = false
+metalic = false
+airborne = false
+land = true
+weird = false
+wood = false
+electric = false
+equal = false
+human = true
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

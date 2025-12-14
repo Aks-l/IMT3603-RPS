@@ -11,10 +11,11 @@ script = ExtResource("2_sfsvi")
 id = 5
 sprite = ExtResource("2_yakbv")
 name = "Mike Crum"
-description = ""
+description = "I have never seen a better driver"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_1mnyd"): 3,
 ExtResource("2_cw8lc"): 3,

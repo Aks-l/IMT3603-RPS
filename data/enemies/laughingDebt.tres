@@ -13,10 +13,11 @@ script = ExtResource("2_gvcnd")
 id = 19
 sprite = ExtResource("3_gvcnd")
 name = "Laughing Debt"
-description = ""
+description = "I can only see the light dimming"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_b7ehb"): 1,
 ExtResource("2_2cs7n"): 1,

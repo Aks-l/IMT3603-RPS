@@ -15,8 +15,9 @@ sprite = ExtResource("3_knt62")
 name = "Fiona From Fralion"
 description = "Shogun of the Kitchen"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_omie4"): 1,
 ExtResource("2_nbnyp"): 2,

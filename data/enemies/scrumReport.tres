@@ -11,10 +11,11 @@ script = ExtResource("2_grrfr")
 id = 29
 sprite = ExtResource("3_grrfr")
 name = "Scrum Report"
-description = ""
+description = "I hate meetings"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_6wima"): 1,
 ExtResource("2_251y5"): 3,

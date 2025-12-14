@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://c0yexiksl7323"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dkhxwd7w7ycyx"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_man"]
 [ext_resource type="Texture2D" uid="uid://crab1ykeh1nyc" path="res://data/cards/sprites/MAN.png" id="2_k7kfo"]
@@ -10,4 +10,20 @@ sprite = ExtResource("2_k7kfo")
 name = "man"
 discovered = false
 max_count = 15
+living = true
+aquatic = false
+dry = true
+holy = false
+concept = false
+evil = false
+plant = false
+elemental = false
+metalic = false
+airborne = false
+land = true
+weird = false
+wood = false
+electric = false
+equal = true
+human = true
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

@@ -12,10 +12,11 @@ script = ExtResource("2_1l4y0")
 id = 27
 sprite = ExtResource("3_1l4y0")
 name = "Public Opinion"
-description = ""
+description = "People will judge me as they see fit"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_xqoom"): 1,
 ExtResource("2_g745a"): 1,

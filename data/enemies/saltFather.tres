@@ -11,10 +11,11 @@ script = ExtResource("2_xwgy6")
 id = 28
 sprite = ExtResource("3_xwgy6")
 name = "Salter"
-description = ""
+description = "I cannot drink this"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_3smgc"): 1,
 ExtResource("2_tob6m"): 1,

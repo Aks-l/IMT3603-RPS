@@ -11,10 +11,11 @@ script = ExtResource("2_nl8jo")
 id = 30
 sprite = ExtResource("5_w8d1q")
 name = "Karen Lift"
-description = ""
+description = "Someone should stop her"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_g6upk"): 3,
 ExtResource("2_48ctx"): 1,

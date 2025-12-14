@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://e085qk65po3w"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dkhxwd7w7yc1x"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_sponge"]
 [ext_resource type="Texture2D" uid="uid://c8ogoolu4wqgm" path="res://data/cards/sprites/SPONGE.png" id="2_ublha"]
@@ -10,4 +10,19 @@ sprite = ExtResource("2_ublha")
 name = "sponge"
 discovered = false
 max_count = 15
+living = false
+aquatic = true
+dry = true
+holy = false
+concept = false
+evil = false
+plant = false
+elemental = false
+metalic = false
+airborne = false
+land = false
+weird = false
+wood = false
+electric = false
+equal = false
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

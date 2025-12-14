@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://85gtf6sw6qb6"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dkhxwd7w7yc41"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_math"]
 [ext_resource type="Texture2D" uid="uid://c3if8xu2tkbhd" path="res://data/cards/sprites/MATH.png" id="2_xgbmv"]
@@ -10,4 +10,19 @@ sprite = ExtResource("2_xgbmv")
 name = "math"
 discovered = false
 max_count = 15
+living = false
+aquatic = false
+dry = false
+holy = false
+concept = true
+evil = false
+plant = false
+elemental = false
+metalic = false
+airborne = false
+land = false
+weird = true
+wood = false
+electric = false
+equal = false
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

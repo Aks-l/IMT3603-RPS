@@ -1,13 +1,23 @@
 extends Resource
 class_name EnemyData
 
+signal feedback(message: String)
+signal update_hand_visuals(hand: HandData)
 
 @export var id: int
 @export var sprite: Texture2D
 @export var name: String
 @export var description: String
+
 @export var discovered: bool = false
+@export var encounter_count: int = 0
+
 @export var biome: String = "neutral"
+<<<<<<< HEAD
+#for difficulty
+@export var level: int = 1 #1 er tidlig, 2 is mid, and 3 is last biome 
+=======
+>>>>>>> main
 
 #Dictionary of HandData, number of copies
 @export var deck: Dictionary = {}
@@ -15,6 +25,7 @@ class_name EnemyData
 #internal working deck, this is used during battle
 var current_deck: Array[HandData] = []
 
+#deck handeling
 func ready():
 	reset_deck()
 
@@ -35,3 +46,16 @@ func get_hand() -> HandData:
 		return null
 	
 	return current_deck.pop_back()
+
+
+#defines how enemies reacts to played cards
+#this is overwritten persinally for enemy if script is assigned
+func react_to_card(card: HandData) -> void:
+	if card == null:
+		return
+	print("%s ignores %s." % [name, card.name])
+
+#allows special enemies to change the result.
+#only counts for the ruslt of the round, not the battle itself
+func modify_result(player_card: HandData, enemy_card: HandData, base_result: int) -> int:
+	return base_result  # default: do nothing

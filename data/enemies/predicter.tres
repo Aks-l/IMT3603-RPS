@@ -11,10 +11,11 @@ script = ExtResource("2_frafv")
 id = 52
 sprite = ExtResource("3_frafv")
 name = "The Predicter"
-description = ""
+description = "The future is simply the effect of a cause"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_jdmqt"): 5,
 ExtResource("2_4p7no"): 2,

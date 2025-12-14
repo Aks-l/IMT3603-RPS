@@ -11,10 +11,11 @@ script = ExtResource("2_6w4dv")
 id = 43
 sprite = ExtResource("3_6w4dv")
 name = "Greg Checkers"
-description = "Silywood's hottest director"
+description = "Silywood's greatest director"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_mhhrt"): 2,
 ExtResource("2_x3hd6"): 4,

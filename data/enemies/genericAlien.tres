@@ -11,10 +11,11 @@ script = ExtResource("2_46651")
 id = 11
 sprite = ExtResource("3_46651")
 name = "Generic Alien"
-description = ""
+description = "What a silly gloober"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_d0ool"): 5,
 ExtResource("2_hoba0"): 3,

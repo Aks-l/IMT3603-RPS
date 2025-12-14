@@ -12,10 +12,11 @@ script = ExtResource("2_uwr74")
 id = 62
 sprite = ExtResource("3_uwr74")
 name = "Death"
-description = "the fourth horseman"
+description = "The Fourth Horseman"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_ho5w3"): 4,
 ExtResource("2_yf7cy"): 1,

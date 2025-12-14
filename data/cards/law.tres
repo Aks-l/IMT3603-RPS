@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://e6llomqdil8p"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://b6e0vdawx87c7"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_law"]
 [ext_resource type="Texture2D" uid="uid://3j4yqmoswiyb" path="res://data/cards/sprites/LAW.png" id="2_27xdc"]
@@ -10,4 +10,19 @@ sprite = ExtResource("2_27xdc")
 name = "law"
 discovered = false
 max_count = 15
+living = false
+aquatic = false
+dry = false
+holy = false
+concept = false
+evil = false
+plant = false
+elemental = false
+metalic = false
+airborne = false
+land = false
+weird = false
+wood = false
+electric = false
+equal = false
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

@@ -11,10 +11,11 @@ script = ExtResource("2_ksv7k")
 id = 66
 sprite = ExtResource("3_ksv7k")
 name = "Glutteny and Greed"
-description = ""
+description = "Take and take until there is no one to take from left"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_5xwop"): 2,
 ExtResource("2_ewrek"): 2,

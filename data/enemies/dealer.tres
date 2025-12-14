@@ -12,10 +12,11 @@ script = ExtResource("2_8n3x1")
 id = 50
 sprite = ExtResource("3_8n3x1")
 name = "The Dealer"
-description = ""
+description = "This is no time to get an addiction"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_2ufrc"): 2,
 ExtResource("2_l1hio"): 2,

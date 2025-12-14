@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dq8c5uanx1qw1"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dkhxwd7w7ycx1"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_king"]
 [ext_resource type="Texture2D" uid="uid://di1pmdg5lhbif" path="res://data/cards/sprites/KING.png" id="2_fcyv6"]
@@ -10,4 +10,20 @@ sprite = ExtResource("2_fcyv6")
 name = "king"
 discovered = false
 max_count = 15
+living = true
+aquatic = false
+dry = true
+holy = false
+concept = false
+evil = false
+plant = false
+elemental = false
+metalic = false
+airborne = false
+land = false
+weird = false
+wood = false
+electric = false
+equal = false
+human = true
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

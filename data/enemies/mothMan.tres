@@ -1,21 +1,24 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3 uid="uid://hg2qb2dbf6d3"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://hg2qb2dbf6d3"]
 
 [ext_resource type="Resource" uid="uid://dkhxwd7w7ycxw" path="res://data/cards/blood.tres" id="1_twbln"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_38w2t"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc2t" path="res://data/cards/airplane.tres" id="2_bl3je"]
 [ext_resource type="Texture2D" uid="uid://w1weqgochfjl" path="res://data/enemies/sprites/mothMan.png" id="3_38w2t"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc4s" path="res://data/cards/satan.tres" id="3_bl3je"]
 
 [resource]
 script = ExtResource("2_38w2t")
 id = 48
 sprite = ExtResource("3_38w2t")
 name = "Moth Man"
-description = ""
+description = "I am not on the menu for this thing"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_twbln"): 1,
-ExtResource("2_bl3je"): 2
+ExtResource("2_bl3je"): 2,
+ExtResource("3_bl3je"): 1
 }
 metadata/_custom_type_script = "uid://by12nwuyw45yk"

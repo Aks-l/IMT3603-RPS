@@ -13,10 +13,11 @@ script = ExtResource("2_sa0o7")
 id = 59
 sprite = ExtResource("3_hmhj3")
 name = "War"
-description = "The second horseman"
+description = "The Second Horseman"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_jduo3"): 3,
 ExtResource("2_11fix"): 1,

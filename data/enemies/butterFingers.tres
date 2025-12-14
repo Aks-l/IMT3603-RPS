@@ -1,25 +1,21 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://b1si7dwba1h8w"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://b1si7dwba1h8w"]
 
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc10" path="res://data/cards/butter.tres" id="1_l4hgk"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_352u0"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc3s" path="res://data/cards/cup.tres" id="2_pu5bf"]
 [ext_resource type="Texture2D" uid="uid://b3fyk454d1xkc" path="res://data/enemies/sprites/butterFingers.png" id="3_352u0"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc5s" path="res://data/cards/heart.tres" id="3_nfpb6"]
-[ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="4_pu5bf"]
 
 [resource]
 script = ExtResource("2_352u0")
-moveset = Array[ExtResource("4_pu5bf")]([])
-fixed_moveset = Array[ExtResource("4_pu5bf")]([])
-weighted_moveset = {}
-reactions = {}
 id = 4
 sprite = ExtResource("3_352u0")
 name = "Brad Bred"
-description = ""
+description = "I will bring extra coins later"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_l4hgk"): 5,
 ExtResource("2_pu5bf"): 2,

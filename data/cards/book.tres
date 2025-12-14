@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://wa3nlvc7c41w"]
+[gd_resource type="Resource" script_class="HandData" load_steps=3 format=3 uid="uid://dkhxwd7w7yc11"]
 
 [ext_resource type="Script" uid="uid://cpqej81wc7vpu" path="res://data/cards/hand_data.gd" id="1_book"]
 [ext_resource type="Texture2D" uid="uid://2w7fa2rue6sm" path="res://data/cards/sprites/BOOK.png" id="2_nskan"]
@@ -10,4 +10,19 @@ sprite = ExtResource("2_nskan")
 name = "book"
 discovered = false
 max_count = 15
+living = false
+aquatic = false
+dry = true
+holy = false
+concept = false
+evil = false
+plant = false
+elemental = false
+metalic = false
+airborne = false
+land = false
+weird = false
+wood = false
+electric = false
+equal = false
 metadata/_custom_type_script = "uid://cpqej81wc7vpu"

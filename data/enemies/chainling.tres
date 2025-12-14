@@ -1,23 +1,24 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://64a5eder72f6"]
 
 [ext_resource type="Resource" uid="uid://b6e0vdawx87c5" path="res://data/cards/chain.tres" id="1_86sn7"]
-[ext_resource type="Resource" uid="uid://dkhxwd7w7yc3r" path="res://data/cards/bowl.tres" id="2_4enpd"]
-[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_6ajjy"]
-[ext_resource type="Texture2D" uid="uid://cvsvnwqr8fxwt" path="res://data/enemies/sprites/theChainling.png" id="3_6ajjy"]
-[ext_resource type="Resource" uid="uid://dkhxwd7w7yc0r" path="res://data/cards/noise.tres" id="3_k7auh"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7ycw1" path="res://data/cards/cage.tres" id="2_4enpd"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc41" path="res://data/cards/math.tres" id="3_k7auh"]
+[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="4_8e880"]
+[ext_resource type="Texture2D" uid="uid://cvsvnwqr8fxwt" path="res://data/enemies/sprites/theChainling.png" id="5_wcfrr"]
 
 [resource]
-script = ExtResource("2_6ajjy")
-id = 7
-sprite = ExtResource("3_6ajjy")
+script = ExtResource("4_8e880")
+id = 0
+sprite = ExtResource("5_wcfrr")
 name = "The Chainling"
-description = ""
+description = "His weigts are as heavy as his duty"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
-ExtResource("1_86sn7"): 5,
-ExtResource("2_4enpd"): 2,
-ExtResource("3_k7auh"): 2
+ExtResource("1_86sn7"): 2,
+ExtResource("2_4enpd"): 3,
+ExtResource("3_k7auh"): 1
 }
 metadata/_custom_type_script = "uid://by12nwuyw45yk"

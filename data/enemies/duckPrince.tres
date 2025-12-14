@@ -11,10 +11,11 @@ script = ExtResource("2_cp2ow")
 id = 2
 sprite = ExtResource("3_cp2ow")
 name = "The Duck Prine Leopold"
-description = "\"These lips are untouchable\""
+description = "I didn't know they still existed"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_iv3g4"): 5,
 ExtResource("2_i4u3i"): 3,

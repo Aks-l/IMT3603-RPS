@@ -11,10 +11,11 @@ script = ExtResource("2_8ydeu")
 id = 50
 sprite = ExtResource("3_8ydeu")
 name = "The Tax Collector"
-description = ""
+description = "A penny from all is a penny to all"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_bu62v"): 2,
 ExtResource("2_dgr4x"): 4,

@@ -11,10 +11,11 @@ script = ExtResource("2_o1whe")
 id = 49
 sprite = ExtResource("3_o1whe")
 name = "Money"
-description = ""
+description = "Nothing without the peoples faith"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_q3my5"): 5,
 ExtResource("2_a8lvx"): 3,

@@ -12,10 +12,11 @@ script = ExtResource("2_61bsh")
 id = 0
 sprite = ExtResource("6_2ltlu")
 name = "Torn"
-description = "\"is he even supposed to be here?\""
+description = "Is he even supposed to be here?"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_ppmeh"): 2,
 ExtResource("2_t3t6g"): 1,

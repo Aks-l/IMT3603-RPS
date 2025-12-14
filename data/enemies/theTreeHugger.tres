@@ -1,23 +1,26 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://bplo5ck8wtldo"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://bplo5ck8wtldo"]
 
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc0t" path="res://data/cards/tree.tres" id="1_g15t4"]
 [ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_8eepm"]
 [ext_resource type="Resource" uid="uid://b6e0vdawx87c2" path="res://data/cards/tornado.tres" id="2_dhq21"]
 [ext_resource type="Texture2D" uid="uid://b8aaa7vawos5i" path="res://data/enemies/sprites/treeHugger.png" id="3_8eepm"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc0y" path="res://data/cards/bird.tres" id="3_s7lta"]
+[ext_resource type="Resource" uid="uid://dkhxwd7w7yc01" path="res://data/cards/spider.tres" id="4_dhq21"]
 
 [resource]
 script = ExtResource("2_8eepm")
 id = 38
 sprite = ExtResource("3_8eepm")
 name = "Terry Truce"
-description = ""
+description = "The wonderfull giver of the woods"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_g15t4"): 4,
 ExtResource("2_dhq21"): 1,
-ExtResource("3_s7lta"): 2
+ExtResource("3_s7lta"): 2,
+ExtResource("4_dhq21"): 1
 }
 metadata/_custom_type_script = "uid://by12nwuyw45yk"

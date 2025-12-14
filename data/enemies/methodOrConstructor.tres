@@ -11,10 +11,11 @@ script = ExtResource("2_vfgt3")
 id = 42
 sprite = ExtResource("3_vfgt3")
 name = "Method or Constructor(?)"
-description = ""
+description = "Feed the machine to be fed forever"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_1wy41"): 2,
 ExtResource("2_wmyfn"): 2,

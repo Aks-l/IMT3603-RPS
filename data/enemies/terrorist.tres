@@ -13,10 +13,11 @@ script = ExtResource("2_ops4p")
 id = 34
 sprite = ExtResource("5_bkoea")
 name = "Harry Grim"
-description = ""
+description = "Order's walking terror"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_65e1q"): 3,
 ExtResource("2_cyiy7"): 2,

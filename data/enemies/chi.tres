@@ -11,10 +11,11 @@ script = ExtResource("2_hyhdj")
 id = 46
 sprite = ExtResource("3_hyhdj")
 name = "Chi"
-description = ""
+description = "I wish this source existed in me, too"
 discovered = false
+encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_oxyet"): 4,
 ExtResource("2_04g3h"): 2,
