@@ -8,12 +8,11 @@
 - Aksel Holmstrøm Wiersdalen - akselhw - @masterjeb - @aks-l
 
 ### Gameplay Video
-[Link to gameplay video showing important parts of the game]
+[Link to gameplay video](https://youtu.be/4VFcysTtJPU)
 
 ### Development Process Discussion
 
 We chose to use **Godot 4.4** as our game engine due to its user-friendly interface and robust features for 2D game development and that it came recommended smaller sized teams and projects. The engine's built-in tools for animation, physics, and scripting with GDScript allowed us to rapidly prototype and iterate on our game mechanics.
-
 
 
 **Strengths:**
@@ -93,24 +92,3 @@ In all this has worked well for our team, as we have been able to avoid major me
 | Audio Player      |           |         | All     |
 | HandGraph         |           | All     |         |
 
-
-
-
-## Individual Component
-
-### Code Video
-[Link to video showing code tightly integrated with the game engine]
-
-
-**Individual**
-### Good Code Discussion
-[Link to and discussion of code you consider good]
-
-### Bad Code Discussion
-[Link to and discussion of code you consider bad]
-
-### Personal Reflection
-[Reflection on key concepts learnt during the course]
-
-## Rubric Notes
-[Optional: Notes on the rubric criteria]
