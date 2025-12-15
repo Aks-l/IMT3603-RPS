@@ -13,15 +13,11 @@ signal update_hand_visuals(hand: HandData)
 @export var encounter_count: int = 0
 
 @export var biome: String = "neutral"
-<<<<<<< HEAD
 
 #for difficulty
 @export var level: int = 1 #1 er tidlig, 2 is mid, and 3 is last biome 
 
-=======
->>>>>>> main
 
-@export var level: int = 1 
 #Dictionary of HandData, number of copies
 @export var deck: Dictionary = {}
 

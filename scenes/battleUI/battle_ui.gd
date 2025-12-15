@@ -29,14 +29,9 @@ var _is_ready := false
 
 # THE LAST OF SETUP AND READY WILL CALL _apply
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
-	#_enemy = enemy
-	#TEMPORARY: Used for testning of certain enemy. can be changed to other tres-files
-<<<<<<< HEAD
-	#_enemy = load("res://data/enemies/cartographer.tres")
-=======
-	#_enemy = load("res://data/enemies/medusa.tres")
->>>>>>> main
-	
+	_enemy = enemy
+
+
 	_enemy.encounter_count += 1
 	_enemy.discovered = true
 
@@ -141,11 +136,6 @@ func on_card_played(hand: HandData):
 	print("on_card_played called with: ", hand.name)
 	
 	var result = HandsDb.get_result(hand, enemy_hand)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 	
 	#special enemy hook. see enemydata for more info
 	if _enemy and _enemy.has_method("modify_result"):
@@ -155,11 +145,6 @@ func on_card_played(hand: HandData):
 	if _enemy.has_method("emit_round_line"):
 		_enemy.emit_round_line()
 
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> main
 	# Play combat animation
 	
 	var showdown = BATTLE_SCENE.instantiate()
@@ -171,11 +156,7 @@ func on_card_played(hand: HandData):
 	
 	await showdown.finished
 	showdown.queue_free()
-<<<<<<< HEAD
->>>>>>> main
-=======
 
->>>>>>> main
 	
 	match result:
 		1:
@@ -193,8 +174,7 @@ func on_card_played(hand: HandData):
 			player_hearts.take_damage(1)
 			
 		0:
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 			result_label.text += "\nIt's a tie! Both played " + hand.name
 			print(result_label.text) #DEBUG
 	
@@ -214,22 +194,11 @@ func on_card_played(hand: HandData):
 		push_error("TODO: implement gameover/loss resolution")
 		victory.setup(_enemy, false)
 		assert(false)
-=======
-=======
->>>>>>> main
-			result_label.text = "It's a tie! Both played " + hand.name
-			print(result_label.text) 
 
 	if enemy_hearts.get_hp() <= 0: resolve_win()
 	elif player_hearts.get_hp() <= 0: resolve_loss()
 	
 	hand_inventory.unlock_battle()
-<<<<<<< HEAD
-	
->>>>>>> main
-=======
-
->>>>>>> main
 
 func resolve_win():
 	result_label.text = ""
