@@ -3,19 +3,22 @@ extends "res://data/enemies/EnemyData.gd"
 var is_dead: bool = false
 var next_line: String = ""
 
-var battle_lines: Array[String] = [
-	"'You should have eaten at home!'",
-	"'The body fails long before the spirit.'",
-	"'I only take what is already fading.'",
-	"'Have you met my siblings yet?'",
-	"'Do I exist in your world, too?'",
-]
 
-var death_lines: Array[String] = [
-	"'I wish Fiona was here...'",
-	"'At last... I, too, fade.'",
-	"'The feast ends with me.'",
-]
+var dialogue := {
+	"battle": [
+		"'You should have eaten at home!'",
+		"'The body fails long before the spirit.'",
+		"'I only take what is already fading.'",
+		"'Have you met my siblings yet?'",
+		"'Do I exist in your world, too?'"
+	],
+	"death": [
+		"'I wish Fiona was here...'",
+		"'At last... I, too, fade.'",
+		"'The feast ends with me.'"
+	]
+}
+
 
 func on_combat_start(inv: Array[HandData]) -> void:
 	is_dead = false
@@ -100,10 +103,10 @@ func on_round_end() -> void:
 
 
 
-# LINE HELPERS
+# line helpers
 func _set_battle_line(card: HandData) -> void:
 	# Pick random battle line
-	var l: String = battle_lines.pick_random()
+	var l: String = dialogue["battle"].pick_random()
 	if "%s" in l and card:
 		l = l % card.name
 	next_line = l
@@ -116,6 +119,6 @@ func _emit_stored_line() -> void:
 
 
 func _emit_death_line() -> void:
-	var l: String = death_lines.pick_random()
+	var l: String = dialogue["death"].pick_random()
 	emit_signal("feedback", l)
 	next_line = ""

@@ -8,50 +8,51 @@ var is_dead: bool = false
 var next_line: String = ""
 
 # Dialogue sets
+var dialogue := {
+	"intro": [
+		"'Blessings upon you, traveler.'",
+		"'You walk in the light, friend.'",
+		"'Would you join me for a prayer?'"
+	],
 
-var intro_lines: Array[String] = [
-	"'Blessings upon you, traveler.'",
-	"'You walk in the light, friend.'",
-	"'Would you join me for a prayer?'"
-]
-var purify_lines: Array[String] = [
-	"'I banish you, evil!'",
-	"'His light will prevail!'",
-	"'Gone to His embrace!'"
-]
+	"purify": [
+		"'I banish you, evil!'",
+		"'Gone to His embrace!'",
+		"'Begone evil spirit!'"
+	],
 
-var holy_lines: Array[String] = [
-	"'A gift?'",
-	"'I already have one of those.'"
-]
+	"holy": [
+		"'A gift?'",
+		"'I already have one of those.'"
+	],
+	
+	"battle": [
+		"'The divine shall decide!'",
+		"'Faith shall triumph!'",
+		"'Your sins weigh heavy...'",
+		"'His light will prevail!'",
+	],
 
-var evil_lines: Array[String] = [
-	"'Begone evil spirit!'",
-]
+	"death": [
+		"'Even in death, I shall serve the light.'",
+		"'May I see Him...'",
+		"'How can your resolve be heavier than my faith...'"
+	]
+}
 
-var battle_lines: Array[String] = [
-	"'The divine shall decide!'",
-	"'Faith shall triumph!'",
-	"'Your sins weigh heavy...'"
-]
-
-var death_lines: Array[String] = [
-	"'Even in death, I shall serve the light.'",
-	"'May I see Him...'",
-	"'How can your resolve be heavier than my faith...'"
-]
 
 func on_combat_start(players_cards: Array[HandData]) -> void:
 	is_dead = false
 	next_line = ""
-	emit_signal("feedback", intro_lines.pick_random())
+	emit_signal("feedback", dialogue["intro"].pick_random())
 
 func react_to_card(card: HandData) -> void:
 	if is_dead or card == null:
 		return
 
 	# Default: prepare a battle line to show later this turn.
-	next_line = battle_lines.pick_random()
+	next_line = dialogue["battle"].pick_random()
+
 
 	# Evil is purified immediately -> overrides battle line this turn.
 	if card.evil:
@@ -61,7 +62,7 @@ func react_to_card(card: HandData) -> void:
 		emit_signal("update_hand_visuals", card)
 
 		# Purify line overrides and is emitted now. Clear stored battle line.
-		var line: String = purify_lines.pick_random()
+		var line: String = dialogue["purify"].pick_random()
 		emit_signal("feedback", line)
 		next_line = ""  # prevent a second line this turn
 		return
@@ -69,9 +70,9 @@ func react_to_card(card: HandData) -> void:
 	if card.holy:
 		card.status_revealed = true
 		card.status_tint = Color.WHITE
-		emit_signal("update_handvisuals", card)
+		emit_signal("update_hand_visuals", card)
 		
-		var line: String = holy_lines.pick_random()
+		var line: String = dialogue["holy"].pick_random()
 		emit_signal("feedback", line)
 		next_line = ""
 		return
@@ -109,7 +110,7 @@ func on_damage_taken(current_hp: int) -> void:
 	if current_hp <= 0:
 		is_dead = true
 		next_line = ""  # ensure nothing else prints
-		emit_signal("feedback", death_lines.pick_random())
+		emit_signal("feedback", dialogue["death"].pick_random())
 		return
 
 	# Enemy survived — emit any stored battle line for this turn.

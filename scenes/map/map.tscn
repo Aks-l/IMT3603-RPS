@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://brdehkhvo21u4" path="res://audio/1204676_Hide-n-Seek-Ranch.mp3" id="5_fcby6"]
 [ext_resource type="Shader" path="res://scenes/map/fog_of_war.gdshader" id="6_04w0f"]
 [ext_resource type="PackedScene" uid="uid://bv7xwmn8ksqh1" path="res://ui/components/global_hud.tscn" id="6_cqrs2"]
+[ext_resource type="FontFile" uid="uid://t7nmxhwaig8g" path="res://ui/fonts/PowerofDragon-Regular.ttf" id="9_vvrx0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sqgf4"]
 shader = ExtResource("6_04w0f")
@@ -22,9 +23,6 @@ shader_parameter/fog_color = Color(0, 0, 0, 1)
 shader_parameter/vignette_strength = 0.8
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_a2pkv"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_04w0f"]
-font_size = 20
 
 [node name="map" type="Node2D"]
 script = ExtResource("1_sxf4j")
@@ -108,12 +106,14 @@ z_index = 1000
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -88.0
-offset_top = -296.0
-offset_right = 88.0
-offset_bottom = -268.0
+offset_left = -89.0
+offset_top = -264.0
+offset_right = 87.0
+offset_bottom = -231.0
 grow_horizontal = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("9_vvrx0")
+theme_override_font_sizes/font_size = 30
 text = "Generating map..."
-label_settings = SubResource("LabelSettings_04w0f")
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true

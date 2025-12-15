@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv7xwmn8ksqh1"]
+[gd_scene load_steps=3 format=3 uid="uid://bv7xwmn8ksqh1"]
 
-[ext_resource type="Script" path="res://ui/components/global_hud.gd" id="1_h8yko"]
+[ext_resource type="Script" uid="uid://cv7jysg6i4knr" path="res://ui/components/global_hud.gd" id="1_h8yko"]
+[ext_resource type="FontFile" uid="uid://t7nmxhwaig8g" path="res://ui/fonts/PowerofDragon-Regular.ttf" id="2_3p1xc"]
 
 [node name="GlobalHUD" type="Control"]
 process_mode = 3
@@ -36,9 +37,13 @@ theme_override_constants/separation = 5
 [node name="FundsLabel" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3p1xc")
+theme_override_font_sizes/font_size = 20
 text = "Gold: 0"
 
 [node name="ToggleGraph" type="Button" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3p1xc")
+theme_override_font_sizes/font_size = 20
 text = "Toggle Graph (G)"

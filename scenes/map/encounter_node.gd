@@ -27,6 +27,7 @@ var _hovered := false
 
 func _ready() -> void:
 	name_label.text = _type_to_string(encounter_type)
+	name_label.text = "" #Looks cleaner without labels. Might be useful for accessibility, but not as a base feature.
 	
 	# Set the icon texture based on encounter type
 	if ENCOUNTER_ICONS.has(encounter_type):
