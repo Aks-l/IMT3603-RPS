@@ -1,5 +1,8 @@
 # Game Programming Submission
 
+NOTE: Individual reports are located in the Reports folder.
+[Individual Reports](/Reports/)
+
 ## Group Component
 
 ### Team Members (Legal Name - NTNU handle - Discord handle - GitHub handle)
@@ -64,6 +67,24 @@ We have not used GitHub's issue tracker, but rather kept track of tasks in the D
 In lieu of issue tracking, we have made sure to keep all team members in the loop regarding what other members are working on. This has been done mostly through daily in-person and online communication.
 
 In all this has worked well for our team, as we have been able to avoid major merge conflicts and keep each other updated on progress without spending too much time on project management.
+
+**Testing and Quality Assurance**
+
+Testing was done through manual playthroughs in godots debugger. Before merging any significant feature branch, the developer would run through the affected systems to verify nothing had broken. For larger changes, we would sometimes test together over Discord, with one person streaming while others watched for issues or inconsistencies.
+
+We did not implement automated testing for this project. GDScript does have a testing framework available, but given the rapidly changing nature of the game and its functions, this was deemed to just cause more work. Most bugs were caught during development or shortly after merging when someone else encountered them during their own work, though some did get through, they were fixed when discovered.
+
+Looking back, some form of structured testing would have helped catch edge cases earlier. Several bugs only surfaced late in development when specific sequences of events occurred, things that a quick manual test wouldn't naturally cover.
+
+
+**AI Usage**
+
+AI tools were used throughout development in different capacities. For code, Copilot and ChatGPT helped with debugging, understanding Godot's node system, and generating boilerplate. We made an effort to only accept code we understood and could have written ourselves. One recurring issue was that AI often produced Godot 3.x syntax, requiring manual fixes for 4.x compatibility.
+
+For art assets, all backgrounds, enemy sprites, and hand images were generated using ChatGPT's image generation. With over 100 unique hands in the game, creating these manually would have been impractical. The generated assets ended up fitting the game's atmosphere well.
+
+GitHub's Copilot review feature was also used on pull requests to get quick feedback before requesting human review.
+
 
 **Work separation**
 
