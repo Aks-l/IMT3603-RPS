@@ -1,12 +1,12 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://boch074egx3rm"]
 
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc0x" path="res://data/cards/cat.tres" id="1_33qpw"]
-[ext_resource type="Script" uid="uid://by12nwuyw45yk" path="res://data/enemies/EnemyData.gd" id="2_8rivy"]
 [ext_resource type="Resource" uid="uid://dkhxwd7w7yc3t" path="res://data/cards/beer.tres" id="2_vdouj"]
 [ext_resource type="Texture2D" uid="uid://c80t7grb1h7a5" path="res://data/enemies/sprites/fatCat.png" id="3_8rivy"]
+[ext_resource type="Script" uid="uid://cvsy4lmod4tos" path="res://data/enemies/scripts/fatCat.gd" id="3_33qpw"]
 
 [resource]
-script = ExtResource("2_8rivy")
+script = ExtResource("3_33qpw")
 id = 3
 sprite = ExtResource("3_8rivy")
 name = "Henry"
@@ -14,7 +14,7 @@ description = "Too smug for not doing anything"
 discovered = false
 encounter_count = 0
 biome = "neutral"
-tier = 1
+level = 1
 deck = {
 ExtResource("1_33qpw"): 3,
 ExtResource("2_vdouj"): 2

@@ -9,7 +9,7 @@
 
 [resource]
 script = ExtResource("2_61bsh")
-id = 0
+id = 7
 sprite = ExtResource("6_2ltlu")
 name = "Torn"
 description = "Is he even supposed to be here?"

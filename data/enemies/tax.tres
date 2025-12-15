@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("2_8ydeu")
-id = 50
+id = 71
 sprite = ExtResource("3_8ydeu")
 name = "The Tax Collector"
 description = "A penny from all is a penny to all"

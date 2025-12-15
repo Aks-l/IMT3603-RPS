@@ -29,10 +29,9 @@ var _is_ready := false
 
 # THE LAST OF SETUP AND READY WILL CALL _apply
 func setup(enemy: EnemyData, hand: Dictionary[HandData, int], consumables: Array) -> void:
-	#_enemy = enemy
-	#TEMPORARY: Used for testning of certain enemy. can be changed to other tres-files
-	#_enemy = load("res://data/enemies/medusa.tres")
-	
+	_enemy = enemy
+
+
 	_enemy.encounter_count += 1
 	_enemy.discovered = true
 
@@ -137,7 +136,6 @@ func on_card_played(hand: HandData):
 	print("on_card_played called with: ", hand.name)
 	
 	var result = HandsDb.get_result(hand, enemy_hand)
-
 	
 	#special enemy hook. see enemydata for more info
 	if _enemy and _enemy.has_method("modify_result"):
@@ -146,7 +144,6 @@ func on_card_played(hand: HandData):
 	#dialoge for special enemy
 	if _enemy.has_method("emit_round_line"):
 		_enemy.emit_round_line()
-
 
 	# Play combat animation
 	
@@ -177,14 +174,31 @@ func on_card_played(hand: HandData):
 			player_hearts.take_damage(1)
 			
 		0:
-			result_label.text = "It's a tie! Both played " + hand.name
-			print(result_label.text) 
+
+			result_label.text += "\nIt's a tie! Both played " + hand.name
+			print(result_label.text) #DEBUG
+	
+	# Call on_round_end after all damage has been applied
+	if _enemy and _enemy.has_method("on_round_end"):
+		_enemy.on_round_end()
+			
+			
+	if enemy_hearts.get_hp() <= 0:
+		victory.visible = true
+		victory.setup(_enemy, true)
+		get_tree().paused = true
+		
+		## ONCE AN ITEM IS CHOSEN, queue_free()
+		
+	elif player_hearts.get_hp() <= 0:
+		push_error("TODO: implement gameover/loss resolution")
+		victory.setup(_enemy, false)
+		assert(false)
 
 	if enemy_hearts.get_hp() <= 0: resolve_win()
 	elif player_hearts.get_hp() <= 0: resolve_loss()
 	
 	hand_inventory.unlock_battle()
-
 
 func resolve_win():
 	result_label.text = ""
