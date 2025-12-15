@@ -2,7 +2,7 @@
 
 # [gameprog.md submission file](gameprog.md)
 
-A deck-building roguelike card game inspired by Balatro, where you battle enemies using an expanded rock-paper-scissors system with over 100 unique hands.
+A deck-building roguelike card game where you battle enemies using an expanded rock-paper-scissors system with over 100 unique hands.
 
 ## Game Overview
 
