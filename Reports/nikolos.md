@@ -1,5 +1,5 @@
 # Individual Report – Nikolai Olav Stubø
-
+**NOTE**: Images will load when viewed on GitHub [www.github.com/Aks-l/IMT3603-RPS/](www.github.com/Aks-l/IMT3603-RPS/Reports/nikolos.md), as they are linked from there.
 
 ## Score weighting
 |Description | My Weighting | 
@@ -55,7 +55,7 @@ func setup_ui() -> void:
 		hand_buttons[hand] = button
 ```
 
-*Circular layout from [outcome_graph.gd](ui/components/outcome_graph.gd)*
+*Circular layout from [outcome_graph.gd](/ui/components/outcome_graph.gd)*
 
 The layout is calculated at runtime. The total angle of a circle is divided by the number of hands to get an angle step, and each hand’s position is calculated using cosine and sine to place it on a fixed-radius circle around the center of the UI element. The center point is derived either from the control’s custom minimum size or its actual size, depending on which is available, so the graph works correctly in different layouts.
 
@@ -63,6 +63,9 @@ For each hand, a `TextureRect` is created programmatically rather than placed in
 
 I’m particularly happy with how clean and readable this ended up. The circular structure makes the rules immediately understandable, and the hover interaction reinforces the relationships without adding extra UI clutter. Getting the spacing, radius, and icon size right took a few iterations, but the final result feels much more polished than earlier UI elements.
 
+<img src="Images/outcomeGraph.png" alt="Outcome Graph" style="width: 80%; max-width: 500px; display: block; margin: auto;">
+
+*The outcome graph showing hand relationships*
 
 ### 2. Fog of War Shader
 
@@ -86,7 +89,7 @@ if (min_dist < reveal_radius) {
 }
 ```
 
-*Fragment shader from [fog_of_war.gdshader](scenes/map/fog_of_war.gdshader)*
+*Fragment shader from [fog_of_war.gdshader](/scenes/map/fog_of_war.gdshader)*
 
 For each fragment, the shader calculates the distance between the fragment’s world position and every revealed position, keeping track of the smallest distance found. This minimum distance is then used to determine the fog’s alpha value.
 
@@ -127,7 +130,7 @@ var bezier_curve = func(start: Vector2, end: Vector2, segments: int = 16) -> Pac
 	return points
 ```
 
-*Bezier generation from [map.gd](scenes/map/map.gd)*
+*Bezier generation from [map.gd](/scenes/map/map.gd)*
 
 
 Each path starts with a control point at the midpoint between the start and end nodes. From there, the code checks all other node positions in the map. If a node lies within a certain radius of the midpoint (excluding the start and end nodes), it applies a “push” force to the control point. The force direction is calculated by normalizing the vector pointing away from the nearby node, and the magnitude scales based on how close the node is to the midpoint.
@@ -136,6 +139,9 @@ All these forces are accumulated and added to the control point, along with a sm
 
 The result is a path that smoothly bends around encounter nodes instead of intersecting them. The effect is subtle, and I probably spent more time on it than strictly necessary, but paths overlapping nodes looked bad enough that I couldn’t ignore it.
 
+<img src="Images/map.png" alt="Map with fog of war and curved paths" style="width: 80%; max-width: 500px; display: block; margin: auto;">
+
+*The map showing fog of war effect and bezier curves avoiding nodes*
 ### 4. StyleBoxTexture for Event Panels (not really code, but added as I liked the result)
 
 When styling event panels of varying sizes, I needed a solution that would preserve border detail while allowing the panel to scale with its content. I ended up using Godot’s `StyleBoxTexture`, which supports nine-slice textures.
@@ -160,7 +166,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 ```
 
-*StyleBox resource from [event_panel_stylebox.tres](ui/paneltextures/event_panel_stylebox.tres)*
+*StyleBox resource from [event_panel_stylebox.tres](/ui/paneltextures/event_panel_stylebox.tres)*
 
 The style resource defines content margins to control padding for UI elements and texture margins that specify which parts of the texture belong to the corners and edges. These regions remain fixed, while only the center portion stretches. Both horizontal and vertical stretch axes are enabled so the same style works for panels of many different dimensions.
 
@@ -203,7 +209,7 @@ func _exit_tree():
 					area.input_pickable = true
 ```
 
-*Duplicated loops from [event_ui.gd](scenes/eventScene/event_ui.gd)*
+*Duplicated loops from [event_ui.gd](/scenes/eventScene/event_ui.gd)*
 
 The exact same nested logic exists in two different lifecycle functions, with the only difference being whether input_pickable is set to true or false. This should clearly have been extracted into a helper function that takes a boolean parameter. It started as a quick fix, but since the code was never revisited or reviewed, the duplication remained.
 
@@ -235,7 +241,7 @@ for j in per_layer:
 layer_ids.append(ids)
 ```
 
-*Type assignment from [map_generator.gd](scenes/map/map_generator.gd)*
+*Type assignment from [map_generator.gd](/scenes/map/map_generator.gd)*
 
 These probability values are magic numbers embedded directly in the logic, and the selection is implemented using nested conditional expressions. This hurts both readability and flexibility. The probabilities should have been defined as named constants and ideally exported so they could be adjusted easily. A weighted selection approach, like the one used elsewhere for events, would have been a much cleaner solution.
 
@@ -274,11 +280,20 @@ func _on_area_input(_vp, event: InputEvent, _shape_idx: int) -> void:
 					push_warning("[EncounterNode] No events available")
 ```
 
-*Click handler from [encounter_node.gd](scenes/map/encounter_node.gd)*
+*Click handler from [encounter_node.gd](/scenes/map/encounter_node.gd)*
 
 There is significant duplication between combat and boss encounters, where enemy selection and parameter passing are nearly identical and only the encounter type string differs. This logic should have been refactored into shared helper functions or moved into encounter-type-specific handlers.
 
 As it stands, the function violates *DRY* principles and mixes input handling with gameplay logic, making it harder to maintain or extend.
+
+## AI usage
+
+Throughout the projectwork I have made frequent use of AI tools such as *Copilot* and *ChatGPT*. I have tried to keep usage to only generating code I both understand and believe I myself could have written. It has also been very useful when debugging, especially given my inexperience with Godot and GDScript. I have also used AI to help guide me on what nodes to use and how to structure them in scenes. 
+
+That being said I have found that AIs currently have some issues when it comes to generating GDScript code, with a recurring problem that it uses 3.x syntax and methods that no longer work on Godot 4.x. It has also has some issues in terms of working with scene-files (.tscn) directly, and as a result I have had to make sure it doesnt touch those, while also having to review the code carefully for Godot 4.x compatibility.
+
+Overall I believe the use of AI has helped both in terms of developement speed and learning, with the lack of full automation actually helping me learn as there is no way to simply *fire and forget*.
+
 
 ## Reflection
 
